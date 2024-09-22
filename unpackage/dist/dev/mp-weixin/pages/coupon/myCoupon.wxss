@@ -1,0 +1,58 @@
+.tab-container.data-v-f4f12eb7 {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #eee;
+  background-color: white;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #181818;
+}
+.tab-container .tab-item.data-v-f4f12eb7 {
+  padding: 20rpx 0;
+  cursor: pointer;
+}
+.tab-container .tab-item.active.data-v-f4f12eb7 {
+  color: red;
+  border-bottom: 2px solid red;
+}
+.content.data-v-f4f12eb7 {
+  height: 100%;
+  text-align: center;
+  background-color: #f4f6fa;
+  font-size: 13.33px;
+  font-weight: 500;
+  color: #b2b2b2;
+  overflow: hidden;
+}
+.content .empty.data-v-f4f12eb7 {
+  width: 190rpx;
+  height: 200rpx;
+  margin: 0 auto;
+  margin-top: 200rpx;
+}
+.content .empty image.data-v-f4f12eb7 {
+  width: 100%;
+  height: 80%;
+  margin-bottom: 20rpx;
+}
+.more-coupons.data-v-f4f12eb7 {
+  width: 100%;
+  height: 104rpx;
+  position: fixed;
+  bottom: 0px;
+  background-color: white;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.more-coupons .more-coupons-btn.data-v-f4f12eb7 {
+  height: 70rpx;
+  opacity: 0.9;
+  background: linear-gradient(89deg, #ff3981 3%, #ff1e1a 97%);
+  border-radius: 14rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,75 @@
+.container .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 47px 0;
+}
+.container .header .icon {
+  width: 37.5px;
+  height: 37.5px;
+  margin-left: 30rpx;
+}
+.container .header .title {
+  font-size: 35rpx;
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 0 16rpx;
+  margin-right: 30rpx;
+}
+.container .header .line {
+  flex: none;
+  width: 47rpx;
+  border-bottom: 1px solid #c4c4c4;
+}
+.container .product_list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.container .product_item {
+  overflow: hidden;
+  border-radius: 12rpx;
+  background-color: white;
+  width: 48%;
+  margin: 1%;
+  box-sizing: border-box;
+}
+.container .product_item .product_radius {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container .product_item .product_radius .image {
+  width: 100%;
+  height: 341.67rpx;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 13.89rpx 13.89rpx 0px 0px;
+}
+.container .product_item .product_radius .txt-box {
+  flex: 1;
+  margin-top: 14rpx;
+  margin-bottom: 15.28rpx;
+  padding: 0 15rpx 5rpx 15rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container .product_item .product_radius .txt-box .name {
+  font-size: 24.31rpx;
+  font-weight: 500;
+  color: #313131;
+  letter-spacing: 0.13px;
+}
+.container .product_item .product_radius .txt-box .price-box {
+  margin-top: 9rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  font-size: 20.83rpx;
+  color: #999999;
+}
+.container .product_item .product_radius .txt-box .price-box .price {
+  font-size: 30.83rpx;
+  font-weight: 700;
+  color: #ff2626;
+}

@@ -1,0 +1,1 @@
+<view> pages/test/test <coupon-popup wx:if="{{c}}" bindclose="{{a}}" bindclaim="{{b}}" u-i="18fcf4f0-0" bind:__l="__l" u-p="{{c}}"/><view><button bindtap="{{d}}" size="mini">优惠券弹窗</button></view></view>

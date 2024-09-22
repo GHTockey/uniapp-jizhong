@@ -1,0 +1,1 @@
+<view class="news-box"><image src="{{a}}" mode=""></image><view style="overflow:hidden"><view class="{{['txt-box', c && 'txt-box-animation']}}" bindtap="{{d}}"><text wx:for="{{b}}" wx:for-item="item" wx:key="b">{{item.a}}</text></view></view></view>
