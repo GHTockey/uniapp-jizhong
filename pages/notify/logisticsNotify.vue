@@ -10,7 +10,24 @@
 
     <!-- 消息列表 -->
     <view style="height: 30rpx;"></view>
-    <MessageBar style="margin: 0 29rpx;" />
+    <!-- <MessageBar style="margin: 0 29rpx;" /> -->
+    <MessageBar style="margin: 0 29rpx;">
+      <!-- <template #barHeader>
+        <view>
+          <image class="icon-img" src="../../static/icon/aixin.png" />
+          <text class="title">自定义物流消息</text>
+        </view>
+        <text class="time">今天 14:00:00</text>
+      </template> -->
+      <!-- <template #content>
+        <text>订单编号：9876543210</text>
+        <text>发货方式：顺丰</text>
+        <text>发货时间：2024-06-01 14:00:00</text>
+      </template>
+      <template #footer>
+        <view class="footer-item">详情</view>
+      </template> -->
+    </MessageBar>
   </view>
 </template>
 
