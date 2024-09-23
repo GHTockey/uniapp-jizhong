@@ -52,7 +52,7 @@ const _sfc_main = {
         d: common_vendor.t(__props.condition),
         e: common_vendor.t(__props.expiryDate),
         f: common_vendor.o(claimCoupon),
-        g: common_assets._imports_0$8,
+        g: common_assets._imports_0$9,
         h: common_vendor.o(closePopup),
         i: common_vendor.o(() => {
         })

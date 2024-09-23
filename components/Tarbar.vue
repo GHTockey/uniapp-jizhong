@@ -1,5 +1,5 @@
 <template>
-	<view class="tabbar">
+	<view class="tabbar" :class="{'ios-bottom': systemStore.isIos}">
 		<view v-for="(item, index) in list" :key="index" class="tabbar-item" @click="selectTab(index)">
 			<image :src="selectedIndex === index ? item.selectedIconPath : item.iconPath" class="tabbar-icon" />
 			<text :class="['tabbar-text', { 'active': selectedIndex === index }]">{{ item.text }}</text>
@@ -9,6 +9,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { useSystemStore } from "@/stores/system.js"
+
+const systemStore = useSystemStore();
 
 const list = [
 	{
@@ -58,8 +61,13 @@ function selectTab(index) {
 </script>
 
 <style lang="less">
+// ios 底部的导航条
+.ios-bottom {
+	padding-bottom: env(safe-area-inset-bottom) !important;
+}
+
 .tabbar {
-	height: 95.83rpx;
+	// height: 95.83rpx;
 	background: #ffffff;
 	display: flex;
 	justify-content: space-around;
@@ -67,7 +75,9 @@ function selectTab(index) {
 	background-color: #fff;
 	border-top: 1px solid #eaeaea;
 	padding: 16rpx 0;
-	box-sizing: border-box;
+	// padding-top: 16rpx;
+	// padding-bottom: 16rpx;
+	// box-sizing: border-box;
 
 	.tabbar-item {
 		display: flex;

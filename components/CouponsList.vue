@@ -5,6 +5,7 @@
 				<text class="coupon-amount">
 					<text style="font-size: 30rpx;">¥</text>{{ item.amount }}
 				</text>
+				<view class="right-border"></view>
 				<text class="coupon-condition">{{ item.condition }}</text>
 			</view>
 			<view class="coupon-right">
@@ -47,12 +48,18 @@ const props = defineProps({
 		border-radius: 10rpx;
 		margin-bottom: 20rpx;
 		border-radius: 6.6px;
+		// border: 1px solid gold;
 		overflow: hidden;
+		// clip-path: path("M 0 0 L 0 176 L 192 176 A 8 8 0 0 1 208 176 L 686 176 L 686 0 L 208 0 A 8 8 0 0 1 192 0");
+		background: radial-gradient(circle at right top, transparent 7px, #ffe6e6 0) top left / 225rpx 103rpx no-repeat,
+			radial-gradient(circle at right bottom, transparent 7px, #ffe6e6 0) bottom left / 225rpx 103rpx no-repeat,
+			radial-gradient(circle at left top, transparent 7px, #ffffff 0) top right / 490rpx 103rpx no-repeat,
+			radial-gradient(circle at left bottom, transparent 7px, #ffffff 0) bottom right / 490rpx 103rpx no-repeat;
+
 
 		.coupon-left {
 			width: 220rpx;
-			background-color: #ffe6e6;
-			// background-color: #e40000;
+			// background-color: #ffe6e6;
 			// padding: 20rpx;
 			display: flex;
 			flex-direction: column;
@@ -60,16 +67,26 @@ const props = defineProps({
 			justify-content: center;
 			position: relative;
 			// 虚线
-			border-right: #ff26262b 1px dashed;
-			// 圆角/*4个角落各放一个圆*/
-			-webkit-mask:
-				radial-gradient(circle at 0 0, #0000 0px, red 0),
-				radial-gradient(circle at right 0, #0000 8px, red 0),
-				radial-gradient(circle at 0 100%, #0000 0px, red 0),
-				radial-gradient(circle at right 100%, #0000 8px, red 0);
-			//   -webkit-mask-composite: source-in || destination-in ; /*chrome*/
-			/*Firefox*/
-			mask-composite: intersect;
+			// border-right: #ff26262b 1px dashed;
+			// // 圆角/*4个角落各放一个圆*/
+			// -webkit-mask:
+			// 	radial-gradient(circle at 0 0, #0000 0px, red 0),
+			// 	radial-gradient(circle at right 0, #0000 8px, red 0),
+			// 	radial-gradient(circle at 0 100%, #0000 0px, red 0),
+			// 	radial-gradient(circle at right 100%, #0000 8px, red 0);
+			// //   -webkit-mask-composite: source-in || destination-in ; /*chrome*/
+			// /*Firefox*/
+			// mask-composite: intersect;
+
+			.right-border {
+				// width: 1px;
+				// background-color: gold;
+				height: 85%;
+				position: absolute;
+				right: -1px;
+				border-right: #ff26262b 1.5px dashed;
+			}
+
 
 
 			.coupon-amount {
@@ -84,37 +101,37 @@ const props = defineProps({
 				color: #ff2626;
 			}
 
-			&::before {
-				z-index: 11;
-				content: '';
-				display: inline-block;
-				width: 25rpx;
-				height: 25rpx;
-				background-color: #f4f6fa;
-				border-radius: 50%;
-				position: absolute;
-				top: 0;
-				right: 0;
-				transform: translateY(-50%) translateX(50%);
-			}
+			// &::before {
+			// 	z-index: 11;
+			// 	content: '';
+			// 	display: inline-block;
+			// 	width: 25rpx;
+			// 	height: 25rpx;
+			// 	background-color: #f4f6fa;
+			// 	border-radius: 50%;
+			// 	position: absolute;
+			// 	top: 0;
+			// 	right: 0;
+			// 	transform: translateY(-50%) translateX(50%);
+			// }
 
-			&::after {
-				z-index: 11;
-				content: '';
-				display: inline-block;
-				width: 25rpx;
-				height: 25rpx;
-				background-color: #f4f6fa;
-				border-radius: 50%;
-				position: absolute;
-				bottom: 0;
-				right: 0;
-				transform: translateY(50%) translateX(50%);
-			}
+			// &::after {
+			// 	z-index: 11;
+			// 	content: '';
+			// 	display: inline-block;
+			// 	width: 25rpx;
+			// 	height: 25rpx;
+			// 	background-color: #f4f6fa;
+			// 	border-radius: 50%;
+			// 	position: absolute;
+			// 	bottom: 0;
+			// 	right: 0;
+			// 	transform: translateY(50%) translateX(50%);
+			// }
 		}
 
 		.coupon-right {
-			background-color: white;
+			// background-color: white;
 			text-align: left;
 			// width: 100%;
 			flex: 1;
@@ -124,14 +141,14 @@ const props = defineProps({
 			padding: 30rpx;
 			// justify-content: space-between;
 			// 圆角/*4个角落各放一个圆*/
-			-webkit-mask:
-				radial-gradient(circle at 0 0, #0000 8px, red 0),
-				radial-gradient(circle at right 0, #0000 0px, red 0),
-				radial-gradient(circle at 0 100%, #0000 8px, red 0),
-				radial-gradient(circle at right 100%, #0000 0px, red 0);
-			// -webkit-mask-composite: source-in | destination-in ; /*chrome*/
-			/*Firefox*/
-			mask-composite: intersect;
+			// -webkit-mask:
+			// 	radial-gradient(circle at 0 0, #0000 8px, red 0),
+			// 	radial-gradient(circle at right 0, #0000 0px, red 0),
+			// 	radial-gradient(circle at 0 100%, #0000 8px, red 0),
+			// 	radial-gradient(circle at right 100%, #0000 0px, red 0);
+			// // -webkit-mask-composite: source-in | destination-in ; /*chrome*/
+			// /*Firefox*/
+			// mask-composite: intersect;
 
 			.coupon-title,
 			.coupon-date,

@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "notifyList",
+          "pathName": "pages/notify/notifyList",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/coupon/couponCenter",
           "pathName": "pages/coupon/couponCenter",
           "query": "",

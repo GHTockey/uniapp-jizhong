@@ -4,12 +4,13 @@
     "pages/test/test",
     "pages/coupon/myCoupon",
     "pages/coupon/couponCenter",
-    "pages/notify/notify"
+    "pages/notify/notify",
+    "pages/notify/notifyList"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarBackgroundColor": "#fff",
     "backgroundColor": "#F8F8F8"
   },
   "usingComponents": {}

@@ -6,25 +6,27 @@
 
     <!-- 手机状态栏高度 -->
     <view :style="`height: ${getStatusBarHeight() || 10}px;`"></view>
+    <!-- 小程序胶囊高度 -->
+     <!-- <view :style="`height: ${getTitleBarHeight()}px;`"></view> -->
 
-    <!-- logo 标题: 高度为小程序胶囊按钮栏高度 -->
-    <view class="logo-box" :style="`height: ${getTitleBarHeight()}px;`">
-      <image src="https://wx.qlogo.cn/mmhead/Q3auHgzwzM4icHOjU9t841JOtBmdETgHf8hMGMoRaW0BMH1n3B6SicFQ/0" />
-      <text>集中科技</text>
-    </view>
-
-    <!-- 搜索栏 -->
-    <view class="searchBar">
-      <image src="../../static/icon/组 9954@2x.png" />
-      <input type="text" placeholder="请输入关键词进行搜索" placeholder-class="searchPlace" />
+    <view class="header-content">
+      <!-- logo 栏 标题: 高度为小程序胶囊按钮栏高度 -->
+      <view class="logo-box fixed-logo">
+        <image src="https://wx.qlogo.cn/mmhead/Q3auHgzwzM4icHOjU9t841JOtBmdETgHf8hMGMoRaW0BMH1n3B6SicFQ/0" />
+        <text>集中科技</text>
+      </view>
+      <!-- 搜索栏 -->
+      <view class="searchBar fixed-search">
+        <image src="../../static/icon/组 9954@2x.png" />
+        <input type="text" placeholder="请输入关键词进行搜索" placeholder-class="searchPlace" />
+      </view>
     </view>
 
     <!-- 轮播图 -->
     <!-- <view> -->
     <swiper class="carousel" :autoplay="banner_swiper.autoplay" :interval="banner_swiper.interval"
       :duration="banner_swiper.duration" :indicator-dots="banner_swiper.indicatorDots"
-      indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#fff" :circular="banner_swiper.is_radius"
-      style="height: {{banner_swiper.height_value}}px">
+      indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#fff" :circular="banner_swiper.is_radius">
       <swiper-item v-for="(image, index) in banner_swiper.images" :key="index">
         <image :src="image" mode="aspectFill" style="width: 100%; height: 100%;" />
       </swiper-item>
@@ -91,6 +93,7 @@ import {
   getTitleBarHeight
 } from "@/utils/index.js";
 
+
 // 轮播图数据
 const banner_swiper = ref({
   images: [],
@@ -115,7 +118,7 @@ function addBubbleTipsData() {
   }
 };
 setInterval(() => {
-  addBubbleTipsData()
+  // addBubbleTipsData()
 }, 3000);
 
 console.log('系统信息', uni.getSystemInfoSync());
@@ -160,6 +163,29 @@ async function getData() {
 </script>
 
 <style lang="less" scoped>
+// .fixed-logo {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   z-index: 1000;
+//   padding: 0 19.44rpx;
+//   box-sizing: border-box;
+//   // background-color: white;
+// }
+
+// .fixed-search {
+//   position: fixed;
+//   left: 0;
+//   top: 50rpx;
+//   /* 根据实际情况调整 */
+//   width: 100%;
+//   z-index: 999;
+//   padding: 0 19.44rpx;
+//   box-sizing: border-box;
+//   // background-color: rgba(255, 255, 255, 0.582);
+// }
+
 // 搜索栏 placeholder
 .searchPlace {
   // width: 108px;
@@ -174,19 +200,6 @@ async function getData() {
   align-items: center;
 }
 
-.bg-image {
-  z-index: 0;
-  width: 100%;
-  height: 940rpx;
-  // background-color: red;
-  position: absolute;
-  top: 0;
-  left: 0;
-  // background-repeat: no-repeat;
-  // background-size: contain;
-  // background-image: url("../../static/icon/thumb.png");
-}
-
 .content {
   // z-index: 1;
   padding: 0 19.44rpx;
@@ -196,73 +209,89 @@ async function getData() {
   background-color: #f8f9fa;
   background-repeat: no-repeat;
   background-size: contain;
-  // border: 1px solid red;
-  // height: 100%;
 
-  .logo-box {
-    display: flex;
-    align-items: center;
+  // 头部内容挤下
+  // padding-top: 145rpx;
 
-    font-size: 43rpx;
-    font-family: Alimama ShuHeiTi, Alimama ShuHeiTi-Bold;
-    font-weight: 700;
-    color: #ff1c17;
+  .header-content {
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // width: 100%;
+    // padding: 0 19.44rpx;
+    // padding-bottom: 20rpx;
+    // box-sizing: border-box;
+    // background-color: #1989f9;
+    // z-index: 999;
+    // background-repeat: no-repeat;
+    // background-size: cover;
 
-    >image {
-      border-radius: 50%;
-      width: 59.72rpx;
-      height: 59.72rpx;
-      margin-right: 13.19rpx;
+    .logo-box {
+      display: flex;
+      align-items: center;
+
+      font-size: 43rpx;
+      font-family: Alimama ShuHeiTi, Alimama ShuHeiTi-Bold;
+      font-weight: 700;
+      color: #ff1c17;
+
+      >image {
+        border-radius: 50%;
+        width: 59.72rpx;
+        height: 59.72rpx;
+        margin-right: 13.19rpx;
+      }
     }
-  }
 
-  // 搜索栏
-  .searchBar {
-    margin-top: 27rpx;
-    // padding: 0 8px;
-    display: flex;
-    // justify-content: center;
-    justify-content: space-between;
-    align-items: center;
+    // 搜索栏
+    .searchBar {
+      margin-top: 27rpx;
+      // padding: 0 8px;
+      display: flex;
+      // justify-content: center;
+      justify-content: space-between;
+      align-items: center;
 
-    image {
-      width: 48.61rpx;
-      height: 47.22rpx;
-    }
+      image {
+        width: 48.61rpx;
+        height: 47.22rpx;
+      }
 
-    input {
-      // margin: 0 10rpx;
-      // margin-right: 0;
-      margin-left: 27.78rpx;
-      box-sizing: border-box;
-      // padding: 0 16rpx;
-      padding-left: 90rpx;
-      // width: 304.67px;
-      flex: 1;
-      height: 60rpx;
-      background-color: rgba(255, 255, 255, .3);
-      border-radius: 30rpx;
-      position: relative;
-      // font
-      font-size: 25rpx;
-      font-weight: 400;
-      color: #ffffff;
+      input {
+        // margin: 0 10rpx;
+        // margin-right: 0;
+        margin-left: 27.78rpx;
+        box-sizing: border-box;
+        // padding: 0 16rpx;
+        padding-left: 90rpx;
+        // width: 304.67px;
+        flex: 1;
+        height: 60rpx;
+        background-color: rgba(255, 255, 255, .3);
+        border-radius: 30rpx;
+        position: relative;
+        // font
+        font-size: 25rpx;
+        font-weight: 400;
+        color: #ffffff;
 
-      &::before {
-        content: '';
-        display: inline-block;
-        width: 23.61rpx;
-        height: 23.61rpx;
-        margin: 0 8rpx;
-        position: absolute;
-        left: 35rpx;
-        top: 50%;
-        transform: translateY(-50%);
-        background: url('../../static/icon/放大镜.png') no-repeat center;
-        background-size: contain;
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 23.61rpx;
+          height: 23.61rpx;
+          margin: 0 8rpx;
+          position: absolute;
+          left: 35rpx;
+          top: 50%;
+          transform: translateY(-50%);
+          background: url('../../static/icon/放大镜.png') no-repeat center;
+          background-size: contain;
+        }
       }
     }
   }
+
 
   // 轮播图
   .carousel {

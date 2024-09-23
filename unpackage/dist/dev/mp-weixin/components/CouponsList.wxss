@@ -10,20 +10,21 @@
   margin-bottom: 20rpx;
   border-radius: 6.6px;
   overflow: hidden;
+  background: radial-gradient(circle at right top, transparent 7px, #ffe6e6 0) top left / 225rpx 103rpx no-repeat, radial-gradient(circle at right bottom, transparent 7px, #ffe6e6 0) bottom left / 225rpx 103rpx no-repeat, radial-gradient(circle at left top, transparent 7px, #ffffff 0) top right / 490rpx 103rpx no-repeat, radial-gradient(circle at left bottom, transparent 7px, #ffffff 0) bottom right / 490rpx 103rpx no-repeat;
 }
 .coupons-list .coupon .coupon-left.data-v-df656955 {
   width: 220rpx;
-  background-color: #ffe6e6;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  border-right: #ff26262b 1px dashed;
-  -webkit-mask: radial-gradient(circle at 0 0, #0000 0px, red 0), radial-gradient(circle at right 0, #0000 8px, red 0), radial-gradient(circle at 0 100%, #0000 0px, red 0), radial-gradient(circle at right 100%, #0000 8px, red 0);
-  /*Firefox*/
-  -webkit-mask-composite: source-in, xor;
-          mask-composite: intersect;
+}
+.coupons-list .coupon .coupon-left .right-border.data-v-df656955 {
+  height: 85%;
+  position: absolute;
+  right: -1px;
+  border-right: #ff26262b 1.5px dashed;
 }
 .coupons-list .coupon .coupon-left .coupon-amount.data-v-df656955 {
   font-size: 36rpx;
@@ -35,44 +36,13 @@
   font-size: 24rpx;
   color: #ff2626;
 }
-.coupons-list .coupon .coupon-left.data-v-df656955::before {
-  z-index: 11;
-  content: '';
-  display: inline-block;
-  width: 25rpx;
-  height: 25rpx;
-  background-color: #f4f6fa;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translateY(-50%) translateX(50%);
-}
-.coupons-list .coupon .coupon-left.data-v-df656955::after {
-  z-index: 11;
-  content: '';
-  display: inline-block;
-  width: 25rpx;
-  height: 25rpx;
-  background-color: #f4f6fa;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  transform: translateY(50%) translateX(50%);
-}
 .coupons-list .coupon .coupon-right.data-v-df656955 {
-  background-color: white;
   text-align: left;
   flex: 1;
   height: 200rpx;
   box-sizing: border-box;
   position: relative;
   padding: 30rpx;
-  -webkit-mask: radial-gradient(circle at 0 0, #0000 8px, red 0), radial-gradient(circle at right 0, #0000 0px, red 0), radial-gradient(circle at 0 100%, #0000 8px, red 0), radial-gradient(circle at right 100%, #0000 0px, red 0);
-  /*Firefox*/
-  -webkit-mask-composite: source-in, xor;
-          mask-composite: intersect;
 }
 .coupons-list .coupon .coupon-right .coupon-title.data-v-df656955,
 .coupons-list .coupon .coupon-right .coupon-date.data-v-df656955,

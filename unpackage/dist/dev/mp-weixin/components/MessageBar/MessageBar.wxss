@@ -1,0 +1,57 @@
+.message-bar-container {
+  height: 355.56rpx;
+  background: #ffffff;
+  border-radius: 13.89rpx;
+  box-shadow: 0px 2.08rpx 4.17rpx 0px rgba(0, 0, 0, 0.05);
+  padding: 29.17rpx;
+  box-sizing: border-box;
+}
+.message-bar-container .message-bar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22.22rpx;
+}
+.message-bar-container .message-bar-header > .icon-title-box {
+  display: flex;
+  align-items: center;
+}
+.message-bar-container .message-bar-header > .icon-title-box .icon-img {
+  width: 38.89rpx;
+  height: 38.89rpx;
+}
+.message-bar-container .message-bar-header > .icon-title-box .message-bar-title {
+  border: 0.69rpx solid rgba(0, 0, 0, 0);
+  font-size: 27.78rpx;
+  font-family: PingFang SC, PingFang SC-Bold;
+  font-weight: 500;
+  color: #181818;
+  margin-left: 11.11rpx;
+}
+.message-bar-container .message-bar-header .message-bar-time {
+  font-size: 23.61rpx;
+  font-family: PingFang SC, PingFang SC-Regular;
+  font-weight: 400;
+  color: #6a6a6a;
+}
+.message-bar-container .message-bar-content {
+  height: 187.5rpx;
+  border-top: 1.39rpx dashed #33333385;
+  border-bottom: 1.39rpx dashed #33333385;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-size: 25rpx;
+  font-family: PingFang SC, PingFang SC-Regular;
+  font-weight: 400;
+  color: #353535;
+}
+.message-bar-container .message-bar-footer {
+  margin-top: 19.44rpx;
+}
+.message-bar-container .message-bar-footer .message-bar-footer-item {
+  font-size: 25rpx;
+  font-family: PingFang SC, PingFang SC-Regular;
+  font-weight: 400;
+  color: #0e63d3;
+}

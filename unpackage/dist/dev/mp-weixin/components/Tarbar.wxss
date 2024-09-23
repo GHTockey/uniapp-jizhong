@@ -1,5 +1,7 @@
+.ios-bottom {
+  padding-bottom: env(safe-area-inset-bottom) !important;
+}
 .tabbar {
-  height: 95.83rpx;
   background: #ffffff;
   display: flex;
   justify-content: space-around;
@@ -7,7 +9,6 @@
   background-color: #fff;
   border-top: 1px solid #eaeaea;
   padding: 16rpx 0;
-  box-sizing: border-box;
 }
 .tabbar .tabbar-item {
   display: flex;

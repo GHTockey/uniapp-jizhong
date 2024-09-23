@@ -1,8 +1,10 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
+const stores_system = require("../stores/system.js");
 const _sfc_main = {
   __name: "Tarbar",
   setup(__props) {
+    const systemStore = stores_system.useSystemStore();
     const list = [
       {
         "selectedIconPath": "https://saas.jizhongkeji.com/static/jzkj/images/tab1.png",
@@ -57,7 +59,8 @@ const _sfc_main = {
             d: index,
             e: common_vendor.o(($event) => selectTab(index), index)
           };
-        })
+        }),
+        b: common_vendor.unref(systemStore).isIos ? 1 : ""
       };
     };
   }

@@ -43,7 +43,7 @@ const _sfc_main = {
     ];
     return (_ctx, _cache) => {
       return {
-        a: common_assets._imports_0$6,
+        a: common_assets._imports_0$7,
         b: common_vendor.f(goods, (product, index, i0) => {
           return {
             a: product.image_uri,

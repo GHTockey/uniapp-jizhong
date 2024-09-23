@@ -1,7 +1,7 @@
 <template>
   <view class="logistics-notify-container">
     <!-- 空状态 -->
-    <view class="empty-state" v-show="false">
+    <view class="empty-state" v-if="false">
       <image src="../../static/images/logistics-empty.png" />
       <text class="txt">当前暂未收到消息</text>
       <!-- 返回按钮 -->
@@ -10,36 +10,48 @@
 
     <!-- 消息列表 -->
     <view style="height: 30rpx;"></view>
-    <!-- <MessageBar style="margin: 0 29rpx;" /> -->
-    <MessageBar style="margin: 0 29rpx;">
-      <!-- <template #barHeader>
-        <view>
-          <image class="icon-img" src="../../static/icon/aixin.png" />
-          <text class="title">自定义物流消息</text>
-        </view>
-        <text class="time">今天 14:00:00</text>
-      </template> -->
-      <!-- <template #content>
-        <text>订单编号：9876543210</text>
-        <text>发货方式：顺丰</text>
-        <text>发货时间：2024-06-01 14:00:00</text>
-      </template>
-      <template #footer>
-        <view class="footer-item">详情</view>
-      </template> -->
-    </MessageBar>
+    <MessageBar class="message-bar" v-for="item in 3" :key="item" />
+
+    <view class="no-more">我是有底线的~</view>
   </view>
 </template>
 
 <script setup>
+import { useSystemStore } from '@/stores/system.js';
 
+const systemStore = useSystemStore()
+
+uni.setNavigationBarTitle({
+	title: "物流消息"
+})
 </script>
 
 <style scoped lang="less">
+.message-bar {
+  margin-bottom: 30rpx;
+}
+
 .logistics-notify-container {
-  height: 100vh;
+  // :style="`min-height: ${systemStore.getWindowHeight-44}px`"
+  min-height: calc(100vh - 44px);
   background-color: #f8f9fa;
   position: relative;
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+
+  .no-more {
+    position: absolute;
+    bottom: 50rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+
+    font-size: 25rpx;
+    font-family: PingFang SC, PingFang SC-Regular;
+    font-weight: 400;
+    color: #b0b0b0;
+  }
 
   .empty-state {
     display: flex;

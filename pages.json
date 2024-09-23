@@ -37,10 +37,10 @@
 		  }
 		},
 		{
-		  "path" : "pages/notify/logisticsNotify",
+		  "path" : "pages/notify/notifyList",
 		  "style" : 
 		  {
-		    "navigationBarTitleText" : "物流信息"
+		    "navigationBarTitleText" : "[消息列表"
 		  }
 		}
 	],

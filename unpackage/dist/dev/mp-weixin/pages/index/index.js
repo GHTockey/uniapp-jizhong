@@ -29,15 +29,7 @@ const _sfc_main = {
     });
     const iconlist = common_vendor.ref([]);
     const bubbleTipsData = common_vendor.ref();
-    function addBubbleTipsData() {
-      bubbleTipsData.value = {
-        id: Date.now(),
-        img: "https://img0.baidu.com/it/u=4294353355,1624915568&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500",
-        text: `张${Math.floor(Math.random() * 10)}一分钟前购买了商品`
-      };
-    }
     setInterval(() => {
-      addBubbleTipsData();
     }, 3e3);
     console.log("系统信息", common_vendor.index.getSystemInfoSync());
     console.log("状态栏高度：", utils_index.getStatusBarHeight());
@@ -81,33 +73,32 @@ const _sfc_main = {
           itemData: bubbleTipsData.value
         }),
         b: common_vendor.s(`height: ${common_vendor.unref(utils_index.getStatusBarHeight)() || 10}px;`),
-        c: common_vendor.s(`height: ${common_vendor.unref(utils_index.getTitleBarHeight)()}px;`),
-        d: common_assets._imports_0,
-        e: common_vendor.f(banner_swiper.value.images, (image, index, i0) => {
+        c: common_assets._imports_0,
+        d: common_vendor.f(banner_swiper.value.images, (image, index, i0) => {
           return {
             a: image,
             b: index
           };
         }),
-        f: banner_swiper.value.autoplay,
-        g: banner_swiper.value.interval,
-        h: banner_swiper.value.duration,
-        i: banner_swiper.value.indicatorDots,
-        j: banner_swiper.value.is_radius,
-        k: common_vendor.f(iconlist.value.flatMap((item) => Array(10).fill(item)), (item, index, i0) => {
+        e: banner_swiper.value.autoplay,
+        f: banner_swiper.value.interval,
+        g: banner_swiper.value.duration,
+        h: banner_swiper.value.indicatorDots,
+        i: banner_swiper.value.is_radius,
+        j: common_vendor.f(iconlist.value.flatMap((item) => Array(10).fill(item)), (item, index, i0) => {
           return {
             a: item.image_uri,
             b: common_vendor.t(item.name)
           };
         }),
-        l: common_vendor.f(10, (item, index, i0) => {
+        k: common_vendor.f(10, (item, index, i0) => {
           return {
             a: index,
             b: index == 9 ? "0" : "22rpx"
           };
         }),
-        m: common_assets._imports_1,
-        n: `url('../../static//images/new-p-bg.png')`
+        l: common_assets._imports_1,
+        m: `url('../../static//images/new-p-bg.png')`
       };
     };
   }
