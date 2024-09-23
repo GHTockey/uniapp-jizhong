@@ -18,6 +18,10 @@ const NewsRoll = () => "../../components/NewsRoll.js";
 const _sfc_main = {
   __name: "index",
   setup(__props) {
+    const isFixedHeadeContent = common_vendor.ref(false);
+    const containerMarTop = common_vendor.computed(() => {
+      return 47.22 + utils_index.getTitleBarHeight() + utils_index.getStatusBarHeight();
+    });
     const banner_swiper = common_vendor.ref({
       images: [],
       indicatorDots: true,
@@ -68,38 +72,45 @@ const _sfc_main = {
       }];
     }
     return (_ctx, _cache) => {
-      return {
+      return common_vendor.e({
         a: common_vendor.p({
           itemData: bubbleTipsData.value
         }),
-        b: common_vendor.s(`height: ${common_vendor.unref(utils_index.getStatusBarHeight)() || 10}px;`),
-        c: common_assets._imports_0,
-        d: common_vendor.f(banner_swiper.value.images, (image, index, i0) => {
+        b: !isFixedHeadeContent.value
+      }, !isFixedHeadeContent.value ? {
+        c: common_vendor.s(`height: ${common_vendor.unref(utils_index.getStatusBarHeight)() || 10}px;`)
+      } : {}, {
+        d: common_vendor.s(isFixedHeadeContent.value ? `height: ${common_vendor.unref(utils_index.getTitleBarHeight)()}px;` : ""),
+        e: common_assets._imports_0,
+        f: isFixedHeadeContent.value ? 1 : "",
+        g: common_vendor.s(isFixedHeadeContent.value ? `top: ${common_vendor.unref(utils_index.getStatusBarHeight)()}px` : ""),
+        h: common_vendor.f(banner_swiper.value.images, (image, index, i0) => {
           return {
             a: image,
             b: index
           };
         }),
-        e: banner_swiper.value.autoplay,
-        f: banner_swiper.value.interval,
-        g: banner_swiper.value.duration,
-        h: banner_swiper.value.indicatorDots,
-        i: banner_swiper.value.is_radius,
-        j: common_vendor.f(iconlist.value.flatMap((item) => Array(10).fill(item)), (item, index, i0) => {
+        i: banner_swiper.value.autoplay,
+        j: banner_swiper.value.interval,
+        k: banner_swiper.value.duration,
+        l: banner_swiper.value.indicatorDots,
+        m: banner_swiper.value.is_radius,
+        n: common_vendor.f(iconlist.value.flatMap((item) => Array(10).fill(item)), (item, index, i0) => {
           return {
             a: item.image_uri,
             b: common_vendor.t(item.name)
           };
         }),
-        k: common_vendor.f(10, (item, index, i0) => {
+        o: common_vendor.f(10, (item, index, i0) => {
           return {
             a: index,
             b: index == 9 ? "0" : "22rpx"
           };
         }),
-        l: common_assets._imports_1,
-        m: `url('../../static//images/new-p-bg.png')`
-      };
+        p: common_assets._imports_1,
+        q: `url('../../static//images/new-p-bg.png')`,
+        r: common_vendor.s(isFixedHeadeContent.value ? `padding-top: ${containerMarTop.value}px; background-image: url('../../static/icon/thumb.png');` : `background-image: url('../../static/icon/thumb.png');`)
+      });
     };
   }
 };

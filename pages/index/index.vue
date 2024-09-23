@@ -1,25 +1,28 @@
 <template>
-  <view class="content" style="background-image: url('../../static/icon/thumb.png');">
+  <view class="content"
+    :style="isFixedHeadeContent ? `padding-top: ${containerMarTop}px; background-image: url('../../static/icon/thumb.png');` : `background-image: url('../../static/icon/thumb.png');`">
 
     <!-- 气泡提示 -->
     <BubbleTips :itemData="bubbleTipsData" />
 
     <!-- 手机状态栏高度 -->
-    <view :style="`height: ${getStatusBarHeight() || 10}px;`"></view>
-    <!-- 小程序胶囊高度 -->
-     <!-- <view :style="`height: ${getTitleBarHeight()}px;`"></view> -->
+    <view v-if="!isFixedHeadeContent" :style="`height: ${getStatusBarHeight() || 10}px;`"></view>
 
-    <view class="header-content">
-      <!-- logo 栏 标题: 高度为小程序胶囊按钮栏高度 -->
-      <view class="logo-box fixed-logo">
+    <view class="header-content" :class="{ 'header-content-fixed': isFixedHeadeContent }"
+      :style="isFixedHeadeContent ? `top: ${getStatusBarHeight()}px` : ''">
+      <!-- logo 标题: 高度为小程序胶囊按钮栏高度 -->
+      <view class="logo-box" :style="isFixedHeadeContent ? `height: ${getTitleBarHeight()}px;` : ''">
         <image src="https://wx.qlogo.cn/mmhead/Q3auHgzwzM4icHOjU9t841JOtBmdETgHf8hMGMoRaW0BMH1n3B6SicFQ/0" />
         <text>集中科技</text>
       </view>
       <!-- 搜索栏 -->
-      <view class="searchBar fixed-search">
+      <view class="searchBar">
         <image src="../../static/icon/组 9954@2x.png" />
         <input type="text" placeholder="请输入关键词进行搜索" placeholder-class="searchPlace" />
       </view>
+
+      <!-- 背景图片 -->
+      <!-- <image src="../../static/icon/thumb.png" ></image> -->
     </view>
 
     <!-- 轮播图 -->
@@ -82,7 +85,7 @@
 
 <script setup>
 import { request } from "../../utils/request.js";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import SeckillingList from "@/components/SeckillingList.vue";
 import CompanyInfo from "@/components/CompanyInfo.vue";
 import HighGoods from "@/components/HighGoods.vue";
@@ -93,6 +96,13 @@ import {
   getTitleBarHeight
 } from "@/utils/index.js";
 
+// 是否固定标题搜索栏
+const isFixedHeadeContent = ref(false);
+// 往下挤的高度 
+const containerMarTop = computed(() => {
+  return 47.22 + getTitleBarHeight() + getStatusBarHeight()
+});
+// console.log('containerMarTop :>> ', containerMarTop);
 
 // 轮播图数据
 const banner_swiper = ref({
@@ -163,29 +173,6 @@ async function getData() {
 </script>
 
 <style lang="less" scoped>
-// .fixed-logo {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   z-index: 1000;
-//   padding: 0 19.44rpx;
-//   box-sizing: border-box;
-//   // background-color: white;
-// }
-
-// .fixed-search {
-//   position: fixed;
-//   left: 0;
-//   top: 50rpx;
-//   /* 根据实际情况调整 */
-//   width: 100%;
-//   z-index: 999;
-//   padding: 0 19.44rpx;
-//   box-sizing: border-box;
-//   // background-color: rgba(255, 255, 255, 0.582);
-// }
-
 // 搜索栏 placeholder
 .searchPlace {
   // width: 108px;
@@ -213,18 +200,30 @@ async function getData() {
   // 头部内容挤下
   // padding-top: 145rpx;
 
-  .header-content {
-    // position: fixed;
+  .header-content-fixed {
+    position: fixed;
     // top: 0;
-    // left: 0;
-    // width: 100%;
-    // padding: 0 19.44rpx;
-    // padding-bottom: 20rpx;
-    // box-sizing: border-box;
+    left: 0;
+    width: 100%;
+    padding: 0 19.44rpx;
+    padding-bottom: 20rpx;
+    box-sizing: border-box;
     // background-color: #1989f9;
-    // z-index: 999;
-    // background-repeat: no-repeat;
-    // background-size: cover;
+    // border: 1px solid gold;
+    z-index: 999;
+    background-repeat: no-repeat;
+    background-size: cover;
+    // background-image: url('../../static//images//thumb.png');
+  }
+
+  .header-content {
+
+    >image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
 
     .logo-box {
       display: flex;

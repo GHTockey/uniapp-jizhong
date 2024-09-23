@@ -20,6 +20,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "3.5.6",
+  "appid": "wx184d389f8e1603d4",
   "projectname": "集中科技",
   "condition": {
     "search": {
@@ -42,6 +43,5 @@
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  },
-  "appid": "wx184d389f8e1603d4"
+  }
 }

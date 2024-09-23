@@ -1,62 +1,33 @@
 <template>
-	<view class="tabbar" :class="{'ios-bottom': systemStore.isIos}">
+	<view class="tabbar" :class="{ 'ios-bottom': systemStore.isIos }">
 		<view v-for="(item, index) in list" :key="index" class="tabbar-item" @click="selectTab(index)">
-			<image :src="selectedIndex === index ? item.selectedIconPath : item.iconPath" class="tabbar-icon" />
-			<text :class="['tabbar-text', { 'active': selectedIndex === index }]">{{ item.text }}</text>
+			<image :src="selectedIndex == index ? item.selected_icon_path : item.icon_path" class="tabbar-icon" />
+			<text :class="['tabbar-text', { 'active': selectedIndex == index }]">{{ item.text }}</text>
 		</view>
 	</view>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { useSystemStore } from "@/stores/system.js"
+import { useSystemStore } from "@/stores/system.js";
+import { useTarbarStore } from "@/stores/tarbar.js";
+import { storeToRefs } from "pinia";
 
 const systemStore = useSystemStore();
+const tarbarStore = useTarbarStore();
 
-const list = [
-	{
-		"selectedIconPath": "https://saas.jizhongkeji.com/static/jzkj/images/tab1.png",
-		"iconPath": "https://saas.jizhongkeji.com/static/jzkj/images/init_tab1.png",
-		"path": "pages/index/index",
-		"text": "首页"
-	},
-	{
-		"selectedIconPath": "https://saas.jizhongkeji.com/static/jzkj/images/tab2.png",
-		"iconPath": "https://saas.jizhongkeji.com/static/jzkj/images/init_tab2.png",
-		"path": "pages/product/menu",
-		"text": "商品"
-	},
-	{
-		"selectedIconPath": "https://saas.jizhongkeji.com/static/jzkj/images/tab3.png",
-		"iconPath": "https://saas.jizhongkeji.com/static/jzkj/images/init_tab3.png",
-		"path": "pages/shopcar/shopcar",
-		"text": "购物车"
-	},
-	{
-		"selectedIconPath": "https://saas.jizhongkeji.com/static/jzkj/images/tab5.png",
-		"iconPath": "https://saas.jizhongkeji.com/static/jzkj/images/init_tab5.png",
-		"path": "pages/index/introproduct",
-		"text": "资讯"
-	},
-	{
-		"selectedIconPath": "https://saas.jizhongkeji.com/static/jzkj/images/tab6.png",
-		"iconPath": "https://saas.jizhongkeji.com/static/jzkj/images/init_tab6.png",
-		"path": "pages/activity/activity_list",
-		"text": "活动"
-	},
-	{
-		"selectedIconPath": "https://saas.jizhongkeji.com/static/jzkj/images/tab4.png",
-		"iconPath": "https://saas.jizhongkeji.com/static/jzkj/images/init_tab4.png",
-		"path": "pages/mine/mine",
-		"text": "我的"
+const { list, selectedIndex } = storeToRefs(tarbarStore)
+
+async function selectTab(index) {
+	// console.log(list.value[index].path);
+	if (selectedIndex.value == index) return;
+	try {
+		await uni.navigateTo({ url: '/' + list.value[index].path })
+		selectedIndex.value = index
+	} catch (error) {
+		console.log(error)
 	}
-];
-
-const selectedIndex = ref(0);
-
-function selectTab(index) {
-	selectedIndex.value = index;
-	// 这里可以添加导航逻辑，例如使用路由导航到相应页面
+	// tarbarStore.getTarBarListApi()
 }
 </script>
 

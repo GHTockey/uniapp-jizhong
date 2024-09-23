@@ -2,7 +2,7 @@ import {
 	ref
 } from 'vue';
 
-const baseURL = 'https://saas.jizhongkeji.com/jzkj'; // 替换为你的API基础URL
+const baseURL = 'https://saas.jizhongkeji.com';
 
 // 请求拦截器数组
 const requestInterceptors = [];
@@ -41,7 +41,7 @@ const request = (url, method = 'GET', data = {}, headers = {}) => {
 					res = interceptor(res) || res;
 				});
 
-				if (res.statusCode === 200) {
+				if (res.statusCode == 200) {
 					resolve(res.data);
 				} else {
 					reject(res);

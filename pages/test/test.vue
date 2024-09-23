@@ -2,16 +2,13 @@
 	<view>
 		pages/test/test
 
-		<CouponPopup :visible="showPopup" @close="handleClose" @claim="handleClaim" 
-		title="aaa" 
-		:amount=100 
-		condition="满100可用" 
-		expiryDate="2024.08.88"
-		/>
+		<CouponPopup :visible="showPopup" @close="handleClose" @claim="handleClaim" title="aaa" :amount=100
+			condition="满100可用" expiryDate="2024.08.88" />
 
 		<!-- test btn -->
 		<view>
 			<button @click="showPopup = true" size="mini">优惠券弹窗</button>
+			<button @click="testApi" size="mini">test api</button>
 		</view>
 	</view>
 </template>
@@ -19,6 +16,7 @@
 <script setup>
 import { ref } from "vue";
 import CouponPopup from "@/components/CouponPopup.vue";
+import { request } from "@/utils/request.js"
 
 const showPopup = ref(false);
 
@@ -33,30 +31,39 @@ const handleClaim = () => {
 };
 async function testApi() {
 	console.log('test');
-	showPopup.value = !showPopup.value
 
-	
+
 	// uni.navigateTo({
 	// 	url: '/pages/test/test'
 	// })
 	// return;
-	
-	
-	// let data = {
-	// 	__IS_APP__: 1,
-	// 	wx_open_id: 'oPyg85Y9gzaTO9wgTmeApQMqmhRY',
-	// 	user_id: '10662',
-	// 	app_type: 'wx_mini_app',
-	// 	fuid: 0,
-	// };
-	// let res = await request(
-	// 	'/WxAppCustomer/home_all_data_v',
-	// 	'POST',
-	// 	data, {
-	// 	['Content-Type']: 'multipart/form-data'
-	// }
-	// )
-	// console.log(res);
+
+
+	let data = {
+		// __IS_APP__: 1,
+		wx_open_id: 'oPyg85Y9gzaTO9wgTmeApQMqmhRY',
+		// user_id: '10662',
+		// app_type: 'wx_mini_app',
+		// fuid: 0,
+		// preview: 0
+	};
+	// 转成form-data
+	// data = Object.keys(data).reduce((acc, key) => {
+	// 	acc.append(key, data[key]);
+	// 	return acc;
+	// }, new FormData());
+
+	console.log(data);
+	let res = await request(
+		'/jzkj/WxAppCustomer/home_all_data_v',
+		'post',
+		data,
+		{
+			// ['Content-Type']: 'multipart/form-data'
+			['Content-Type']: 'application/x-www-form-urlencoded' // 为什么要用这个才是FormData数据
+		}
+	)
+	console.log(res);
 }
 </script>
 

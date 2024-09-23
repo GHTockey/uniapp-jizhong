@@ -13,6 +13,23 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+.content .header-content-fixed.data-v-1cf27b2a {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  padding: 0 19.44rpx;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+  z-index: 999;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.content .header-content > image.data-v-1cf27b2a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 .content .header-content .logo-box.data-v-1cf27b2a {
   display: flex;
   align-items: center;
