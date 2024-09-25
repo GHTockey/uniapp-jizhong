@@ -1,9 +1,10 @@
 <template>
 	<transition name="fade">
 		<view v-if="visible" class="overlay">
-			<view class="coupon-popup" @click.stop
-				style="background-image: url('../static/images/youhuiquan.png'); background-position: center; background-size: contain;">
-				<!-- <image class="bg-img" src="../static/images/youhuiquan.png" mode="aspectFill"></image> -->
+<!-- 			<view class="coupon-popup" @click.stop
+				style="background-image: url('../static/images/youhuiquan.png');"> -->
+			<view class="coupon-popup" @click.stop>
+				<image class="bg-img" src="../static/images/youhuiquan.png" mode="aspectFill"></image>
 				<view class="popup-header">
 					<span>{{ title }}</span>
 				</view>
@@ -86,12 +87,23 @@ const claimCoupon = () => {
 .coupon-popup {
 	width: 624rpx;
 	height: 648rpx;
-	background-repeat: no-repeat;
 	text-align: center;
 	box-sizing: border-box;
 	padding: 0 20px;
 	position: relative;
-
+	background-repeat: no-repeat;
+	background-position: center; 
+	background-size: contain;
+	// border: 1px solid greenyellow;
+	
+	> .bg-img{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	
 	.popup-header {
 		text-align: center;
 		font-size: 12.67px;

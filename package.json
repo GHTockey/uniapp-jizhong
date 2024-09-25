@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "pinia": "^2.2.2"
+  },
+  "devDependencies": {
+    "sass-resources-loader": "^2.2.5"
   }
 }

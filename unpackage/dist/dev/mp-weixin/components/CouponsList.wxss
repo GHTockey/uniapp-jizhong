@@ -5,15 +5,25 @@
   overflow-y: auto;
 }
 .coupons-list .coupon.data-v-df656955 {
+  margin: 0 auto;
+  width: 691.67rpx;
+  height: 208.33rpx;
+  position: relative;
   display: flex;
   border-radius: 10rpx;
   margin-bottom: 20rpx;
   border-radius: 6.6px;
   overflow: hidden;
-  background: radial-gradient(circle at right top, transparent 7px, #ffe6e6 0) top left / 225rpx 103rpx no-repeat, radial-gradient(circle at right bottom, transparent 7px, #ffe6e6 0) bottom left / 225rpx 103rpx no-repeat, radial-gradient(circle at left top, transparent 7px, #ffffff 0) top right / 490rpx 103rpx no-repeat, radial-gradient(circle at left bottom, transparent 7px, #ffffff 0) bottom right / 490rpx 103rpx no-repeat;
+}
+.coupons-list .coupon > .img-bg.data-v-df656955 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 .coupons-list .coupon .coupon-left.data-v-df656955 {
-  width: 220rpx;
+  width: 207.65rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +34,6 @@
   height: 85%;
   position: absolute;
   right: -1px;
-  border-right: #ff26262b 1.5px dashed;
 }
 .coupons-list .coupon .coupon-left .coupon-amount.data-v-df656955 {
   font-size: 36rpx;

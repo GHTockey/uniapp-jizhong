@@ -1,1 +1,1 @@
-<view> pages/test/test <coupon-popup wx:if="{{c}}" bindclose="{{a}}" bindclaim="{{b}}" u-i="0b85cb5e-0" bind:__l="__l" u-p="{{c}}"/><view><button bindtap="{{d}}" size="mini">优惠券弹窗</button><button bindtap="{{e}}" size="mini">test api</button></view></view>
+<view> pages/test/test <coupon-popup wx:if="{{c}}" bindclose="{{a}}" bindclaim="{{b}}" u-i="f85ed432-0" bind:__l="__l" u-p="{{c}}"/><view><button bindtap="{{d}}" size="mini">优惠券弹窗</button><button bindtap="{{e}}" size="mini">test api</button></view></view>

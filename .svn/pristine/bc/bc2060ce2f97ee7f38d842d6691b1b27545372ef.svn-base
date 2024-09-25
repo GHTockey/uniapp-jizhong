@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/test/test",
+    "pages/coupon/myCoupon",
+    "pages/coupon/couponCenter",
+    "pages/notify/notify",
+    "pages/notify/notifyList"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {}
+}

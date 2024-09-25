@@ -42,6 +42,13 @@
 		  {
 		    "navigationBarTitleText" : "[消息列表"
 		  }
+		},
+		{
+			"path" : "pages/shopcar/shopcar",
+			"style" : 
+			{
+				"navigationBarTitleText" : "购物车"
+			}
 		}
 	],
 	"globalStyle": {

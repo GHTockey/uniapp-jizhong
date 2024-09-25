@@ -1,6 +1,8 @@
 <template>
 	<view class="coupons-list">
 		<view class="coupon" v-for="(item, index) in coupons" :key="index">
+			<!-- 背景图片 -->
+			<image class="img-bg" src="../static//images//youhuiquan-bg.svg"></image>
 			<view class="coupon-left">
 				<text class="coupon-amount">
 					<text style="font-size: 30rpx;">¥</text>{{ item.amount }}
@@ -43,6 +45,10 @@ const props = defineProps({
 	// border: 1px solid gold;
 
 	.coupon {
+		margin: 0 auto;
+		width: 691.67rpx;
+		height: 208.33rpx;
+		position: relative;
 		display: flex;
 		border-radius: 10rpx;
 		margin-bottom: 20rpx;
@@ -50,14 +56,23 @@ const props = defineProps({
 		// border: 1px solid gold;
 		overflow: hidden;
 		// clip-path: path("M 0 0 L 0 176 L 192 176 A 8 8 0 0 1 208 176 L 686 176 L 686 0 L 208 0 A 8 8 0 0 1 192 0");
-		background: radial-gradient(circle at right top, transparent 7px, #ffe6e6 0) top left / 225rpx 103rpx no-repeat,
-			radial-gradient(circle at right bottom, transparent 7px, #ffe6e6 0) bottom left / 225rpx 103rpx no-repeat,
-			radial-gradient(circle at left top, transparent 7px, #ffffff 0) top right / 490rpx 103rpx no-repeat,
-			radial-gradient(circle at left bottom, transparent 7px, #ffffff 0) bottom right / 490rpx 103rpx no-repeat;
+		// background: radial-gradient(circle at right top, transparent 7px, #ffe6e6 0) top left / 225rpx 103rpx no-repeat,
+		// 	radial-gradient(circle at right bottom, transparent 7px, #ffe6e6 0) bottom left / 225rpx 103rpx no-repeat,
+		// 	radial-gradient(circle at left top, transparent 7px, #ffffff 0) top right / 490rpx 103rpx no-repeat,
+		// 	radial-gradient(circle at left bottom, transparent 7px, #ffffff 0) bottom right / 490rpx 103rpx no-repeat;
+
+		>.img-bg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
 
 
 		.coupon-left {
-			width: 220rpx;
+			// width: 220rpx;
+			width: 207.65rpx;
 			// background-color: #ffe6e6;
 			// padding: 20rpx;
 			display: flex;
@@ -83,7 +98,7 @@ const props = defineProps({
 				height: 85%;
 				position: absolute;
 				right: -1px;
-				border-right: #ff26262b 1.5px dashed;
+				// border-right: #ff26262b 1.5px dashed;
 			}
 
 

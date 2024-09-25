@@ -3,7 +3,7 @@
 		height: calc(100vh - 44px); 
 		background-image: url('../../static//images/coupons.png');">
 		<!-- 空状态 -->
-		<!-- <view class="empty-box">
+<!-- 		<view class="empty-box">
 			<image src="../../static/images/kong.png" mode="aspectFill"></image>
 			<view>暂无优惠券, 敬请期待</view>
 		</view> -->

@@ -15,15 +15,17 @@
 /* 颜色变量 */
 
 /* 行为相关颜色 */
-$uni-color-primary: #007aff;
-$uni-color-success: #4cd964;
-$uni-color-warning: #f0ad4e;
-$uni-color-error: #dd524d;
+$uni-color-primary: #007aff; // 主色
+$uni-color-success: #4cd964; // 成功色
+$uni-color-warning: #f0ad4e; // 警告色
+$uni-color-error: #dd524d; // 错误色
+// 渐变主色
+$uni-color-gradient-primary: linear-gradient(89deg,#ff3981 3%, #ff1e1a 97%);
 
 /* 文字基本颜色 */
-$uni-text-color:#333;//基本色
-$uni-text-color-inverse:#fff;//反色
-$uni-text-color-grey:#999;//辅助灰色，如加载更多的提示信息
+$uni-text-color:#333; // 基本色
+$uni-text-color-inverse:#fff; // 反色
+$uni-text-color-grey:#999; // 辅助灰色，如加载更多的提示信息
 $uni-text-color-placeholder: #808080;
 $uni-text-color-disable:#c0c0c0;
 
@@ -37,6 +39,8 @@ $uni-bg-color-mask:rgba(0, 0, 0, 0.4);//遮罩颜色
 $uni-border-color:#c8c7cc;
 
 /* 尺寸变量 */
+$uni-navigationBar-height: 44px; // navigationBar 的高度
+
 
 /* 文字尺寸 */
 $uni-font-size-sm:12px;

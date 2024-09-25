@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "首页",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "bubble-tips": "../../components/BubbleTips/BubbleTips",
+    "seckilling-list": "../../components/SeckillingList",
+    "company-info": "../../components/CompanyInfo",
+    "high-goods": "../../components/HighGoods",
+    "tarbar": "../../components/Tarbar",
+    "news-roll": "../../components/NewsRoll"
+  }
+}

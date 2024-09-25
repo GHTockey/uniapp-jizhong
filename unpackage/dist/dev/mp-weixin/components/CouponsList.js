@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
+const common_assets = require("../common/assets.js");
 const _sfc_main = {
   __name: "CouponsList",
   props: {
@@ -20,7 +21,8 @@ const _sfc_main = {
             e: common_vendor.t(item.usage),
             f: index
           };
-        })
+        }),
+        b: common_assets._imports_0$10
       };
     };
   }

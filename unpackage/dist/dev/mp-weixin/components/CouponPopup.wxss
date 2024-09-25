@@ -13,11 +13,20 @@
 .coupon-popup.data-v-969a1607 {
   width: 624rpx;
   height: 648rpx;
-  background-repeat: no-repeat;
   text-align: center;
   box-sizing: border-box;
   padding: 0 20px;
   position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.coupon-popup > .bg-img.data-v-969a1607 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .coupon-popup .popup-header.data-v-969a1607 {
   text-align: center;

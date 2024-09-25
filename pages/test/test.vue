@@ -9,6 +9,7 @@
 		<view>
 			<button @click="showPopup = true" size="mini">优惠券弹窗</button>
 			<button @click="testApi" size="mini">test api</button>
+			<button @click="testShopCar" size="mini">跳转至购物车页面</button>
 		</view>
 	</view>
 </template>
@@ -19,6 +20,12 @@ import CouponPopup from "@/components/CouponPopup.vue";
 import { request } from "@/utils/request.js"
 
 const showPopup = ref(false);
+
+const testShopCar = () => {
+	uni.navigateTo({
+		url: '/pages/shopcar/shopcar'
+	})
+}
 
 const handleClose = () => {
 	showPopup.value = false;
