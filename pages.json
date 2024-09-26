@@ -49,6 +49,21 @@
 			{
 				"navigationBarTitleText" : "购物车"
 			}
+		},
+		{
+			"path" : "pages/onlineSearch/onlineSearch",
+			"style" : 
+			{
+				"navigationBarTitleText" : "在线搜索"
+			}
+		},
+		{
+			"path" : "pages/goodsDetail/goodsDetail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"navigationStyle" : "custom"
+			}
 		}
 	],
 	"globalStyle": {

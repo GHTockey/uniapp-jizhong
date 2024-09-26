@@ -9,7 +9,9 @@
 		<view>
 			<button @click="showPopup = true" size="mini">优惠券弹窗</button>
 			<button @click="testApi" size="mini">test api</button>
-			<button @click="testShopCar" size="mini">跳转至购物车页面</button>
+			<button @click="goToPage('/pages/shopcar/shopcar')" size="mini">跳转至购物车页</button>
+			<button @click="goToPage('/pages/onlineSearch/onlineSearch')" size="mini">跳转至在线搜索页</button>
+			<button @click="goToPage('/pages/goodsDetail/goodsDetail')" size="mini">跳转商品详情页</button>
 		</view>
 	</view>
 </template>
@@ -21,9 +23,11 @@ import { request } from "@/utils/request.js"
 
 const showPopup = ref(false);
 
-const testShopCar = () => {
+
+// 跳转到指定页
+function goToPage(page) {
 	uni.navigateTo({
-		url: '/pages/shopcar/shopcar'
+		url: page
 	})
 }
 
