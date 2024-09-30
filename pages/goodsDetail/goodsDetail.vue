@@ -14,7 +14,7 @@
 					src="https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/webp/1d518e30c55a870b05bec858f6c7bf3f.w800.h800.d0.b0.s64862.webp?x-oss-process=image/format,jpg" />
 			</swiper-item>
 			<!-- 左上角返回按钮 -->
-			<view class="goods-detail-swiper-back">
+			<view class="goods-detail-swiper-back" @tap="goBack">
 				<image class="goods-detail-swiper-back-icon" src="../../static/icon/left-white-icon.svg"
 					mode="widthFix" />
 			</view>
@@ -143,21 +143,55 @@
 				<text class="goods-detail-info-detail-support-content">集中科技提供技术支持</text>
 			</view>
 		</view>
+
+		<!-- 底部操作栏 -->
+		<view class="goods-detail-info-bottom">
+			<view class="goods-detail-info-bottom-left">
+				<view class="goods-detail-info-bottom-left-item">
+					<image class="goods-detail-info-bottom-left-item-icon" src="../../static/icon/home-icon.svg"
+						mode="widthFix" />
+					<text class="goods-detail-info-bottom-left-item-text">首页</text>
+				</view>
+				<view class="goods-detail-info-bottom-left-item">
+					<image class="goods-detail-info-bottom-left-item-icon" src="../../static/icon/kefu.svg"
+						mode="widthFix" />
+					<text class="goods-detail-info-bottom-left-item-text">客服</text>
+				</view>
+				<view class="goods-detail-info-bottom-left-item">
+					<image class="goods-detail-info-bottom-left-item-icon" src="../../static/icon/shoucang-active.svg"
+						mode="widthFix" />
+					<text class="goods-detail-info-bottom-left-item-text">收藏</text>
+				</view>
+			</view>
+			<view class="goods-detail-info-bottom-right">
+				<view class="bottom-right-item">加入购物车</view>
+				<view class="bottom-right-item">立即购买</view>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script setup>
 
+
+
+// 返回上一页
+function goBack() {
+	uni.navigateBack({
+		delta: 1
+	})
+}
 </script>
 
 <style lang="scss" scoped>
 .goods-detail-container {
 	background-color: #f7f8fa;
+	padding-bottom: 100rpx;
 
 
 	// 商品图片和视频区域
 	.goods-detail-swiper {
-		border: 1px solid #000;
+		// border: 1px solid #000;
 		height: 750rpx;
 
 		.goods-detail-swiper-item {
@@ -496,6 +530,77 @@
 			font-family: PingFang SC, PingFang SC-Regular;
 			font-weight: 400;
 			color: #babbbd;
+		}
+	}
+
+	// 底部操作栏
+	.goods-detail-info-bottom {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100rpx;
+		// border: 1px solid #000;
+		background-color: #ffffff;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 29.17rpx;
+		box-sizing: border-box;
+		// 底部操作栏左侧
+		.goods-detail-info-bottom-left {
+			display: flex;
+			align-items: center;
+			// gap: 10rpx;
+			// column-gap: 10rpx;
+			// row-gap: 10rpx;
+			flex: 1;
+			justify-content: space-between;
+			// border: 1px solid #000;
+			padding-right: 60rpx;
+
+			.goods-detail-info-bottom-left-item {
+				display: flex;
+				flex-direction: column;
+				// gap: 10rpx;
+				// flex: 1;
+				align-items: center;
+
+				.goods-detail-info-bottom-left-item-icon {
+					width: 38.19rpx;
+					height: 34.72rpx;
+				}
+
+				.goods-detail-info-bottom-left-item-text {
+					font-size: 18.06rpx;
+					color: #686868;
+					font-family: PingFang SC, PingFang SC-Regular;
+					font-weight: 400;
+					margin-top: 10rpx;
+				}
+			}
+		}
+
+		// 底部操作栏右侧
+		.goods-detail-info-bottom-right {
+			display: flex;
+			align-items: center;
+
+			.bottom-right-item {
+				padding: 18rpx 30rpx;
+				color: #ffffff;
+
+
+				&:first-child {
+					background: #f2ab20;
+					border-radius: 14rpx 0 0 14rpx;
+				}
+
+				&:last-child {
+					background: #ff4f26;
+					border-radius: 0 14rpx 14rpx 0;
+				}
+			}
 		}
 	}
 }
