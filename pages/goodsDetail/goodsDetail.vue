@@ -165,13 +165,66 @@
 			</view>
 			<view class="goods-detail-info-bottom-right">
 				<view class="bottom-right-item">加入购物车</view>
-				<view class="bottom-right-item">立即购买</view>
+				<view class="bottom-right-item" @tap="showActionSheetSlot = true">立即购买</view>
 			</view>
 		</view>
 
 
-
+		<!-- 商品参数弹窗 -->
 		<ActionSheet :title="actionSheetData.title" :items="actionSheetData.items" v-model:show="showActionSheet" />
+		<!-- 立即购买弹窗 -->
+		<ActionSheetSlot v-model:show="showActionSheetSlot" :footerBtnText="'立即购买'">
+			<template #body>
+				<view class="ActionSheetSlotComponentBody">
+					<!-- 商品图片价格 -->
+					<view class="goods-img-price-box">
+						<image src="../../static//images/kun.png" alt="" class="goods-img"></image>
+						<view class="goods-price-box">
+							<text class="goods-price"><text style="font-size: 27.78rpx;">￥</text>100</text>
+							<text class="goods-price-unit"><text style="font-size: 27.78rpx;">￥</text>10~360</text>
+						</view>
+					</view>
+					<!-- 商品参数 -->
+					<view class="goods-params-box">
+						<view class="goods-params-title" style="display: flex; justify-content: space-between;">
+							<text>商品型号:</text>
+							<view class="goods-params-title-right">
+								<image src="../../static/icon/list.svg" style="width: 30.56rpx;height: 27.08rpx;">
+								</image>
+								<text>列表</text>
+							</view>
+						</view>
+						<view class="goods-params-item-box">
+							<view class="goods-params-item">
+								<image src="../../static/images/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
+								</image>
+								<text>固始鸡1200gx1只（共2.4斤）</text>
+							</view>
+							<view class="goods-params-item active">
+								<image src="../../static/images/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
+								</image>
+								<text>固始鸡1200gx1只（共2.4斤）</text>
+							</view>
+							<view class="goods-params-item disabled">
+								<image src="../../static/images/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
+								</image>
+								<text>固始鸡1200gx1只（共2.4斤）</text>
+							</view>
+
+						</view>
+					</view>
+					<!-- 购买数量 -->
+					<view class="goods-buy-num-box">
+						<view class="goods-params-title" style="display: flex; justify-content: space-between;">
+							<text>购买数量:</text>
+						</view>
+						<view>
+							<uni-number-box />
+						</view>
+					</view>
+				</view>
+			</template>
+		</ActionSheetSlot>
 	</view>
 </template>
 
@@ -180,6 +233,7 @@ import { ref } from 'vue'
 
 
 const showActionSheet = ref(false)
+const showActionSheetSlot = ref(false)
 // 商品参数
 const actionSheetData = ref({
 	title: '商品参数',
