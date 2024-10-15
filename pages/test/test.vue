@@ -12,7 +12,12 @@
 			<button @click="goToPage('/pages/shopcar/shopcar')" size="mini">跳转至购物车页</button>
 			<button @click="goToPage('/pages/onlineSearch/onlineSearch')" size="mini">跳转至在线搜索页</button>
 			<button @click="goToPage('/pages/goodsDetail/goodsDetail')" size="mini">跳转商品详情页</button>
+			<button @click="showActionSheet = true" size="mini">使用ActionSheet组件</button>
 		</view>
+
+
+		<ActionSheet :items="actionSheetData.items" :title="actionSheetData.title" v-model:show="showActionSheet"
+			@confirm="handleConfirm" />
 	</view>
 </template>
 
@@ -22,7 +27,7 @@ import CouponPopup from "@/components/CouponPopup.vue";
 import { request } from "@/utils/request.js"
 
 const showPopup = ref(false);
-
+const showActionSheet = ref(false);
 
 // 跳转到指定页
 function goToPage(page) {
@@ -31,12 +36,31 @@ function goToPage(page) {
 	})
 }
 
+// actionSheet 数据
+const actionSheetData = ref({
+	title: '商品参数',
+	items: [
+		{ name: '颜色', value: '红色' },
+		{ name: '尺寸', value: '大号' },
+		{ name: '尺寸', value: '大号' },
+		{ name: '尺寸', value: '大号' },
+		{ name: '尺寸', value: '大号' },
+		{ name: '尺寸', value: '大号' },
+		{ name: '尺寸', value: '大号' },
+		{ name: '尺寸', value: '大号' },
+		{ name: '尺寸', value: '大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号大号' },
+	]
+})
+
 const handleClose = () => {
-	showPopup.value = false;
+	showActionSheet.value = false;
 	console.log('Popup closed');
 };
-
 const handleClaim = () => {
+	console.log('Coupon claimed');
+}
+
+const handleConfirm = () => {
 	console.log('Coupon claimed');
 	// 这里可以添加更多逻辑，例如更新状态或发送请求
 };

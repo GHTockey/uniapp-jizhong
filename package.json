@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "pinia": "^2.2.2"
+    "pinia": "^2.2.2",
+    "vant": "^4.9.8"
   },
   "devDependencies": {
     "sass-resources-loader": "^2.2.5"

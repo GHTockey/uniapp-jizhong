@@ -60,7 +60,7 @@
 			</view>
 			<!-- 商品的配送方式-服务保障-商品参数 -->
 			<view class="goods-detail-info-delivery">
-				<view class="delivery-item">
+				<view class="delivery-item" @tap="showActionSheet = true">
 					<image class="delivery-item-icon" src="../../static/icon/goods-peisong-icon.svg" mode="widthFix" />
 					<text class="delivery-item-text">配送方式：</text>
 					<text class="delivery-item-text">门店自提</text>
@@ -70,7 +70,7 @@
 					<text class="delivery-item-text">同城配送</text>
 					<text class="delivery-item-text" style="margin-left: auto;">></text>
 				</view>
-				<view class="delivery-item">
+				<view class="delivery-item" @tap="showActionSheet = true">
 					<image class="delivery-item-icon" src="../../static/icon/goods-baozhang-icon.svg" mode="widthFix" />
 					<text class="delivery-item-text">服务保障：</text>
 					<text class="delivery-item-text">无忧退款（运费险）</text>
@@ -80,7 +80,7 @@
 					<text class="delivery-item-text">假一赔十</text>
 					<text class="delivery-item-text" style="margin-left: auto;">></text>
 				</view>
-				<view class="delivery-item">
+				<view class="delivery-item" @tap="showActionSheet = true">
 					<image class="delivery-item-icon" src="../../static/icon/goods-parm-icon.svg" mode="widthFix" />
 					<text class="delivery-item-text">商品参数：</text>
 					<text class="delivery-item-text">美辰</text>
@@ -168,12 +168,28 @@
 				<view class="bottom-right-item">立即购买</view>
 			</view>
 		</view>
+
+
+
+		<ActionSheet :title="actionSheetData.title" :items="actionSheetData.items" v-model:show="showActionSheet" />
 	</view>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 
 
+const showActionSheet = ref(false)
+// 商品参数
+const actionSheetData = ref({
+	title: '商品参数',
+	items: [
+		{ name: '颜色', value: '红色' },
+		{ name: '尺寸', value: '大号' },
+		{ name: '尺寸', value: '大号' },
+		{ name: '尺寸', value: '大号' },
+	]
+})
 
 // 返回上一页
 function goBack() {
@@ -547,6 +563,7 @@ function goBack() {
 		justify-content: space-between;
 		padding: 0 29.17rpx;
 		box-sizing: border-box;
+
 		// 底部操作栏左侧
 		.goods-detail-info-bottom-left {
 			display: flex;
