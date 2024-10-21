@@ -60,7 +60,7 @@ export const useTarbarStore = defineStore('tarbar', {
     actions: {
         // 获取
         async getTarBarListApi() {
-            let res = await request('/WxAppConfig/app_tabbar_list')
+            let res = await request('/WxAppConfig/app_tabbar_list', 'post')
             if (res.code == 0) {
                 this.list = res.data.tabbar_list
             }

@@ -27,7 +27,7 @@ const useTarbarStore = common_vendor.defineStore("tarbar", {
           "selected_icon_path": "https://saas.jizhongkeji.com/static/jzkj/images/tab4.png",
           "icon_path": "https://saas.jizhongkeji.com/static/jzkj/images/init_tab4.png",
           "path": "pages/mine/mine",
-          "text": "我的321"
+          "text": "我的"
         }
         // {
         //     "selected_icon_path": "https://saas.jizhongkeji.com/static/jzkj/images/tab1.png",

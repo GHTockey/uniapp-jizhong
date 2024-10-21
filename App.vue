@@ -12,8 +12,23 @@ export default {
 }
 </script>
 
+<script setup>
+import { onMounted } from 'vue';
+import { useTarbarStore } from "@/stores/tarbar";
+
+const tarbarStore = useTarbarStore();
+tarbarStore.getTarBarListApi();
+
+onMounted(() => {
+	console.log('App Mounted')
+})
+</script>
+
 <style lang="scss">
 /*每个页面公共css */
+* {
+	box-sizing: border-box;
+}
 
 .ActionSheetSlotComponentBody {
 	display: flex;
@@ -119,6 +134,7 @@ export default {
 			.goods-params-item.disabled {
 				background: #ededed;
 				color: #999999;
+				pointer-events: none;
 			}
 		}
 	}

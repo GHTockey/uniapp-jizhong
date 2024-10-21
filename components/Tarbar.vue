@@ -1,7 +1,10 @@
 <template>
 	<view class="tabbar" :class="{ 'ios-bottom': systemStore.isIos }">
 		<view v-for="(item, index) in list" :key="index" class="tabbar-item" @click="selectTab(index)">
-			<image :src="selectedIndex == index ? item.selected_icon_path : item.icon_path" class="tabbar-icon" />
+			<image
+				:src="selectedIndex == index ? ('/static/' + item.selected_icon_path) : ('/static/' + item.icon_path)"
+				class="tabbar-icon" />
+			<!-- <image src="/static/images/init_tab4.png" class="tabbar-icon" /> -->
 			<text :class="['tabbar-text', { 'active': selectedIndex == index }]">{{ item.text }}</text>
 		</view>
 	</view>
@@ -26,6 +29,10 @@ async function selectTab(index) {
 		selectedIndex.value = index
 	} catch (error) {
 		console.log(error)
+		uni.showToast({
+			title: '页面不存在',
+			icon: 'error'
+		})
 	}
 	// tarbarStore.getTarBarListApi()
 }

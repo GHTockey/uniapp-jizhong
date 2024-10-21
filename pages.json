@@ -12,7 +12,9 @@
 			"path" : "pages/test/test",
 			"style" : 
 			{
-				"navigationBarTitleText" : "test"
+				"navigationBarTitleText" : "test",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
@@ -61,8 +63,41 @@
 			"path" : "pages/goodsDetail/goodsDetail",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
 				"navigationStyle" : "custom"
+			}
+		},
+		{
+			"path" : "pages/goods/waitPay",
+			"style" : 
+			{
+				"navigationBarTitleText" : "待付款订单"
+			}
+		},
+		{
+			"path": "pages/goods/category",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/mine/mine",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的"
+			}
+		},
+		{
+			"path" : "pages/mine/shopInfoList",
+			"style" : 
+			{
+				"navigationBarTitleText" : "门店列表"
+			}
+		},
+		{
+			"path" : "pages/goods/detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "商品详情"
 			}
 		}
 	],

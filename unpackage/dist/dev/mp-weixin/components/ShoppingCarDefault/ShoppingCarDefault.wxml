@@ -1,0 +1,1 @@
+<view class="shopping-car-default-container"><image class="shopping-car-default-image" src="{{a}}" mode=""/><view class="shopping-car-default-text"><text>{{b}}</text></view><view wx:if="{{c}}" class="{{['shopping-car-default-button', e]}}" bindtap="{{f}}"><text>{{d}}</text></view></view>

@@ -2,7 +2,8 @@ import {
 	ref
 } from 'vue';
 
-const baseURL = 'https://saas.jizhongkeji.com';
+// const baseURL = 'https://a.plant360.cn/asaas/WxAppCustomer';
+const baseURL = 'https://saas.jizhongkeji.com/jzkj';
 
 // 请求拦截器数组
 const requestInterceptors = [];
@@ -10,10 +11,16 @@ const requestInterceptors = [];
 const responseInterceptors = [];
 
 const request = (url, method = 'GET', data = {}, headers = {}) => {
+	data = {
+		...data,
+		wx_open_id: 'oPyg85Y9gzaTO9wgTmeApQMqmhRY',
+		wx_appid: 'wx184d389f8e1603d4'
+	}
 	return new Promise((resolve, reject) => {
 		// 请求拦截器
 		let modifiedHeaders = {
-			...headers
+			...headers,
+			['Content-Type']: 'application/x-www-form-urlencoded' // php 表单提交
 		};
 		requestInterceptors.forEach(interceptor => {
 			const result = interceptor({

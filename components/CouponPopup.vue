@@ -56,15 +56,11 @@ const emit = defineEmits(['close', 'claim']);
 
 const closePopup = () => {
 	emit('close');
-	console.log('关闭');
+	emit('update:visible', false);
 };
 
 const claimCoupon = () => {
 	emit('claim');
-	console.log('领取');
-	uni.showToast({
-		title: '领取'
-	});
 };
 </script>
 

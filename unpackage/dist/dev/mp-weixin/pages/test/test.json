@@ -1,6 +1,9 @@
 {
   "navigationBarTitleText": "test",
   "usingComponents": {
+    "action-sheet": "../../components/ActionSheet/ActionSheet",
+    "uni-number-box": "../../uni_modules/uni-number-box/components/uni-number-box/uni-number-box",
+    "action-sheet-slot": "../../components/ActionSheetSlot/ActionSheetSlot",
     "coupon-popup": "../../components/CouponPopup"
   }
 }

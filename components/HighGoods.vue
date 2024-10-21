@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<view class="header">
+		<view class="header" v-if="isShowHeader">
 			<view class="line"></view>
 			<image src="../static/icon/aixin.png" class="icon" />
 			<text class="title">好物优选</text>
@@ -25,7 +25,7 @@
 									word-break: break-all;">{{ product.name }}</text>
 							<view class="price-box">
 								<text class="price">
-									<text style="font-size:24rpx">￥</text>{{ product.price }}
+									<text v-if="product.price > 0" style="font-size:24rpx">￥</text>{{ product.price }}
 								</text>
 
 								<text>已售88</text>
@@ -41,48 +41,54 @@
 </template>
 
 <script setup>
-import {
-	ref
-} from "vue";
+import { ref } from "vue";
 
 
-
-const goods = [{
-	goods_group_id: 89,
-	id: 2528,
-	image_uri: "https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/jpg/b3acb8d24f89f55a71b3e701075dd26a.w1000.h1000.d0.b19379.s99225.jpg",
-	name: "中学生夏季校服",
-	price: "90.00"
-},
-{
-	goods_group_id: 89,
-	id: 2528,
-	image_uri: "https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/jpg/b3acb8d24f89f55a71b3e701075dd26a.w1000.h1000.d0.b19379.s99225.jpg",
-	name: "中学生夏季校服你谁哦吼鸡尾酒佛系哦额文化i哦i哦附件我if就后悔偶额护肤哦",
-	price: "90.00"
-},
-{
-	goods_group_id: 89,
-	id: 2528,
-	image_uri: "https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/jpg/b3acb8d24f89f55a71b3e701075dd26a.w1000.h1000.d0.b19379.s99225.jpg",
-	name: "中学生夏季校服",
-	price: "90.00"
-},
-{
-	goods_group_id: 89,
-	id: 2528,
-	image_uri: "https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/jpg/b3acb8d24f89f55a71b3e701075dd26a.w1000.h1000.d0.b19379.s99225.jpg",
-	name: "中学生夏季校服",
-	price: "90.00"
-},
-{
-	goods_group_id: 89,
-	id: 2528,
-	image_uri: "https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/jpg/b3acb8d24f89f55a71b3e701075dd26a.w1000.h1000.d0.b19379.s99225.jpg",
-	name: "中学生夏季校服",
-	price: "90.00"
-},
-];
+const props = defineProps({
+	goods: {
+		type: Array,
+		default: () => [{
+			goods_group_id: 89,
+			id: 2528,
+			image_uri: "https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/jpg/b3acb8d24f89f55a71b3e701075dd26a.w1000.h1000.d0.b19379.s99225.jpg",
+			name: "中学生夏季校服",
+			price: "90.00"
+		},
+		{
+			goods_group_id: 89,
+			id: 2528,
+			image_uri: "https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/jpg/b3acb8d24f89f55a71b3e701075dd26a.w1000.h1000.d0.b19379.s99225.jpg",
+			name: "中学生夏季校服你谁哦吼鸡尾酒佛系哦额文化i哦i哦附件我if就后悔偶额护肤哦",
+			price: "90.00"
+		},
+		{
+			goods_group_id: 89,
+			id: 2528,
+			image_uri: "https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/jpg/b3acb8d24f89f55a71b3e701075dd26a.w1000.h1000.d0.b19379.s99225.jpg",
+			name: "中学生夏季校服",
+			price: "90.00"
+		},
+		{
+			goods_group_id: 89,
+			id: 2528,
+			image_uri: "https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/jpg/b3acb8d24f89f55a71b3e701075dd26a.w1000.h1000.d0.b19379.s99225.jpg",
+			name: "中学生夏季校服",
+			price: "90.00"
+		},
+		{
+			goods_group_id: 89,
+			id: 2528,
+			image_uri: "https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/jpg/b3acb8d24f89f55a71b3e701075dd26a.w1000.h1000.d0.b19379.s99225.jpg",
+			name: "中学生夏季校服",
+			price: "90.00"
+		},
+		],
+	},
+	isShowHeader: {
+		type: Boolean,
+		default: true
+	}
+})
 </script>
 
 <style lang="less">
@@ -133,6 +139,7 @@ const goods = [{
 		width: 48%; // 每行两个商品
 		margin: 1%; // 间距
 		box-sizing: border-box;
+		box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.05);
 
 
 		.product_radius {

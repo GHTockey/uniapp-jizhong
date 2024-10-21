@@ -5,7 +5,11 @@
     "pages/coupon/myCoupon",
     "pages/coupon/couponCenter",
     "pages/notify/notify",
-    "pages/notify/notifyList"
+    "pages/notify/notifyList",
+    "pages/shopcar/shopcar",
+    "pages/onlineSearch/onlineSearch",
+    "pages/goodsDetail/goodsDetail",
+    "pages/goods/waitPay"
   ],
   "window": {
     "navigationBarTextStyle": "black",

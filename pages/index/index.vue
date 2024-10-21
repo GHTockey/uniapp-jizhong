@@ -28,10 +28,10 @@
 
     <!-- 轮播图 -->
     <!-- <view> -->
-    <swiper class="carousel" :autoplay="banner_swiper.autoplay" :interval="banner_swiper.interval"
+    <swiper class="carousel" :autoplay="!!banner_swiper.autoplay" :interval="banner_swiper.interval"
       :duration="banner_swiper.duration" :indicator-dots="banner_swiper.indicatorDots"
       indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#fff" :circular="banner_swiper.is_radius">
-      <swiper-item v-for="(image, index) in banner_swiper.images" :key="index">
+      <swiper-item v-for="(image, index) in banner_swiper?.images" :key="index">
         <image :src="image" mode="aspectFill" style="width: 100%; height: 100%;" />
       </swiper-item>
     </swiper>
@@ -39,7 +39,7 @@
 
     <!-- 按钮菜单 -->
     <view class='menueview'>
-      <view v-for="(item, index) in iconlist.flatMap(item => Array(10).fill(item))" wx:key="id" class="menue_item">
+      <view v-for="(item, index) in iconlist" wx:key="id" class="menue_item" @click="to_detail(item)">
         <view class="menue-image-box">
           <image lazy-load="true" :src="item.image_uri" mode="aspectFill" />
         </view>
@@ -103,7 +103,6 @@ const isFixedHeadeContent = ref(false);
 const containerMarTop = computed(() => {
   return 47.22 + getTitleBarHeight() + getStatusBarHeight()
 });
-// console.log('containerMarTop :>> ', containerMarTop);
 
 // 轮播图数据
 const banner_swiper = ref({
@@ -132,14 +131,109 @@ setInterval(() => {
   // addBubbleTipsData()
 }, 3000);
 
-console.log('系统信息', uni.getSystemInfoSync());
-console.log('状态栏高度：', getStatusBarHeight());
-console.log('小程序标题高度：', getTitleBarHeight());
+// console.log('系统信息', uni.getSystemInfoSync());
+// console.log('状态栏高度：', getStatusBarHeight());
+// console.log('小程序标题高度：', getTitleBarHeight());
 
 onMounted(() => {
   getData()
 });
 
+
+function to_detail(detail) {
+  // console.log('轮播详情', e);
+  // var detail = e.currentTarget.dataset.item;
+
+
+  // 判断是否有分类id
+  if (detail.category_id > 0) {
+    uni.navigateTo({
+      url: '/pages/goods/category?id=' + detail.category_id
+    })
+    return;
+  }
+
+
+  // 判断是否商品详情
+  if (detail.goods_id > 0) {
+    // console.log('detail.category_iddetail.category_iddetail.category_id', detail.category_id);
+    uni.navigateTo({
+      url: '/pages/goods/detail?id=' + detail.goods_id
+    })
+    return;
+  }
+
+  // 手机号
+  if (detail.phone != null) {
+    console.log('手机号 detail.phone', detail.phone);
+    // wx.makePhoneCall({
+    //   phoneNumber: detail.phone,
+    // })
+
+    // this.click_page(5, detail.phone);
+
+    return;
+  }
+
+  // 位置
+  if (detail.location != null) {
+
+    var coordinate_list = detail.location.split(",")
+    console.log('33333333333333333', coordinate_list[1]);
+    console.log('位置 ');
+
+    // wx.getSetting({
+    //   success: resSetting => {
+    //     console.log(resSetting);
+
+    //     if (('undefined' == typeof resSetting.authSetting['scope.address']) || resSetting.authSetting['scope.address']) {
+    //       wx.openLocation({
+    //         latitude: coordinate_list[0] * 1,
+    //         longitude: coordinate_list[1] * 1,
+    //         scale: 18,
+    //         name: e.currentTarget.dataset.item.name,
+    //         address: e.currentTarget.dataset.item.address
+    //       })
+    //     } else {
+    //       wx.showToast({
+    //         title: '请先打开授权',
+    //         icon: 'none',
+    //         duration: 3000
+    //       })
+    //       wx.openSetting({
+    //         success(resSetting2) {
+    //           if (resSetting2.authSetting['scope.address']) {
+    //             wx.openLocation({
+    //               latitude: coordinate_list[0] * 1,
+    //               longitude: coordinate_list[1] * 1,
+    //               scale: 18,
+    //               name: e.currentTarget.dataset.item.name,
+    //               address: e.currentTarget.dataset.item.address
+    //             })
+    //           } else {
+    //             wx.showToast({
+    //               title: '授权失败',
+    //               icon: 'none',
+    //               duration: 3000
+    //             })
+    //           }
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
+
+    // this.click_page(6, '');
+    return;
+  }
+
+  // 跳转到门店列表
+  if (detail.is_open_shop_info_list == 0) {
+    uni.navigateTo({
+      url: '/pages/mine/shopInfoList',
+    })
+  }
+};
 
 async function getData() {
   banner_swiper.value = {
@@ -170,6 +264,35 @@ async function getData() {
     sort: null,
     update_time: "2023-02-15 10:05:07"
   }]
+
+
+  let res = await request(
+    '/WxAppCustomer/home_all_data_v',
+    'post',
+  )
+  if (res.code != 0) return uni.showToast({
+    title: res.msg,
+    duration: 2000,
+    icon: 'error'
+  });
+  // console.log(res.data);
+
+  // 轮播图数据
+  if (res.data.banner_detail) {
+    banner_swiper.value.images = res.data.banner_detail.image_uris_arr;
+    banner_swiper.value.height_value = res.data.banner_detail.height_value;
+    banner_swiper.value.interval = res.data.banner_detail.interval_value;
+    banner_swiper.value.is_radius = !!res.data.banner_detail.is_radius;
+    banner_swiper.value.autoplay = !!res.data.banner_detail.autoplay;
+  } else {
+    banner_swiper.value.images = []
+  }
+  // iconlist 数据
+  if (res.data.icon_list) {
+    iconlist.value = res.data.icon_list
+  } else {
+    iconlist.value = []
+  }
 };
 </script>
 
@@ -271,7 +394,7 @@ async function getData() {
           left: 35rpx;
           top: 50%;
           transform: translateY(-50%);
-          background: url('../../static/icon/放大镜.png') no-repeat center;
+          background: url('../../static/icon/search-icon.png') no-repeat center;
           background-size: contain;
         }
       }
@@ -311,7 +434,7 @@ async function getData() {
         // box-sizing: border-box;
         // padding: 3px;
         // background-color: aquamarine;
-        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+        // background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -324,10 +447,15 @@ async function getData() {
       }
 
       .nav_text {
+        width: 81.94rpx;
         font-size: 24rpx;
         font-weight: 400;
         color: #333333;
         margin-top: 3px;
+        // 超出显示省略号
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
   }

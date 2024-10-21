@@ -1,73 +1,120 @@
-
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
 /*每个页面公共css */
-
-
-
-
-/* .message-bar-container {
-	height: 355.56rpx;
-	background: #ffffff;
-	border-radius: 13.89rpx;
-	box-shadow: 0px 2.08rpx 4.17rpx 0px rgba(0, 0, 0, 0.05);
-	padding: 29.17rpx;
-	box-sizing: border-box;
+.ActionSheetSlotComponentBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
 }
-
-.message-bar-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 22.22rpx;
+.ActionSheetSlotComponentBody .goods-img-price-box {
+  display: flex;
+  align-items: center;
+  height: 159.72rpx;
 }
-
-.icon-title-box {
-	display: flex;
-	align-items: center;
+.ActionSheetSlotComponentBody .goods-img-price-box .goods-img {
+  width: 159.72rpx;
+  height: 159.72rpx;
+  border-radius: 11.11rpx;
 }
-
-.message-bar-title {
-	border: 0.69rpx solid rgba(0, 0, 0, 0.00);
-	font-size: 27.78rpx;
-	font-family: PingFang SC, PingFang SC-Bold;
-	font-weight: 500;
-	color: #181818;
-	margin-left: 11.11rpx;
+.ActionSheetSlotComponentBody .goods-img-price-box .goods-price-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin-left: 20rpx;
 }
-
-.icon-img {
-	width: 38.89rpx;
-	height: 38.89rpx;
+.ActionSheetSlotComponentBody .goods-img-price-box .goods-price-box .goods-price {
+  font-size: 35.42rpx;
+  font-family: Alibaba PuHuiTi, Alibaba PuHuiTi-Bold;
+  font-weight: 700;
+  color: #eb2c2a;
+  line-height: 56.94rpx;
 }
-
-.message-bar-time {
-	font-size: 23.61rpx;
-	font-family: PingFang SC, PingFang SC-Regular;
-	font-weight: 400;
-	color: #6a6a6a;
+.ActionSheetSlotComponentBody .goods-img-price-box .goods-price-box .goods-price-unit {
+  font-size: 27.78rpx;
+  font-family: PingFang SC, PingFang SC-Medium;
+  font-weight: 500;
+  color: #999999;
+  line-height: 55.56rpx;
 }
-
-.message-bar-content {
-	height: 187.5rpx;
-	border-top: 1.39rpx dashed #333333;
-	border-bottom: 1.39rpx dashed #333333;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	font-size: 25rpx;
-	font-family: PingFang SC, PingFang SC-Regular;
-	font-weight: 400;
-	color: #353535;
+.ActionSheetSlotComponentBody .goods-params-box .goods-params-title,
+.ActionSheetSlotComponentBody .goods-buy-num-box .goods-params-title {
+  height: 40.97rpx;
+  font-size: 29.17rpx;
+  font-family: PingFang SC, PingFang SC-Bold;
+  font-weight: 700;
+  text-align: left;
+  color: #3e3e3e;
 }
-
-.message-bar-footer {
-	margin-top: 19.44rpx;
-
+.ActionSheetSlotComponentBody .goods-params-box .goods-params-title {
+  height: 40.97rpx;
+  font-size: 29.17rpx;
+  font-family: PingFang SC, PingFang SC-Bold;
+  font-weight: 700;
+  text-align: left;
+  color: #3e3e3e;
 }
-
-.message-bar-footer-item {
-	font-size: 25rpx;
-	font-family: PingFang SC, PingFang SC-Regular;
-	font-weight: 400;
-	color: #0e63d3;
-} */
-page{--status-bar-height:25px;--top-window-height:0px;--window-top:0px;--window-bottom:0px;--window-left:0px;--window-right:0px;--window-magin:0px}[data-c-h="true"]{display: none !important;}
+.ActionSheetSlotComponentBody .goods-params-box .goods-params-title .goods-params-title-right {
+  font-size: 27.78rpx;
+  font-family: PingFang SC, PingFang SC-Medium;
+  font-weight: 500;
+  color: #3e3e3e;
+  display: flex;
+  align-items: center;
+  gap: 5rpx;
+}
+.ActionSheetSlotComponentBody .goods-params-box .goods-params-item-box {
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+.ActionSheetSlotComponentBody .goods-params-box .goods-params-item-box .goods-params-item {
+  height: 77.78rpx;
+  border-radius: 11.11rpx;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 0 10rpx;
+  border: 1rpx solid #ededed;
+  font-size: 27.78rpx;
+  font-family: PingFang SC, PingFang SC-Medium;
+  font-weight: 500;
+  color: #313131;
+}
+.ActionSheetSlotComponentBody .goods-params-box .goods-params-item-box .goods-params-item.active {
+  border: 2.78rpx solid #eb2c2a;
+}
+.ActionSheetSlotComponentBody .goods-params-box .goods-params-item-box .goods-params-item.disabled {
+  background: #ededed;
+  color: #999999;
+}
+.ActionSheetSlotComponentBody .goods-buy-num-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}page{--status-bar-height:25px;--top-window-height:0px;--window-top:0px;--window-bottom:0px;--window-left:0px;--window-right:0px;--window-magin:0px}[data-c-h="true"]{display: none !important;}

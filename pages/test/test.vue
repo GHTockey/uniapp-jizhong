@@ -1,9 +1,9 @@
 <template>
-	<view>
+	<view class="test-container">
 		pages/test/test
 
-		<CouponPopup :visible="showPopup" @close="handleClose" @claim="handleClaim" title="aaa" :amount=100
-			condition="满100可用" expiryDate="2024.08.88" />
+		<CouponPopup v-model:visible="showPopup" @close="handleCloseCoupon" @claim="handleClaimCoupon" title="aaa"
+			:amount=100 condition="满100可用" expiryDate="2024.08.88" />
 
 		<!-- test btn -->
 		<view>
@@ -19,7 +19,7 @@
 
 		<!-- 商品参数弹窗 -->
 		<ActionSheet :items="actionSheetData.items" :title="actionSheetData.title" v-model:show="showActionSheet"
-			@confirm="handleConfirm" />
+			@confirm="handleConfirmActionSheet" />
 
 		<!-- 选择商品弹窗 -->
 		<ActionSheetSlot v-model:show="showActionSheetSlot" :footerBtnText="'立即购买'">
@@ -44,22 +44,13 @@
 							</view>
 						</view>
 						<view class="goods-params-item-box">
-							<view class="goods-params-item">
+							<view class="goods-params-item" v-for="item in goodsParamsData" :key="item.id"
+								@click="handleSelectGoodsParams(item.id)"
+								:class="{ 'active': selectedGoodsParams.includes(item.id), 'disabled': item.id == 3 }">
 								<image src="../../static/images/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
 								</image>
-								<text>固始鸡1200gx1只（共2.4斤）</text>
+								<text>{{ item.value }}</text>
 							</view>
-							<view class="goods-params-item active">
-								<image src="../../static/images/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
-								</image>
-								<text>固始鸡1200gx1只（共2.4斤）</text>
-							</view>
-							<view class="goods-params-item disabled">
-								<image src="../../static/images/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
-								</image>
-								<text>固始鸡1200gx1只（共2.4斤）</text>
-							</view>
-
 						</view>
 					</view>
 					<!-- 购买数量 -->
@@ -74,6 +65,9 @@
 				</view>
 			</template>
 		</ActionSheetSlot>
+
+		<!-- 导航栏 -->
+		<NavBar title="标题" showBack />
 	</view>
 </template>
 
@@ -82,9 +76,24 @@ import { ref } from "vue";
 import CouponPopup from "@/components/CouponPopup.vue";
 import { request } from "@/utils/request.js"
 
+
 const showPopup = ref(false);
 const showActionSheet = ref(false);
 const showActionSheetSlot = ref(false);
+
+// 商品参数数据
+const goodsParamsData = ref([
+	{ name: '商品型号', value: '固始鸡1200gx1只（共2.4斤）', id: 1 },
+	{ name: '商品型号', value: '固始鸡1200gx1只（共3.4斤）', id: 2 },
+	{ name: '商品型号', value: '固始鸡1200gx1只（共5.4斤）', id: 3 },
+]);
+// 选中的商品参数
+const selectedGoodsParams = ref([1]);
+// 商品参数点击事件
+const handleSelectGoodsParams = (id) => {
+	selectedGoodsParams.value = [id];
+	console.log(selectedGoodsParams.value);
+}
 
 // 跳转到指定页
 function goToPage(page) {
@@ -109,54 +118,43 @@ const actionSheetData = ref({
 	]
 })
 
-const handleClose = () => {
-	showActionSheet.value = false;
-	console.log('Popup closed');
+const handleCloseCoupon = () => {
+	console.log('优惠券弹窗关闭');
 };
-const handleClaim = () => {
-	console.log('Coupon claimed');
+const handleClaimCoupon = () => {
+	console.log('优惠券领取');
+	uni.showToast({
+		title: '领取'
+	});
 }
 
-const handleConfirm = () => {
-	console.log('Coupon claimed');
+// actionSheet 确定
+const handleConfirmActionSheet = () => {
+	console.log('actionSheet 确定');
 	// 这里可以添加更多逻辑，例如更新状态或发送请求
 };
+
 async function testApi() {
-	console.log('test');
-
-
 	// uni.navigateTo({
 	// 	url: '/pages/test/test'
 	// })
 	// return;
 
-
 	let data = {
-		// __IS_APP__: 1,
 		wx_open_id: 'oPyg85Y9gzaTO9wgTmeApQMqmhRY',
-		// user_id: '10662',
-		// app_type: 'wx_mini_app',
-		// fuid: 0,
-		// preview: 0
+		wx_appid: 'wx184d389f8e1603d4'
 	};
-	// 转成form-data
-	// data = Object.keys(data).reduce((acc, key) => {
-	// 	acc.append(key, data[key]);
-	// 	return acc;
-	// }, new FormData());
 
-	console.log(data);
 	let res = await request(
-		'/jzkj/WxAppCustomer/home_all_data_v',
+		'/home_all_data_v',
 		'post',
-		data,
-		{
-			// ['Content-Type']: 'multipart/form-data'
-			['Content-Type']: 'application/x-www-form-urlencoded' // 为什么要用这个才是FormData数据
-		}
 	)
 	console.log(res);
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.test-container {
+	padding-top: $nav-height;
+}
+</style>
