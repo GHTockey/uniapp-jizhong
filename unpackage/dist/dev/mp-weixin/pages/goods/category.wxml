@@ -1,0 +1,1 @@
+<view class="category-container data-v-3ee92683"><nav-bar wx:if="{{a}}" class="data-v-3ee92683" u-i="3ee92683-0" bind:__l="__l" u-p="{{a}}"/><high-goods wx:if="{{b}}" class="data-v-3ee92683" u-i="3ee92683-1" bind:__l="__l" u-p="{{b}}"/></view>

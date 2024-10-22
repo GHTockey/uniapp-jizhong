@@ -9,7 +9,11 @@
     "pages/shopcar/shopcar",
     "pages/onlineSearch/onlineSearch",
     "pages/goodsDetail/goodsDetail",
-    "pages/goods/waitPay"
+    "pages/goods/waitPay",
+    "pages/goods/category",
+    "pages/mine/mine",
+    "pages/mine/shopInfoList",
+    "pages/goods/detail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -9,31 +9,32 @@
 
 		<view class="product_list" style="display: flex;flex-wrap: wrap;">
 			<block v-for="(product, index) in goods" :key="index">
-				<view class="product_item">
+				<navigator class="product_item" :url="`/pages/goods/detail?id=${product.id}`">
+
 					<view class="product_radius">
-						<!-- <navigator hover-class="none" :url="`/pages/product/detail?id=${product.id}`"> -->
 						<!-- 商品图片 -->
 						<image :lazy-load="true" class="image" mode="aspectFill" :src="product.image_uri"></image>
 						<view class="txt-box">
 							<!-- 商品名字 -->
 							<text class="name" style="font-weight: 500;
-									display: -webkit-box;
-									-webkit-box-orient: vertical;
-									-webkit-line-clamp: 2;
-									overflow: hidden;
-									text-overflow: ellipsis;
-									word-break: break-all;">{{ product.name }}</text>
+										display: -webkit-box;
+										-webkit-box-orient: vertical;
+										-webkit-line-clamp: 2;
+										overflow: hidden;
+										text-overflow: ellipsis;
+										word-break: break-all;">{{ product.name }}</text>
 							<view class="price-box">
 								<text class="price">
-									<text v-if="product.price > 0" style="font-size:24rpx">￥</text>{{ product.price }}
+									<text v-if="product.price > 0" style="font-size:24rpx">￥</text>{{ product.price
+									}}
 								</text>
 
 								<text>已售88</text>
 							</view>
 						</view>
-						<!-- </navigator> -->
 					</view>
-				</view>
+
+				</navigator>
 			</block>
 		</view>
 
@@ -89,6 +90,9 @@ const props = defineProps({
 		default: true
 	}
 })
+
+
+
 </script>
 
 <style lang="less">

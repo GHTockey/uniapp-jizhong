@@ -36,6 +36,7 @@ import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { request } from '@/utils/request.js';
 import HighGoods from "@/components/HighGoods.vue";
+import { onLoad } from '@dcloudio/uni-app';
 
 
 const route = useRoute();
@@ -43,12 +44,22 @@ const productList = ref([]);
 const productListName = ref('');
 const category_id = ref(null);
 
-// console.log(route.query);
-const { id } = route.query;
-category_id.value = id;
+// 微信小程序不适用
+// const query = defineProps();
+// console.log(query, 'query');
+
+// 微信小程序不适用
+// const { id } = route.query;
+// category_id.value = id;
+
+onLoad((options) => {
+	// console.log(options, 'options');
+
+	category_id.value = options.id;
+	getData();
+})
 
 
-getData();
 
 async function getData() {
 	uni.showLoading({ title: '加载中' })

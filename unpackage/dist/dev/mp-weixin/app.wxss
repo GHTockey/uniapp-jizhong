@@ -24,6 +24,9 @@
 /* 透明度 */
 /* 文章场景相关 */
 /*每个页面公共css */
+view, text {
+  box-sizing: border-box;
+}
 .ActionSheetSlotComponentBody {
   display: flex;
   flex-direction: column;
@@ -112,6 +115,7 @@
 .ActionSheetSlotComponentBody .goods-params-box .goods-params-item-box .goods-params-item.disabled {
   background: #ededed;
   color: #999999;
+  pointer-events: none;
 }
 .ActionSheetSlotComponentBody .goods-buy-num-box {
   display: flex;

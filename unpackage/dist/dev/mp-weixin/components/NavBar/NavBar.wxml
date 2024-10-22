@@ -1,0 +1,1 @@
+<view class="nav-bar-container data-v-9367190c"><view wx:if="{{a}}" class="nav-bar-back data-v-9367190c" bindtap="{{c}}"><image class="data-v-9367190c" src="{{b}}" style="width:50rpx;height:50rpx"/></view><view class="nav-bar-title data-v-9367190c">{{d}}</view></view>

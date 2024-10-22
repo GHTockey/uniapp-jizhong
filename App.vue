@@ -26,9 +26,187 @@ onMounted(() => {
 
 <style lang="scss">
 /*每个页面公共css */
-* {
+view,
+text {
 	box-sizing: border-box;
 }
+
+
+
+/* 弹性布局 */
+.flex_row_str_str {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.flex_row_str_end {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: flex-start;
+	align-items: flex-end;
+	width: 100%;
+}
+
+.flex_row_space_bt {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.flex_row_space_ar {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+}
+
+.flex_row_cen_cen {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.flex_row_end_cen {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100%;
+}
+
+.flex_row_end_end {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: flex-end;
+	width: 100%;
+}
+
+.flex_col_space_bt {
+	display: flex;
+	flex-direction: column;
+
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.flex_col_str_str {
+	display: flex;
+	flex-direction: column;
+
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.flex_col_space_ar {
+	display: flex;
+	flex-direction: column;
+
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+}
+
+.flex_col_cen_cen {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.flex_col_end_cen {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100%;
+}
+
+.flex_col_cen_end {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+	width: 100%;
+}
+
+.flex_wrap {
+	flex-wrap: wrap;
+}
+
+.flex_none {
+	flex: none;
+}
+
+/* 弹性布局结束 */
+
+
+/* 横向展示的产品列表 [start] */
+.product_list_row {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.product_list_row .product_item {
+	border-bottom: 1rpx solid #ededed;
+	color: #333333;
+	padding: 26rpx 0rpx;
+	width: 100%;
+}
+
+.product_list_row navigator {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.product_list_row .product_info {
+	flex: 1;
+	align-items: flex-start;
+	width: calc(100% - 196rpx);
+}
+
+.product_list_row .image {
+	flex: none;
+	border-radius: 12rpx;
+	height: 168rpx;
+	margin-right: 18rpx;
+	width: 168rpx;
+}
+
+.product_list_row .name {
+	font-size: 28rpx;
+}
+
+.product_list_row .price {
+	color: #FE3E3D;
+	font-size: 34rpx;
+}
+
+.product_list_row .product_list_row_btn {
+	padding: 10rpx 12rpx;
+	background-color: #ff4f26;
+	border-radius: 34rpx;
+	color: #ffffff;
+	font-size: 22rpx;
+}
+/* 横向展示的产品列表 [end] */
+
 
 .ActionSheetSlotComponentBody {
 	display: flex;

@@ -61,7 +61,7 @@ const useTarbarStore = common_vendor.defineStore("tarbar", {
   actions: {
     // 获取
     async getTarBarListApi() {
-      let res = await utils_request.request("/WxAppConfig/app_tabbar_list");
+      let res = await utils_request.request("/WxAppConfig/app_tabbar_list", "post");
       if (res.code == 0) {
         this.list = res.data.tabbar_list;
       }

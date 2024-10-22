@@ -34,20 +34,16 @@ const _sfc_main = {
     const emit = __emit;
     const closePopup = () => {
       emit("close");
-      console.log("关闭");
+      emit("update:visible", false);
     };
     const claimCoupon = () => {
       emit("claim");
-      console.log("领取");
-      common_vendor.index.showToast({
-        title: "领取"
-      });
     };
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: __props.visible
       }, __props.visible ? {
-        b: common_assets._imports_0$12,
+        b: common_assets._imports_0$13,
         c: common_vendor.t(__props.title),
         d: common_vendor.t(__props.amount),
         e: common_vendor.t(__props.condition),

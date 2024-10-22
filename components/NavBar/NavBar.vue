@@ -5,11 +5,28 @@
 			<image src="../../static/icon/left-black-icon.svg" style="width: 50rpx; height: 50rpx;" />
 		</view>
 		<!-- 标题 -->
-		<view class="nav-bar-title">{{ title }}</view>
+		<view class="nav-bar-title" v-if="!showSearch">{{ title }}</view>
+
+		<!-- 搜索栏 -->
+		<view class="search_box flex_row_space_ar">
+			
+			<!-- <view style="width: 50rpx;"></view> -->
+
+			<view class="search_input_box">
+				<image lazy-load class="search_icon" src="https://saas.jizhongkeji.com/static/jzkj/images/search.png"
+					mode="aspectFit" v-if="!search_str || search_str.length == 0" />
+				<input hold-keyboard="true" class="search_input" confirm-type="search" type="text" placeholder="搜索商品"
+					bindinput="change_search_str" placeholder-class="input_placeholder_class" bindconfirm="to_search"
+					v-model="search_str" />
+			</view>
+			<!-- 小程序胶囊宽度 -->
+			<view class="search_box_lable flex_row_cen_cen" :style="{ opacity: 0, width: boundingWidth + 'px'}"></view>
+		</view>
 	</view>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 
 const props = defineProps({
 	title: {
@@ -19,8 +36,19 @@ const props = defineProps({
 	showBack: {
 		type: Boolean,
 		default: false
+	},
+	showSearch: {
+		type: Boolean,
+		default: false
 	}
 })
+
+// console.log(process.env);
+const search_str = ref('');
+let boundingWidth = 0;
+if (process.env.UNI_PLATFORM !== 'h5') {
+  boundingWidth = (uni.getSystemInfoSync()['windowWidth'] - uni.getMenuButtonBoundingClientRect().right) * 2 + uni.getMenuButtonBoundingClientRect().width;
+}
 
 // 返回
 const goBack = () => {
@@ -58,5 +86,70 @@ const goBack = () => {
 		font-weight: 700;
 		text-align: center;
 	}
+}
+
+
+.search_box {
+	flex: none;
+	background-color: #FFFFFF;
+	box-sizing: border-box;
+	/* padding: 0rpx 30rpx; */
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+}
+
+.flex_row_space_ar {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+}
+
+.search_input_box {
+	position: relative;
+	box-sizing: border-box;
+	/* width: max-content; */
+	width: 100%;
+	padding-right: 90rpx;
+}
+
+.search_icon {
+	position: absolute;
+	top: calc(50% - 14rpx);
+	left: 40rpx;
+	height: 24rpx;
+	width: 24rpx;
+}
+
+.search_input {
+	box-sizing: border-box;
+	background-color: #EFEFEF;
+	border-radius: 30rpx;
+	height: 60rpx;
+	padding: 0rpx 10rpx;
+	font-size: 28rpx;
+	text-align: center;
+	width: 400rpx;
+}
+
+.search_box_lable {
+	flex: none;
+	color: #000000;
+	height: 60rpx;
+	font-size: 36rpx;
+	/* max-width: max-content; */
+}
+
+
+.flex_row_cen_cen {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 </style>

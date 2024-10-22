@@ -2,17 +2,23 @@
 	<view class="goods-detail-container">
 		<!-- 商品图片和视频区域 -->
 		<swiper class="goods-detail-swiper">
-			<swiper-item class="goods-detail-swiper-item" key="video">
+			<swiper-item class="goods-detail-swiper-item" v-if="video_list.length > 0"
+				v-for="(item, index) in video_list" :key="index">
+				<video id="video" :src="item" :controls="false" object-fit="cover"></video>
+			</swiper-item>
+			<!-- <swiper-item class="goods-detail-swiper-item" key="video">
 				<video id="video" src="../../static/video/mp41.mp4" :controls="false" object-fit="cover"></video>
+			</swiper-item> -->
+			<swiper-item class="goods-detail-swiper-item" v-for="(item, index) in swiper.swiperImgUrls" :key="index">
+				<image class="goods-detail-swiper-item-image" :src="item" />
 			</swiper-item>
-			<swiper-item class="goods-detail-swiper-item" key="image1">
+			<!-- <swiper-item class="goods-detail-swiper-item" key="image2">
 				<image class="goods-detail-swiper-item-image"
 					src="https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/webp/1d518e30c55a870b05bec858f6c7bf3f.w800.h800.d0.b0.s64862.webp?x-oss-process=image/format,jpg" />
-			</swiper-item>
-			<swiper-item class="goods-detail-swiper-item" key="image2">
-				<image class="goods-detail-swiper-item-image"
-					src="https://saascdn.jizhongkeji.com/oss_jzkj/wx184d389f8e1603d4/webp/1d518e30c55a870b05bec858f6c7bf3f.w800.h800.d0.b0.s64862.webp?x-oss-process=image/format,jpg" />
-			</swiper-item>
+			</swiper-item> -->
+		</swiper>
+		<!-- 商品图片操作 -->
+		<view class="goods-detail-swiper-operation">
 			<!-- 左上角返回按钮 -->
 			<view class="goods-detail-swiper-back" @tap="goBack">
 				<image class="goods-detail-swiper-back-icon" src="../../static/icon/left-white-icon.svg"
@@ -20,14 +26,17 @@
 			</view>
 			<!-- 左下角当前视频/图片数量 -->
 			<view class="goods-detail-swiper-index">
-				<text class="goods-detail-swiper-index-text">1/3</text>
+				<text class="goods-detail-swiper-index-text">?/{{ swiper?.swiperImgUrls?.length }}</text>
 			</view>
 			<!-- 右下角视频/图集按钮 -->
 			<view class="goods-detail-swiper-button">
 				<text class="goods-detail-swiper-button-text">视频</text>
 				<text class="goods-detail-swiper-button-text">图集</text>
 			</view>
-		</swiper>
+		</view>
+
+
+
 		<!-- 商品信息区域 -->
 		<view class="goods-detail-info">
 			<!-- 价格信息 -->
@@ -56,7 +65,7 @@
 			</view>
 			<!-- 商品标题 -->
 			<view class="goods-detail-info-title">
-				<text>豫珍源固始鸡林间大别山高山林间散养豫珍源固始鸡林间大别山高山林间散养750g</text>
+				<text>{{ goodsDetail?.name }}</text>
 			</view>
 			<!-- 商品的配送方式-服务保障-商品参数 -->
 			<view class="goods-detail-info-delivery">
@@ -68,7 +77,10 @@
 					<text class="delivery-item-text">快递物流</text>
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">同城配送</text>
-					<text class="delivery-item-text" style="margin-left: auto;">></text>
+					<text class="delivery-item-text" style="margin-left: auto;">
+						<image src="../../static/images/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
+						</image>
+					</text>
 				</view>
 				<view class="delivery-item" @tap="showActionSheet = true">
 					<image class="delivery-item-icon" src="../../static/icon/goods-baozhang-icon.svg" mode="widthFix" />
@@ -78,7 +90,10 @@
 					<text class="delivery-item-text">极速退款</text>
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">假一赔十</text>
-					<text class="delivery-item-text" style="margin-left: auto;">></text>
+					<text class="delivery-item-text" style="margin-left: auto;">
+						<image src="../../static/images/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
+						</image>
+					</text>
 				</view>
 				<view class="delivery-item" @tap="showActionSheet = true">
 					<image class="delivery-item-icon" src="../../static/icon/goods-parm-icon.svg" mode="widthFix" />
@@ -92,7 +107,10 @@
 					<text class="delivery-item-text">长安市</text>
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">食品工艺...</text>
-					<text class="delivery-item-text" style="margin-left: auto;">></text>
+					<text class="delivery-item-text" style="margin-left: auto;">
+						<image src="../../static/images/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
+						</image>
+					</text>
 				</view>
 			</view>
 		</view>
@@ -103,7 +121,9 @@
 			<view class="comment-header">
 				<text class="comment-header-title">客户评价（2万+）</text>
 				<text class="comment-header-rate">好评率99%</text>
-				<text class="comment-header-more">></text>
+				<text class="comment-header-more">
+					<image src="../../static/images/next1.svg" style="width: 20.56rpx;height: 20.08rpx;"></image>
+				</text>
 			</view>
 			<!-- 评价内容 -->
 			<view class="comment-content">
@@ -229,7 +249,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { onLoad } from '@dcloudio/uni-app';
+import { request } from '@/utils/request.js';
+
+const goodsId = ref(); // 商品id
+const goodsDetail = ref({}); // 商品详情
+
+const show_select_change = ref(false); // 是否展示列表或者大图的选项
+const need_spec1 = ref(0); // 是否需要规格1
+const need_spec2 = ref(0); // 是否需要规格2
+const add_count = ref(0); // 购买数量
+const price_show = ref(0); // 显示价格
+const price_inter = ref([0, 0]); // 价格区间
+const act_img = ref(''); // 活动图片
+const max_count = ref(0); // 最大购买数量
+const video_list = ref([]); // 视频列表
+const swiper = ref({}); // 轮播图
+const detail_image_uri = ref([]); // 商品详情图片
+
 
 
 const showActionSheet = ref(false)
@@ -251,6 +289,141 @@ function goBack() {
 		delta: 1
 	})
 }
+
+
+onLoad((options) => {
+	// console.log(options, 'options');
+	goodsId.value = options.id;
+	getData();
+})
+
+
+
+async function getData() {
+	uni.showLoading({ title: '加载中' })
+	let res = await request('/WxAppCustomer/goods_detail', 'POST', {
+		id: goodsId.value
+	})
+	console.log(res, 'res');
+	uni.hideLoading();
+	if (res.code != 0) return uni.showToast({ title: res.msg, icon: 'error' });
+	goodsDetail.value = res.data.detail;
+
+	// 修改页面标题
+	uni.setNavigationBarTitle({
+		title: goodsDetail.value.name
+	})
+
+
+	// 处理规格
+	let product = goodsDetail.value
+	if (product.spec_list1 && product.spec_list1.option.length > 0) {
+		need_spec1.value = 1
+
+		product.spec_list1.option.forEach((ele, index) => {
+			if (ele.img_uri) {
+				show_select_change.value = true
+				return
+			}
+		});
+		console.log('规格', product.spec_list1);
+	}
+	if (product.spec_list2 && product.spec_list2.option.length > 0) {
+		need_spec2.value = 1
+		// that.data.spec_list2_init = product.spec_list2.option  // TODO: 没看懂
+	}
+
+
+	// 处理价格
+	if (add_count.value > 0) {
+		let show = Math.round((product.price_min * add_count.value * 100), 2) / 100;
+		let min = Math.round((product.price_min * add_count.value * 100), 2) / 100;
+		let max = Math.round((product.price_max * add_count.value * 100), 2) / 100;
+		price_show.value = show;
+		price_inter.value = [min, max];
+		act_img.value = product.image_uris_arr ? product.image_uris_arr[0] : '';
+		max_count.value = product.max_count;
+	} else {
+		price_show.value = product.price_min;
+		price_inter.value = [product.price_min, product.price_max];
+		act_img.value = product.image_uris_arr ? product.image_uris_arr[0] : '';
+		max_count.value = product.max_count;
+	}
+
+
+	// 视频列表
+	if (product.video_uri_arr.length > 0) {
+		let video_list = [];
+
+		product.video_uri_arr.forEach(ele => {
+			video_list.push({
+				url: ele,
+				width: 375,
+				height: 375,
+				bofang_show: true,
+			});
+		});
+
+		console.log("视频视频视频", video_list);
+
+		video_list.value = video_list;
+	}
+
+
+	// 轮播图
+	swiper.value = {
+		swiperImgUrls: product.image_uris_arr,
+		video: product.video_1
+	}
+	// 轮播图指示器
+	console.log('swiper.value.swiperImgUrls.length', swiper.value.swiperImgUrls.length);
+	if (swiper.value.swiperImgUrls.length == 1) {
+		swiper.value.indicatorDots = false
+	} else {
+		// LRR 修改swiper样式 改为false
+		swiper.value.indicatorDots = false
+	}
+
+
+	//
+	if (product.detail) {
+		console.log('WxParse');
+		return
+		WxParse.wxParse('detail_content', 'html', product.detail, that, 5);
+	}
+	detail_image_uri.value = product.detail_images
+	swiper.value = swiper.value
+
+
+
+	// if (product.business.is_show_buy_pop == 1) {
+	// 	// ---打开立即购买弹窗
+	// 	if (!(!product.spec_list1 && product.price > 0)) {
+	// 		// if (type == 'buy') {
+	// 		console.log('dakai13333333333333333333333333');
+	// 		// console.log('立即购买111111111', that.data.product.spec_list2.option[0].name);
+	// 		show_pop.value = 'buy'
+	// 		act_spec1.value = 0
+	// 		act_spec2.value = 0
+
+	// 		// 选中默认规格1
+	// 		if (product.spec_list1 && product.spec_list1.option.length > 0) {
+	// 			act_spec1.value = product.spec_list1.option[0].name
+	// 		}
+	// 		//  选中默认规格2
+	// 		if (product.spec_list2 && product.spec_list2.option && product.spec_list2.option.length > 0) {
+	// 			act_spec2.value = product.spec_list2.option[0].name
+	// 			filter_by_spec()
+	// 		}
+
+	// 		wx.setPageStyle({
+	// 			style: {
+	// 				overflow: 'hidden'
+	// 			}
+	// 		})
+	// 	}
+	// }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -258,26 +431,23 @@ function goBack() {
 	background-color: #f7f8fa;
 	padding-bottom: 100rpx;
 
-
-	// 商品图片和视频区域
-	.goods-detail-swiper {
-		// border: 1px solid #000;
+	// 商品图片操作
+	.goods-detail-swiper-operation {
+		position: absolute;
+		top: 0;
+		left: 0;
+		// border: 1px solid #00ff15;
 		height: 750rpx;
+		width: 100%;
+		// 使其可以操作后面被挡住的元素
+		pointer-events: none; // 允许事件穿透
 
-		.goods-detail-swiper-item {
-			width: 100%;
-			height: 100%;
 
-			#video {
-				width: 100%;
-				height: 100%;
-			}
-
-			.goods-detail-swiper-item-image {
-				width: 100%;
-				height: 100%;
-			}
-
+		// 需要交互的子元素恢复 pointer-events
+		.goods-detail-swiper-back,
+		.goods-detail-swiper-index,
+		.goods-detail-swiper-button {
+			pointer-events: auto;
 		}
 
 		// 左上角返回按钮
@@ -301,6 +471,7 @@ function goBack() {
 
 		// 左下角当前视频/图片数量
 		.goods-detail-swiper-index {
+			z-index: 100;
 			position: absolute;
 			bottom: 32rpx;
 			left: 29.17rpx;
@@ -319,6 +490,7 @@ function goBack() {
 
 		// 右下角视频/图集按钮
 		.goods-detail-swiper-button {
+			z-index: 100;
 			position: absolute;
 			bottom: 32rpx;
 			right: 29.17rpx;
@@ -338,6 +510,30 @@ function goBack() {
 				// 阻止文字换行
 				white-space: nowrap;
 			}
+		}
+	}
+
+
+
+	// 商品图片和视频区域
+	.goods-detail-swiper {
+		// border: 1px solid #000;
+		height: 750rpx;
+
+		.goods-detail-swiper-item {
+			width: 100%;
+			height: 100%;
+
+			#video {
+				width: 100%;
+				height: 100%;
+			}
+
+			.goods-detail-swiper-item-image {
+				width: 100%;
+				height: 100%;
+			}
+
 		}
 	}
 

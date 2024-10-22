@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
+const utils_request = require("../../utils/request.js");
 const utils_index = require("../../utils/index.js");
 if (!Array) {
   const _easycom_BubbleTips2 = common_vendor.resolveComponent("BubbleTips");
@@ -35,12 +36,80 @@ const _sfc_main = {
     const bubbleTipsData = common_vendor.ref();
     setInterval(() => {
     }, 3e3);
-    console.log("系统信息", common_vendor.index.getSystemInfoSync());
-    console.log("状态栏高度：", utils_index.getStatusBarHeight());
-    console.log("小程序标题高度：", utils_index.getTitleBarHeight());
     common_vendor.onMounted(() => {
       getData();
     });
+    function to_detail(detail) {
+      if (detail.category_id > 0) {
+        console.log("跳转至分类页面");
+        common_vendor.index.navigateTo({
+          url: "/pages/goods/category?id=" + detail.category_id
+        });
+        return;
+      }
+      if (detail.goods_id > 0) {
+        console.log("跳转至商品详情页面");
+        common_vendor.index.navigateTo({
+          url: "/pages/goods/detail?id=" + detail.goods_id
+        });
+        return;
+      }
+      if (detail.phone != null) {
+        console.log("手机号 detail.phone", detail.phone);
+        return;
+      }
+      if (detail.location != null) {
+        console.log("位置", detail);
+        var coordinate_list = detail.location.split(",");
+        console.log("33333333333333333", coordinate_list[1]);
+        common_vendor.index.getSetting({
+          success: (resSetting) => {
+            console.log(resSetting);
+            if ("undefined" == typeof resSetting.authSetting["scope.address"] || resSetting.authSetting["scope.address"]) {
+              common_vendor.index.openLocation({
+                latitude: coordinate_list[0] * 1,
+                longitude: coordinate_list[1] * 1,
+                scale: 18,
+                //
+                name: detail.name,
+                address: detail.address
+              });
+            } else {
+              common_vendor.index.showToast({
+                title: "请先打开授权",
+                icon: "none",
+                duration: 3e3
+              });
+              common_vendor.index.openSetting({
+                success(resSetting2) {
+                  if (resSetting2.authSetting["scope.address"]) {
+                    common_vendor.index.openLocation({
+                      latitude: coordinate_list[0] * 1,
+                      longitude: coordinate_list[1] * 1,
+                      scale: 18,
+                      name: detail.name,
+                      address: detail.address
+                    });
+                  } else {
+                    common_vendor.index.showToast({
+                      title: "授权失败",
+                      icon: "none",
+                      duration: 3e3
+                    });
+                  }
+                }
+              });
+            }
+          }
+        });
+        return;
+      }
+      if (detail.is_open_shop_info_list == 0) {
+        common_vendor.index.navigateTo({
+          url: "/pages/mine/shopInfoList"
+        });
+      }
+    }
     async function getData() {
       banner_swiper.value = {
         autoplay: true,
@@ -70,8 +139,33 @@ const _sfc_main = {
         sort: null,
         update_time: "2023-02-15 10:05:07"
       }];
+      let res = await utils_request.request(
+        "/WxAppCustomer/home_all_data_v",
+        "post"
+      );
+      if (res.code != 0)
+        return common_vendor.index.showToast({
+          title: res.msg,
+          duration: 2e3,
+          icon: "error"
+        });
+      if (res.data.banner_detail) {
+        banner_swiper.value.images = res.data.banner_detail.image_uris_arr;
+        banner_swiper.value.height_value = res.data.banner_detail.height_value;
+        banner_swiper.value.interval = res.data.banner_detail.interval_value;
+        banner_swiper.value.is_radius = !!res.data.banner_detail.is_radius;
+        banner_swiper.value.autoplay = !!res.data.banner_detail.autoplay;
+      } else {
+        banner_swiper.value.images = [];
+      }
+      if (res.data.icon_list) {
+        iconlist.value = res.data.icon_list;
+      } else {
+        iconlist.value = [];
+      }
     }
     return (_ctx, _cache) => {
+      var _a;
       return common_vendor.e({
         a: common_vendor.p({
           itemData: bubbleTipsData.value
@@ -84,21 +178,22 @@ const _sfc_main = {
         e: common_assets._imports_0,
         f: isFixedHeadeContent.value ? 1 : "",
         g: common_vendor.s(isFixedHeadeContent.value ? `top: ${common_vendor.unref(utils_index.getStatusBarHeight)()}px` : ""),
-        h: common_vendor.f(banner_swiper.value.images, (image, index, i0) => {
+        h: common_vendor.f((_a = banner_swiper.value) == null ? void 0 : _a.images, (image, index, i0) => {
           return {
             a: image,
             b: index
           };
         }),
-        i: banner_swiper.value.autoplay,
+        i: !!banner_swiper.value.autoplay,
         j: banner_swiper.value.interval,
         k: banner_swiper.value.duration,
         l: banner_swiper.value.indicatorDots,
         m: banner_swiper.value.is_radius,
-        n: common_vendor.f(iconlist.value.flatMap((item) => Array(10).fill(item)), (item, index, i0) => {
+        n: common_vendor.f(iconlist.value, (item, index, i0) => {
           return {
             a: item.image_uri,
-            b: common_vendor.t(item.name)
+            b: common_vendor.t(item.name),
+            c: common_vendor.o(($event) => to_detail(item))
           };
         }),
         o: common_vendor.f(10, (item, index, i0) => {

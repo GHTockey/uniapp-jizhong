@@ -75,7 +75,7 @@
     <CompanyInfo style="margin-top: 20rpx;" />
 
     <!-- 好物优选 -->
-    <HighGoods style="margin-top: 20rpx;" />
+    <HighGoods style="margin-top: 20rpx;" :goods="goodsList" />
   </view>
 
   <!-- <button style="position: fixed; top: 100rpx; left: 50%; transform: translateX(-50%);" @click="addBubbleTipsData">添加数据</button> -->
@@ -101,6 +101,7 @@ import {
 const isFixedHeadeContent = ref(false);
 // 往下挤的高度 
 const containerMarTop = computed(() => {
+  // 47.22 是标题栏的高度, 有的时候标题栏是固定在顶部的
   return 47.22 + getTitleBarHeight() + getStatusBarHeight()
 });
 
@@ -118,6 +119,7 @@ const banner_swiper = ref({
 const iconlist = ref([]);
 // 气泡提示数据
 const bubbleTipsData = ref();
+const goodsList = ref([]); // 好物优选商品列表
 
 // test 添加气泡提示数据
 function addBubbleTipsData() {
@@ -135,6 +137,9 @@ setInterval(() => {
 // console.log('状态栏高度：', getStatusBarHeight());
 // console.log('小程序标题高度：', getTitleBarHeight());
 
+uni.showLoading({
+  title: '加载中...',
+})
 onMounted(() => {
   getData()
 });
@@ -147,6 +152,7 @@ function to_detail(detail) {
 
   // 判断是否有分类id
   if (detail.category_id > 0) {
+    console.log('跳转至分类页面');
     uni.navigateTo({
       url: '/pages/goods/category?id=' + detail.category_id
     })
@@ -156,6 +162,7 @@ function to_detail(detail) {
 
   // 判断是否商品详情
   if (detail.goods_id > 0) {
+    console.log('跳转至商品详情页面');
     // console.log('detail.category_iddetail.category_iddetail.category_id', detail.category_id);
     uni.navigateTo({
       url: '/pages/goods/detail?id=' + detail.goods_id
@@ -177,51 +184,50 @@ function to_detail(detail) {
 
   // 位置
   if (detail.location != null) {
-
+    console.log('位置', detail);
     var coordinate_list = detail.location.split(",")
     console.log('33333333333333333', coordinate_list[1]);
-    console.log('位置 ');
 
-    // wx.getSetting({
-    //   success: resSetting => {
-    //     console.log(resSetting);
+    uni.getSetting({
+      success: resSetting => {
+        console.log(resSetting);
 
-    //     if (('undefined' == typeof resSetting.authSetting['scope.address']) || resSetting.authSetting['scope.address']) {
-    //       wx.openLocation({
-    //         latitude: coordinate_list[0] * 1,
-    //         longitude: coordinate_list[1] * 1,
-    //         scale: 18,
-    //         name: e.currentTarget.dataset.item.name,
-    //         address: e.currentTarget.dataset.item.address
-    //       })
-    //     } else {
-    //       wx.showToast({
-    //         title: '请先打开授权',
-    //         icon: 'none',
-    //         duration: 3000
-    //       })
-    //       wx.openSetting({
-    //         success(resSetting2) {
-    //           if (resSetting2.authSetting['scope.address']) {
-    //             wx.openLocation({
-    //               latitude: coordinate_list[0] * 1,
-    //               longitude: coordinate_list[1] * 1,
-    //               scale: 18,
-    //               name: e.currentTarget.dataset.item.name,
-    //               address: e.currentTarget.dataset.item.address
-    //             })
-    //           } else {
-    //             wx.showToast({
-    //               title: '授权失败',
-    //               icon: 'none',
-    //               duration: 3000
-    //             })
-    //           }
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
+        if (('undefined' == typeof resSetting.authSetting['scope.address']) || resSetting.authSetting['scope.address']) {
+          uni.openLocation({
+            latitude: coordinate_list[0] * 1,
+            longitude: coordinate_list[1] * 1,
+            scale: 18, //
+            name: detail.name,
+            address: detail.address
+          })
+        } else {
+          uni.showToast({
+            title: '请先打开授权',
+            icon: 'none',
+            duration: 3000
+          })
+          uni.openSetting({
+            success(resSetting2) {
+              if (resSetting2.authSetting['scope.address']) {
+                uni.openLocation({
+                  latitude: coordinate_list[0] * 1,
+                  longitude: coordinate_list[1] * 1,
+                  scale: 18,
+                  name: detail.name,
+                  address: detail.address
+                })
+              } else {
+                uni.showToast({
+                  title: '授权失败',
+                  icon: 'none',
+                  duration: 3000
+                })
+              }
+            }
+          })
+        }
+      }
+    })
 
     // this.click_page(6, '');
     return;
@@ -265,7 +271,6 @@ async function getData() {
     update_time: "2023-02-15 10:05:07"
   }]
 
-
   let res = await request(
     '/WxAppCustomer/home_all_data_v',
     'post',
@@ -275,24 +280,19 @@ async function getData() {
     duration: 2000,
     icon: 'error'
   });
-  // console.log(res.data);
+  uni.hideLoading()
+  console.log(res.data);
 
   // 轮播图数据
-  if (res.data.banner_detail) {
-    banner_swiper.value.images = res.data.banner_detail.image_uris_arr;
-    banner_swiper.value.height_value = res.data.banner_detail.height_value;
-    banner_swiper.value.interval = res.data.banner_detail.interval_value;
-    banner_swiper.value.is_radius = !!res.data.banner_detail.is_radius;
-    banner_swiper.value.autoplay = !!res.data.banner_detail.autoplay;
-  } else {
-    banner_swiper.value.images = []
-  }
+  banner_swiper.value.images = res.data?.banner_detail?.image_uris_arr
+  banner_swiper.value.height_value = res.data?.banner_detail?.height_value
+  banner_swiper.value.interval = res.data?.banner_detail?.interval_value
+  banner_swiper.value.is_radius = !!res.data?.banner_detail?.is_radius
+  banner_swiper.value.autoplay = !!res.data?.banner_detail?.autoplay
   // iconlist 数据
-  if (res.data.icon_list) {
-    iconlist.value = res.data.icon_list
-  } else {
-    iconlist.value = []
-  }
+  iconlist.value = res.data?.icon_list
+  // 好物优选商品列表
+  goodsList.value = res.data?.goods_list
 };
 </script>
 
@@ -363,7 +363,7 @@ async function getData() {
 
       image {
         width: 48.61rpx;
-        height: 47.22rpx;
+        height: 47.22rpx; // 47.22rpx 是标题栏的高度
       }
 
       input {
@@ -559,14 +559,6 @@ async function getData() {
   /* 白色 */
   border-radius: 8px;
   /* 圆角 */
-}
-
-.fixed-bottom {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
 }
 
 .searchPlace {

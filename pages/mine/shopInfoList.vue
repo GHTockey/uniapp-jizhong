@@ -1,8 +1,6 @@
 <template>
 	<view class="shopInfoList-container">
-
-
-		<!--pages/mine/shop_info_list.wxml-->
+		<!-- <NavBar title="门店列表" showBack /> -->
 		<view>
 			<!-- 空列表 -->
 			<view class="kong" v-if="shop_list.length <= 0">
@@ -58,25 +56,30 @@ async function getData() {
 }
 
 
-// 导航
+// 跳转地图
 function to_address(item) {
-
 	var address = item.address.split(",")
 	var latitude = address[0];
 	var longitude = address[1];
 	var name = item.shop_name;
 
 	var address = item.address_name;
-	console.log('address11----', address, name);
 
 	console.log('位精度', latitude, longitude);
 	uni.openLocation({
-		longitude: parseFloat(longitude),
-		latitude: parseFloat(latitude),
-		name: address,
-		address: name
+		longitude: parseFloat(longitude), // 经度
+		latitude: parseFloat(latitude), // 纬度
+		name: address, // 位置名称
+		address: name // 地址详情
 	})
-
+}
+// 拨打电话
+function phone(phone) {
+	uni.makePhoneCall({
+		phoneNumber: phone,
+		success() { },
+		fail() { }
+	})
 }
 </script>
 
@@ -136,6 +139,7 @@ function to_address(item) {
 	width: 100%;
 	box-sizing: border-box;
 	padding: 0 30rpx;
+	overflow: hidden;
 }
 
 .shop_item {

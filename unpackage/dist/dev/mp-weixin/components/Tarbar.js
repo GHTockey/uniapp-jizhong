@@ -16,13 +16,17 @@ const _sfc_main = {
         selectedIndex.value = index;
       } catch (error) {
         console.log(error);
+        common_vendor.index.showToast({
+          title: "页面不存在",
+          icon: "error"
+        });
       }
     }
     return (_ctx, _cache) => {
       return {
         a: common_vendor.f(common_vendor.unref(list), (item, index, i0) => {
           return {
-            a: common_vendor.unref(selectedIndex) == index ? item.selected_icon_path : item.icon_path,
+            a: common_vendor.unref(selectedIndex) == index ? "/static/" + item.selected_icon_path : "/static/" + item.icon_path,
             b: common_vendor.t(item.text),
             c: common_vendor.n({
               "active": common_vendor.unref(selectedIndex) == index

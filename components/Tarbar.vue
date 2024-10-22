@@ -39,6 +39,14 @@ async function selectTab(index) {
 </script>
 
 <style lang="less">
+.fixed-bottom {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+}
+
 // ios 底部的导航条
 .ios-bottom {
 	padding-bottom: env(safe-area-inset-bottom) !important;
