@@ -74,10 +74,12 @@
 					</view>
 				</view>
 			</view>
+
+			<!-- 空状态 -->
+			<DefaultTip :tipText="'暂无收藏或常去门店'" v-if="shopList.length == 0" />
 		</view>
 
-		<!-- 空状态 -->
-		<view class="empty_box"></view>
+
 
 		<!-- 确定按钮 -->
 		<view class="confirm_btn_box">

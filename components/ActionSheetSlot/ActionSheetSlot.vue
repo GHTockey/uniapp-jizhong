@@ -23,7 +23,7 @@
 			<!-- 底部按钮 -->
 			<view class="action-sheet-content-footer">
 				<slot name="footer">
-					<view class="action-sheet-content-footer-btn" @click="emit('confirm')">{{ footerBtnText }}</view>
+					<view class="action-sheet-content-footer-btn" @click="confirm">{{ footerBtnText }}</view>
 				</slot>
 			</view>
 		</view>
@@ -33,6 +33,8 @@
 <script setup>
 import { ref } from "vue";
 
+
+// TIPS: 本组件的show不要再外部赋值false，动画显示异常
 const props = defineProps({
 	show: {
 		type: Boolean,
@@ -63,6 +65,11 @@ function closeActionSheet() {
 	}, 300)
 }
 
+// 底部按钮
+function confirm() {
+	emit('confirm')
+	closeActionSheet()
+}
 </script>
 
 <style lang="scss">

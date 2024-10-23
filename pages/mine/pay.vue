@@ -113,11 +113,12 @@
 			</view>
 
 			<!-- 买家留言 -->
-			<view class="buyer_msg_box">
+			<view class="buyer_msg_box" @click="showActionSheet = true">
 				<text class="buyer_msg_title">买家留言</text>
-				<view>
-					<text
-						style="font-size: 27.78rpx;font-family: PingFang SC, PingFang SC-Medium;font-weight: 500;color: #a0a0a0;">无留言</text>
+				<view style="display: flex;align-items: center;">
+					<view class="text_ellipsis" style="font-size: 27.78rpx;font-weight: 500;color: #a0a0a0;">{{ buyerMsg
+						||
+						'无留言' }}</view>
 					<image style="width: 13.89rpx; height: 20.83rpx; margin-left: 19.44rpx;" mode="aspectFit"
 						src="/static/icon/right1.svg">
 					</image>
@@ -166,7 +167,82 @@
 				<view @click="to_pay" class="bottom_submit_btn">去付款</view>
 			</view>
 		</form>
+
+
+
+		<!-- 留言弹窗 -->
+		<ActionSheetSlot v-model:show="showActionSheet" :title="'买家留言'">
+			<template #body>
+				<view style="height: 422.22rpx; border-radius: 13.89rpx; padding: 32rpx; background-color: #ececec;">
+					<!-- 输入框 -->
+					<textarea class="buyer_msg_input" placeholder="请与商家客服沟通一致后再留言，留言内容勿超过100个汉字" v-model="buyerMsg" />
+				</view>
+			</template>
+		</ActionSheetSlot>
+
 	</view>
+	<!-- 支付弹窗 -->
+	<uni-popup ref="payPopup" background-color="#fff" @change="" border-radius="27.78rpx" :mask-click="false">
+		<view class="pay_popup_box">
+			<!-- 标题 -->
+			<view class="pay_popup_title">
+				选择支付方式
+			</view>
+			<!-- 待付款金额 -->
+			<view class="pay_popup_price">
+				<view>待付款金额：￥666.66元</view>
+			</view>
+			<!-- 支付方式列表 -->
+			<view class="pay_popup_pay_list">
+				<!-- 微信支付 -->
+				<view class="pay_popup_pay_item" @click="change_pay_type(1)">
+					<view style="display: flex;align-items: center;">
+						<image mode="widthFix" style="width: 83.33rpx;height: 83.33rpx; margin-right: 25rpx;"
+							src="/static/images/wx.svg">
+						</image>
+						<view>
+							<view style="font-size: 30.56rpx;font-weight: bold;color: #000000;">微信支付</view>
+							<!-- <text style="font-size: 29.17rpx; color: #a1a1a1;">可用余额￥555.50</text> -->
+						</view>
+					</view>
+					<image mode="widthFix" style="width: 41.67rpx;" :src="`/static/icon/select_fill-${selectPayType == 1 ? 'a' : 'n'}.svg`" />
+				</view>
+				<!-- 佣金支付 -->
+				<view class="pay_popup_pay_item" @click="change_pay_type(2)">
+					<view style="display: flex;align-items: center;">
+						<image mode="widthFix" style="width: 83.33rpx;height: 83.33rpx; margin-right: 25rpx;"
+							src="/static/images/yj.svg">
+						</image>
+						<view>
+							<view style="font-size: 30.56rpx;font-weight: bold;color: #000000;">佣金支付</view>
+							<text style="font-size: 29.17rpx; color: #a1a1a1;">可用余额￥555.50</text>
+						</view>
+					</view>
+					<image mode="widthFix" style="width: 41.67rpx;" :src="`/static/icon/select_fill-${selectPayType == 2 ? 'a' : 'n'}.svg`" />
+				</view>
+				<!-- 储值支付 -->
+				<view class="pay_popup_pay_item" @click="change_pay_type(3)">
+					<view style="display: flex;align-items: center;">
+						<image mode="widthFix" style="width: 83.33rpx;height: 83.33rpx; margin-right: 25rpx;"
+							src="/static/images/cz.svg">
+						</image>
+						<view>
+							<view style="font-size: 30.56rpx;font-weight: bold;color: #000000;">储值支付</view>
+							<text style="font-size: 29.17rpx; color: #a1a1a1;">可用余额￥555.50</text>
+						</view>
+					</view>
+					<image mode="widthFix" style="width: 41.67rpx;" :src="`/static/icon/select_fill-${selectPayType == 3 ? 'a' : 'n'}.svg`" />
+				</view>
+			</view>
+			<!-- 确认支付按钮 -->
+			<view class="pay_popup_confirm_btn_box">
+				<view class="pay_popup_confirm_btn">确认支付</view>
+			</view>
+			<!-- 关闭图标 -->
+			<image class="pay_popup_close_icon" mode="widthFix" style="width: 33.33rpx;height: 33.33rpx;"
+				src="/static/icon/pay-pup-close.svg" @click="payPopup.close()" />
+		</view>
+	</uni-popup>
 </template>
 
 <script setup>
@@ -182,6 +258,14 @@ const is_saving = ref(0); // 是否保存中
 const price_all = ref(0); // 总价
 const address = ref(null); // 地址 {}
 const targte_shop = ref(); // 自提门店 {}
+const showActionSheet = ref(false); // 是否展示留言弹窗
+const buyerMsg = ref(''); // 买家留言
+
+
+const payPopup = ref(null); // 普通弹窗实例
+// 选择的支付方式
+const selectPayType = ref(1);
+
 
 const buy_type_list = ref([
 	{ id: 1, name: '门店自提' },
@@ -191,6 +275,7 @@ const buy_type_list = ref([
 
 function to_pay() {
 	console.log('去付款');
+	payPopup.value.open('center');
 
 	// 如果是自提，检查是否选择了门店
 	if (buy_type.value == 1) {
@@ -306,12 +391,21 @@ function to_sub() {
 	});
 }
 
+
+// 切换支付方式
+function change_pay_type(pay_type) {
+	selectPayType.value = pay_type;
+}
+
+// 切换购买类型
 function change_buy_type(buyid) {
 	// console.log(buyid);
 	buy_type.value = buyid;
 
 	console.log('change_buy_type', buy_type.value);
-}
+	}
+
+// 获取门店列表
 function to_get_shop_list() {
 	uni.navigateTo({
 		url: '/pages/mine/get_shop_list'
@@ -518,6 +612,76 @@ function to_get_shop_list() {
 </style>
 
 <style scoped lang="scss">
+// 支付弹窗
+.pay_popup_box {
+	position: relative;
+	width: 611.11rpx;
+	// height: 875rpx;
+	padding: 47.22rpx 55.56rpx;
+	// border-radius: 27.78rpx; // 必须在组件中设置
+
+	// 标题
+	.pay_popup_title {
+		font-size: 37.5rpx;
+		font-weight: 700;
+		text-align: center;
+		color: #000000;
+	}
+
+	// 待付款金额
+	.pay_popup_price {
+		font-size: 33.33rpx;
+		font-weight: 400;
+		text-align: center;
+		color: #000000;
+		margin-top: 44.44rpx;
+	}
+
+	// 支付方式列表
+	.pay_popup_pay_list {
+		margin-top: 30rpx;
+
+		.pay_popup_pay_item {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 40rpx 0;
+			border-bottom: 1px solid #EEEEEE;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+
+	// 确认支付按钮
+	.pay_popup_confirm_btn_box {
+		margin-top: 60rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.pay_popup_confirm_btn {
+			width: 500rpx;
+			height: 69.44rpx;
+			opacity: 0.9;
+			border-radius: 31.25rpx;
+			background-image: $uni-color-gradient-primary;
+			color: #FFFFFF;
+			font-size: 29.17rpx;
+			line-height: 69.44rpx;
+			text-align: center;
+		}
+	}
+
+	// 关闭图标
+	.pay_popup_close_icon {
+		position: absolute;
+		top: 38.36rpx;
+		right: 33.33rpx;
+	}
+}
+
 .pay_container {
 	height: 100vh;
 	position: relative; // 相对定位
@@ -527,11 +691,18 @@ function to_get_shop_list() {
 	background-repeat: no-repeat;
 	background-color: #F8F9FA;
 
+	// 渐变背景
 	.bg_gradient {
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100vw;
+	}
+
+	// 买家留言
+	.buyer_msg_input {
+		width: 100%;
+		height: 100%;
 	}
 
 
