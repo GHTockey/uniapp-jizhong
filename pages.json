@@ -107,6 +107,35 @@
 			{
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/product/detail",
+			"style" : {
+				"navigationBarTitleText" : "商品详情",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/mine/pay",
+			"style" : 
+			{
+				"navigationBarTitleText" : "提交订单",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/mine/address",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/mine/get_shop_list",
+			"style" : 
+			{
+				"navigationBarTitleText" : "选择门店"
+			}
 		}
 	],
 	"globalStyle": {

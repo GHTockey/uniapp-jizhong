@@ -2,14 +2,20 @@
 	<view class="nav-bar-container">
 		<!-- 返回按钮 -->
 		<view class="nav-bar-back" v-if="showBack" @click="goBack">
-			<image src="../../static/icon/left-black-icon.svg" style="width: 50rpx; height: 50rpx;" />
+			<image :src="isWhite ? '../../static/icon/left-white-icon.svg' : '../../static/icon/left-black-icon.svg'"
+				style="width: 30rpx; height: 30rpx;" />
 		</view>
 		<!-- 标题 -->
-		<view class="nav-bar-title" v-if="!showSearch">{{ title }}</view>
+		<!-- <view class="nav-bar-title" v-if="!showSearch"></view> -->
+		<template v-if="!showSearch">
+			<slot name="title">
+				<view class="nav-bar-title">{{ title }}</view>
+			</slot>
+		</template>
 
 		<!-- 搜索栏 -->
-		<view class="search_box flex_row_space_ar">
-			
+		<view class="search_box flex_row_space_ar" v-if="showSearch">
+
 			<!-- <view style="width: 50rpx;"></view> -->
 
 			<view class="search_input_box">
@@ -20,7 +26,7 @@
 					v-model="search_str" />
 			</view>
 			<!-- 小程序胶囊宽度 -->
-			<view class="search_box_lable flex_row_cen_cen" :style="{ opacity: 0, width: boundingWidth + 'px'}"></view>
+			<view class="search_box_lable flex_row_cen_cen" :style="{ opacity: 0, width: boundingWidth + 'px' }"></view>
 		</view>
 	</view>
 </template>
@@ -32,6 +38,10 @@ const props = defineProps({
 	title: {
 		type: String,
 		default: '标题'
+	},
+	isWhite: {
+		type: Boolean,
+		default: false
 	},
 	showBack: {
 		type: Boolean,
@@ -47,7 +57,7 @@ const props = defineProps({
 const search_str = ref('');
 let boundingWidth = 0;
 if (process.env.UNI_PLATFORM !== 'h5') {
-  boundingWidth = (uni.getSystemInfoSync()['windowWidth'] - uni.getMenuButtonBoundingClientRect().right) * 2 + uni.getMenuButtonBoundingClientRect().width;
+	boundingWidth = (uni.getSystemInfoSync()['windowWidth'] - uni.getMenuButtonBoundingClientRect().right) * 2 + uni.getMenuButtonBoundingClientRect().width;
 }
 
 // 返回

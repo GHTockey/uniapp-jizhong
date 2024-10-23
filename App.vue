@@ -32,6 +32,12 @@ text {
 }
 
 
+/* 文本超出显示省略号 */
+.text_ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 
 /* 弹性布局 */
 .flex_row_str_str {
@@ -206,6 +212,14 @@ text {
 	font-size: 22rpx;
 }
 /* 横向展示的产品列表 [end] */
+
+
+.product_item_navigator {
+	> a {
+		width: 100%;
+		display: flex;
+	}
+}
 
 
 .ActionSheetSlotComponentBody {

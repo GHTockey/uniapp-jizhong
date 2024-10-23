@@ -1,0 +1,655 @@
+<template>
+	<view class="pay_container">
+		<!-- 标题栏 -->
+		<NavBar title="待付款订单" showBack isWhite>
+			<template #title>
+				<view style="color: #fff;">待付款订单</view>
+			</template>
+		</NavBar>
+
+		<!-- 渐变背景 [之所以用img是微信小程序里不支持相对图片路径] -->
+		<!-- <image src="/static/images/goods-pay-bg.svg" class="bg_gradient" /> -->
+
+
+		<form v-if="is_loading" @submit="to_sub" class="pay_form">
+
+			<!-- taps -->
+			<view class="buy_type_box" style="top:200rpx">
+				<!-- 选择配送方式 -->
+				<view class="select_buy_box">
+					<view :class="item.id == buy_type ? 'buy_type_active' : 'buy_type_normol'"
+						v-for="(item, index) in buy_type_list" :key="index" @click="change_buy_type(item.id)"
+						:data-buyid="item.id">
+						{{ item.name }}
+					</view>
+				</view>
+
+				<!-- 自提 -->
+				<view class="ziti_box" v-if="buy_type == 1">
+					<view class="address_item flex_row_space_bt buy_address_top" @click="to_get_shop_list">
+						<template v-if="targte_shop && targte_shop.shop_name">
+							<view class="address_text targte_shop_box">
+								<view>{{ targte_shop.shop_name }}</view>
+								<view style="color: #666666;margin-top:20rpx">{{ targte_shop.address_detail }}</view>
+							</view>
+							<image lazy-load class="arrow_icon" mode="aspectFit"
+								src="https://saas.jizhongkeji.com/static/jzkj/images/arrow_right.png"></image>
+						</template>
+						<template v-else>
+							<view class="address_text">
+								请选择要去提货的门店
+							</view>
+							<image lazy-load class="arrow_icon" mode="aspectFit"
+								src="https://saas.jizhongkeji.com/static/jzkj/images/arrow_right.png"></image>
+						</template>
+					</view>
+
+					<view class="address_item flex_row_space_bt buy_address_top"
+						style="padding-top:0;padding-bottom: 0;height: 106rpx;">
+						<view class="address_text" style="width: unset;">
+							提货人员
+						</view>
+						<input style="font-size: 28rpx;" class="input_address" v-model="user.user_name"
+							placeholder-class="placeholder-style" type="text" name="user_name" placeholder="输入提货人员姓名" />
+					</view>
+
+					<view class="address_item flex_row_space_bt buy_address_top"
+						style="padding-top:0;padding-bottom: 0;height: 106rpx;border-bottom: 0;">
+						<view class="address_text" style="width: unset;">
+							手机号码
+						</view>
+						<input style="font-size: 28rpx;" class="input_address" v-model="user.phone"
+							placeholder-class="placeholder-style" type="text" name="phone" placeholder="输入您的手机号码" />
+					</view>
+				</view>
+
+
+				<!-- 物流配送选择地址 -->
+				<view class="address_item flex_row_space_bt buy_address_top buy_address_top_v" v-if="buy_type == 0"
+					style="box-sizing: border-box;">
+					<template v-if="address && address.mobile">
+						<image lazy-load class="address_icon" mode="widthFix"
+							src="https://saas.jizhongkeji.com/static/jzkj/images/address_icon.png"></image>
+						<view class="address_text">
+							<text>{{ address.user_name }}</text>,
+							<text>{{ address.mobile }}</text>,
+							<text>{{ address.address }}</text>,
+							<text>{{ address.address_detail }}</text>
+							<text v-if="address.is_default" class="lable">默认地址</text>
+						</view>
+						<image lazy-load class="arrow_icon" mode="aspectFit"
+							src="https://saas.jizhongkeji.com/static/jzkj/images/arrow_right.png"></image>
+					</template>
+					<template v-else>
+						<image lazy-load class="address_icon" mode="widthFix"
+							src="https://saas.jizhongkeji.com/static/jzkj/images/address_icon.png"></image>
+						<view class="address_text">
+							请填写您的收货地址
+						</view>
+						<image lazy-load class="arrow_icon" mode="aspectFit"
+							src="https://saas.jizhongkeji.com/static/jzkj/images/arrow_right.png"></image>
+					</template>
+				</view>
+			</view>
+
+			<!-- 商品信息 -->
+			<view class="goods_item">
+				<image class="good_img" mode="widthFix" src="/static/images/goods_img.png"></image>
+				<view class="good_info_box">
+					<view class="good_name">商品名称</view>
+					<view class="good_spec_box">
+						<view class="good_spec_item">
+							<text class="good_spec_text">颜色：红色</text>
+							/
+							<text class="good_spec_text">尺寸：100CM</text>
+						</view>
+					</view>
+					<!-- 数量及价格 -->
+					<view class="good_num_price_box">
+						<view class="good_price"><span style="font-size: 20rpx;">￥</span>100</view>
+						<text class="good_num">×1</text>
+					</view>
+				</view>
+			</view>
+
+			<!-- 买家留言 -->
+			<view class="buyer_msg_box">
+				<text class="buyer_msg_title">买家留言</text>
+				<view>
+					<text
+						style="font-size: 27.78rpx;font-family: PingFang SC, PingFang SC-Medium;font-weight: 500;color: #a0a0a0;">无留言</text>
+					<image style="width: 13.89rpx; height: 20.83rpx; margin-left: 19.44rpx;" mode="aspectFit"
+						src="/static/icon/right1.svg">
+					</image>
+				</view>
+			</view>
+
+			<!-- 其它项 -->
+			<view class="other_item_box">
+				<view class="other_item">
+					<text class="buyer_msg_title">优惠券</text>
+					<view>
+						<text style="font-size: 27.78rpx;font-weight: 500;">暂无优惠券</text>
+					</view>
+				</view>
+				<view class="other_item">
+					<text class="buyer_msg_title">使用150积分可以地沟</text>
+					<view>
+						<text
+							style="font-size: 27.78rpx;font-family: PingFang SC, PingFang SC-Medium;font-weight: 500;color: #a0a0a0;">100</text>
+						<image style="width: 13.89rpx; height: 20.83rpx; margin-left: 19.44rpx;" mode="aspectFit"
+							src="/static/icon/right1.svg">
+						</image>
+					</view>
+				</view>
+				<view class="other_item">
+					<text class="buyer_msg_title">发票</text>
+					<view>
+						<text
+							style="font-size: 27.78rpx;font-family: PingFang SC, PingFang SC-Medium;font-weight: 500;color: #a0a0a0;">无需发票</text>
+						<image style="width: 13.89rpx; height: 20.83rpx; margin-left: 19.44rpx;" mode="aspectFit"
+							src="/static/icon/right1.svg">
+						</image>
+					</view>
+				</view>
+			</view>
+
+			<!-- 底部提交 -->
+			<view class="bottom_submit_box">
+				<view class="bottom_submit_price_box">
+					<view style="color: #A7A7A7; margin-right: 20rpx;">共3件</view>
+					<view>
+						<text>合计：</text>
+						<text style="color: #eb2c2a;">￥100</text>
+					</view>
+				</view>
+				<view @click="to_pay" class="bottom_submit_btn">去付款</view>
+			</view>
+		</form>
+	</view>
+</template>
+
+<script setup>
+import { ref } from "vue";
+import { useTempStore } from "@/stores/temp";
+import { storeToRefs } from "pinia";
+
+const { user, business } = storeToRefs(useTempStore());
+
+const is_loading = ref(true); // 是否加载中
+const buy_type = ref(1); // 购买类型
+const is_saving = ref(0); // 是否保存中
+const price_all = ref(0); // 总价
+const address = ref(null); // 地址 {}
+const targte_shop = ref(); // 自提门店 {}
+
+const buy_type_list = ref([
+	{ id: 1, name: '门店自提' },
+	{ id: 0, name: '物流配送' }
+]);
+
+
+function to_pay() {
+	console.log('去付款');
+
+	// 如果是自提，检查是否选择了门店
+	if (buy_type.value == 1) {
+		if (!targte_shop.value || !targte_shop.value.shop_name) {
+			uni.showToast({
+				title: '  请选择提货的门店  ',
+				icon: 'error'
+			})
+			return
+		}
+	}
+}
+
+function to_sub() {
+	console.log('提交订单提交订单', buy_type.value);
+	if (is_saving.value == 1) {
+		console.log('加购物车 防止连点啦');
+		return
+	}
+
+	// 总价小于0
+	if (price_all.value <= 0) return
+
+	if ((!address.value || !address.value.mobile) && buy_type.value == 0) {
+		// 物流配送
+		uni.showToast({
+			title: '请先设置收货地址',
+			icon: 'none',
+			mask: true
+		})
+		return
+	}
+
+	if (buy_type.value == 1) {
+		if (!targte_shop.value || !targte_shop.value.shop_name) {
+			uni.showToast({
+				title: '请选择自提门店',
+				icon: 'none',
+				mask: true
+			})
+			return
+		}
+
+		if (!e.detail.value.user_name) {
+			wx.showToast({
+				title: '请输入提货人员姓名',
+				icon: 'none',
+				mask: true
+			})
+			return
+		}
+
+		if (!e.detail.value.phone) {
+			wx.showToast({
+				title: '请输入您的手机号码',
+				icon: 'none',
+				mask: true
+			})
+			return
+		}
+	}
+
+	// if ((!this.data.targte_shop || !this.data.targte_shop.shop_name) && this.data.buy_type == 1) {
+	//   // 物流配送
+	//   wx.showToast({
+	//     title: '请选择自提门店',
+	//     icon: 'none',
+	//     mask: true
+	//   })
+	//   return
+	// }
+
+	var json_goods = null;
+	if (this.data.type == 'buy_now') {
+		let good_arr = []
+		good_arr.push(this.data.goods_info)
+		json_goods = JSON.stringify(good_arr)
+
+	} else {
+		json_goods = JSON.stringify(this.data.good_list)
+	}
+	console.log('下单', json_goods);
+	this.data.is_saving = 1
+	this.request({
+		url: '/WxAppCustomer/sub_order',
+		data: {
+			json_info: json_goods,
+			address_id: this.data.address ? this.data.address.id : null,
+			price_all: this.data.price_all || 0,
+			type: this.data.type || '',
+			buy_type: this.data.buy_type,
+			mobile: e.detail.value.phone || '',
+			user_name: e.detail.value.user_name || '',
+			shoper_id: this.data.targte_shop ? this.data.targte_shop.id : null,
+		},
+		success: (res) => {
+
+			if (res.data && res.data.code == 1) {
+				this.data.is_saving = 0
+
+				wx.showToast({
+					title: res.data.msg,
+					icon: 'none',
+					mask: true
+				})
+			} else {
+				if (res.data.data.wxAppJsSign) {
+					this.data.order_id = res.data.data.order_id
+					this.wx_pay(res.data.data.wxAppJsSign)
+				}
+			}
+		}
+	});
+}
+
+function change_buy_type(buyid) {
+	// console.log(buyid);
+	buy_type.value = buyid;
+
+	console.log('change_buy_type', buy_type.value);
+}
+function to_get_shop_list() {
+	uni.navigateTo({
+		url: '/pages/mine/get_shop_list'
+	})
+}
+</script>
+
+<style scoped>
+@import '@/static/styles/address.css';
+
+.new_layout {
+	height: unset;
+}
+
+.new_layout_cotent {
+	padding-bottom: 150rpx;
+	height: unset;
+}
+
+.tool_box {
+	height: 98rpx;
+}
+
+.address_item {
+	margin: 22rpx auto 0rpx auto;
+	padding: 34rpx 32rpx;
+}
+
+
+.good_item {
+	background-color: #FFFFFF;
+	border-radius: 14rpx;
+	box-sizing: border-box;
+	padding: 22rpx 32rpx;
+	margin: 22rpx auto 0rpx auto;
+	width: 722rpx;
+}
+
+.good_img {
+	flex: none;
+	height: 160rpx;
+	margin-right: 22rpx;
+	width: 160rpx;
+	border-radius: 10rpx;
+}
+
+.good_name {
+	color: #333333;
+	font-size: 29rpx;
+	font-weight: bold;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 1.5;
+	margin-bottom: 18rpx;
+}
+
+.spec_totall {
+	background: #E7EFFF;
+	border-radius: 6rpx;
+	box-sizing: border-box;
+	color: #111015;
+	font-size: 22rpx;
+	padding: 8rpx 14rpx;
+	margin-bottom: 10rpx;
+	max-width: max-content;
+}
+
+.spec_totall .flex_none {
+	margin-right: 10rpx;
+}
+
+.good_price {
+	font-size: 29rpx;
+}
+
+.tool_box {
+	padding-bottom: 0rpx;
+	padding: 0rpx 30rpx;
+	position: fixed;
+}
+
+.price_totall {
+	color: #000000;
+	font-size: 29rpx;
+	margin-right: 40rpx;
+}
+
+.price_totall .price {
+	color: #FC4740;
+}
+
+.sub_btn {
+	background-color: #FF4F26;
+	border-radius: 34rpx;
+	color: #FFFFFF;
+	font-size: 29rpx;
+	padding: 11rpx 32rpx;
+	height: 60rpx;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.address_item.have_text {
+	color: #1d1d1d;
+}
+
+.good_detail {
+	width: 100%;
+}
+
+.buy_type_box {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 14rpx;
+	/* position: sticky; */
+	/* top: 50rpx; */
+}
+
+.select_buy_box {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	/* background-color: rgb(255, 255, 255,0.5); */
+	background-color: #FDE0D9;
+	height: 75rpx;
+	color: #333333;
+	font-size: 32rpx;
+	margin-top: 50rpx;
+	border-top-left-radius: 20rpx;
+	border-top-right-radius: 20rpx;
+	box-sizing: border-box;
+}
+
+.buy_type_active {
+	color: #FF4F26;
+	background: #FFFFFF;
+	width: 32%;
+	height: calc(83.33rpx + 6rpx);
+	box-sizing: border-box;
+	padding-top: 18rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: translateY(-6rpx);
+	border-top-left-radius: 20rpx;
+	border-top-right-radius: 20rpx;
+	font-weight: bold;
+}
+
+.buy_type_normol {
+	width: 30%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 83.33rpx;
+}
+
+.buy_address_top {
+	margin-top: 0;
+	border-radius: 0;
+	border-bottom: 1rpx solid #EEEEEE;
+}
+
+.input_address {
+	height: 100%;
+	width: 60%;
+	text-align: end;
+}
+
+.ziti_box {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 32rpx;
+	background-color: #FFFFFF;
+	border-bottom-right-radius: 20rpx;
+	border-bottom-left-radius: 20rpx;
+}
+
+.address_item {
+	padding: 0rpx 0;
+	width: 100%;
+	box-sizing: unset;
+	min-height: 120rpx;
+}
+
+.buy_address_top_v {
+	padding-left: 32rpx;
+	padding-right: 32rpx;
+	border-bottom-right-radius: 20rpx;
+	border-bottom-left-radius: 20rpx;
+	border-bottom: 0;
+}
+
+.targte_shop_box {
+	display: flex;
+	flex-direction: column;
+	padding: 30rpx 0;
+}
+</style>
+
+<style scoped lang="scss">
+.pay_container {
+	height: 100vh;
+	position: relative; // 相对定位
+	padding-top: $nav-height;
+	background-image: url('/static/images/goods-pay-bg.svg');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-color: #F8F9FA;
+
+	.bg_gradient {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+	}
+
+
+	// 商品信息
+	.goods_item {
+		margin: 0 14rpx;
+		margin-top: 25rpx;
+		background-color: #FFFFFF;
+		border-radius: 14rpx;
+		display: flex;
+		padding: 20rpx;
+
+		.good_img {
+			width: 160rpx;
+			height: 160rpx;
+			margin-right: 20rpx;
+			border-radius: 10rpx;
+		}
+
+		.good_info_box {
+			// flex: 1;
+			width: calc(100% - 160rpx - 20rpx);
+
+			.good_name {
+				// 文本超出显示省略号
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.good_spec_box {
+				// margin-top: 10rpx;
+				display: flex;
+
+				.good_spec_item {
+					font-size: 22.22rpx;
+					border-radius: 10rpx;
+					padding: 10rpx 20rpx;
+					background-color: #e7efff;
+				}
+			}
+
+			.good_num_price_box {
+				margin-top: 10rpx;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+		}
+	}
+
+
+	// 买家留言
+	.buyer_msg_box {
+		border-radius: 14rpx;
+		background-color: #FFFFFF;
+		margin: 25rpx 14rpx;
+		padding: 20rpx;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		font-size: 27.78rpx;
+		font-family: PingFang SC, PingFang SC-Bold;
+		font-weight: 700;
+		text-align: left;
+		color: #1d1d1d;
+	}
+
+	// 其它项
+	.other_item_box {
+		margin: 25rpx 14rpx;
+		background-color: #FFFFFF;
+		border-radius: 14rpx;
+		padding: 20rpx;
+		display: flex;
+		flex-direction: column;
+		gap: 30rpx;
+
+		.other_item {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			.buyer_msg_title {
+				font-size: 27.78rpx;
+				font-weight: bold;
+			}
+		}
+	}
+
+	// 底部提交
+	.bottom_submit_box {
+		box-sizing: border-box;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		background-color: #FFFFFF;
+		height: 97.22rpx;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 47.22rpx;
+
+		.bottom_submit_price_box {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			font-size: 29.17rpx;
+		}
+
+		.bottom_submit_btn {
+			color: #FFFFFF;
+			background-image: $uni-color-gradient-primary;
+			border-radius: 31.25rpx;
+			padding: 10rpx 45rpx;
+		}
+	}
+}
+</style>

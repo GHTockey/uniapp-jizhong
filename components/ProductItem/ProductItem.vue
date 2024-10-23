@@ -108,12 +108,4 @@ const props = defineProps({
 .section {
 	width: 100%;
 }
-
-.product_item_navigator {
-
-	> a {
-		width: 100%;
-		display: flex;
-	}
-}
 </style>

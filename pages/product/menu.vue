@@ -5,7 +5,7 @@
 
 		<!-- 顶部菜单 -->
 		<scroll-view v-if="business.is_open_product_menu == 1" scroll-x="true" class="nav"
-			:style="{ top: statusBarHeight + 'px', overflow: 'scroll', '-webkit-overflow-scrolling': 'touch' }"
+			:style="{ top: statusBarHeight + 44 + 'px', overflow: 'scroll', '-webkit-overflow-scrolling': 'touch' }"
 			scroll-left scroll-with-animation>
 			<template style="display: flex;align-items: center;" v-for="navItem in cuisine_list">
 				<view :class="['nav-item', currentTab == navItem.id ? 'active' : '']" @click="switchNav(navItem.id)">
@@ -152,7 +152,7 @@ onShow(() => {
 
 async function getData() {
 	let res = await request('/WxAppCustomer/goods_group_list', 'post')
-	console.log(res);
+	// console.log(res);
 	uni.hideLoading();
 	if (res.code != 0) return uni.showToast({ title: res.message, icon: 'error' })
 	cuisine_list.value = res.data.cuisine_list
@@ -284,7 +284,9 @@ function navbarSelectvideo_category_id(id) {
 </script>
 
 <style lang="scss" scoped>
-.menu-container {}
+.menu-container {
+	padding-bottom: $tabbar-height;
+}
 </style>
 
 

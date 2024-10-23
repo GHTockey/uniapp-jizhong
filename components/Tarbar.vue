@@ -38,7 +38,7 @@ async function selectTab(index) {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .fixed-bottom {
 	position: fixed;
 	bottom: 0;
@@ -53,7 +53,7 @@ async function selectTab(index) {
 }
 
 .tabbar {
-	// height: 95.83rpx;
+	height: $tabbar-height;
 	background: #ffffff;
 	display: flex;
 	justify-content: space-around;

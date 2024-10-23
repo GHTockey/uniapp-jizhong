@@ -8,10 +8,10 @@
 				<!-- 标题 -->
 				<slot name="header">{{ title }}</slot>
 				<!-- 关闭按钮 -->
-				<text @click="closeActionSheet">
+				<view @click="closeActionSheet">
 					<image style="width: 27.78rpx; height: 27.78rpx;" src="../../static//icon/action-sheet-close.svg"
 						mode="widthFix" />
-				</text>
+				</view>
 			</view>
 			<!-- 内容 -->
 			<view class="action-sheet-content-body">
