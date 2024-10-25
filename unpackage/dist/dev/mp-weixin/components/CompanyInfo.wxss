@@ -27,9 +27,7 @@
   justify-content: center;
   align-items: center;
 }
-.distance.data-v-70ef1f0b,
-.address.data-v-70ef1f0b,
-.hours.data-v-70ef1f0b {
+.distance.data-v-70ef1f0b,.address.data-v-70ef1f0b,.hours.data-v-70ef1f0b {
   font-size: 24rpx;
   margin-top: 12.5rpx;
   color: #888;
@@ -57,11 +55,11 @@
   display: flex;
   gap: 25rpx;
 }
-.tags > view.data-v-70ef1f0b {
+.tags>view.data-v-70ef1f0b {
   width: 111.11rpx;
   height: 33.33rpx;
 }
-.tags > view > image.data-v-70ef1f0b {
+.tags>view>image.data-v-70ef1f0b {
   width: 100%;
   height: 100%;
 }

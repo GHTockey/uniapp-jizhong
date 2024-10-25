@@ -43,13 +43,13 @@ const _sfc_main = {
       return common_vendor.e({
         a: __props.visible
       }, __props.visible ? {
-        b: common_assets._imports_0$13,
+        b: common_assets._imports_0$15,
         c: common_vendor.t(__props.title),
         d: common_vendor.t(__props.amount),
         e: common_vendor.t(__props.condition),
         f: common_vendor.t(__props.expiryDate),
         g: common_vendor.o(claimCoupon),
-        h: common_assets._imports_1$5,
+        h: common_assets._imports_1$6,
         i: common_vendor.o(closePopup),
         j: common_vendor.o(() => {
         })

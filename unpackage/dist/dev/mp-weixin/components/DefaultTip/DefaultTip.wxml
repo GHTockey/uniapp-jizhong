@@ -1,0 +1,1 @@
+<view class="default_tip_container"><image class="default_tip_image" src="{{a}}" mode="widthFix"/><view class="default_tip_text"><text>{{b}}</text></view><view class="default_tip_btn" bindtap="{{d}}" hidden="{{!e}}"><text>{{c}}</text></view></view>

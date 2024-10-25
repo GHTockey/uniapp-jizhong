@@ -9,7 +9,7 @@
 
 		<view class="product_list" style="display: flex;flex-wrap: wrap;">
 			<block v-for="(product, index) in goods" :key="index">
-				<navigator class="product_item" :url="`/pages/goods/detail?id=${product.id}`">
+				<navigator class="product_item" :url="`/pages/product/detail?id=${product.id}`">
 
 					<view class="product_radius">
 						<!-- 商品图片 -->

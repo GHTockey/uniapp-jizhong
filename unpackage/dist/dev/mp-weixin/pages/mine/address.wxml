@@ -1,0 +1,1 @@
+<view class="address_container data-v-6685374a"><default-tip wx:if="{{a}}" class="data-v-6685374a" u-i="6685374a-0" bind:__l="__l" u-p="{{a}}"/></view>

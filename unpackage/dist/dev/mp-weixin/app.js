@@ -17,6 +17,11 @@ if (!Math) {
   "./pages/mine/mine.js";
   "./pages/mine/shopInfoList.js";
   "./pages/goods/detail.js";
+  "./pages/product/menu.js";
+  "./pages/product/detail.js";
+  "./pages/mine/pay.js";
+  "./pages/mine/address.js";
+  "./pages/mine/get_shop_list.js";
 }
 const __default__ = {
   onLaunch: function() {

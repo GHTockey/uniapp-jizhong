@@ -30,7 +30,7 @@
   left: 50%;
   transform: translateX(-50%);
 }
-.logistics-notify-container .empty-state > .txt.data-v-51974676 {
+.logistics-notify-container .empty-state>.txt.data-v-51974676 {
   opacity: 0.9;
   font-size: 27.78rpx;
   font-family: PingFang SC, PingFang SC-Medium;
@@ -38,7 +38,7 @@
   color: #b2b2b2;
   margin-top: 42rpx;
 }
-.logistics-notify-container .empty-state > image.data-v-51974676 {
+.logistics-notify-container .empty-state>image.data-v-51974676 {
   width: 207.64rpx;
   height: 208.33rpx;
 }

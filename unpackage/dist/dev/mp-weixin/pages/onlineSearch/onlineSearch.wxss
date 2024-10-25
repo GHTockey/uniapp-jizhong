@@ -37,8 +37,6 @@
   box-sizing: border-box;
 }
 .online-search-container .online-search-bar .online-search-bar-input {
-  display: flex;
-  align-items: center;
   flex-grow: 1;
   background-color: #f5f5f5;
   border-radius: 13.89rpx;

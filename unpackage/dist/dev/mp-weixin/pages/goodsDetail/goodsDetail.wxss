@@ -128,7 +128,6 @@
   border-radius: 8.33rpx;
 }
 .goods-detail-container .goods-detail-info .goods-detail-info-other.data-v-c35cc779 {
-  display: flex;
   gap: 11rpx;
   margin-top: 21rpx;
   background: #fef0e5;

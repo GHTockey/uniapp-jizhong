@@ -1,8 +1,5 @@
-import {
-	ref
-} from 'vue';
+import { ref } from 'vue';
 
-// const baseURL = 'https://a.plant360.cn/asaas/WxAppCustomer';
 const baseURL = 'https://saas.jizhongkeji.com/jzkj';
 
 // 请求拦截器数组
@@ -14,7 +11,8 @@ const request = (url, method = 'GET', data = {}, headers = {}) => {
 	data = {
 		...data,
 		wx_open_id: 'oPyg85Y9gzaTO9wgTmeApQMqmhRY',
-		wx_appid: 'wx184d389f8e1603d4'
+		wx_appid: 'wx184d389f8e1603d4',
+		user_id: 10662,
 	}
 	return new Promise((resolve, reject) => {
 		// 请求拦截器

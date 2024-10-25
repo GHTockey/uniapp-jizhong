@@ -18,11 +18,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.coupon-container .empty-box > image {
+.coupon-container .empty-box>image {
   width: 200rpx;
   height: 200rpx;
 }
-.coupon-container .empty-box > view {
+.coupon-container .empty-box>view {
   margin-top: 40rpx;
   font-size: 26rpx;
   font-weight: 500;
@@ -40,11 +40,11 @@
   justify-content: center;
   background-color: white;
 }
-.coupon-container .coupon-bottom > image {
+.coupon-container .coupon-bottom>image {
   width: 32rpx;
   height: 32rpx;
 }
-.coupon-container .coupon-bottom > text {
+.coupon-container .coupon-bottom>text {
   font-size: 29rpx;
   font-weight: 700;
   color: #000000;

@@ -19,8 +19,6 @@ $uni-color-primary: #007aff; // 主色
 $uni-color-success: #4cd964; // 成功色
 $uni-color-warning: #f0ad4e; // 警告色
 $uni-color-error: #dd524d; // 错误色
-// 渐变主色
-$uni-color-gradient-primary: linear-gradient(89deg,#ff3981 3%, #ff1e1a 97%);
 
 /* 文字基本颜色 */
 $uni-text-color:#333; // 基本色
@@ -83,3 +81,5 @@ $uni-font-size-paragraph:15px;
 $nav-height: 44px;
 // babbar 高度
 $tabbar-height: 95.83rpx;
+// 渐变主色
+$uni-color-gradient-primary: linear-gradient(89deg,#ff3981 3%, #ff1e1a 97%);

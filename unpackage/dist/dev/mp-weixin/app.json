@@ -13,7 +13,12 @@
     "pages/goods/category",
     "pages/mine/mine",
     "pages/mine/shopInfoList",
-    "pages/goods/detail"
+    "pages/goods/detail",
+    "pages/product/menu",
+    "pages/product/detail",
+    "pages/mine/pay",
+    "pages/mine/address",
+    "pages/mine/get_shop_list"
   ],
   "window": {
     "navigationBarTextStyle": "black",

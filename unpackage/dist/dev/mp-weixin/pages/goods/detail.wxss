@@ -31,9 +31,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  border: 1px solid #00ff15;
   height: 750rpx;
   width: 100%;
+  pointer-events: none;
+}
+.goods-detail-container .goods-detail-swiper-operation .goods-detail-swiper-back.data-v-adbe0a1d,.goods-detail-container .goods-detail-swiper-operation .goods-detail-swiper-index.data-v-adbe0a1d,.goods-detail-container .goods-detail-swiper-operation .goods-detail-swiper-button.data-v-adbe0a1d {
+  pointer-events: auto;
 }
 .goods-detail-container .goods-detail-swiper-operation .goods-detail-swiper-back.data-v-adbe0a1d {
   position: absolute;
@@ -138,7 +141,6 @@
   border-radius: 8.33rpx;
 }
 .goods-detail-container .goods-detail-info .goods-detail-info-other.data-v-adbe0a1d {
-  display: flex;
   gap: 11rpx;
   margin-top: 21rpx;
   background: #fef0e5;

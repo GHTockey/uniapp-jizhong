@@ -12,15 +12,15 @@
   justify-content: space-between;
   margin-bottom: 22.22rpx;
 }
-.message-bar-container .message-bar-header > .icon-title-box {
+.message-bar-container .message-bar-header>.icon-title-box {
   display: flex;
   align-items: center;
 }
-.message-bar-container .message-bar-header > .icon-title-box .icon-img {
+.message-bar-container .message-bar-header>.icon-title-box .icon-img {
   width: 38.89rpx;
   height: 38.89rpx;
 }
-.message-bar-container .message-bar-header > .icon-title-box .message-bar-title {
+.message-bar-container .message-bar-header>.icon-title-box .message-bar-title {
   border: 0.69rpx solid rgba(0, 0, 0, 0);
   font-size: 27.78rpx;
   font-family: PingFang SC, PingFang SC-Bold;

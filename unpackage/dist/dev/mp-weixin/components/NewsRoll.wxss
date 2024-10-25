@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
 }
-.news-box > image {
+.news-box>image {
   width: 74.31rpx;
   height: 71.53rpx;
 }

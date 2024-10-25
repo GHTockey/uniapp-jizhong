@@ -26,8 +26,8 @@
 			</view>
 			<!-- 左下角当前视频/图片数量 -->
 			<view class="goods-detail-swiper-index">
-				<text class="goods-detail-swiper-index-text">{{ swiperIndex + 1 }}/{{ swiper?.swiperImgUrls?.length
-					}}</text>
+				<text class="goods-detail-swiper-index-text">{{ swiperIndex + 1 }}/{{ swiper?.swiperImgUrls?.length +
+					video_list.length }}</text>
 			</view>
 			<!-- 右下角视频/图集按钮 -->
 			<view class="goods-detail-swiper-button">
@@ -194,7 +194,7 @@
 		<!-- 商品参数弹窗 -->
 		<ActionSheet :title="actionSheetData.title" :items="actionSheetData.items" v-model:show="showActionSheet" />
 		<!-- 立即购买弹窗 -->
-		<ActionSheetSlot v-model:show="showActionSheetSlot" :footerBtnText="'立即购买'" @confirm="clickBuy">
+		<ActionSheetSlot v-model:show="showActionSheetSlot" :footerBtnText="'立即购买'" @confirm="to_buy">
 			<template #body>
 				<view class="ActionSheetSlotComponentBody">
 					<!-- 商品图片价格 -->
@@ -250,7 +250,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, nextTick } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { request } from '@/utils/request.js';
 
@@ -258,6 +258,8 @@ const goodsId = ref(); // 商品id
 const goodsDetail = ref({}); // 商品详情
 const product = ref({}); // 商品
 
+const act_spec1 = ref(0); // 规格1
+const act_spec2 = ref(0); // 规格2
 const show_select_change = ref(false); // 是否展示列表或者大图的选项
 const need_spec1 = ref(0); // 是否需要规格1
 const need_spec2 = ref(0); // 是否需要规格2
@@ -270,6 +272,7 @@ const video_list = ref([]); // 视频列表
 const swiper = ref({}); // 轮播图
 const detail_image_uri = ref([]); // 商品详情图片
 const swiperIndex = ref(0); // 轮播图当前索引
+const act_info = ref(0); // 活动价格 ???
 
 
 
@@ -428,15 +431,94 @@ async function getData() {
 	// }
 }
 
-// 点击购买
-function clickBuy() {
+// 弹窗 点击购买
+function to_buy() {
 	console.log('点击购买');
 	console.log('商品id', goodsDetail.value.id);
 
+	if (!act_spec1.value) {
+		uni.showToast({
+			title: '请先选择规格',
+			icon: 'none'
+		})
+		return
+	}
+
+	if (need_spec1.value && need_spec2.value) {
+		let name = goodsDetail.value.spec_list2.name || '规格';
+		if (!act_spec2.value) {
+			uni.showToast({
+				title: '请选择' + name,
+				icon: 'none'
+			})
+			return
+		}
+	}
+	let goods_price = act_info.value
+
+
 	uni.navigateTo({
-		url: `/pages/mine/pay?goods_id=${goodsDetail.value.id}&price_id=0&count=1`,
+		url: `/pages/mine/pay?goods_id=${goodsDetail.value.id}&price_id=1073&count=1`,
+		// url: '/pages/mine/pay?goods_id=' + goodsDetail.value.id + '&price_id=' + goods_price.id + '&count=' + add_count.value,
 	})
 
+	// 关闭弹窗 [这里不需要操作，点击后自动关闭]
+	// showActionSheetSlot.value = false
+
+}
+
+async function filter_by_spec() {
+	if (need_spec1.value && need_spec2.value) { // 双规格
+		let rel_spec_list2 = goodsDetail.value.spec_all.filter(m => {
+			return m.spec1_value == act_spec1.value
+		}).map(m1 => {
+			return {
+				name: m1.spec2_value,
+				store: m1.store,
+			}
+		})
+		console.log('当前的规格1', rel_spec_list2);
+
+		if (product.value && product.value.spec_list2) {
+			product.value.spec_list2.option = rel_spec_list2 || []
+		}
+
+		await nextTick()
+		let info = null;
+		if (act_spec2.value) {
+			info = goodsDetail.value.spec_all.filter(m => m.spec1_value == act_spec1.value && m.spec2_value == act_spec2.value)[0]
+		} else {
+			info = goodsDetail.value.spec_all.filter(m => (m.spec1_value == act_spec1.value))[0]
+		}
+
+		if (info.img_uri && info.img_uri.length > 0) {
+			act_img.value = info.img_uri
+		}
+		console.log('多选', info);
+
+		let show = Math.round((info.price * (add_count.value) * 100), 2) / 100;
+		price_show.value = show
+		act_info.value = info
+		max_count.value = info.store
+		return
+
+
+	} else {
+		let spec1 = act_spec1.value
+		console.log('选择规格后的数据', goodsDetail.value.spec_all);
+		let info = goodsDetail.value.spec_all.filter(m => m.spec1_value == spec1)[0]
+		let show = Math.round((info.price * (add_count.value) * 100), 2) / 100;
+
+		console.log('选择规格后', info);
+		if (info.img_uri && info.img_uri.length > 0) {
+			act_img.value = info.img_uri
+		}
+		price_show.value = show
+		act_info.value = info
+		max_count.value = info.store
+
+		console.log('选择规格后的最大数量', max_count.value);
+	}
 }
 
 // 轮播图改变事件 [更新swiperIndex]

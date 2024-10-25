@@ -16,13 +16,13 @@
   padding: 4.17rpx;
   box-sizing: border-box;
 }
-.bubble-tips-container .bubble-tips-item > image.data-v-37a471b3 {
+.bubble-tips-container .bubble-tips-item>image.data-v-37a471b3 {
   width: 47.22rpx;
   height: 47.22rpx;
   background-color: #d33a3d;
   border-radius: 50%;
 }
-.bubble-tips-container .bubble-tips-item > text.data-v-37a471b3 {
+.bubble-tips-container .bubble-tips-item>text.data-v-37a471b3 {
   margin-left: 14rpx;
   flex: 1;
   font-size: 23.61rpx;
@@ -33,8 +33,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.fade-enter-active.data-v-37a471b3,
-.fade-leave-active.data-v-37a471b3 {
+.fade-enter-active.data-v-37a471b3,.fade-leave-active.data-v-37a471b3 {
   transition: all 0.3s;
 }
 .fade-leave-to.data-v-37a471b3 {

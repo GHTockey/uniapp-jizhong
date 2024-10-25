@@ -28,7 +28,7 @@ const _sfc_main = {
     });
     return (_ctx, _cache) => {
       return {
-        a: common_assets._imports_0$10,
+        a: common_assets._imports_0$13,
         b: common_vendor.f(visibleNewsList.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.title),

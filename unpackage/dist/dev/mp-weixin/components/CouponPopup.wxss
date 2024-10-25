@@ -21,7 +21,7 @@
   background-position: center;
   background-size: contain;
 }
-.coupon-popup > .bg-img.data-v-969a1607 {
+.coupon-popup>.bg-img.data-v-969a1607 {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -38,10 +38,7 @@
   left: 50%;
   transform: translateX(-50%);
 }
-.coupon-popup .popup-content .amount.data-v-969a1607,
-.coupon-popup .popup-content .condition.data-v-969a1607,
-.coupon-popup .popup-content .expiry.data-v-969a1607,
-.coupon-popup .popup-content .claim-btn.data-v-969a1607 {
+.coupon-popup .popup-content .amount.data-v-969a1607,.coupon-popup .popup-content .condition.data-v-969a1607,.coupon-popup .popup-content .expiry.data-v-969a1607,.coupon-popup .popup-content .claim-btn.data-v-969a1607 {
   position: absolute;
 }
 .coupon-popup .popup-content .amount.data-v-969a1607 {
@@ -97,11 +94,9 @@
   left: 50%;
   transform: translateX(-50%);
 }
-.fade-enter-active.data-v-969a1607,
-.fade-leave-active.data-v-969a1607 {
+.fade-enter-active.data-v-969a1607,.fade-leave-active.data-v-969a1607 {
   transition: opacity 0.3s;
 }
-.fade-enter-from.data-v-969a1607,
-.fade-leave-to.data-v-969a1607 {
+.fade-enter-from.data-v-969a1607,.fade-leave-to.data-v-969a1607 {
   opacity: 0;
 }

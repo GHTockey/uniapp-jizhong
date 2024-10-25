@@ -14,6 +14,9 @@
 			<button @click="goToPage('/pages/goodsDetail/goodsDetail')" size="mini">跳转商品详情页</button>
 			<button @click="showActionSheet = true" size="mini">使用ActionSheet组件</button>
 			<button @click="showActionSheetSlot = true" size="mini">选择商品弹窗 ActionSheetSlot组件</button>
+
+			<!-- test tailwindcss -->
+			<!-- <view class="bg-red-600 w-64 h-[100rpx] flex">123</view> -->
 		</view>
 
 

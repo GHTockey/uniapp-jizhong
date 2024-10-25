@@ -83,7 +83,8 @@
 			"path" : "pages/mine/mine",
 			"style" : 
 			{
-				"navigationBarTitleText" : "我的"
+				"navigationBarTitleText" : "我的",
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -127,7 +128,7 @@
 			"path" : "pages/mine/address",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "收货地址"
 			}
 		},
 		{
@@ -135,6 +136,63 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "选择门店"
+			}
+		},
+		{
+			"path" : "pages/mine/address_form",
+			"style" : 
+			{
+				"navigationBarTitleText" : "添加收货地址"
+			}
+		},
+		{
+			"path" : "pages/mine/money",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的钱包",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/mine/topUpCenter",
+			"style" : 
+			{
+				"navigationBarTitleText" : "充值中心"
+			}
+		},
+		{
+			"path" : "pages/mine/withdraw",
+			"style" : 
+			{
+				"navigationBarTitleText" : "申请提现"
+			}
+		},
+		{
+			"path" : "pages/mine/addBank",
+			"style" : 
+			{
+				"navigationBarTitleText" : "添加银行卡"
+			}
+		},
+		{
+			"path" : "pages/mine/withdraw_apply_ing",
+			"style" : 
+			{
+				"navigationBarTitleText" : "申请提现"
+			}
+		},
+		{
+			"path" : "pages/mine/withdraw_list",
+			"style" : 
+			{
+				"navigationBarTitleText" : "提现记录"
+			}
+		},
+		{
+			"path" : "pages/mine/present",
+			"style" : 
+			{
+				"navigationBarTitleText" : "礼品卡"
 			}
 		}
 	],

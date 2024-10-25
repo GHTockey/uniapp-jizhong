@@ -8,6 +8,14 @@ export function getTitleBarHeight() {
     let { top, height } = uni.getMenuButtonBoundingClientRect()
     return height + (top - getStatusBarHeight()) * 2
   } else {
-    return 40
+    return 40 // 默认高度
   }
 };
+
+
+// 跳转指定页
+export function toPage(url) {
+  uni.navigateTo({
+    url: url
+  })
+}

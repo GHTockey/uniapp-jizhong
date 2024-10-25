@@ -34,8 +34,12 @@ const _sfc_main = {
     });
     const iconlist = common_vendor.ref([]);
     const bubbleTipsData = common_vendor.ref();
+    const goodsList = common_vendor.ref([]);
     setInterval(() => {
     }, 3e3);
+    common_vendor.index.showLoading({
+      title: "加载中..."
+    });
     common_vendor.onMounted(() => {
       getData();
     });
@@ -111,6 +115,7 @@ const _sfc_main = {
       }
     }
     async function getData() {
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
       banner_swiper.value = {
         autoplay: true,
         duration: 1e3,
@@ -149,20 +154,15 @@ const _sfc_main = {
           duration: 2e3,
           icon: "error"
         });
-      if (res.data.banner_detail) {
-        banner_swiper.value.images = res.data.banner_detail.image_uris_arr;
-        banner_swiper.value.height_value = res.data.banner_detail.height_value;
-        banner_swiper.value.interval = res.data.banner_detail.interval_value;
-        banner_swiper.value.is_radius = !!res.data.banner_detail.is_radius;
-        banner_swiper.value.autoplay = !!res.data.banner_detail.autoplay;
-      } else {
-        banner_swiper.value.images = [];
-      }
-      if (res.data.icon_list) {
-        iconlist.value = res.data.icon_list;
-      } else {
-        iconlist.value = [];
-      }
+      common_vendor.index.hideLoading();
+      console.log(res.data);
+      banner_swiper.value.images = (_b = (_a = res.data) == null ? void 0 : _a.banner_detail) == null ? void 0 : _b.image_uris_arr;
+      banner_swiper.value.height_value = (_d = (_c = res.data) == null ? void 0 : _c.banner_detail) == null ? void 0 : _d.height_value;
+      banner_swiper.value.interval = (_f = (_e = res.data) == null ? void 0 : _e.banner_detail) == null ? void 0 : _f.interval_value;
+      banner_swiper.value.is_radius = !!((_h = (_g = res.data) == null ? void 0 : _g.banner_detail) == null ? void 0 : _h.is_radius);
+      banner_swiper.value.autoplay = !!((_j = (_i = res.data) == null ? void 0 : _i.banner_detail) == null ? void 0 : _j.autoplay);
+      iconlist.value = (_k = res.data) == null ? void 0 : _k.icon_list;
+      goodsList.value = (_l = res.data) == null ? void 0 : _l.goods_list;
     }
     return (_ctx, _cache) => {
       var _a;
@@ -204,7 +204,10 @@ const _sfc_main = {
         }),
         p: common_assets._imports_1,
         q: `url('../../static//images/new-p-bg.png')`,
-        r: common_vendor.s(isFixedHeadeContent.value ? `padding-top: ${containerMarTop.value}px; background-image: url('../../static/icon/thumb.png');` : `background-image: url('../../static/icon/thumb.png');`)
+        r: common_vendor.p({
+          goods: goodsList.value
+        }),
+        s: common_vendor.s(isFixedHeadeContent.value ? `padding-top: ${containerMarTop.value}px; background-image: url('../../static/icon/thumb.png');` : `background-image: url('../../static/icon/thumb.png');`)
       });
     };
   }

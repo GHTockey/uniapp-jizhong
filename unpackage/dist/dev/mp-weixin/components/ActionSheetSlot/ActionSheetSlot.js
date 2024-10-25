@@ -30,15 +30,19 @@ const _sfc_main = {
         emit("update:show", false);
       }, 300);
     }
+    function confirm() {
+      emit("confirm");
+      closeActionSheet();
+    }
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: __props.show
       }, __props.show ? {
         b: common_vendor.t(__props.title),
-        c: common_assets._imports_0$11,
+        c: common_assets._imports_0$14,
         d: common_vendor.o(closeActionSheet),
         e: common_vendor.t(__props.footerBtnText),
-        f: common_vendor.o(($event) => emit("confirm")),
+        f: common_vendor.o(confirm),
         g: __props.show ? 1 : "",
         h: isClosing.value ? 1 : "",
         i: __props.show ? 1 : "",

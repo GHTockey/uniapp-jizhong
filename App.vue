@@ -24,6 +24,12 @@ onMounted(() => {
 })
 </script>
 
+<style>
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+</style>
+
 <style lang="scss">
 /*每个页面公共css */
 view,
@@ -215,11 +221,48 @@ text {
 
 
 .product_item_navigator {
-	> a {
+	a {
 		width: 100%;
 		display: flex;
 	}
 }
+
+.kong {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 400rpx;
+}
+
+.kong image {
+  width: 300rpx;
+  height: 200rpx;
+  margin-bottom: 20rpx;
+}
+
+.kong text {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #838383;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  ========================== 华丽的分割线 ==========================
 
 
 .ActionSheetSlotComponentBody {

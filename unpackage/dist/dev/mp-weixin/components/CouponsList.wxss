@@ -15,7 +15,7 @@
   border-radius: 6.6px;
   overflow: hidden;
 }
-.coupons-list .coupon > .img-bg.data-v-df656955 {
+.coupons-list .coupon>.img-bg.data-v-df656955 {
   position: absolute;
   top: 0;
   left: 0;
@@ -53,10 +53,7 @@
   position: relative;
   padding: 30rpx;
 }
-.coupons-list .coupon .coupon-right .coupon-title.data-v-df656955,
-.coupons-list .coupon .coupon-right .coupon-date.data-v-df656955,
-.coupons-list .coupon .coupon-right .coupon-usage.data-v-df656955,
-.coupons-list .coupon .coupon-right .coupon-button.data-v-df656955 {
+.coupons-list .coupon .coupon-right .coupon-title.data-v-df656955,.coupons-list .coupon .coupon-right .coupon-date.data-v-df656955,.coupons-list .coupon .coupon-right .coupon-usage.data-v-df656955,.coupons-list .coupon .coupon-right .coupon-button.data-v-df656955 {
   position: absolute;
 }
 .coupons-list .coupon .coupon-right .coupon-title.data-v-df656955 {

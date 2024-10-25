@@ -66,7 +66,7 @@
 
 				<!-- 物流配送选择地址 -->
 				<view class="address_item flex_row_space_bt buy_address_top buy_address_top_v" v-if="buy_type == 0"
-					style="box-sizing: border-box;">
+					style="box-sizing: border-box;" @click="showAddressSheet = true">
 					<template v-if="address && address.mobile">
 						<image lazy-load class="address_icon" mode="widthFix"
 							src="https://saas.jizhongkeji.com/static/jzkj/images/address_icon.png"></image>
@@ -84,7 +84,7 @@
 						<image lazy-load class="address_icon" mode="widthFix"
 							src="https://saas.jizhongkeji.com/static/jzkj/images/address_icon.png"></image>
 						<view class="address_text">
-							请填写您的收货地址
+							请设置收货地址
 						</view>
 						<image lazy-load class="arrow_icon" mode="aspectFit"
 							src="https://saas.jizhongkeji.com/static/jzkj/images/arrow_right.png"></image>
@@ -94,20 +94,24 @@
 
 			<!-- 商品信息 -->
 			<view class="goods_item">
-				<image class="good_img" mode="widthFix" src="/static/images/goods_img.png"></image>
+				<image class="good_img !w-[160rpx] !h-[160rpx]" mode="aspectFill"
+					:src="goods_info.good_imgs || 'https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png'">
+				</image>
 				<view class="good_info_box">
-					<view class="good_name">商品名称</view>
+					<view class="good_name">{{ goods_info.name }}</view>
 					<view class="good_spec_box">
-						<view class="good_spec_item">
-							<text class="good_spec_text">颜色：红色</text>
+						<view class="good_spec_item" v-if="goods_info.spec_totall && goods_info.spec_totall.length > 0">
+							<!-- <text class="good_spec_text">颜色：红色</text>
 							/
-							<text class="good_spec_text">尺寸：100CM</text>
+							<text class="good_spec_text">尺寸：100CM</text> -->
+							<text class="good_spec_text">{{ goods_info.spec_totall }}</text>
 						</view>
 					</view>
 					<!-- 数量及价格 -->
 					<view class="good_num_price_box">
-						<view class="good_price"><span style="font-size: 20rpx;">￥</span>100</view>
-						<text class="good_num">×1</text>
+						<view class="good_price"><span style="font-size: 20rpx;">￥</span>{{ goods_info.unit_price }}
+						</view>
+						<text class="good_num">×{{ goods_info.count || 1 }}</text>
 					</view>
 				</view>
 			</view>
@@ -205,7 +209,8 @@
 							<!-- <text style="font-size: 29.17rpx; color: #a1a1a1;">可用余额￥555.50</text> -->
 						</view>
 					</view>
-					<image mode="widthFix" style="width: 41.67rpx;" :src="`/static/icon/select_fill-${selectPayType == 1 ? 'a' : 'n'}.svg`" />
+					<image mode="widthFix" style="width: 41.67rpx;"
+						:src="`/static/icon/select_fill-${selectPayType == 1 ? 'a' : 'n'}.svg`" />
 				</view>
 				<!-- 佣金支付 -->
 				<view class="pay_popup_pay_item" @click="change_pay_type(2)">
@@ -218,7 +223,8 @@
 							<text style="font-size: 29.17rpx; color: #a1a1a1;">可用余额￥555.50</text>
 						</view>
 					</view>
-					<image mode="widthFix" style="width: 41.67rpx;" :src="`/static/icon/select_fill-${selectPayType == 2 ? 'a' : 'n'}.svg`" />
+					<image mode="widthFix" style="width: 41.67rpx;"
+						:src="`/static/icon/select_fill-${selectPayType == 2 ? 'a' : 'n'}.svg`" />
 				</view>
 				<!-- 储值支付 -->
 				<view class="pay_popup_pay_item" @click="change_pay_type(3)">
@@ -228,10 +234,11 @@
 						</image>
 						<view>
 							<view style="font-size: 30.56rpx;font-weight: bold;color: #000000;">储值支付</view>
-							<text style="font-size: 29.17rpx; color: #a1a1a1;">可用余额￥555.50</text>
+							<text style="font-size: 29.17rpx; color: #a1a1a1;">可用余额￥{{ save_money }}</text>
 						</view>
 					</view>
-					<image mode="widthFix" style="width: 41.67rpx;" :src="`/static/icon/select_fill-${selectPayType == 3 ? 'a' : 'n'}.svg`" />
+					<image mode="widthFix" style="width: 41.67rpx;"
+						:src="`/static/icon/select_fill-${selectPayType == 3 ? 'a' : 'n'}.svg`" />
 				</view>
 			</view>
 			<!-- 确认支付按钮 -->
@@ -243,12 +250,38 @@
 				src="/static/icon/pay-pup-close.svg" @click="payPopup.close()" />
 		</view>
 	</uni-popup>
+
+	<!-- 选择地址弹窗 -->
+	<ActionSheetSlot v-model:show="showAddressSheet" :title="'选择地址'"
+		:footerBtnText="address_list?.length ? '立即购买' : '添加收货地址'" @confirm="addressSheetBtnHandler">
+		<template #body>
+			<!-- 地址列表 -->
+			<view v-if="address_list?.length" class="address_list_box">
+				<view class="address_item" v-for="(item, index) in address_list" :key="index"
+					@click="change_address(item.id)">
+					<view class="address_text">
+						{{ item.user_name }}, {{ item.mobile }}, {{ item.address }}, {{ item.address_detail }}
+					</view>
+					<image mode="widthFix" style="width: 41.67rpx;height: 41.67rpx;"
+						:src="`/static/icon/Checkbox_selected2-${item.id == address.id ? 'a' : 'n'}.svg`">
+					</image>
+				</view>
+			</view>
+
+			<!-- 没有地址的空状态 -->
+			<view v-else style="text-align: center; padding: 80rpx 0;">
+				<text>暂无收货地址，请先添加收货地址</text>
+			</view>
+		</template>
+	</ActionSheetSlot>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useTempStore } from "@/stores/temp";
 import { storeToRefs } from "pinia";
+import { request } from "@/utils/request";
+import { onUnload, onLoad, onShow } from "@dcloudio/uni-app";
 
 const { user, business } = storeToRefs(useTempStore());
 
@@ -256,15 +289,41 @@ const is_loading = ref(true); // 是否加载中
 const buy_type = ref(1); // 购买类型
 const is_saving = ref(0); // 是否保存中
 const price_all = ref(0); // 总价
-const address = ref(null); // 地址 {}
+const address = ref({}); // 地址 {}
+const address_list = ref([
+	// {
+	// 	address: "北京市,北京市,东城区",
+	// 	address_detail: "333",
+	// 	create_time: "2024-10-23 19:00:34",
+	// 	id: 446,
+	// 	is_default: 0,
+	// 	mobile: "222",
+	// 	update_time: "2024-10-23 19:00:34",
+	// 	user_id: 10662,
+	// 	user_name: "111"
+	// },
+	// {
+	// 	address: "北京市,北京市,东城区",
+	// 	address_detail: "333",
+	// 	create_time: "2024-10-23 19:00:34",
+	// 	id: 46,
+	// 	is_default: 0,
+	// 	mobile: "222",
+	// 	update_time: "2024-10-23 19:00:34",
+	// 	user_id: 10662,
+	// 	user_name: "111"
+	// }
+]); // 地址列表
 const targte_shop = ref(); // 自提门店 {}
-const showActionSheet = ref(false); // 是否展示留言弹窗
 const buyerMsg = ref(''); // 买家留言
 
 
+const showAddressSheet = ref(false); // 是否展示选择地址弹窗
+const showActionSheet = ref(false); // 是否展示留言弹窗
 const payPopup = ref(null); // 普通弹窗实例
-// 选择的支付方式
-const selectPayType = ref(1);
+const selectPayType = ref(1);// 选择的支付方式
+const save_money = ref(0);// 储值金额
+const goods_info = ref({}); // 商品信息
 
 
 const buy_type_list = ref([
@@ -273,9 +332,35 @@ const buy_type_list = ref([
 ]);
 
 
+onLoad((options) => {
+	console.log('页面加载：pay');
+
+	// 获取 user 数据后
+
+	if (options && options.goods_id) {
+		buy_type.value = 1; // 默认门店自提
+		get_good_info(options.goods_id, options.price_id, options.count)
+		console.log('获取的options', options);
+	}
+	get_info_list()
+	// else {
+	// 	get_info_list()
+	// }
+})
+
+onShow(() => {
+	get_address();
+})
+
+onUnload(() => {
+	console.log('页面卸载：pay');
+	clear_select_address(); // 清除选择地址
+})
+
+
+// 去付款
 function to_pay() {
 	console.log('去付款');
-	payPopup.value.open('center');
 
 	// 如果是自提，检查是否选择了门店
 	if (buy_type.value == 1) {
@@ -287,8 +372,13 @@ function to_pay() {
 			return
 		}
 	}
+
+
+	// 打开支付弹窗
+	payPopup.value.open('center');
 }
 
+// 提交订单
 function to_sub() {
 	console.log('提交订单提交订单', buy_type.value);
 	if (is_saving.value == 1) {
@@ -320,7 +410,7 @@ function to_sub() {
 		}
 
 		if (!e.detail.value.user_name) {
-			wx.showToast({
+			uni.showToast({
 				title: '请输入提货人员姓名',
 				icon: 'none',
 				mask: true
@@ -329,7 +419,7 @@ function to_sub() {
 		}
 
 		if (!e.detail.value.phone) {
-			wx.showToast({
+			uni.showToast({
 				title: '请输入您的手机号码',
 				icon: 'none',
 				mask: true
@@ -340,7 +430,7 @@ function to_sub() {
 
 	// if ((!this.data.targte_shop || !this.data.targte_shop.shop_name) && this.data.buy_type == 1) {
 	//   // 物流配送
-	//   wx.showToast({
+	//   uni.showToast({
 	//     title: '请选择自提门店',
 	//     icon: 'none',
 	//     mask: true
@@ -376,7 +466,7 @@ function to_sub() {
 			if (res.data && res.data.code == 1) {
 				this.data.is_saving = 0
 
-				wx.showToast({
+				uni.showToast({
 					title: res.data.msg,
 					icon: 'none',
 					mask: true
@@ -391,9 +481,128 @@ function to_sub() {
 	});
 }
 
+// 获取用户地址 [默认]
+async function get_address() {
+	// this.request({
+	// 	url: '/WxAppCustomer/get_user_address',
+	// 	data: {},
+	// 	success: (res) => {
+	// 		if (res.data && res.data.code == 1) {
+	// 			wx.showToast({
+	// 				title: res.data.msg,
+	// 				icon: 'none',
+	// 				mask: true
+	// 			})
+	// 		} else {
+	// 			this.setData(res.data.data)
+	// 		}
+	// 	}
+	// });
+
+	let res = await request('/WxAppCustomer/get_user_address', 'post', {});
+	console.log('get_address res', res);
+	if (res.code != 0) return uni.showToast({ title: res.msg, icon: 'error', duration: 2000 });
+	address.value = res.data.address;
+}
+
+// 获取地址列表
+async function get_info_list() {
+	// this.request({
+	// 	url: '/WxAppCustomer/get_address_list',
+	// 	data: {},
+	// 	success: (res) => {
+	// 		if (res.data && res.data.code == 1) {
+	// 			wx.showToast({
+	// 				title: res.data.msg,
+	// 				icon: 'none',
+	// 				mask: true
+	// 			})
+	// 		} else {
+	// 			this.setData(res.data.data)
+	// 		}
+	// 	}
+	// });
+
+	let res = await request('/WxAppCustomer/get_address_list', 'post', {});
+	console.log('get_info_list res', res);
+	if (res.code != 0) return uni.showToast({ title: res.msg, icon: 'error', duration: 2000 });
+	address_list.value = res.data.address_list;
+}
+
+// 获取商品信息
+async function get_good_info(goods_id, price_id, count) {
+	let res = await request('/WxAppCustomer/get_good_info', 'post', {
+		goods_id: goods_id || 0,
+		price_id: price_id || 0,
+		count: count || 0,
+	});
+	console.log('get_good_info res', res);
+	// 获取数据失败提示
+	if (res.code != 0) return uni.showToast({ title: res.msg, icon: 'error', duration: 2000 });
+	goods_info.value = res.data.goods_info;
+
+	// this.request({
+	// 	url: '/WxAppCustomer/get_good_info',
+	// 	data: {
+	// 		goods_id: goods_id || 0,
+	// 		price_id: price_id || 0,
+	// 		count: count || 0,
+	// 	},
+	// 	success: (res) => {
+	// 		if (res.data && res.data.code == 1) {
+	// 			wx.showToast({
+	// 				title: res.data.msg,
+	// 				icon: 'none',
+	// 				mask: true
+	// 			})
+	// 		} else {
+	// 			wx.hideLoading();
+	// 			this.setData(res.data.data)
+	// 			this.setData({
+	// 				is_loading: true,
+	// 			})
+	// 		}
+	// 	}
+	// });
+}
+
+
+
+async function clear_select_address() { // 清空选择地址
+	let res = await request('/WxAppCustomer/clear_select_address', 'post', {});
+	console.log('clear_select_address res', res);
+	if (res.code != 0) return uni.showToast({ title: res.msg, icon: 'error', duration: 2000 });
+	uni.navigateBack();
+}
+
+// 选择地址弹窗按钮事件
+function addressSheetBtnHandler() {
+	console.log('addressSheetBtnHandler');
+	if (address_list.value?.length) {
+		// 打开支付弹窗
+		payPopup.value.open('center');
+
+	} else {
+		uni.navigateTo({
+			url: '/pages/mine/address'
+		})
+	}
+}
+
+// 切换地址
+function change_address(address_id) {
+	address.value = address_list.value.find(item => item.id == address_id);
+}
 
 // 切换支付方式
 function change_pay_type(pay_type) {
+	if (pay_type == 3 && save_money.value < 500) {
+		uni.showToast({
+			title: '储值余额不足，请更换其他支付方式',
+			icon: 'error'
+		})
+		return
+	}
 	selectPayType.value = pay_type;
 }
 
@@ -403,12 +612,18 @@ function change_buy_type(buyid) {
 	buy_type.value = buyid;
 
 	console.log('change_buy_type', buy_type.value);
-	}
+}
 
-// 获取门店列表
+// 跳转门店列表
 function to_get_shop_list() {
 	uni.navigateTo({
 		url: '/pages/mine/get_shop_list'
+	})
+}
+// 跳转地址页
+function to_address() {
+	uni.navigateTo({
+		url: '/pages/mine/address'
 	})
 }
 </script>
@@ -679,6 +894,23 @@ function to_get_shop_list() {
 		position: absolute;
 		top: 38.36rpx;
 		right: 33.33rpx;
+	}
+}
+
+// 地址列表弹窗
+.address_list_box {
+	padding: 20rpx;
+
+	.address_item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid #EEEEEE;
+
+		font-size: 27.78rpx;
+		font-weight: 400;
+		text-align: left;
+		color: #03081a;
 	}
 }
 
