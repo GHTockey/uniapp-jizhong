@@ -85,7 +85,7 @@
 					<text class="text-[24rpx] mt-[13rpx]">品牌介绍</text>
 				</view>
 
-				<view class="common_tool_item" @click="toPage('/pages/mine/address?type=edit')">
+				<view class="common_tool_item" @click="toPage('/pages/mine/present')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<image class=" h-full w-full" src="../../static/icon/sm-logo.svg"></image>
 					</view>
