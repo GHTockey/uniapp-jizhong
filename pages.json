@@ -201,6 +201,20 @@
 			{
 				"navigationBarTitleText" : "礼品卡"
 			}
+		},
+		{
+			"path" : "pages/mine/presentCard",
+			"style" : 
+			{
+				"navigationBarTitleText" : "礼品卡"
+			}
+		},
+		{
+			"path" : "pages/mine/presentMine",
+			"style" : 
+			{
+				"navigationBarTitleText" : "礼品卡"
+			}
 		}
 	],
 	"globalStyle": {

@@ -28,11 +28,18 @@
 				</view>
 			</view>
 		</view>
+
+
+		<!-- tabbar -->
+		<TabBar v-model:selectedIndex="selectedIndex" class="fixed-bottom" />
 	</view>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { toPage } from '@/utils';
+
+const selectedIndex = ref(0)
 
 </script>
 
