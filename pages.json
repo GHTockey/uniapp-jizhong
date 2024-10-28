@@ -238,6 +238,14 @@
 			{
 				"navigationBarTitleText" : "赠送朋友"
 			}
+		},
+		{
+			"path" : "pages/mine/persentActivate",
+			"style" : 
+			{
+				"navigationBarTitleText" : "卡片激活",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
