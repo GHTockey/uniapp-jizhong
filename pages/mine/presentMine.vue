@@ -49,7 +49,7 @@
 				<text>常用功能</text>
 			</view>
 			<!-- item -->
-			<view class="present_mine_function_item">
+			<view class="present_mine_function_item" @click="toPage('/pages/mine/presentRecords')">
 				<view class="flex items-center gap-3">
 					<image class="w-[61rpx] h-[50rpx]" src="../../static/icon/goukajilu.svg" mode="widthFix"></image>
 					<text>购卡记录</text>

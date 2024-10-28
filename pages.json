@@ -257,7 +257,7 @@
 			}
 		},
 		{
-			"path" : "pages/mine/presentRecords/presentRecords",
+			"path" : "pages/mine/presentRecords",
 			"style" : 
 			{
 				"navigationBarTitleText" : "购卡记录"
