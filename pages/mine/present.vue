@@ -36,10 +36,24 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { toPage } from '@/utils';
 
 const selectedIndex = ref(0)
+
+watch(selectedIndex, (newVal) => {
+	console.log(newVal)
+	// 0 首页
+	// 1 卡包
+	// 2 我的
+	if (newVal == 0) {
+		// toPage('/pages/mine/present')
+	} else if (newVal == 1) {
+		// toPage('/pages/mine/presentCard')
+	} else if (newVal == 2) {
+		// toPage('/pages/mine/presentMine')
+	}
+})
 
 </script>
 

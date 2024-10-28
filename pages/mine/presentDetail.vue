@@ -70,7 +70,7 @@
 				<text class="text-[#EB2C2A]">￥666.33</text>
 			</view>
 			<!-- 购买按钮 -->
-			<view class="present_detail_bottom_box_buy_btn">
+			<view class="present_detail_bottom_box_buy_btn" @click="toPage('/pages/mine/presentPay')">
 				<text>购买礼品卡</text>
 			</view>
 		</view>
@@ -78,7 +78,7 @@
 </template>
 
 <script setup>
-
+import { toPage } from '@/utils';
 </script>
 
 <style scoped lang="scss">

@@ -215,6 +215,22 @@
 			{
 				"navigationBarTitleText" : "礼品卡"
 			}
+		},
+		{
+			"path" : "pages/mine/presentPay",
+			"style" : 
+			{
+				"navigationBarTitleText" : "待付款订单[presentPay]",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/mine/persentPayRes",
+			"style" : 
+			{
+				"navigationBarTitleText" : "礼品卡[点击支付后的页面]"
+				// "navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
