@@ -213,7 +213,8 @@
 			"path" : "pages/mine/presentMine",
 			"style" : 
 			{
-				"navigationBarTitleText" : "礼品卡"
+				"navigationBarTitleText" : "礼品卡",
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -245,6 +246,13 @@
 			{
 				"navigationBarTitleText" : "卡片激活",
 				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/mine/PersentActivateRes",
+			"style" : 
+			{
+				"navigationBarTitleText" : "卡片激活结果页面"
 			}
 		}
 	],
