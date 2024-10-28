@@ -42,7 +42,7 @@ import { toPage } from '@/utils';
 const selectedIndex = ref(0)
 
 watch(selectedIndex, (newVal) => {
-	console.log(newVal)
+	// console.log(newVal)
 	// 0 首页
 	// 1 卡包
 	// 2 我的

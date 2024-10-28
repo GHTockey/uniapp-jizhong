@@ -55,13 +55,14 @@
 		</view>
 
 		<!-- 底部按钮 -->
-		<view class="present_pay_res_btn_box">
+		<view class="present_pay_res_btn_box" @click="toPage('/pages/mine/presentCard')">
 			<text>查看卡包</text>
 		</view>
 	</view>
 </template>
 
 <script setup>
+import { toPage } from "@/utils";
 
 </script>
 

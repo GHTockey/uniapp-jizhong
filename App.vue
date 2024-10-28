@@ -25,9 +25,9 @@ onMounted(() => {
 </script>
 
 <style>
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 </style>
 
 <style lang="scss">
@@ -217,6 +217,7 @@ text {
 	color: #ffffff;
 	font-size: 22rpx;
 }
+
 /* 横向展示的产品列表 [end] */
 
 
@@ -228,23 +229,23 @@ text {
 }
 
 .kong {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: 400rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 400rpx;
 }
 
 .kong image {
-  width: 300rpx;
-  height: 200rpx;
-  margin-bottom: 20rpx;
+	width: 300rpx;
+	height: 200rpx;
+	margin-bottom: 20rpx;
 }
 
 .kong text {
-  font-size: 28rpx;
-  font-weight: 500;
-  color: #838383;
+	font-size: 28rpx;
+	font-weight: 500;
+	color: #838383;
 }
 
 
@@ -264,7 +265,7 @@ text {
 
 //  ========================== 华丽的分割线 ==========================
 
-
+// 购买商品的弹窗
 .ActionSheetSlotComponentBody {
 	display: flex;
 	flex-direction: column;
@@ -379,5 +380,45 @@ text {
 		flex-direction: column;
 		gap: 20rpx;
 	}
+}
+
+// 虚空按钮
+.tce_empty_btn {
+	opacity: 0.9;
+	border: 1.39rpx solid #a0a0a0;
+	border-radius: 13.89rpx;
+	color: #A0A0A0;
+	padding: 11rpx 13rpx;
+	text-align: center;
+}
+
+// 主题按钮
+.tce_theme_btn {
+	opacity: 0.9;
+	background: $uni-color-gradient-primary;
+	border-radius: 27.78rpx;
+	color: #ffffff;
+	padding: 11rpx 29rpx;
+	text-align: center;
+}
+
+// 主题虚空按钮
+.tce_theme_empty_btn {
+	opacity: 0.9;
+	border: 2.08rpx solid $uni-color-theme;
+	border-radius: 29.86rpx;
+	color: #FF0000;
+	padding: 10rpx 29rpx;
+	text-align: center;
+}
+
+// 主题禁用按钮
+.tce_theme_disabled_btn {
+	opacity: 0.9;
+	background: #8c8c8c;
+	border-radius: 27.78rpx;
+	color: #ffffff;
+	padding: 11rpx 29rpx;
+	text-align: center;
 }
 </style>

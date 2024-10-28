@@ -231,6 +231,13 @@
 				"navigationBarTitleText" : "礼品卡[点击支付后的页面]"
 				// "navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/mine/persentSend",
+			"style" : 
+			{
+				"navigationBarTitleText" : "赠送朋友"
+			}
 		}
 	],
 	"globalStyle": {
