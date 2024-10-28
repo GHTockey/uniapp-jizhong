@@ -226,7 +226,7 @@
 			}
 		},
 		{
-			"path" : "pages/mine/persentPayRes",
+			"path" : "pages/mine/presentPayRes",
 			"style" : 
 			{
 				"navigationBarTitleText" : "礼品卡[点击支付后的页面]"
@@ -234,14 +234,14 @@
 			}
 		},
 		{
-			"path" : "pages/mine/persentSend",
+			"path" : "pages/mine/presentSend",
 			"style" : 
 			{
 				"navigationBarTitleText" : "赠送朋友"
 			}
 		},
 		{
-			"path" : "pages/mine/persentActivate",
+			"path" : "pages/mine/presentActivate",
 			"style" : 
 			{
 				"navigationBarTitleText" : "卡片激活",
@@ -249,10 +249,18 @@
 			}
 		},
 		{
-			"path" : "pages/mine/PersentActivateRes",
+			"path" : "pages/mine/presentActivateRes",
 			"style" : 
 			{
-				"navigationBarTitleText" : "卡片激活结果页面"
+				"navigationBarTitleText" : "卡片激活结果页面",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/mine/presentRecords/presentRecords",
+			"style" : 
+			{
+				"navigationBarTitleText" : "购卡记录"
 			}
 		}
 	],

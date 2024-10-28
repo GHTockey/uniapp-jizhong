@@ -51,6 +51,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { toPage } from '@/utils';
 
 const formData = ref({
 	cardNum: '',
@@ -67,6 +68,12 @@ const handleActivate = () => {
 			icon: 'none'
 		});
 
+		return;
+	}
+
+	// TODO: 临时演示
+	if (formData.value.cardNum == '111' && formData.value.cardPwd == '111') {
+		toPage('/pages/mine/persentActivateRes');
 		return;
 	}
 
