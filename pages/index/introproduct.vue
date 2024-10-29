@@ -66,7 +66,7 @@
 				<view class="product_list" v-if="productList.length > 0">
 					<!-- <template v-for="item in productList" :key="item.id">
 						<navigator hover-class="none" :url="`/pages/index/introproduct_detail?id=${item.id}`"> -->
-							<view class="product_item_v"  v-for="item in productList" :key="item.id" @click="toPageRedirect(`/pages/index/introproduct_detail?id=${item.id}`)">
+							<view class="product_item_v"  v-for="item in productList" :key="item.id" @click="toPage(`/pages/index/introproduct_detail?id=${item.id}`)">
 								<image
 									style="width: 174rpx;height: 174rpx;border-radius: 10rpx;margin-right: 33rpx;flex: none;"
 									lazy-load :src="item.image_uri" mode="aspectFill" />
@@ -123,8 +123,8 @@ const nav_list = ref([]) // 导航列表
 const goods_count = ref(0) // 商品总数
 
 // 路由跳转
-const toPageRedirect = (url) => {
-	uni.redirectTo({
+const toPage = (url) => {
+	uni.navigateTo({
 		url
 	});
 }

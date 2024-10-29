@@ -278,6 +278,14 @@
 				"navigationBarTitleText" : "资讯",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/index/introproduct_detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "资讯详情",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
