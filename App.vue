@@ -20,6 +20,8 @@ import { useTempStore } from "@/stores/temp";
 
 const tempStore = useTempStore();
 
+tempStore.getUserInfoApi();
+
 const tabBarStore = useTabBarStore();
 tabBarStore.getTabBarListApi();
 
