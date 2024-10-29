@@ -1,0 +1,46 @@
+/* 数量加减按钮 */
+.count_btn_box{
+	flex: none;
+    height: 50rpx;
+    width: max-content;
+}
+.count_btn{
+	box-sizing: border-box;
+	height: 50rpx;
+	margin: 0rpx 4rpx;
+	font-size: 44rpx;
+	color: #555353;
+	font-weight: bold;
+	line-height: 1;
+    align-items: flex-end;
+    overflow: hidden;
+	width: 50rpx;
+}
+.count_btn.de_btn{
+	align-items: flex-start;
+}
+.count_btn.no_active{
+	color: #E8E8E8;
+}
+.reduce_icon{
+	background-color: #555353;
+	height: 4rpx;
+	margin-top: 4rpx;
+	width: 24rpx;
+}
+
+.reduce_icon_new{
+    height: 38rpx;
+    width: 38rpx;
+}
+.no_active .reduce_icon{
+	background-color: #E8E8E8;
+}
+.count_btn_box .count{
+	background-color: #F2F2F2;
+	height: 46rpx;
+	width: 70rpx;
+	font-size: 32rpx;
+	font-weight: 500;
+	color: #555353;
+}

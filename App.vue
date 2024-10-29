@@ -35,6 +35,8 @@ onMounted(() => {
 </style>
 
 <style lang="scss">
+@import './static/styles/appOld.css';
+
 /*每个页面公共css */
 view,
 text {
