@@ -63,7 +63,7 @@
 				</view>
 				<image class="w-[11rpx] h-[11rpx]" src="../../static/icon/right1.svg" mode="widthFix"></image>
 			</view>
-			<view class="present_mine_function_item" @click="toPage('/pages/mine/persentActivate')">
+			<view class="present_mine_function_item" @click="toPage('/pages/mine/presentActivate')">
 				<view class="flex items-center gap-3">
 					<image class="w-[61rpx] h-[50rpx]" src="../../static/icon/kapianjihuo.svg" mode="widthFix"></image>
 					<text>卡片激活</text>
@@ -89,7 +89,7 @@ const selectedIndex = ref(2)
 .present_mine_container {
 	height: calc(100vh - $nav-height);
 	background-color: #f6f8fe;
-	background-image: url(../../static/images/persent-activate-bg.svg);
+	background-image: url(../../static/images/present-activate-bg.svg);
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding: 0 30rpx;

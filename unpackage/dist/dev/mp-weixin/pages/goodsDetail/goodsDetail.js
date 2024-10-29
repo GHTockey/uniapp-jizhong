@@ -59,11 +59,11 @@ const _sfc_main = {
           items: actionSheetData.value.items,
           show: showActionSheet.value
         }),
-        w: common_assets._imports_13,
+        w: common_assets._imports_4,
         x: common_assets._imports_12,
-        y: common_assets._imports_13,
-        z: common_assets._imports_13,
-        A: common_assets._imports_13,
+        y: common_assets._imports_4,
+        z: common_assets._imports_4,
+        A: common_assets._imports_4,
         B: common_vendor.o(($event) => showActionSheetSlot.value = $event),
         C: common_vendor.p({
           footerBtnText: "立即购买",

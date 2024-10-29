@@ -11,5 +11,11 @@ function getTitleBarHeight() {
     return 40;
   }
 }
+function toPage(url) {
+  common_vendor.index.navigateTo({
+    url
+  });
+}
 exports.getStatusBarHeight = getStatusBarHeight;
 exports.getTitleBarHeight = getTitleBarHeight;
+exports.toPage = toPage;

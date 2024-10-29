@@ -5,16 +5,17 @@ const utils_request = require("../../utils/request.js");
 const utils_index = require("../../utils/index.js");
 if (!Array) {
   const _easycom_BubbleTips2 = common_vendor.resolveComponent("BubbleTips");
-  _easycom_BubbleTips2();
+  const _easycom_TabBar2 = common_vendor.resolveComponent("TabBar");
+  (_easycom_BubbleTips2 + _easycom_TabBar2)();
 }
 const _easycom_BubbleTips = () => "../../components/BubbleTips/BubbleTips.js";
+const _easycom_TabBar = () => "../../components/TabBar/TabBar.js";
 if (!Math) {
-  (_easycom_BubbleTips + NewsRoll + SeckillingList + CompanyInfo + HighGoods + Tarbar)();
+  (_easycom_BubbleTips + NewsRoll + SeckillingList + CompanyInfo + HighGoods + _easycom_TabBar)();
 }
 const SeckillingList = () => "../../components/SeckillingList.js";
 const CompanyInfo = () => "../../components/CompanyInfo.js";
 const HighGoods = () => "../../components/HighGoods.js";
-const Tarbar = () => "../../components/Tarbar.js";
 const NewsRoll = () => "../../components/NewsRoll.js";
 const _sfc_main = {
   __name: "index",
@@ -207,7 +208,10 @@ const _sfc_main = {
         r: common_vendor.p({
           goods: goodsList.value
         }),
-        s: common_vendor.s(isFixedHeadeContent.value ? `padding-top: ${containerMarTop.value}px; background-image: url('../../static/icon/thumb.png');` : `background-image: url('../../static/icon/thumb.png');`)
+        s: common_vendor.s(isFixedHeadeContent.value ? `padding-top: ${containerMarTop.value}px; background-image: url('../../static/icon/thumb.png');` : `background-image: url('../../static/icon/thumb.png');`),
+        t: common_vendor.p({
+          isAppMode: true
+        })
       });
     };
   }

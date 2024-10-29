@@ -3,6 +3,6 @@
   "usingComponents": {
     "nav-bar": "../../components/NavBar/NavBar",
     "product-item": "../../components/ProductItem/ProductItem",
-    "tarbar": "../../components/Tarbar"
+    "tab-bar": "../../components/TabBar/TabBar"
   }
 }

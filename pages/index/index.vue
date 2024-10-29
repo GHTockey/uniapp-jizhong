@@ -81,7 +81,8 @@
   <!-- <button style="position: fixed; top: 100rpx; left: 50%; transform: translateX(-50%);" @click="addBubbleTipsData">添加数据</button> -->
 
   <!-- 底部导航 -->
-  <Tarbar class="fixed-bottom" />
+  <!-- <Tarbar class="fixed-bottom" /> -->
+  <TabBar class="fixed-bottom" :isAppMode="true" />
 </template>
 
 <script setup>
@@ -96,6 +97,8 @@ import {
   getStatusBarHeight,
   getTitleBarHeight
 } from "@/utils/index.js";
+
+
 
 // 是否固定标题搜索栏
 const isFixedHeadeContent = ref(false);

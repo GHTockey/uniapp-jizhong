@@ -7,7 +7,8 @@ const request = (url, method = "GET", data = {}, headers = {}) => {
   data = {
     ...data,
     wx_open_id: "oPyg85Y9gzaTO9wgTmeApQMqmhRY",
-    wx_appid: "wx184d389f8e1603d4"
+    wx_appid: "wx184d389f8e1603d4",
+    user_id: 10662
   };
   return new Promise((resolve, reject) => {
     let modifiedHeaders = {

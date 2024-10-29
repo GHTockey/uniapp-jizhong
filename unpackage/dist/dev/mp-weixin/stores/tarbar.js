@@ -1,7 +1,7 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
 const utils_request = require("../utils/request.js");
-const useTarbarStore = common_vendor.defineStore("tarbar", {
+const useTarbarStore = common_vendor.defineStore("tabBar", {
   state: () => {
     return {
       list: [

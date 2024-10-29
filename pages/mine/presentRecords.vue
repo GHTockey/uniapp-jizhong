@@ -22,7 +22,8 @@
 
 		<!-- 列表 -->
 		<view class="present_records_list">
-			<view class="present_records_item" v-for="item in filteredRecords" :key="item.id">
+			<view class="present_records_item" v-for="item in filteredRecords" :key="item.id"
+				@click="handleItemClick(item)">
 				<!-- header -->
 				<view class="flex items-center justify-between">
 					<view class="flex items-center gap-2">
@@ -199,6 +200,7 @@ const filteredRecords = computed(() => {
 // 定义临时数据
 const records = ref([
 	{
+		id: 1,
 		type: TYPE_GIFT_CARD, // 礼品卡
 		status: STATUS_CLOSED, // 已关闭
 		image: '../../static/images/present_item.png',
@@ -209,6 +211,7 @@ const records = ref([
 		total: 360
 	},
 	{
+		id: 2,
 		type: TYPE_STORE_CARD, // 储值卡
 		status: STATUS_COMPLETED, // 已完成
 		image: '../../static/images/present_item.png',
@@ -219,6 +222,7 @@ const records = ref([
 		total: 360
 	},
 	{
+		id: 3,
 		type: TYPE_GIFT_CARD, // 礼品卡
 		status: STATUS_PENDING, // 待支付
 		image: '../../static/images/present_item.png',
@@ -255,6 +259,15 @@ function getStatusName(status) {
 		default:
 			return '未知状态';
 	}
+}
+
+
+// item 点击
+function handleItemClick(item) {
+	// toPage(`/pages/mine/presentDetailSimple?id=${item.id}&is_records=true`)
+	uni.navigateTo({
+		url: `/pages/mine/presentDetailSimple?id=${item.id}&is_records=true`
+	});
 }
 </script>
 

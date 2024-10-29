@@ -226,10 +226,10 @@
 			}
 		},
 		{
-			"path" : "pages/mine/presentPayRes",
+			"path" : "pages/mine/presentDetailSimple",
 			"style" : 
 			{
-				"navigationBarTitleText" : "礼品卡[点击支付后的页面]"
+				"navigationBarTitleText" : "礼品卡[详情[略]"
 				// "navigationStyle": "custom"
 			}
 		},
@@ -261,6 +261,14 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "购卡记录"
+			}
+		},
+		{
+			"path" : "pages/index/shop_list",
+			"style" : 
+			{
+				"navigationBarTitleText" : "门店",
+				"navigationStyle": "custom"
 			}
 		}
 	],

@@ -97,7 +97,8 @@
 
 
 		<!-- 底部 tabbar -->
-		<Tarbar class="fixed-bottom" />
+		<!-- <Tarbar class="fixed-bottom" /> -->
+		<TabBar class="fixed-bottom" :isAppMode="true" />
 	</view>
 </template>
 
@@ -120,14 +121,6 @@ function toPage(url) {
 .scroll-view_H {
 	white-space: nowrap;
 	width: 100%;
-
-	::-webkit-scrollbar {
-		display: none !important;
-	}
-
-	::-webkit-scrollbar-thumb {
-		display: none !important;
-	}
 }
 
 .scroll-view-item {

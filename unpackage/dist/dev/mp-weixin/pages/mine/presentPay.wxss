@@ -1,0 +1,87 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.present_pay_container.data-v-14330de5 {
+  height: 100vh;
+  background-color: #f6f8fe;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTA4MSIgaGVpZ2h0PSI2MTEiIHZpZXdCb3g9IjAgMCAxMDgxIDYxMSI+PGRlZnM+PHN0eWxlPi5he3N0cm9rZTpyZ2JhKDAsMCwwLDApO3N0cm9rZS1taXRlcmxpbWl0OjEwO2ZpbGw6dXJsKCNhKTt9PC9zdHlsZT48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIwLjA0MyIgeTE9IjAuMDIiIHgyPSIwLjA0NCIgeTI9IjEiIGdyYWRpZW50VW5pdHM9Im9iamVjdEJvdW5kaW5nQm94Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZjcxM2MiLz48c3RvcCBvZmZzZXQ9IjAuNDEiIHN0b3AtY29sb3I9IiNmZjAwNTgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZjAwNTgiIHN0b3Atb3BhY2l0eT0iMCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB3aWR0aD0iMTA4MCIgaGVpZ2h0PSI2MTAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuNSAwLjUpIi8+PC9zdmc+");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 0 14rpx;
+  padding-top: 44px;
+}
+.present_pay_container .present_pay_card.data-v-14330de5 {
+  background: #ffffff;
+  border-radius: 13.89rpx;
+  padding: 30rpx;
+  margin-top: 25rpx;
+}
+.present_pay_container .present_pay_card .present_pay_card_info.data-v-14330de5 {
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 30rpx;
+  border-bottom: 1px dashed #e6e6e6;
+}
+.present_pay_container .buyer_msg_box.data-v-14330de5 {
+  border-radius: 14rpx;
+  background-color: #FFFFFF;
+  margin-top: 25rpx;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 27.78rpx;
+  font-family: PingFang SC, PingFang SC-Bold;
+  font-weight: 700;
+  text-align: left;
+  color: #1d1d1d;
+}
+.present_pay_container .bottom_submit_box.data-v-14330de5 {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FFFFFF;
+  height: 97.22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 47.22rpx;
+}
+.present_pay_container .bottom_submit_box .bottom_submit_price_box.data-v-14330de5 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 29.17rpx;
+}
+.present_pay_container .bottom_submit_box .bottom_submit_btn.data-v-14330de5 {
+  color: #FFFFFF;
+  background-image: linear-gradient(89deg, #ff3981 3%, #ff1e1a 97%);
+  border-radius: 31.25rpx;
+  padding: 10rpx 45rpx;
+}

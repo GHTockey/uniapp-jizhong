@@ -2,6 +2,7 @@
 const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
 const stores_temp = require("../../stores/temp.js");
+const utils_request = require("../../utils/request.js");
 if (!Array) {
   const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
   const _easycom_ActionSheetSlot2 = common_vendor.resolveComponent("ActionSheetSlot");
@@ -54,13 +55,29 @@ const _sfc_main = {
     const payPopup = common_vendor.ref(null);
     const selectPayType = common_vendor.ref(1);
     const save_money = common_vendor.ref(0);
+    const goods_info = common_vendor.ref({});
     const buy_type_list = common_vendor.ref([
       { id: 1, name: "门店自提" },
       { id: 0, name: "物流配送" }
     ]);
+    common_vendor.onLoad((options) => {
+      console.log("页面加载：pay");
+      if (options && options.goods_id) {
+        buy_type.value = 1;
+        get_good_info(options.goods_id, options.price_id, options.count);
+        console.log("获取的options", options);
+      }
+      get_info_list();
+    });
+    common_vendor.onShow(() => {
+      get_address();
+    });
+    common_vendor.onUnload(() => {
+      console.log("页面卸载：pay");
+      clear_select_address();
+    });
     function to_pay() {
       console.log("去付款");
-      payPopup.value.open("center");
       if (buy_type.value == 1) {
         if (!targte_shop.value || !targte_shop.value.shop_name) {
           common_vendor.index.showToast({
@@ -70,6 +87,7 @@ const _sfc_main = {
           return;
         }
       }
+      payPopup.value.open("center");
     }
     function to_sub() {
       console.log("提交订单提交订单", buy_type.value);
@@ -152,10 +170,44 @@ const _sfc_main = {
         }
       });
     }
+    async function get_address() {
+      let res = await utils_request.request("/WxAppCustomer/get_user_address", "post", {});
+      console.log("get_address res", res);
+      if (res.code != 0)
+        return common_vendor.index.showToast({ title: res.msg, icon: "error", duration: 2e3 });
+      address.value = res.data.address;
+    }
+    async function get_info_list() {
+      let res = await utils_request.request("/WxAppCustomer/get_address_list", "post", {});
+      console.log("get_info_list res", res);
+      if (res.code != 0)
+        return common_vendor.index.showToast({ title: res.msg, icon: "error", duration: 2e3 });
+      address_list.value = res.data.address_list;
+    }
+    async function get_good_info(goods_id, price_id, count) {
+      let res = await utils_request.request("/WxAppCustomer/get_good_info", "post", {
+        goods_id: goods_id || 0,
+        price_id: price_id || 0,
+        count: count || 0
+      });
+      console.log("get_good_info res", res);
+      if (res.code != 0)
+        return common_vendor.index.showToast({ title: res.msg, icon: "error", duration: 2e3 });
+      goods_info.value = res.data.goods_info;
+    }
+    async function clear_select_address() {
+      let res = await utils_request.request("/WxAppCustomer/clear_select_address", "post", {});
+      console.log("clear_select_address res", res);
+      if (res.code != 0)
+        return common_vendor.index.showToast({ title: res.msg, icon: "error", duration: 2e3 });
+      common_vendor.index.navigateBack();
+    }
     function addressSheetBtnHandler() {
-      if (address_list == null ? void 0 : address_list.length)
-        ;
-      else {
+      var _a;
+      console.log("addressSheetBtnHandler");
+      if ((_a = address_list.value) == null ? void 0 : _a.length) {
+        payPopup.value.open("center");
+      } else {
         common_vendor.index.navigateTo({
           url: "/pages/mine/address"
         });
@@ -227,47 +279,54 @@ const _sfc_main = {
       }, address.value.is_default ? {} : {}) : {}, {
         t: common_vendor.o(($event) => showAddressSheet.value = true)
       }) : {}, {
-        v: common_assets._imports_0$8,
-        w: common_vendor.t(buyerMsg.value || "无留言"),
-        x: common_assets._imports_1$3,
-        y: common_vendor.o(($event) => showActionSheet.value = true),
-        z: common_assets._imports_1$3,
-        A: common_assets._imports_1$3,
-        B: common_vendor.o(to_pay),
-        C: common_vendor.o(to_sub)
+        v: goods_info.value.good_imgs || "https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png",
+        w: common_vendor.t(goods_info.value.name),
+        x: goods_info.value.spec_totall && goods_info.value.spec_totall.length > 0
+      }, goods_info.value.spec_totall && goods_info.value.spec_totall.length > 0 ? {
+        y: common_vendor.t(goods_info.value.spec_totall)
+      } : {}, {
+        z: common_vendor.t(goods_info.value.unit_price),
+        A: common_vendor.t(goods_info.value.count || 1),
+        B: common_vendor.t(buyerMsg.value || "无留言"),
+        C: common_assets._imports_2$3,
+        D: common_vendor.o(($event) => showActionSheet.value = true),
+        E: common_assets._imports_2$3,
+        F: common_assets._imports_2$3,
+        G: common_vendor.o(to_pay),
+        H: common_vendor.o(to_sub)
       }) : {}, {
-        D: buyerMsg.value,
-        E: common_vendor.o(($event) => buyerMsg.value = $event.detail.value),
-        F: common_vendor.o(($event) => showActionSheet.value = $event),
-        G: common_vendor.p({
+        I: buyerMsg.value,
+        J: common_vendor.o(($event) => buyerMsg.value = $event.detail.value),
+        K: common_vendor.o(($event) => showActionSheet.value = $event),
+        L: common_vendor.p({
           title: "买家留言",
           show: showActionSheet.value
         }),
-        H: common_assets._imports_2$2,
-        I: `/static/icon/select_fill-${selectPayType.value == 1 ? "a" : "n"}.svg`,
-        J: common_vendor.o(($event) => change_pay_type(1)),
-        K: common_assets._imports_3$2,
-        L: `/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
-        M: common_vendor.o(($event) => change_pay_type(2)),
-        N: common_assets._imports_4$2,
-        O: common_vendor.t(save_money.value),
-        P: `/static/icon/select_fill-${selectPayType.value == 3 ? "a" : "n"}.svg`,
-        Q: common_vendor.o(($event) => change_pay_type(3)),
-        R: common_assets._imports_5$1,
-        S: common_vendor.o(($event) => payPopup.value.close()),
-        T: common_vendor.sr(payPopup, "87306594-2", {
+        M: common_assets._imports_1$4,
+        N: `/static/icon/select_fill-${selectPayType.value == 1 ? "a" : "n"}.svg`,
+        O: common_vendor.o(($event) => change_pay_type(1)),
+        P: common_assets._imports_2$2,
+        Q: `/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
+        R: common_vendor.o(($event) => change_pay_type(2)),
+        S: common_assets._imports_3$3,
+        T: common_vendor.t(save_money.value),
+        U: `/static/icon/select_fill-${selectPayType.value == 3 ? "a" : "n"}.svg`,
+        V: common_vendor.o(($event) => change_pay_type(3)),
+        W: common_assets._imports_3$4,
+        X: common_vendor.o(($event) => payPopup.value.close()),
+        Y: common_vendor.sr(payPopup, "87306594-2", {
           "k": "payPopup"
         }),
-        U: common_vendor.o(() => {
+        Z: common_vendor.o(() => {
         }),
-        V: common_vendor.p({
+        aa: common_vendor.p({
           ["background-color"]: "#fff",
           ["border-radius"]: "27.78rpx",
           ["mask-click"]: false
         }),
-        W: (_a = address_list.value) == null ? void 0 : _a.length
+        ab: (_a = address_list.value) == null ? void 0 : _a.length
       }, ((_b = address_list.value) == null ? void 0 : _b.length) ? {
-        X: common_vendor.f(address_list.value, (item, index, i0) => {
+        ac: common_vendor.f(address_list.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.user_name),
             b: common_vendor.t(item.mobile),
@@ -279,9 +338,9 @@ const _sfc_main = {
           };
         })
       } : {}, {
-        Y: common_vendor.o(addressSheetBtnHandler),
-        Z: common_vendor.o(($event) => showAddressSheet.value = $event),
-        aa: common_vendor.p({
+        ad: common_vendor.o(addressSheetBtnHandler),
+        ae: common_vendor.o(($event) => showAddressSheet.value = $event),
+        af: common_vendor.p({
           title: "选择地址",
           footerBtnText: ((_c = address_list.value) == null ? void 0 : _c.length) ? "立即购买" : "添加收货地址",
           show: showAddressSheet.value

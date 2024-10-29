@@ -14,10 +14,14 @@ export default {
 
 <script setup>
 import { onMounted } from 'vue';
-import { useTarbarStore } from "@/stores/tarbar";
+// import { useTarbarStore } from "@/stores/tarbar";
+import { useTabBarStore } from '@/stores/tabbar';
+import { useTempStore } from "@/stores/temp";
 
-const tarbarStore = useTarbarStore();
-tarbarStore.getTarBarListApi();
+const tempStore = useTempStore();
+
+const tabBarStore = useTabBarStore();
+tabBarStore.getTabBarListApi();
 
 onMounted(() => {
 	console.log('App Mounted')
@@ -35,6 +39,14 @@ onMounted(() => {
 view,
 text {
 	box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+	display: none !important;
+}
+
+::-webkit-scrollbar-thumb {
+	display: none !important;
 }
 
 
@@ -380,6 +392,14 @@ text {
 		flex-direction: column;
 		gap: 20rpx;
 	}
+}
+
+.fixed-bottom {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
 }
 
 // 虚空按钮

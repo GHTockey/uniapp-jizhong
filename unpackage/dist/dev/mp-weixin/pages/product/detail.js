@@ -20,6 +20,8 @@ const _sfc_main = {
     const goodsId = common_vendor.ref();
     const goodsDetail = common_vendor.ref({});
     common_vendor.ref({});
+    const act_spec1 = common_vendor.ref(0);
+    const act_spec2 = common_vendor.ref(0);
     const show_select_change = common_vendor.ref(false);
     const need_spec1 = common_vendor.ref(0);
     const need_spec2 = common_vendor.ref(0);
@@ -32,6 +34,7 @@ const _sfc_main = {
     const swiper = common_vendor.ref({});
     const detail_image_uri = common_vendor.ref([]);
     const swiperIndex = common_vendor.ref(0);
+    const act_info = common_vendor.ref(0);
     const showActionSheet = common_vendor.ref(false);
     const showActionSheetSlot = common_vendor.ref(false);
     const actionSheetData = common_vendor.ref({
@@ -123,11 +126,30 @@ const _sfc_main = {
       detail_image_uri.value = product.detail_images;
       swiper.value = swiper.value;
     }
-    function clickBuy() {
+    function to_buy() {
       console.log("点击购买");
       console.log("商品id", goodsDetail.value.id);
+      if (!act_spec1.value) {
+        common_vendor.index.showToast({
+          title: "请先选择规格",
+          icon: "none"
+        });
+        return;
+      }
+      if (need_spec1.value && need_spec2.value) {
+        let name = goodsDetail.value.spec_list2.name || "规格";
+        if (!act_spec2.value) {
+          common_vendor.index.showToast({
+            title: "请选择" + name,
+            icon: "none"
+          });
+          return;
+        }
+      }
+      act_info.value;
       common_vendor.index.navigateTo({
-        url: `/pages/mine/pay?goods_id=${goodsDetail.value.id}&price_id=0&count=1`
+        url: `/pages/mine/pay?goods_id=${goodsDetail.value.id}&price_id=1073&count=1`
+        // url: '/pages/mine/pay?goods_id=' + goodsDetail.value.id + '&price_id=' + goods_price.id + '&count=' + add_count.value,
       });
     }
     function swiperChange(e) {
@@ -155,21 +177,21 @@ const _sfc_main = {
         e: common_assets._imports_0$7,
         f: common_vendor.o(goBack),
         g: common_vendor.t(swiperIndex.value + 1),
-        h: common_vendor.t((_b = (_a = swiper.value) == null ? void 0 : _a.swiperImgUrls) == null ? void 0 : _b.length),
+        h: common_vendor.t(((_b = (_a = swiper.value) == null ? void 0 : _a.swiperImgUrls) == null ? void 0 : _b.length) + video_list.value.length),
         i: common_assets._imports_1$2,
         j: common_assets._imports_2$1,
         k: common_vendor.o(($event) => showActionSheetSlot.value = true),
         l: common_vendor.t((_c = goodsDetail.value) == null ? void 0 : _c.name),
         m: common_assets._imports_3$1,
-        n: common_assets._imports_4$1,
+        n: common_assets._imports_4$2,
         o: common_vendor.o(($event) => showActionSheet.value = true),
         p: common_assets._imports_5,
-        q: common_assets._imports_4$1,
+        q: common_assets._imports_4$2,
         r: common_vendor.o(($event) => showActionSheet.value = true),
         s: common_assets._imports_6,
-        t: common_assets._imports_4$1,
+        t: common_assets._imports_4$2,
         v: common_vendor.o(($event) => showActionSheet.value = true),
-        w: common_assets._imports_4$1,
+        w: common_assets._imports_4$2,
         x: common_assets._imports_1$2,
         y: common_assets._imports_1$2,
         z: common_assets._imports_7,
@@ -183,12 +205,12 @@ const _sfc_main = {
           items: actionSheetData.value.items,
           show: showActionSheet.value
         }),
-        G: common_assets._imports_13,
+        G: common_assets._imports_4,
         H: common_assets._imports_12,
-        I: common_assets._imports_13,
-        J: common_assets._imports_13,
-        K: common_assets._imports_13,
-        L: common_vendor.o(clickBuy),
+        I: common_assets._imports_4,
+        J: common_assets._imports_4,
+        K: common_assets._imports_4,
+        L: common_vendor.o(to_buy),
         M: common_vendor.o(($event) => showActionSheetSlot.value = $event),
         N: common_vendor.p({
           footerBtnText: "立即购买",

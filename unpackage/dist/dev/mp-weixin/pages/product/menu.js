@@ -5,14 +5,15 @@ const utils_request = require("../../utils/request.js");
 if (!Array) {
   const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
   const _easycom_ProductItem2 = common_vendor.resolveComponent("ProductItem");
-  (_easycom_NavBar2 + _easycom_ProductItem2)();
+  const _easycom_TabBar2 = common_vendor.resolveComponent("TabBar");
+  (_easycom_NavBar2 + _easycom_ProductItem2 + _easycom_TabBar2)();
 }
 const _easycom_NavBar = () => "../../components/NavBar/NavBar.js";
 const _easycom_ProductItem = () => "../../components/ProductItem/ProductItem.js";
+const _easycom_TabBar = () => "../../components/TabBar/TabBar.js";
 if (!Math) {
-  (_easycom_NavBar + _easycom_ProductItem + Tarbar)();
+  (_easycom_NavBar + _easycom_ProductItem + _easycom_TabBar)();
 }
-const Tarbar = () => "../../components/Tarbar.js";
 const menu_top = 110;
 const _sfc_main = {
   __name: "menu",
@@ -196,7 +197,10 @@ const _sfc_main = {
           productListShowByRow: productList.value
         })
       } : {}, {
-        q: containerMarTop.value + "px"
+        q: common_vendor.p({
+          isAppMode: true
+        }),
+        r: containerMarTop.value + "px"
       });
     };
   }

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "卡片激活",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "nav-bar": "../../components/NavBar/NavBar"
+  }
+}

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
-const stores_tarbar = require("./stores/tarbar.js");
+const stores_tabbar = require("./stores/tabbar2.js");
 if (!Math) {
   "./pages/index/index.js";
   "./pages/test/test.js";
@@ -22,6 +22,23 @@ if (!Math) {
   "./pages/mine/pay.js";
   "./pages/mine/address.js";
   "./pages/mine/get_shop_list.js";
+  "./pages/mine/address_form.js";
+  "./pages/mine/money.js";
+  "./pages/mine/topUpCenter.js";
+  "./pages/mine/withdraw.js";
+  "./pages/mine/addBank.js";
+  "./pages/mine/withdraw_apply_ing.js";
+  "./pages/mine/withdraw_list.js";
+  "./pages/mine/present.js";
+  "./pages/mine/presentDetail.js";
+  "./pages/mine/presentCard.js";
+  "./pages/mine/presentMine.js";
+  "./pages/mine/presentPay.js";
+  "./pages/mine/presentDetailSimple.js";
+  "./pages/mine/presentSend.js";
+  "./pages/mine/presentActivate.js";
+  "./pages/mine/presentActivateRes.js";
+  "./pages/mine/presentRecords.js";
 }
 const __default__ = {
   onLaunch: function() {
@@ -37,8 +54,8 @@ const __default__ = {
 const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
   __name: "App",
   setup(__props) {
-    const tarbarStore = stores_tarbar.useTarbarStore();
-    tarbarStore.getTarBarListApi();
+    const tabBarStore = stores_tabbar.useTabBarStore();
+    tabBarStore.getTabBarListApi();
     common_vendor.onMounted(() => {
       console.log("App Mounted");
     });

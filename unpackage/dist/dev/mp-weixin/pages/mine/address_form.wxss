@@ -1,0 +1,85 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.address_form_container.data-v-2b87a36e {
+  background-color: #F8F9FA;
+  height: calc(100vh - 44px);
+  overflow: hidden;
+}
+.address_form_container .my_content.data-v-2b87a36e {
+  box-sizing: border-box;
+  padding: 0rpx 30rpx;
+  width: 100vw;
+}
+.address_form_container .form_item.data-v-2b87a36e {
+  margin-top: 46rpx;
+}
+.address_form_container .form_item.align_start.data-v-2b87a36e {
+  align-items: flex-start;
+}
+.address_form_container .placeholder_text.data-v-2b87a36e {
+  color: #676767;
+}
+.address_form_container .form_lable.data-v-2b87a36e {
+  color: #03081A;
+  font-size: 31rpx;
+}
+.address_form_container .form_input.data-v-2b87a36e,.address_form_container .form_picker.data-v-2b87a36e {
+  background: #FFFFFF;
+  border-radius: 11rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  height: 70rpx;
+  padding: 0rpx 28rpx;
+  align-items: center;
+  width: 500rpx;
+}
+.address_form_container .input_textarea.data-v-2b87a36e {
+  background: #FFFFFF;
+  border-radius: 11rpx;
+  box-sizing: border-box;
+  min-height: 140rpx;
+  padding: 15rpx 28rpx;
+  width: 500rpx;
+}
+.address_form_container .btn_item.data-v-2b87a36e {
+  border: 1rpx solid #FC4740;
+  border-radius: 80rpx;
+  background-color: #FC4740;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 33rpx;
+  height: 87rpx;
+  margin-top: 88rpx;
+  width: 100%;
+}
+.address_form_container .edit_btns .btn_item.data-v-2b87a36e {
+  height: 87rpx;
+  width: 329rpx;
+}
+.address_form_container .edit_btns .btn_item.delete.data-v-2b87a36e {
+  background: #FFFFFF;
+  color: #FC4740;
+}

@@ -23,8 +23,8 @@
 					<view class="tce_empty_btn text-[24rpx]">{{ item.card_text }}</view>
 					<view class="flex gap-[20rpx]">
 						<template v-if="item.is_used == 0">
-							<view class="tce_theme_btn text-[24rpx]" @click="toPage('/pages/mine/persentSend')">赠送朋友</view>
-							<view class="tce_theme_empty_btn text-[24rpx]" @click="toPage('/pages/mine/persentActivate')">立即使用</view>
+							<view class="tce_theme_btn text-[24rpx]" @click="toPage('/pages/mine/presentSend')">赠送朋友</view>
+							<view class="tce_theme_empty_btn text-[24rpx]" @click="toPage('/pages/mine/presentActivate')">立即使用</view>
 						</template>
 						<template v-else-if="item.is_used == 1">
 							<view class="tce_theme_disabled_btn text-[24rpx]">已使用</view>

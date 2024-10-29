@@ -102,7 +102,8 @@
 
 
 		<!-- 底部 tabbar -->
-		<Tarbar class="fixed-bottom" />
+		<!-- <Tarbar class="fixed-bottom" /> -->
+		<TabBar class="fixed-bottom" :isAppMode="true" />
 	</view>
 </template>
 
@@ -112,6 +113,8 @@ import { getTitleBarHeight, getStatusBarHeight } from '@/utils/index.js';
 import { request } from '@/utils/request.js';
 import { onLoad, onShow } from "@dcloudio/uni-app";
 import Tarbar from "@/components/Tarbar.vue";
+
+
 
 // 往下挤的高度 
 const containerMarTop = computed(() => {

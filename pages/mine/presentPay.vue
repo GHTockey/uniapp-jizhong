@@ -11,7 +11,7 @@
 		<view class="present_pay_card">
 			<!-- header -->
 			<view class="flex items-center gap-[20rpx]">
-				<image class="w-[40rpx] h-[28rpx]" src="../../static/icon/persent-card.svg" mode="widthFix"></image>
+				<image class="w-[40rpx] h-[28rpx]" src="../../static/icon/present-card.svg" mode="widthFix"></image>
 				<text class="text-[27.78rpx] text-[#2C2C2C]">礼品卡</text>
 			</view>
 			<!-- 礼品信息 -->
@@ -57,7 +57,7 @@
 					<text style="color: #eb2c2a;">￥100</text>
 				</view>
 			</view>
-			<view @click="toPage('/pages/mine/persentPayRes')" class="bottom_submit_btn">立即支付</view>
+			<view @click="toPage('/pages/mine/presentDetailSimple')" class="bottom_submit_btn">立即支付</view>
 		</view>
 
 	</view>

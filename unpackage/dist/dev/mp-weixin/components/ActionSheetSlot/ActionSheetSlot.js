@@ -39,7 +39,7 @@ const _sfc_main = {
         a: __props.show
       }, __props.show ? {
         b: common_vendor.t(__props.title),
-        c: common_assets._imports_0$14,
+        c: common_assets._imports_0$11,
         d: common_vendor.o(closeActionSheet),
         e: common_vendor.t(__props.footerBtnText),
         f: common_vendor.o(confirm),

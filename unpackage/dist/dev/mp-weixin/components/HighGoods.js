@@ -54,7 +54,7 @@ const _sfc_main = {
       return common_vendor.e({
         a: __props.isShowHeader
       }, __props.isShowHeader ? {
-        b: common_assets._imports_0$12
+        b: common_assets._imports_0$23
       } : {}, {
         c: common_vendor.f(__props.goods, (product, index, i0) => {
           return common_vendor.e({
@@ -63,7 +63,7 @@ const _sfc_main = {
             c: product.price > 0
           }, product.price > 0 ? {} : {}, {
             d: common_vendor.t(product.price),
-            e: `/pages/goods/detail?id=${product.id}`,
+            e: `/pages/product/detail?id=${product.id}`,
             f: index
           });
         })

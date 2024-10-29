@@ -4,10 +4,10 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "bubble-tips": "../../components/BubbleTips/BubbleTips",
+    "tab-bar": "../../components/TabBar/TabBar",
     "seckilling-list": "../../components/SeckillingList",
     "company-info": "../../components/CompanyInfo",
     "high-goods": "../../components/HighGoods",
-    "tarbar": "../../components/Tarbar",
     "news-roll": "../../components/NewsRoll"
   }
 }

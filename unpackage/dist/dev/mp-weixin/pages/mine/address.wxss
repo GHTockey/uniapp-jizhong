@@ -113,3 +113,16 @@
 .width_big.data-v-6685374a {
     width: 590rpx;
 }
+.tool_box.data-v-6685374a {
+  height: 130rpx !important;
+  padding-bottom: 0;
+  box-shadow: none;
+}
+.tool_box .add_btn.data-v-6685374a {
+  background-image: linear-gradient(89deg, #ff3981 3%, #ff1e1a 97%);
+  opacity: 0.9;
+  border-radius: 13.89rpx;
+  font-size: 31.94rpx;
+  font-weight: 400;
+  color: #ffffff;
+}

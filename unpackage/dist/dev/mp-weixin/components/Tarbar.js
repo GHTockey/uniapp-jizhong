@@ -3,7 +3,7 @@ const common_vendor = require("../common/vendor.js");
 const stores_system = require("../stores/system.js");
 const stores_tarbar = require("../stores/tarbar.js");
 const _sfc_main = {
-  __name: "Tarbar",
+  __name: "tarbar",
   setup(__props) {
     const systemStore = stores_system.useSystemStore();
     const tarbarStore = stores_tarbar.useTarbarStore();

@@ -1,5 +1,5 @@
 <template>
-	<view class="persent_send_container">
+	<view class="present_send_container">
 		<view class="flex items-center gap-[20rpx]">
 			<image class="w-[33.3rpx] h-[33.3rpx]" src="../../static/icon/xiaolian.svg" mode="widthFix"></image>
 			<text class="text-[29rpx]">给朋友捎句话吧~</text>
@@ -46,18 +46,18 @@
 	<!-- 海报弹窗 -->
 	<uni-popup ref="posterPopupRef" type="center" :mask-click="false">
 		<view class="h-[1032rpx] w-[625rpx] flex flex-col mt-[35rpx] relative">
-			<view class=" bg-white p-[35rpx] flex flex-col items-center ">
+			<view class=" bg-white p-[35rpx] flex flex-col items-center gap-[20rpx] ">
 				<image class="w-[550rpx] h-[550rpx]" src="../../static/images/kun.png"></image>
 				<text class=" line-clamp-2  text-[29.17rpx]">
 					这是商品的名称这是商品的名称这是商品的名称这是商品的名称这是商品的名称这是商品的名称
 				</text>
-				<view class=" text-[20.83rpx] w-full text-[#FF2626]">
+				<view class=" text-[20.83rpx] w-full text-[#FF2626] font-bold">
 					<text>￥</text>
-					<text class="text-[30rpx] font-bold">100</text>
+					<text class="text-[30rpx]">100</text>
 				</view>
 				<!-- 小程序码区域 -->
 				<view class="w-full flex justify-end items-center">
-					<view class="w-[222rpx] text-[26rpx] text-[#828282]">扫描微信小程序码即可下单购买</view>
+					<view class="w-[222rpx] text-[26rpx] text-[#828282] text-right mr-[20rpx]">扫描微信小程序码即可下单购买</view>
 					<image class="w-[111rpx] h-[111rpx]" src="../../static/images/xcx-qr.png"></image>
 				</view>
 			</view>
@@ -106,7 +106,7 @@ function generatePoster() {
 </script>
 
 <style scoped lang="scss">
-.persent_send_container {
+.present_send_container {
 	height: calc(100vh - $nav-height);
 	background-color: #f6f8fe;
 	padding: 30rpx;

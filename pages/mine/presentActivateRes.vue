@@ -1,5 +1,5 @@
 <template>
-	<view class="persent_activate_res_container">
+	<view class="present_activate_res_container">
 		<!-- 标题栏 -->
 		<NavBar showBack>
 			<template #title>卡片激活</template>
@@ -72,10 +72,10 @@ const handleUse = () => {
 </script>
 
 <style scoped lang="scss">
-.persent_activate_res_container {
+.present_activate_res_container {
 	height: 100vh;
 	background-color: #f6f8fe;
-	background-image: url(../../static/images/persent-activate-bg.svg);
+	background-image: url(../../static/images/present-activate-bg.svg);
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding: 0 30rpx;

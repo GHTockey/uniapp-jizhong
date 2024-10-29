@@ -13,6 +13,12 @@
 		 <!-- <ShoppingCarDefault status="no_permission" /> -->
 		 <!-- empty 购物车内暂无商品，快去选购吧 -->
 		 <!-- <ShoppingCarDefault status="empty" /> -->
+
+
+
+
+
+		 <TabBar class="fixed-bottom" :isAppMode="true" />
 	</view>
 </template>
 

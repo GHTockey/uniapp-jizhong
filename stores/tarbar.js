@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { request } from "@/utils/request.js";
 
-export const useTarbarStore = defineStore('tarbar', {
+export const useTarbarStore = defineStore('tabBar', {
     state: () => {
         return {
             list: [
