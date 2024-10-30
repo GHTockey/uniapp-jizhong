@@ -175,6 +175,12 @@
 			</view>
 
 		</view>
+
+		<view class="bottom_baocun_box">
+			<button @click="go_applications" class="go_applications"
+				style=" width: 692rpx;height: 100rpx;background: #FF4F26;border-radius: 14rpx;margin-top: 17rpx;  "><text
+					style=" font-size: 32rpx;font-weight: 400;color: #FFFFFF;line-height: 0rpx;">立即报名</text></button>
+		</view>
 	</view>
 </template>
 
@@ -783,8 +789,16 @@ function go_applications_v(activity) {
 }
 </script>
 
+<style scoped lang="scss">
+.application_index_container {
+	height: calc(100vh - $nav-height);
+	background-color: #f7f8fa;
+	position: relative;
+}
+</style>
+
 <style>
-@import '../../static/styles/detailOld.css';
+@import '../../static/styles/detailOld.css'; 
 
 .biaoti {
 	padding-top: 25rpx;
@@ -798,10 +812,7 @@ function go_applications_v(activity) {
 	word-wrap: break-word;
 	word-break: break-all;
 	overflow: hidden;
-
 	text-align: center;
-
-
 }
 
 .content_box {
@@ -902,13 +913,5 @@ function go_applications_v(activity) {
 
 .image_arrs_list image {
 	width: 100%;
-}
-</style>
-
-<style scoped lang="scss">
-.application_index_container {
-	height: calc(100vh - $nav-height);
-	background-color: #f7f8fa;
-	position: relative;
 }
 </style>
