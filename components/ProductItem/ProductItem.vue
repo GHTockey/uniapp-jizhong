@@ -3,17 +3,17 @@
 		<swiper v-show="swiper.swiperImgUrls.length" :indicator-dots="swiper.indicatorDots" :autoplay="swiper.autoplay"
 			:interval="swiper.interval" :duration="swiper.duration" indicator-active-color='#4791FF'
 			@change="currentPage">
-			<block v-if="swiper.video">
+			<template v-if="swiper.video">
 				<swiper-item>
 					<video @play="startVideoPlay" @ended="onVideoEnded" style="width:100%;height:100%" mode="aspectFill"
 						:src="swiper.video"></video>
 				</swiper-item>
-			</block>
-			<block v-for="item in swiper.swiperImgUrls" :key="item">
+			</template>
+			<template v-for="item in swiper.swiperImgUrls" :key="item">
 				<swiper-item>
 					<image lazy-load class="slide-image" :src="item" mode="aspectFill" />
 				</swiper-item>
-			</block>
+			</template>
 		</swiper>
 	</template>
 
@@ -46,13 +46,15 @@
 
 	</template>
 
+	<!-- ok -->
 	<template name="productListShowByRow" v-if="name == 'productListShowByRow'">
 		<!-- <view class="section" hidden="{{productListShowByRow.length == 0}}"> -->
 		<view class="section">
 			<view class="product_list_row" style="display: flex;flex-wrap: wrap;padding: 0 25rpx;">
 				<block v-for="item in productListShowByRow" :key="item.id">
 					<view class="product_item">
-						<navigator hover-class="none" class="product_item_navigator" :url="`/pages/product/detail?id=${item.id}`">
+						<navigator hover-class="none" class="product_item_navigator"
+							:url="`/pages/product/detail?id=${item.id}`">
 							<image lazy-load class="image" mode="aspectFill" :src="item.image_uri" />
 							<view class="flex_col_space_bt product_info">
 								<text class="name"
@@ -102,6 +104,12 @@ const props = defineProps({
 		default: false
 	}
 })
+const emit = defineEmits(['currentPage'])
+
+
+function currentPage(e) {
+	emit('currentPage', e)
+}
 </script>
 
 <style>

@@ -1,0 +1,1 @@
+<view class="coupon-container" style="height:calc(100vh - 44px);background-image:url('../../static//images/coupons.png')"><coupon-list wx:if="{{a}}" style="padding-bottom:100rpx" u-i="0d1602dc-0" bind:__l="__l" u-p="{{a}}"/><view class="coupon-bottom"><text>查看我的优惠券</text><image src="{{b}}"></image></view></view>

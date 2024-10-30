@@ -1,0 +1,102 @@
+.overlay.data-v-969a1607 {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.coupon-popup.data-v-969a1607 {
+  width: 624rpx;
+  height: 648rpx;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 20px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.coupon-popup>.bg-img.data-v-969a1607 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.coupon-popup .popup-header.data-v-969a1607 {
+  text-align: center;
+  font-size: 12.67px;
+  font-weight: 700;
+  color: #cd6600;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.coupon-popup .popup-content .amount.data-v-969a1607,.coupon-popup .popup-content .condition.data-v-969a1607,.coupon-popup .popup-content .expiry.data-v-969a1607,.coupon-popup .popup-content .claim-btn.data-v-969a1607 {
+  position: absolute;
+}
+.coupon-popup .popup-content .amount.data-v-969a1607 {
+  font-size: 80rpx;
+  font-weight: 700;
+  color: #ff2626;
+  top: 80rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.coupon-popup .popup-content .condition.data-v-969a1607 {
+  font-size: 12.67px;
+  font-weight: 400;
+  color: #ff2626;
+  top: 210rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 10px;
+  height: 40rpx;
+  background: #ffd7b1;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+.coupon-popup .popup-content .expiry.data-v-969a1607 {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #ffde9f;
+  bottom: 50rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+}
+.coupon-popup .popup-content .claim-btn.data-v-969a1607 {
+  width: 70%;
+  height: 80rpx;
+  font-size: 17px;
+  font-weight: 700;
+  color: #e10000;
+  bottom: 110rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.coupon-popup .close-btn.data-v-969a1607 {
+  width: 50rpx;
+  height: 50rpx;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  bottom: -80rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.fade-enter-active.data-v-969a1607,.fade-leave-active.data-v-969a1607 {
+  transition: opacity 0.3s;
+}
+.fade-enter-from.data-v-969a1607,.fade-leave-to.data-v-969a1607 {
+  opacity: 0;
+}

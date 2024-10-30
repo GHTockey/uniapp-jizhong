@@ -257,6 +257,13 @@
 				"navigationBarTitleText": "活动",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/activity/application_index",
+			"style" : 
+			{
+				"navigationBarTitleText" : "活动详情"
+			}
 		}
 	],
 	"globalStyle": {
