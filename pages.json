@@ -278,6 +278,14 @@
 			{
 				"navigationBarTitleText" : "门店详情"
 			}
+		},
+		{
+			"path" : "pages/index/apply_detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "门店预定结果",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

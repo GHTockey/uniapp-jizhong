@@ -236,7 +236,7 @@ function swiper_change(e) {
 	swiper_index.value = e.detail.current;
 }
 
-// 导航 *
+// 导航
 function to_address(shop) {
 	console.log(shop);
 	let address = shop.address.split(",")
