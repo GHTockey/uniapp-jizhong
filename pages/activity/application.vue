@@ -70,6 +70,7 @@
 								style="border: 1rpx solid #DFDFDF; border-radius: 8rpx ;display: flex;padding: 4rpx 17rpx;justify-content: center;align-items: center;">
 								<PickerSelector v-if="item.relative_list && item.relative_list.length > 0"
 									class="input pickerSelector" :name="item.my_column_name"
+									@change="bindPickerChange($event, item.my_column_name)"
 									placeholder-class="placeholderStyle" :range="item.relative_list"
 									:placeholder="`请选择${item.vi_name}`" rangeValue="id" rangeKey="name" />
 								<image src="https://saas.jizhongkeji.com/static/jzkj/images/class_select.png"
@@ -110,8 +111,9 @@
 						<button form-type="submit" class='application_but'
 							style="width: 692rpx;height: 100rpx;background: #FF4F26;border-radius: 14rpx "><text
 								style=" font-size: 32rpx;font-weight: 400;color: #FFFFFF;line-height: 0rpx;">{{ type ==
-									2 ?
-									'立即预定' : '立即报名' }}</text></button>
+									2
+									? '立即预定' :
+								'立即报名' }}</text></button>
 					</view>
 				</form>
 			</view>
@@ -156,6 +158,8 @@ const activity = ref({});
 const fields = ref([]);
 const product = ref();
 
+const picker_select = ref({});
+
 onUnload(() => {
 	clearInterval(inter.value);
 })
@@ -199,6 +203,14 @@ function bindRegionChange(e) {
 
 function wx_pay(wxAppJsSign) {
 	console.log('wx_pay', wxAppJsSign);
+	if (!uni.requestPayment) {
+		uni.showToast({
+			title: 'H5 环境不支持调用requestPayment',
+			duration: 2000,
+			icon: 'none',
+		});
+		return;
+	}
 	uni.requestPayment({
 		timeStamp: '' + wxAppJsSign.timeStamp,
 		nonceStr: wxAppJsSign.nonceStr,
@@ -255,16 +267,24 @@ function to_application_record() {
 function bind_ChangeTime(e) {
 	console.log(e)
 }
+
+function bindPickerChange(e, colName) {
+	console.log('bindPickerChange111', colName, e)
+	picker_select.value[colName] = e.value
+}
 async function formSubmit(e) {
 	e.detail.value.activity_id = activity_id.value
+	// Object.assign(picker_select.value, e.detail.value)
 
-	console.log('formSubmit e.detail', e.detail.value);
+	let form_data = { ...e.detail.value, ...picker_select.value }
+	console.log('formSubmit e', form_data);
 	// return;
 
-	let res = await request('/WxAppCustomer/activity_form_submit', 'post', { ...e.detail.value, product_id: (product.value && product.value.id > 0) ? product.value.id : 0 })
-	if (res.data.code != 0) {
+	let res = await request('/WxAppCustomer/activity_form_submit', 'post', { ...form_data, product_id: (product.value && product.value.id > 0) ? product.value.id : 0 })
+	console.log('res', res);
+	if (res.code != 0) {
 		uni.showToast({
-			title: res.data.msg,
+			title: res.msg,
 			icon: "none",
 		})
 	} else {

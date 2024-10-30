@@ -42,7 +42,7 @@ const props = defineProps({
 
 
 function bindchange(e) {
-	console.log('bindchange', e);
+	// console.log('bindchange', e);
 	let value_show_temp = '';
 	let value = '';
 	if (props.mode == 'region') {
@@ -81,9 +81,9 @@ function bindchange(e) {
 		value_show.value = value_show_temp
 	}
 
-	console.log('bindchange', e);
-	console.log('bindchange value_show', value_show_temp);
-	console.log('bindchange value', value);
+	// console.log('bindchange', e);
+	// console.log('bindchange value_show', value_show_temp);
+	// console.log('bindchange value', value);
 
 	emit('change', {
 		index: e.detail.value,
