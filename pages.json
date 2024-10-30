@@ -271,6 +271,13 @@
 			{
 				"navigationBarTitleText" : "填写报名信息"
 			}
+		},
+		{
+			"path" : "pages/index/shop_detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "门店详情"
+			}
 		}
 	],
 	"globalStyle": {

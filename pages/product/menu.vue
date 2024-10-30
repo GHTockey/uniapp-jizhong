@@ -31,8 +31,8 @@
 		<view class="expand_box" :style="{ top: expand_box_top + 'px' }">
 			<view class="expand_list expand_list_v">
 				<block style="display: flex;align-items: center;" v-for="(navItem, idx) in cuisine_list" :key="idx">
-					<view style="padding-bottom: 20rpx;" class="nav-item {{currentTab == navItem.id ?'active':''}}"
-						:data-current="navItem.id" @click="switchNav">
+					<view style="padding-bottom: 20rpx;" :class="`nav-item ${currentTab == navItem.id ? 'active' : ''}`"
+						 @click="switchNav(navItem.id)">
 						<view style="display: flex;flex-direction: column;align-items: center;">
 							<image class="borderred"
 								style="width: 84rpx;height: 84rpx;border-radius: 28rpx;margin-bottom: 15rpx;"
