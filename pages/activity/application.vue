@@ -13,7 +13,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="application_box" wx:else>
+			<view class="application_box" v-else>
 				<image src="https://saas.jizhongkeji.com/static/jzkj/images/application.png" mode="" />
 			</view>
 
@@ -36,7 +36,7 @@
 								<view class="fonr_item_v">
 									<PickerSelector class="form_input" name="size" value="" :range="sex_list"
 										rangeKey="name" rangeValue="id" placeholder-class="nickname_placeholder"
-										placeholder="请选择尺码" />
+										placeholder="请选择尺码" @change="bindPickerChange($event, 'size')" />
 									<view class="text_clo">码</view>
 								</view>
 							</view>
@@ -93,7 +93,8 @@
 
 							<view
 								style="border: 1rpx solid #DFDFDF; border-radius: 8rpx ;display: flex;padding: 4rpx 17rpx; justify-content: center;align-items: center;">
-								<picker style="display: flex;" mode="region" @change="bindRegionChange"
+								<!-- TODO: app/h5 不支持picker mode="region" -->
+								<!-- <picker style="display: flex;" mode="region" @change="bindRegionChange"
 									:name="item.my_column_name" :value="region" :custom-item="customItem">
 									<view class="picker" style="font-size: 32rpx;display: flex;align-items: center;">
 										<view v-if="region">{{ region[0] }}，{{ region[1] }}，{{ region[2] }}</view>
@@ -102,7 +103,17 @@
 										<image src="https://saas.jizhongkeji.com/static/jzkj/images/class_select.png"
 											style="width: 23rpx;margin-left: 15rpx;height: 14rpx; " mode="widthFix" />
 									</view>
-								</picker>
+								</picker> -->
+								<!-- 通用picker -->
+								<uni-data-picker :name="item.my_column_name" :localdata="customItem"
+									 @change="bindRegionChange($event, item.my_column_name)">
+									<view class="picker" style="font-size: 32rpx;display: flex;align-items: center;">
+										<view v-if="region">{{ region[0] }}，{{ region[1] }}，{{ region[2] }}</view>
+										<view style="color: #bfb9b9;" v-else>请选择{{ item.vi_name }}</view>
+										<image src="https://saas.jizhongkeji.com/static/jzkj/images/class_select.png"
+											style="width: 23rpx;margin-left: 15rpx;height: 14rpx; " mode="widthFix" />
+									</view>
+								</uni-data-picker>
 							</view>
 						</view>
 
@@ -113,7 +124,7 @@
 								style=" font-size: 32rpx;font-weight: 400;color: #FFFFFF;line-height: 0rpx;">{{ type ==
 									2
 									? '立即预定' :
-								'立即报名' }}</text></button>
+									'立即报名' }}</text></button>
 					</view>
 				</form>
 			</view>
@@ -159,6 +170,34 @@ const fields = ref([]);
 const product = ref();
 
 const picker_select = ref({});
+const customItem = ref([{
+	text: "河北省",
+	value: "1-0",
+	children: [
+		{
+			text: "石家庄市",
+			value: "1-1",
+			children: [
+				{
+					text: "长安区",
+					value: "1-1-1"
+				}
+			]
+		},
+		{
+			text: "保定市",
+			value: "1-2"
+		}
+	]
+},
+{
+	text: "安徽省",
+	value: "2-0"
+},
+{
+	text: "北京市",
+	value: "3-0"
+}]);
 
 onUnload(() => {
 	clearInterval(inter.value);
@@ -196,9 +235,15 @@ onLoad(async (options) => {
 
 
 
-function bindRegionChange(e) {
+function bindRegionChange(e, colName) {
 	console.log('picker发送选择改变，携带值为', e.detail.value)
-	region.value = e.detail.value
+	// region.value = e.detail.value
+
+	let temp = e.detail.value.map(item => item.text)
+	picker_select.value[colName] = temp
+	// console.log('temp', temp)
+	region.value = temp
+	
 }
 
 function wx_pay(wxAppJsSign) {

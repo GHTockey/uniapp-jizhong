@@ -441,7 +441,7 @@ function to_buy() {
 			title: '请先选择规格',
 			icon: 'none'
 		})
-		return
+		// return
 	}
 
 	if (need_spec1.value && need_spec2.value) {
