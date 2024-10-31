@@ -314,7 +314,7 @@ function bind_ChangeTime(e) {
 }
 
 function bindPickerChange(e, colName) {
-	console.log('bindPickerChange111', colName, e)
+	// console.log('bindPickerChange111', colName, e)
 	picker_select.value[colName] = e.value
 }
 async function formSubmit(e) {
