@@ -38,19 +38,19 @@
 												}}
 											</view>
 											<view class="count_btn_box width_max_content flex_row_space_bt" @click.stop>
-												<view
+												<!-- <view
 													:class="`de_btn count_btn flex_col_cen_cen ${item.count == 0 ? 'no_active' : ''}`"
-													@click="reduce_count_car(item)">
+													:data-item="item" @click="reduce_count_car">
 													<view class="reduce_icon"></view>
 												</view>
 												<view class="count flex_col_cen_cen">{{ item.count || 1 }}</view>
 												<view
 													:class="`reduce count_btn flex_col_cen_cen ${item.count == item.limit[1] ? 'no_active' : ''}`"
-													@click="add_count_car(item)">
+													:data-item="item" @click="add_count_car">
 													+
-												</view>
-												<!-- <uni-number-box v-model="item.count"
-													@change="countChangeHandler($event, item.id)" /> -->
+												</view> -->
+												<uni-number-box v-model="item.count"
+													@change="countChangeHandler($event, item.id)" />
 											</view>
 										</view>
 									</view>
@@ -87,8 +87,8 @@
 					</view>
 					<view class="flex_row_space_bt width_max_content">
 						<view class="price_totall" v-if="show_price_text">
-							合计：<text class="price">￥{{ show_price_text }}</text>
-							<!-- 合计：<text class="price">￥{{ selected_price }}</text> -->
+							<!-- 合计：<text class="price">￥{{ show_price_text }}</text> -->
+							合计：<text class="price">￥{{ selected_price }}</text>
 						</view>
 						<view :class="`sub_btn ${show_price_text ? '' : 'no_active'}`" @click="to_sub">
 							去付款
@@ -157,23 +157,8 @@ onHide(() => {
 })
 
 
-function countChangeHandler(value, gid) {
-	console.log('countChangeHandler', value, gid);
-	const item = good_list.value.find(item => item.id === gid);
-	if (!item) return;
-
-	// 判断是增加还是减少
-	if (value > item.previousCount) {
-		// console.log('增加商品数量', value, gid);
-		add_count_car(item)
-	} else if (value < item.previousCount) {
-		// console.log('减少商品数量', value, gid);
-		reduce_count_car(item)
-	}
-
-	// 更新 previousCount 和 count
-	item.previousCount = value;
-	item.count = value;
+function countChangeHandler(e, gid) {
+	// console.log('countChangeHandler', e, gid);
 }
 
 
@@ -239,9 +224,8 @@ function checkboxAll(e) {
 	}
 }
 // 减少购物车数量
-async function reduce_count_car(item) {
-	// let item = e.currentTarget.dataset.item;
-	console.log('reduce_count_car', item.count, item.limit[0]);
+async function reduce_count_car(e) {
+	let item = e.currentTarget.dataset.item;
 	if (item.count == item.limit[0]) {
 		uni.showModal({
 			content: '要将该商品移除购物车吗',
@@ -273,8 +257,8 @@ async function reduce_count_car(item) {
 }
 
 // 增加购物车数量
-async function add_count_car(item) {
-	// let item = e.currentTarget.dataset.item;
+async function add_count_car(e) {
+	let item = e.currentTarget.dataset.item;
 	if (item.count == item.limit[1]) {
 		return
 	}
@@ -350,11 +334,6 @@ async function get_info_list(length) {
 		} else {
 			good_list.value = res.data.good_list
 		}
-
-		// 初始化 previousCount
-		good_list.value.forEach(item => {
-			item.previousCount = item.count;
-		});
 
 
 		let price_all = 0

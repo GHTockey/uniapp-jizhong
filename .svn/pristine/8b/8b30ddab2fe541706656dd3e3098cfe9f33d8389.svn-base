@@ -286,13 +286,6 @@
 				"navigationBarTitleText" : "门店预定结果",
 				"navigationStyle": "custom"
 			}
-		},
-		{
-			"path" : "pages/mine/collect_list",
-			"style" : 
-			{
-				"navigationBarTitleText" : "商品收藏"
-			}
 		}
 	],
 	"globalStyle": {

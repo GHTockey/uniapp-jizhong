@@ -23,7 +23,7 @@
 		</view>
 
 		<!-- 个人数据积分/余额/优惠券 -->
-		<view class="mine_data_box flex justify-evenly" @click="toPage('/pages/mine/money')">
+		<view class="mine_data_box flex justify-evenly items-center" @click="toPage('/pages/mine/money')">
 			<view class="mine_data_item">
 				<text class="mine_data_value">1000</text>
 				<text class="mine_data_name">我的积分</text>
@@ -78,18 +78,25 @@
 					<text class="text-[24rpx] mt-[13rpx]">收货地址</text>
 				</view>
 
-				<view class="common_tool_item" v-for="item in 7">
+				<view class="common_tool_item" @click="toPage('/pages/mine/collect_list')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="../../static/icon/my-sc.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">商品收藏</text>
+				</view>
+
+				<view class="common_tool_item">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<image class=" h-full w-full" src="../../static/icon/ppjs.svg"></image>
 					</view>
-					<text class="text-[24rpx] mt-[13rpx]">品牌介绍</text>
+					<text class="text-[24rpx] mt-[13rpx]">品牌介绍tem</text>
 				</view>
 
 				<view class="common_tool_item" @click="toPage('/pages/mine/present')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<image class=" h-full w-full" src="../../static/icon/sm-logo.svg"></image>
 					</view>
-					<text class="text-[24rpx] mt-[13rpx]">测试1</text>
+					<text class="text-[24rpx] mt-[13rpx]">礼品卡</text>
 				</view>
 
 			</view>
@@ -103,18 +110,18 @@
 </template>
 
 <script setup>
-import Tarbar from '@/components/tarbar.vue';
 import { getTitleBarHeight } from '@/utils/index.js';
+import { toPage } from '@/utils';
 
 const titleBarHeight = getTitleBarHeight();
 
 
 // 跳转指定页面
-function toPage(url) {
-	uni.navigateTo({
-		url
-	})
-}
+// function toPage(url) {
+// 	uni.navigateTo({
+// 		url
+// 	})
+// }
 </script>
 
 <style>
@@ -182,6 +189,10 @@ function toPage(url) {
 				// 左右边框
 				// border-left: 1px solid #ff0000;
 				// border-right: 1px solid #ff0000;
+				// border: 1px solid red;
+				background-image: url('../../static/images/mine-lr-border.svg');
+				background-size: 100%;
+				background-repeat: no-repeat;
 			}
 		}
 	}
