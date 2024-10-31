@@ -58,23 +58,21 @@ const _sfc_main = {
         if (tabbarSelectedIndex.value == index)
           return;
         try {
-          common_vendor.index.redirectTo({
-            url: "/" + tabbarList.value[index].path
-          });
+          await common_vendor.index.redirectTo({ url: "/" + tabbarList.value[index].path });
           tabbarSelectedIndex.value = index;
         } catch (error) {
-          common_vendor.index.showToast({ title: error.errMsg });
+          console.log(error);
+          common_vendor.index.showToast({ title: error.errMsg, icon: "none" });
         }
       } else {
         if (props.selectedIndex == index)
           return;
         try {
-          common_vendor.index.redirectTo({
-            url: "/" + props.list[index].path
-          });
+          await common_vendor.index.redirectTo({ url: "/" + props.list[index].path });
           updateSelectedIndex(index);
         } catch (error) {
-          common_vendor.index.showToast({ title: error.errMsg });
+          console.log(error);
+          common_vendor.index.showToast({ title: error.errMsg, icon: "none" });
         }
       }
     }
@@ -96,7 +94,7 @@ const _sfc_main = {
       } : {
         c: common_vendor.f(__props.list, (item, index, i0) => {
           return {
-            a: __props.selectedIndex == index ? "/static/" + item.selected_icon_path : "/static/" + item.icon_path,
+            a: __props.selectedIndex == index ? "../../static/" + item.selected_icon_path : "../../static/" + item.icon_path,
             b: common_vendor.t(item.text),
             c: common_vendor.n({
               "active": __props.selectedIndex == index

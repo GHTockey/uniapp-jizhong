@@ -8764,6 +8764,17 @@ const Pinia = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePropert
   skipHydrate,
   storeToRefs
 }, Symbol.toStringTag, { value: "Module" }));
+const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
+  !isInSSRComponentSetup && injectHook(lifecycle, hook, target);
+};
+const onShow = /* @__PURE__ */ createHook(ON_SHOW);
+const onHide = /* @__PURE__ */ createHook(ON_HIDE);
+const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
+const onUnload = /* @__PURE__ */ createHook(ON_UNLOAD);
+const onPageScroll = /* @__PURE__ */ createHook(ON_PAGE_SCROLL);
+const onReachBottom = /* @__PURE__ */ createHook(ON_REACH_BOTTOM);
+const onShareTimeline = /* @__PURE__ */ createHook(ON_SHARE_TIMELINE);
+const onShareAppMessage = /* @__PURE__ */ createHook(ON_SHARE_APP_MESSAGE);
 /*!
   * vue-router v4.3.0
   * (c) 2024 Eduardo San Martin Morote
@@ -8790,13 +8801,6 @@ const routeLocationKey = Symbol("route location");
 function useRoute() {
   return inject(routeLocationKey);
 }
-const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
-  !isInSSRComponentSetup && injectHook(lifecycle, hook, target);
-};
-const onShow = /* @__PURE__ */ createHook(ON_SHOW);
-const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
-const onUnload = /* @__PURE__ */ createHook(ON_UNLOAD);
-const onReachBottom = /* @__PURE__ */ createHook(ON_REACH_BOTTOM);
 const pages = [
   {
     path: "pages/index/index",
@@ -9025,6 +9029,83 @@ const pages = [
     path: "pages/mine/presentRecords",
     style: {
       navigationBarTitleText: "购卡记录"
+    }
+  },
+  {
+    path: "pages/index/shop_list",
+    style: {
+      navigationBarTitleText: "门店",
+      navigationStyle: "custom"
+    }
+  },
+  {
+    path: "pages/index/introproduct",
+    style: {
+      navigationBarTitleText: "资讯",
+      navigationStyle: "custom"
+    }
+  },
+  {
+    path: "pages/index/introproduct_detail",
+    style: {
+      navigationBarTitleText: "资讯详情",
+      navigationStyle: "custom"
+    }
+  },
+  {
+    path: "pages/activity/activity_list",
+    style: {
+      navigationBarTitleText: "活动",
+      navigationStyle: "custom"
+    }
+  },
+  {
+    path: "pages/activity/application_index",
+    style: {
+      navigationBarTitleText: "活动详情"
+    }
+  },
+  {
+    path: "pages/activity/application",
+    style: {
+      navigationBarTitleText: "填写报名信息"
+    }
+  },
+  {
+    path: "pages/index/shop_detail",
+    style: {
+      navigationBarTitleText: "门店详情"
+    }
+  },
+  {
+    path: "pages/index/apply_detail",
+    style: {
+      navigationBarTitleText: "门店预定结果",
+      navigationStyle: "custom"
+    }
+  },
+  {
+    path: "pages/mine/collect_list",
+    style: {
+      navigationBarTitleText: "商品收藏"
+    }
+  },
+  {
+    path: "pages/mine/info_edit",
+    style: {
+      navigationBarTitleText: "个人信息"
+    }
+  },
+  {
+    path: "pages/mine/order",
+    style: {
+      navigationBarTitleText: "全部订单"
+    }
+  },
+  {
+    path: "pages/mine/drawback",
+    style: {
+      navigationBarTitleText: "退款"
     }
   }
 ];
@@ -11811,9 +11892,13 @@ exports.index = index;
 exports.initVueI18n = initVueI18n;
 exports.n = n$1;
 exports.o = o$1;
+exports.onHide = onHide;
 exports.onLoad = onLoad;
 exports.onMounted = onMounted;
+exports.onPageScroll = onPageScroll;
 exports.onReachBottom = onReachBottom;
+exports.onShareAppMessage = onShareAppMessage;
+exports.onShareTimeline = onShareTimeline;
 exports.onShow = onShow;
 exports.onUnload = onUnload;
 exports.p = p$1;
@@ -11827,3 +11912,4 @@ exports.t = t$1;
 exports.unref = unref;
 exports.useRoute = useRoute;
 exports.watch = watch;
+exports.wx$1 = wx$1;

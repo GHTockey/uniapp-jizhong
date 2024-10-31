@@ -44,7 +44,7 @@ const _sfc_main = {
           showBack: true
         }),
         b: common_assets._imports_0$20,
-        c: common_assets._imports_1$7,
+        c: common_assets._imports_1$6,
         d: common_vendor.t(currentItem.value.title),
         e: common_vendor.t(currentItem.value.time),
         f: common_vendor.t(currentItem.value.card_text),

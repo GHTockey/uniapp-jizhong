@@ -39,7 +39,7 @@ const props = defineProps({
 	start: { type: String, value: null, },
 })
 
-
+// console.log(props.value, 123);
 
 function bindchange(e) {
 	// console.log('bindchange', e);
@@ -87,7 +87,7 @@ function bindchange(e) {
 
 	emit('change', {
 		index: e.detail.value,
-		value: value,
+		value: tceValue.value,
 		value_show: value_show_temp,
 	})
 }

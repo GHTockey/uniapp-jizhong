@@ -2,6 +2,7 @@
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
 const stores_tabbar = require("./stores/tabbar2.js");
+const stores_temp = require("./stores/temp.js");
 if (!Math) {
   "./pages/index/index.js";
   "./pages/test/test.js";
@@ -39,6 +40,18 @@ if (!Math) {
   "./pages/mine/presentActivate.js";
   "./pages/mine/presentActivateRes.js";
   "./pages/mine/presentRecords.js";
+  "./pages/index/shop_list.js";
+  "./pages/index/introproduct.js";
+  "./pages/index/introproduct_detail.js";
+  "./pages/activity/activity_list.js";
+  "./pages/activity/application_index.js";
+  "./pages/activity/application.js";
+  "./pages/index/shop_detail.js";
+  "./pages/index/apply_detail.js";
+  "./pages/mine/collect_list.js";
+  "./pages/mine/info_edit.js";
+  "./pages/mine/order.js";
+  "./pages/mine/drawback.js";
 }
 const __default__ = {
   onLaunch: function() {
@@ -54,6 +67,8 @@ const __default__ = {
 const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
   __name: "App",
   setup(__props) {
+    const tempStore = stores_temp.useTempStore();
+    tempStore.getUserInfoApi();
     const tabBarStore = stores_tabbar.useTabBarStore();
     tabBarStore.getTabBarListApi();
     common_vendor.onMounted(() => {

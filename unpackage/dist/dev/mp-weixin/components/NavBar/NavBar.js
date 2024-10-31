@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const utils_index = require("../../utils/index.js");
 const _sfc_main = {
   __name: "NavBar",
   props: {
@@ -47,7 +48,9 @@ const _sfc_main = {
         h: search_str.value,
         i: common_vendor.o(($event) => search_str.value = $event.detail.value),
         j: common_vendor.unref(boundingWidth) + "px"
-      }) : {});
+      }) : {}, {
+        k: common_vendor.unref(utils_index.getStatusBarHeight)() + "px"
+      });
     };
   }
 };

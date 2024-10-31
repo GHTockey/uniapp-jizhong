@@ -63,9 +63,9 @@ const _sfc_main = {
         e: (_a = bankList.value[bankValue.value]) == null ? void 0 : _a.name
       }, ((_b = bankList.value[bankValue.value]) == null ? void 0 : _b.name) ? {
         f: common_vendor.t(bankList.value[bankValue.value].name),
-        g: common_assets._imports_2$3
+        g: common_assets._imports_2$4
       } : {
-        h: common_assets._imports_2$3
+        h: common_assets._imports_2$4
       }, {
         i: common_vendor.o(bankChangeHandler),
         j: bankValue.value,

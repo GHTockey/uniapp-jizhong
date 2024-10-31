@@ -26,9 +26,9 @@ const _sfc_main = {
           isWhite: true
         }),
         b: common_assets._imports_0$17,
-        c: common_assets._imports_1$7,
+        c: common_assets._imports_1$6,
         d: common_vendor.t(buyerMsg.value || "无留言"),
-        e: common_assets._imports_2$3,
+        e: common_assets._imports_2$4,
         f: common_vendor.o(($event) => showActionSheet.value = true),
         g: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentDetailSimple")),
         h: buyerMsg.value,

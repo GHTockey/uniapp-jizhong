@@ -35,7 +35,19 @@
     "pages/mine/presentSend",
     "pages/mine/presentActivate",
     "pages/mine/presentActivateRes",
-    "pages/mine/presentRecords"
+    "pages/mine/presentRecords",
+    "pages/index/shop_list",
+    "pages/index/introproduct",
+    "pages/index/introproduct_detail",
+    "pages/activity/activity_list",
+    "pages/activity/application_index",
+    "pages/activity/application",
+    "pages/index/shop_detail",
+    "pages/index/apply_detail",
+    "pages/mine/collect_list",
+    "pages/mine/info_edit",
+    "pages/mine/order",
+    "pages/mine/drawback"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -42,7 +42,7 @@
 					<view class="line"></view>
 				</view>
 				<block v-for="item in shop.introduce" :key="item.id">
-					<rich-text @@click="on_tap_rich_text" @longpress="on_tap_rich_text"
+					<rich-text @click="on_tap_rich_text" @longpress="on_tap_rich_text"
 						:data-name="item.type == 1 ? 'introduce' : ''" :nodes="item.content"></rich-text>
 				</block>
 			</view>

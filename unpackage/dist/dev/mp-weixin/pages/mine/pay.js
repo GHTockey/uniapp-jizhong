@@ -288,10 +288,10 @@ const _sfc_main = {
         z: common_vendor.t(goods_info.value.unit_price),
         A: common_vendor.t(goods_info.value.count || 1),
         B: common_vendor.t(buyerMsg.value || "无留言"),
-        C: common_assets._imports_2$3,
+        C: common_assets._imports_2$4,
         D: common_vendor.o(($event) => showActionSheet.value = true),
-        E: common_assets._imports_2$3,
-        F: common_assets._imports_2$3,
+        E: common_assets._imports_2$4,
+        F: common_assets._imports_2$4,
         G: common_vendor.o(to_pay),
         H: common_vendor.o(to_sub)
       }) : {}, {
@@ -302,10 +302,10 @@ const _sfc_main = {
           title: "买家留言",
           show: showActionSheet.value
         }),
-        M: common_assets._imports_1$4,
+        M: common_assets._imports_1$3,
         N: `/static/icon/select_fill-${selectPayType.value == 1 ? "a" : "n"}.svg`,
         O: common_vendor.o(($event) => change_pay_type(1)),
-        P: common_assets._imports_2$2,
+        P: common_assets._imports_2$3,
         Q: `/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
         R: common_vendor.o(($event) => change_pay_type(2)),
         S: common_assets._imports_3$3,

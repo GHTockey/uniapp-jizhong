@@ -307,6 +307,13 @@
 			{
 				"navigationBarTitleText" : "全部订单"
 			}
+		},
+		{
+			"path" : "pages/mine/drawback",
+			"style" : 
+			{
+				"navigationBarTitleText" : "退款"
+			}
 		}
 	],
 	"globalStyle": {

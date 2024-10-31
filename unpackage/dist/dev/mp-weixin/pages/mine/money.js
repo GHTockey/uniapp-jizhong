@@ -77,7 +77,7 @@ const _sfc_main = {
         j: common_vendor.o(($event) => selectTab.value = 2),
         k: common_vendor.t(years.value[0][yearsIndex1.value]),
         l: common_vendor.t(years.value[1][yearsIndex2.value]),
-        m: common_assets._imports_1$5,
+        m: common_assets._imports_1$4,
         n: years.value,
         o: echoVal.value,
         p: common_vendor.o(yearChange),

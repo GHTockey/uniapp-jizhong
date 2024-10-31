@@ -18,6 +18,9 @@ const menu_top = 110;
 const _sfc_main = {
   __name: "menu",
   setup(__props) {
+    setTimeout(() => {
+      console.log("=======================================containerMarTop", containerMarTop.value);
+    }, 1e3);
     const containerMarTop = common_vendor.computed(() => {
       return utils_index.getTitleBarHeight() + utils_index.getStatusBarHeight();
     });
@@ -160,8 +163,8 @@ const _sfc_main = {
           return {
             a: navItem.image_uri,
             b: common_vendor.t(navItem.name),
-            c: navItem.id,
-            d: common_vendor.o(switchNav, idx),
+            c: common_vendor.n(`nav-item ${currentTab.value == navItem.id ? "active" : ""}`),
+            d: common_vendor.o(($event) => switchNav(navItem.id), idx),
             e: idx
           };
         }),

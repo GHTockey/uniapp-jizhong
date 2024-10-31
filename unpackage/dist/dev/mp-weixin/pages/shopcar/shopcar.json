@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "购物车",
   "usingComponents": {
-    "shopping-car-default": "../../components/ShoppingCarDefault/ShoppingCarDefault"
+    "tab-bar": "../../components/TabBar/TabBar"
   }
 }

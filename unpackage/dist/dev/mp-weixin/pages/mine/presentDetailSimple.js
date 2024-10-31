@@ -17,7 +17,7 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: common_assets._imports_0$17,
-        b: common_assets._imports_1$7,
+        b: common_assets._imports_1$6,
         c: !isRecords.value
       }, !isRecords.value ? {
         d: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentCard"))

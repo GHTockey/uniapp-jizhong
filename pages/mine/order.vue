@@ -1,7 +1,6 @@
 <template>
-	<view wx:if="{{is_loading}}">
-
-
+	<view v-if="is_loading">
+		
 		<view>
 			<view class="nav_area">
 				<view :data-status="item.status" :data-nav_index="index" @click="change_nav"
@@ -70,8 +69,8 @@
 
 
 						</view>
-						<view class="product_info" v-if="item.json_info" v-for="json_item, json_index in item.json_info"
-							:key="json_index">
+						<view class="product_info" v-if="item.json_info"
+							v-for="(json_item, json_index) in item.json_info" :key="json_index">
 							<!-- good_imgs -->
 							<image lazy-load :src="json_item.img_uri" mode="aspectFill" />
 							<view class="detail_info">
@@ -97,12 +96,12 @@
 						<view class="order_btn">
 
 							<view class="state_btn" v-if="item.status == 1">
-								<text @click="close_business(item.id)"
+								<text @click.stop.prevent="close_business(item.id)"
 									v-if="item.status == 1 && item.countdown > 0">取消订单</text>
 								<text @click.stop.prevent="delte_business(item.id)"
 									v-if="item.status == 1 && item.countdown <= 0">删除订单</text>
 								<text v-if="item.status == 1 && item.countdown > 0" class="active topayorder"
-									@click="re_pay(item.id)">立即付款{{ item.countdown_time2 }}</text>
+									@click.stop.prevent="re_pay(item.id)">立即付款{{ item.countdown_time2 }}</text>
 								<text v-if="item.status == 1 && item.countdown <= 0 && is_show_btn"
 									class="active">再买一单</text>
 							</view>
@@ -111,7 +110,7 @@
 								<text class="active" v-if="is_show_btn">再买一单</text>
 							</view>
 
-							<view class="state_btn" @click="to_drawback(item.id)"
+							<view class="state_btn" @click.stop.prevent="to_drawback(item.id)"
 								v-if="item.status == 2 && (item.refund_res == '' || item.refund_res == 3 || item.refund_res == 6)">
 								<!-- // 1:退款中;2:退款成功;3:退款失败;4:退款处理中;5:退款关闭;6:退款异常 -->
 								<text v-if="item.refund_res == ''">申请退款</text>
@@ -121,8 +120,9 @@
 
 							<view class="state_btn"
 								v-if="item.status == 2 && (item.refund_res == 1 || item.refund_res == 2 || item.refund_res == 4 || item.refund_res == 5)">
-								<text v-if="item.drawback_list.length > 0" @click="change(item.id)">折叠退款商品</text>
-								<text @click="to_drawback(item.id)"
+								<text v-if="item.drawback_list.length > 0"
+									@click.stop.prevent="change(item.id)">折叠退款商品</text>
+								<text @click.stop.prevent="to_drawback(item.id)"
 									v-if="item.refund_res == 2 && item.price_all > item.drawback_money">申请退款</text>
 								<text v-if="item.refund_res == 1">退款中</text>
 								<text v-if="item.refund_res == 2 && item.price_all == item.drawback_money">退款成功</text>
@@ -136,7 +136,7 @@
 							<view class="state_btn" v-if="item.status == 4">
 								<!-- catch:tap="to_drawback" data-drawbackid="{{item.id}}" -->
 								<text v-if="is_show_btn">申请售后</text>
-								<text v-if="item.buy_type != 1" @click="look_delivery(item.id)">查看物流</text>
+								<text v-if="item.buy_type != 1" @click.stop.prevent="look_delivery(item.id)">查看物流</text>
 								<!-- <text class="active topayorder" catch:tap="comfire_order" data-comfireorderid="{{item.id}}">确认收货</text> -->
 							</view>
 							<view class="state_btn" v-if="item.status == 5">
@@ -152,8 +152,8 @@
 						<!-- 已退款商品 -->
 						<view style="margin-top:30rpx" v-if="item.drawback_list.length > 0 && item.is_open"
 							v-for="drawback in item.drawback_list" :key="drawback">
-							<view class="product_info" v-if="drawback.json_info" v-for="json_item in drawback.json_info"
-								:key="json_index">
+							<view class="product_info" v-if="drawback.json_info"
+								v-for="(json_item, json_index) in drawback.json_info" :key="json_index">
 								<image lazy-load :src="json_item.img_uri" mode="aspectFill" />
 								<view class="detail_info">
 									<view class="name_price">
@@ -178,19 +178,19 @@
 
 
 							<view class="order_info_v">
-								<view v-if="drawback.userback.reason"
+								<view v-if="drawback.userback?.reason"
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-											}}</text>申请退款，原因：{{ drawback.userback.reason }}
+									}}</text>申请退款，原因：{{ drawback.userback.reason }}
 									</view>
 								</view>
 
-								<view v-if="drawback.shopback.reason"
+								<view v-if="drawback.shopback?.reason"
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-											}}</text>商家主动退款，原因：{{ drawback.shopback.reason }}
+									}}</text>商家主动退款，原因：{{ drawback.shopback.reason }}
 									</view>
 								</view>
 
@@ -198,7 +198,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-											}}</text>
+									}}</text>
 										商家同意退款</view>
 								</view>
 
@@ -206,7 +206,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-											}}</text>
+									}}</text>
 										商家拒绝退款</view>
 								</view>
 							</view>

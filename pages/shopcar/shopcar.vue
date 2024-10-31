@@ -321,8 +321,7 @@ async function save_selected_good() {
 }
 // 跳转菜单
 async function to_menu(e) {
-	uni.switchTab({
-		//   url: '/pages/product/index',
+	uni.redirectTo({
 		url: '/pages/product/menu',
 	})
 }

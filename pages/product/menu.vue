@@ -1,5 +1,7 @@
 <template>
 	<view class="menu-container" :style="{ marginTop: containerMarTop + 'px' }">
+
+
 		<!-- 导航栏 -->
 		<NavBar title="标题" showSearch />
 
@@ -115,6 +117,9 @@ import { onLoad, onShow } from "@dcloudio/uni-app";
 import Tarbar from "@/components/Tarbar.vue";
 
 
+setTimeout(() => {
+	console.log('=======================================containerMarTop', containerMarTop.value);
+}, 1000)
 
 // 往下挤的高度 
 const containerMarTop = computed(() => {
@@ -289,6 +294,7 @@ function navbarSelectvideo_category_id(id) {
 <style lang="scss" scoped>
 .menu-container {
 	padding-bottom: $tabbar-height;
+	// padding-top: $nav-height;
 }
 </style>
 

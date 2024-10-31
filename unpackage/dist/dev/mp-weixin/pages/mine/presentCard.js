@@ -81,7 +81,7 @@ const _sfc_main = {
             i: index
           });
         }),
-        c: common_assets._imports_1$7,
+        c: common_assets._imports_1$6,
         d: common_vendor.o(($event) => selectedIndex.value = $event),
         e: common_vendor.p({
           selectedIndex: selectedIndex.value

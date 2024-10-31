@@ -29,7 +29,12 @@ const _sfc_main = {
       default: false
     }
   },
-  setup(__props) {
+  emits: ["currentPage"],
+  setup(__props, { emit: __emit }) {
+    const emit = __emit;
+    function currentPage(e) {
+      emit("currentPage", e);
+    }
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: __props.name == "swiper"
@@ -51,7 +56,7 @@ const _sfc_main = {
         i: __props.swiper.autoplay,
         j: __props.swiper.interval,
         k: __props.swiper.duration,
-        l: common_vendor.o((...args) => _ctx.currentPage && _ctx.currentPage(...args))
+        l: common_vendor.o(currentPage)
       }) : {}, {
         m: __props.name == "productList"
       }, __props.name == "productList" ? common_vendor.e({

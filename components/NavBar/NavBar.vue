@@ -1,5 +1,5 @@
 <template>
-	<view class="nav-bar-container">
+	<view class="nav-bar-container" :style="{ marginTop: getStatusBarHeight() + 'px' }">
 		<!-- 返回按钮 -->
 		<view class="nav-bar-back" v-if="showBack" @click="goBack">
 			<image :src="isWhite ? '../../static/icon/left-white-icon.svg' : '../../static/icon/left-black-icon.svg'"
@@ -26,13 +26,15 @@
 					v-model="search_str" />
 			</view>
 			<!-- 小程序胶囊宽度 -->
-			<view class="search_box_lable flex_row_cen_cen" :style="{ opacity: 0, width: boundingWidth + 'px' }"></view>
+			<view class="search_box_lable flex_row_cen_cen" :style="{ opacity: 0, width: boundingWidth + 'px' }">
+			</view>
 		</view>
 	</view>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { getTitleBarHeight, getStatusBarHeight } from '@/utils';
 
 const props = defineProps({
 	title: {

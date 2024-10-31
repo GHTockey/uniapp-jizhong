@@ -486,6 +486,9 @@ view,text,::before,::after {
 .items-center {
     align-items: center
 }
+.ijustify-start {
+    justify-content: flex-start !important
+}
 .justify-end {
     justify-content: flex-end
 }
@@ -869,18 +872,68 @@ view,text,::before,::after {
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+/* 数量加减按钮 */
+.count_btn_box{
+	flex: none;
+    height: 50rpx;
+    width: -webkit-max-content;
+    width: max-content;
+}
+.count_btn{
+	box-sizing: border-box;
+	height: 50rpx;
+	margin: 0rpx 4rpx;
+	font-size: 44rpx;
+	color: #555353;
+	font-weight: bold;
+	line-height: 1;
+    align-items: flex-end;
+    overflow: hidden;
+	width: 50rpx;
+}
+.count_btn.de_btn{
+	align-items: flex-start;
+}
+.count_btn.no_active{
+	color: #E8E8E8;
+}
+.reduce_icon{
+	background-color: #555353;
+	height: 4rpx;
+	margin-top: 4rpx;
+	width: 24rpx;
+}
+.reduce_icon_new{
+    height: 38rpx;
+    width: 38rpx;
+}
+.no_active .reduce_icon{
+	background-color: #E8E8E8;
+}
+.count_btn_box .count{
+	background-color: #F2F2F2;
+	height: 46rpx;
+	width: 70rpx;
+	font-size: 32rpx;
+	font-weight: 500;
+	color: #555353;
+}
 /*每个页面公共css */
 view,text {
   box-sizing: border-box;
 }
-
+::-webkit-scrollbar {
+  display: none !important;
+}
+::-webkit-scrollbar-thumb {
+  display: none !important;
+}
 /* 文本超出显示省略号 */
 .text_ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 /* 弹性布局 */
 .flex_row_str_str {
   display: flex;
@@ -979,7 +1032,6 @@ view,text {
 .flex_none {
   flex: none;
 }
-
 /* 弹性布局结束 */
 /* 横向展示的产品列表 [start] */
 .product_list_row {
@@ -1023,7 +1075,6 @@ view,text {
   color: #ffffff;
   font-size: 22rpx;
 }
-
 /* 横向展示的产品列表 [end] */
 .product_item_navigator a {
   width: 100%;

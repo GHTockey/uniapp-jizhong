@@ -134,7 +134,6 @@ const _sfc_main = {
           title: "请先选择规格",
           icon: "none"
         });
-        return;
       }
       if (need_spec1.value && need_spec2.value) {
         let name = goodsDetail.value.spec_list2.name || "规格";
