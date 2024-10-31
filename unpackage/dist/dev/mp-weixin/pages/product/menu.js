@@ -18,10 +18,7 @@ const menu_top = 110;
 const _sfc_main = {
   __name: "menu",
   setup(__props) {
-    setTimeout(() => {
-      console.log("=======================================containerMarTop", containerMarTop.value);
-    }, 1e3);
-    const containerMarTop = common_vendor.computed(() => {
+    common_vendor.computed(() => {
       return utils_index.getTitleBarHeight() + utils_index.getStatusBarHeight();
     });
     const statusBarHeight = utils_index.getStatusBarHeight();
@@ -202,8 +199,7 @@ const _sfc_main = {
       } : {}, {
         q: common_vendor.p({
           isAppMode: true
-        }),
-        r: containerMarTop.value + "px"
+        })
       });
     };
   }

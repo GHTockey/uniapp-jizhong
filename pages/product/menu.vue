@@ -1,5 +1,6 @@
 <template>
-	<view class="menu-container" :style="{ marginTop: containerMarTop + 'px' }">
+	<!-- <view class="menu-container" :style="{ marginTop: containerMarTop + 'px' }"> -->
+	<view class="menu-container">
 
 
 		<!-- 导航栏 -->
@@ -34,7 +35,7 @@
 			<view class="expand_list expand_list_v">
 				<block style="display: flex;align-items: center;" v-for="(navItem, idx) in cuisine_list" :key="idx">
 					<view style="padding-bottom: 20rpx;" :class="`nav-item ${currentTab == navItem.id ? 'active' : ''}`"
-						 @click="switchNav(navItem.id)">
+						@click="switchNav(navItem.id)">
 						<view style="display: flex;flex-direction: column;align-items: center;">
 							<image class="borderred"
 								style="width: 84rpx;height: 84rpx;border-radius: 28rpx;margin-bottom: 15rpx;"
@@ -52,7 +53,7 @@
 
 
 		<!-- 左侧分类 -->
-		<view class="menu flex_col_cen_cen"
+		<view class="menu flex_col_cen_cen pt-[20rpx]"
 			:style="{ top: statusBarHeight + menu_top + 10 + 'px', height: 'calc(100vh - ' + (statusBarHeight + menu_top) + 'px)', paddingBottom: 'constant(safe-area-inset-bottom)', paddingBottom: 'env(safe-area-inset-bottom)' }">
 
 			<template v-for="item in product_category_list" :key="item.id">
@@ -81,7 +82,7 @@
 		</view>
 
 		<!-- 商品 -->
-		<view class="right_content flex_col_str_str">
+		<view class="right_content flex_col_str_str pt-[50rpx]">
 
 			<view :style="`height:${navHeight}px;padding-top:${statusBarHeight + 20}px;`"></view>
 
@@ -116,10 +117,6 @@ import { request } from '@/utils/request.js';
 import { onLoad, onShow } from "@dcloudio/uni-app";
 import Tarbar from "@/components/Tarbar.vue";
 
-
-setTimeout(() => {
-	console.log('=======================================containerMarTop', containerMarTop.value);
-}, 1000)
 
 // 往下挤的高度 
 const containerMarTop = computed(() => {

@@ -1,8 +1,8 @@
 <template>
-	<!-- <view v-if="userInfo && userInfo.id > 0 && is_loading"> -->
+	<HeightBar />
 	<view class="shop_list_container">
 		<!-- 分类 -->
-		<view class="menu flex_col_cen_cen shop_list_container_menu">
+		<view class="menu flex_col_cen_cen shop_list_container_menu" :style="{ top: menu_top + 'px' }">
 			<template v-for="(item, i) in category_list" :key="item.id">
 				<view
 					:class="`menu_item flex_col_cen_cen ${idnex == i ? 'active' : ''} menu_item_length${item.name?.length}`"
@@ -15,7 +15,8 @@
 		</view>
 
 
-		<view class="right_content flex_col_str_str ">
+		<!-- 右侧内容 -->
+		<view class="right_content flex_col_str_str">
 			<view class="product_list" v-if="store_list.length > 0">
 				<navigator hover-class="none" :url="`/pages/index/shop_detail?id=${item.id}`"
 					class="product_item_v company_box" v-for="(item, index) in store_list" :key="index">
@@ -72,11 +73,16 @@
 import { ref } from "vue";
 import { request } from "@/utils/request";
 import { onLoad } from "@dcloudio/uni-app";
+import { getTitleBarHeight, getStatusBarHeight } from '@/utils';
 const category_list = ref([])
 const idnex = ref(0)
 const gps = ref('')
 const store_list = ref([])
 const yuanshi = ref([])
+
+// 左侧分类菜单top值
+const menu_top = ref(getStatusBarHeight() + getTitleBarHeight())
+
 
 
 
@@ -244,11 +250,11 @@ function get_user_location(e) {
 	// padding-top: 300rpx;
 	// min-height: calc(100vh - $nav-height - $tabbar-height);
 	min-height: 100vh;
-	padding-top: $nav-height;
+	// padding-top: $nav-height;
 	padding-bottom: $tabbar-height;
 
 	.shop_list_container_menu {
-		top: $nav-height;
+		// top: $nav-height;
 	}
 }
 </style>

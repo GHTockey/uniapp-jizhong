@@ -48,7 +48,6 @@ const _sfc_main = {
     const goods_group_list = common_vendor.ref();
     const productList = common_vendor.ref();
     const goods_count = common_vendor.ref(0);
-    console.log(getApp());
     common_vendor.onLoad(() => {
       common_vendor.index.showLoading({
         title: "loading"

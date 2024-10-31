@@ -126,7 +126,7 @@
 </template>
 
 <script setup>
-import { getTitleBarHeight } from '@/utils/index.js';
+import { getTitleBarHeight } from '@/utils';
 import { toPage } from '@/utils';
 import { ref } from 'vue';
 import { useTempStore } from '@/stores/temp.js';
@@ -174,7 +174,6 @@ const goods_group_list = ref();
 const productList = ref();
 const goods_count = ref(0);
 
-console.log(getApp());
 
 onLoad(() => {
 	uni.showLoading({

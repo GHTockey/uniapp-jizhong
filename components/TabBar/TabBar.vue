@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, watch } from "vue";
 import { request } from "@/utils/request.js";
 import { useSystemStore } from "@/stores/system.js";
 import { useTabBarStore } from "@/stores/tabBar.js";
@@ -64,6 +64,18 @@ const props = defineProps({
 	}
 })
 
+// 获取当前path
+// console.log(getCurrentPages()[getCurrentPages().length - 1].route);
+watch(() => tabbarList.value, (newVal) => {
+	// console.log('=======================================newVal', newVal);
+	newVal.forEach((item, index) => {
+		if (item.path == getCurrentPages()[getCurrentPages().length - 1].route) {
+			tabBarStore.selectedIndex = index
+			emit('update:selectedIndex', index)
+		}
+	})
+})
+
 const updateSelectedIndex = (index) => {
 	emit('update:selectedIndex', index)
 }
@@ -90,17 +102,6 @@ async function selectTab(index) {
 			uni.showToast({ title: error.errMsg, icon: 'none' })
 		}
 	}
-
-	// try {
-	// 	await uni.navigateTo({ url: '/' + (props.isAppMode ? tabbarList.value[index].path : props.list[index].path) })
-	// 	updateSelectedIndex(index)
-	// } catch (error) {
-	// 	console.log(error)
-	// 	uni.showToast({
-	// 		title: '页面不存在',
-	// 		icon: 'error'
-	// 	})
-	// }
 }
 </script>
 
