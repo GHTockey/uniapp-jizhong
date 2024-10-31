@@ -45,7 +45,7 @@
 			<!-- 头部 -->
 			<view class="my_order_header flex justify-between">
 				<text class=" text-[28rpx]">我的订单</text>
-				<view>
+				<view @click="toPage('/pages/mine/order')">
 					<text class=" text-[25rpx] text-[#575757]">详情</text>
 					<image class="w-[14rpx] h-[20rpx] ml-[10rpx]" src="../../static/images/next1.svg" mode="widthFix">
 					</image>

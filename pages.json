@@ -300,6 +300,13 @@
 			{
 				"navigationBarTitleText" : "个人信息"
 			}
+		},
+		{
+			"path" : "pages/mine/order",
+			"style" : 
+			{
+				"navigationBarTitleText" : "全部订单"
+			}
 		}
 	],
 	"globalStyle": {
