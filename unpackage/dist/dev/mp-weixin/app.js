@@ -54,6 +54,7 @@ if (!Math) {
   "./pages/mine/drawback.js";
   "./pages/mine/distribution_center.js";
   "./pages/mine/promot.js";
+  "./pages/mine/distribution_order_list.js";
 }
 const __default__ = {
   onLaunch: function() {

@@ -9120,6 +9120,12 @@ const pages = [
     style: {
       navigationBarTitleText: "推广规则"
     }
+  },
+  {
+    path: "pages/mine/distribution_order_list",
+    style: {
+      navigationBarTitleText: "分销订单"
+    }
   }
 ];
 const globalStyle = {
