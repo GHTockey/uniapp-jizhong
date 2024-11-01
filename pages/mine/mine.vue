@@ -1,5 +1,6 @@
 <template>
-	<view class="mine_container p-[20rpx]" style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/my-bg.svg');">
+	<view class="mine_container p-[20rpx]"
+		style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/my-bg.svg');">
 		<!-- 状态栏 + 小程序胶囊栏高度占位 -->
 		<!-- <view class="status_bar" :style="{ height: `${titleBarHeight}px` }"></view> -->
 		<HeightBar appendTitleBar />
@@ -21,7 +22,8 @@
 			<!-- right -->
 			<view class="flex items-center opacity-55" @click="edit_user_info">
 				<text class="mr-[10rpx]">设置</text>
-				<image class="w-[33.33rpx] h-[33.33rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/setting.svg" mode="widthFix"></image>
+				<image class="w-[33.33rpx] h-[33.33rpx]"
+					src="https://saas.jizhongkeji.com/static/jzkj/static/icon/setting.svg" mode="widthFix"></image>
 			</view>
 		</view>
 
@@ -48,7 +50,8 @@
 				<text class=" text-[28rpx]">我的订单</text>
 				<view @click="toPage('/pages/mine/order')">
 					<text class=" text-[25rpx] text-[#575757]">详情</text>
-					<image class="w-[14rpx] h-[20rpx] ml-[10rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/images/next1.svg" mode="widthFix">
+					<image class="w-[14rpx] h-[20rpx] ml-[10rpx]"
+						src="https://saas.jizhongkeji.com/static/jzkj/static/images/next1.svg" mode="widthFix">
 					</image>
 				</view>
 			</view>
@@ -57,7 +60,8 @@
 				<scroll-view class="scroll-view_H" scroll-x="true" scroll-left="120">
 					<view class="scroll-view-item_H" v-for="item in 5">
 						<view class="flex flex-col items-center ">
-							<image class="w-[42rpx] h-[42rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/qb.svg"></image>
+							<image class="w-[42rpx] h-[42rpx]"
+								src="https://saas.jizhongkeji.com/static/jzkj/static/icon/qb.svg"></image>
 							<text class="text-[24rpx] mt-[13rpx]">待付款</text>
 						</view>
 					</view>
@@ -76,45 +80,58 @@
 			<view class="common_tool_list">
 				<view class="common_tool_item" @click="toPage('/pages/mine/present')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">礼品卡</text>
 				</view>
 				<view class="common_tool_item" @click="toPage('/pages/mine/address?type=edit')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/my-address.svg"></image>
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/my-address.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">收货地址</text>
 				</view>
 
 				<view class="common_tool_item" @click="toPage('/pages/mine/collect_list')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/my-sc.svg"></image>
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/my-sc.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">商品收藏</text>
 				</view>
 
+				<view class="common_tool_item" @click="toPage('/pages/notify/notify')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">消息通知</text>
+				</view>
 				<view class="common_tool_item" @click="toPage('/pages/notify/notifyList')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
 					</view>
-					<text class="text-[24rpx] mt-[13rpx]">消息</text>
+					<text class="text-[24rpx] mt-[13rpx]">物流消息</text>
 				</view>
 				<view class="common_tool_item" @click="toPage('/pages/coupon/myCoupon')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">优惠券</text>
 				</view>
 
 				<view class="common_tool_item" @click="toPage('/pages/test/test')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">test</text>
 				</view>
 
-				<view class="common_tool_item">
+				<view class="common_tool_item" @click="open_is_image">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<!-- <image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/images/wx.svg"></image> -->
 						<image lazy-load style="width: 71.5rpx;"
@@ -125,7 +142,8 @@
 
 				<view class="common_tool_item">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/ppjs.svg"></image>
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/ppjs.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">品牌介绍tem</text>
 				</view>
@@ -141,6 +159,19 @@
 		<!-- 授权头像/昵称 pop -->
 		<PopChooseAvatar v-model="show_pop_avatar" v-if="show_pop_avatar" @submit="on_pop_avatar_submit"
 			@close="on_pop_avatar_close" />
+
+		<view class="tc_baoming" v-if="is_image">
+			<view class="image_box">
+				<view style="width: 100%;display: flex;justify-content: flex-end;margin-bottom: 30rpx;">
+					<image @click="close_is_image" style="width: 40rpx;height: 40rpx;margin-top: 80rpx;"
+						src="https://saas.jizhongkeji.com/static/jzkj/images/wrong.png" mode="widthFix" />
+				</view>
+				<image :src="business.erweima_serve" show-menu-by-longpress="true"
+					style="width: 100%;height: 850rpx;border-radius: 20rpx;" mode="aspectFill"></image>
+
+				<!-- <view style="margin-top: 10rpx;">长按识别二维码</view> -->
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -408,6 +439,34 @@ async function tixian(e) {
 	line-height: 300rpx; */
 	text-align: center;
 	font-size: 36rpx;
+}
+
+.tc_baoming {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999999999;
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.8);
+	overflow-y: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.image_box {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	padding: 0 60rpx;
+	color: #fff;
+	font-size: 28rpx;
+	box-sizing: border-box;
+	/* padding-top: 180rpx; */
+	padding-bottom: 100rpx;
 }
 </style>
 
