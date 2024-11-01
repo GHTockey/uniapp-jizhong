@@ -51,7 +51,8 @@
     "pages/mine/distribution_center",
     "pages/mine/promot",
     "pages/mine/distribution_order_list",
-    "pages/mine/team"
+    "pages/mine/team",
+    "pages/mine/distribute_goods"
   ],
   "window": {
     "navigationBarTextStyle": "black",

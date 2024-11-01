@@ -262,10 +262,9 @@ function to_distribution_order_list() {
  */
 function to_withdraw_apply() {
 	uni.navigateTo({
-		url: '/pages/mine/withdraw_apply',
+		url: '/pages/mine/withdraw',
 	})
 }
-
 
 </script>
 

@@ -9132,6 +9132,12 @@ const pages = [
     style: {
       navigationBarTitleText: "我的团队"
     }
+  },
+  {
+    path: "pages/mine/distribute_goods",
+    style: {
+      navigationBarTitleText: "分销商品"
+    }
   }
 ];
 const globalStyle = {
