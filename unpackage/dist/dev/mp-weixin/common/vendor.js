@@ -9126,6 +9126,12 @@ const pages = [
     style: {
       navigationBarTitleText: "分销订单"
     }
+  },
+  {
+    path: "pages/mine/team",
+    style: {
+      navigationBarTitleText: "我的团队"
+    }
   }
 ];
 const globalStyle = {

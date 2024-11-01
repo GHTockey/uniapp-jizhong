@@ -50,7 +50,8 @@
     "pages/mine/drawback",
     "pages/mine/distribution_center",
     "pages/mine/promot",
-    "pages/mine/distribution_order_list"
+    "pages/mine/distribution_order_list",
+    "pages/mine/team"
   ],
   "window": {
     "navigationBarTextStyle": "black",
