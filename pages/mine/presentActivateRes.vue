@@ -7,13 +7,13 @@
 
 		<!-- 结果 -->
 		<view class="flex flex-col items-center justify-center gap-[30rpx]" style="height: 328rpx;">
-			<image class="w-[83rpx] h-[83rpx]" src="../../static/icon/topUpOk.svg" />
+			<image class="w-[83rpx] h-[83rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/topUpOk.svg" />
 			<text class="text-[#000000] text-[37.5rpx] font-bold">激活成功</text>
 		</view>
 
 		<view class=" p-[30rpx] bg-white rounded-[14rpx]">
 			<!-- 图片 -->
-			<image class="w-full rounded-md" src="../../static/images/present_item.png" mode="widthFix"></image>
+			<image class="w-full rounded-md" src="https://saas.jizhongkeji.com/static/jzkj/present_item.png" mode="widthFix"></image>
 			<!-- 文字 -->
 			<view class="flex flex-col gap-[10rpx] mt-[20rpx]">
 				<text class="text-[29rpx] line-clamp-1">{{ currentItem.title }}</text>
@@ -39,7 +39,7 @@
 import { ref } from 'vue';
 
 const currentItem = ref({
-	img: '../../static/images/present_item.png',
+	img: 'https://saas.jizhongkeji.com/static/jzkj/present_item.png',
 	card_text: '储值卡',
 	title: '2025新春礼品卡2025新春礼品卡2025新春礼2025新春礼品卡2025新春礼品卡2025新春礼',
 	time: '2024-08-09 14:56:45 至 2024-08-09 14:56:45'
@@ -75,7 +75,7 @@ const handleUse = () => {
 .present_activate_res_container {
 	height: 100vh;
 	background-color: #f6f8fe;
-	background-image: url(../../static/images/present-activate-bg.svg);
+	background-image: url(https://saas.jizhongkeji.com/static/jzkj/present-activate-bg.svg);
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding: 0 30rpx;

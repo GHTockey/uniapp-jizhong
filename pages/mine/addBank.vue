@@ -18,12 +18,12 @@
 					<view class="text-[29.17rpx] flex items-center">
 						<template v-if="bankList[bankValue]?.name">
 							<text class="mr-[15rpx]">{{ bankList[bankValue].name }}</text>
-							<image src="../../static/icon/right1.svg" mode="widthFix" class="w-[16rpx] h-[16rpx]">
+							<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right1.svg" mode="widthFix" class="w-[16rpx] h-[16rpx]">
 							</image>
 						</template>
 						<template v-else>
 							<text class="mr-[15rpx]">请选择</text>
-							<image src="../../static/icon/right1.svg" mode="widthFix" class="w-[16rpx] h-[16rpx]">
+							<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right1.svg" mode="widthFix" class="w-[16rpx] h-[16rpx]">
 							</image>
 						</template>
 					</view>

@@ -34,38 +34,21 @@ const _sfc_main = {
     }
     return (_ctx, _cache) => {
       return {
-        a: common_assets._imports_0$6,
-        b: common_assets._imports_0$7,
-        c: common_vendor.o(goBack),
-        d: common_assets._imports_1$2,
-        e: common_assets._imports_2$1,
-        f: common_vendor.o(($event) => showActionSheetSlot.value = true),
-        g: common_assets._imports_3$1,
-        h: common_vendor.o(($event) => showActionSheet.value = true),
-        i: common_assets._imports_5,
-        j: common_vendor.o(($event) => showActionSheet.value = true),
-        k: common_assets._imports_6,
-        l: common_vendor.o(($event) => showActionSheet.value = true),
-        m: common_assets._imports_1$2,
-        n: common_assets._imports_1$2,
-        o: common_assets._imports_7,
-        p: common_assets._imports_8,
-        q: common_assets._imports_9,
-        r: common_assets._imports_10,
-        s: common_vendor.o(($event) => showActionSheetSlot.value = true),
-        t: common_vendor.o(($event) => showActionSheet.value = $event),
-        v: common_vendor.p({
+        a: common_vendor.o(goBack),
+        b: common_assets._imports_0$1,
+        c: common_vendor.o(($event) => showActionSheetSlot.value = true),
+        d: common_vendor.o(($event) => showActionSheet.value = true),
+        e: common_vendor.o(($event) => showActionSheet.value = true),
+        f: common_vendor.o(($event) => showActionSheet.value = true),
+        g: common_vendor.o(($event) => showActionSheetSlot.value = true),
+        h: common_vendor.o(($event) => showActionSheet.value = $event),
+        i: common_vendor.p({
           title: actionSheetData.value.title,
           items: actionSheetData.value.items,
           show: showActionSheet.value
         }),
-        w: common_assets._imports_4,
-        x: common_assets._imports_12,
-        y: common_assets._imports_4,
-        z: common_assets._imports_4,
-        A: common_assets._imports_4,
-        B: common_vendor.o(($event) => showActionSheetSlot.value = $event),
-        C: common_vendor.p({
+        j: common_vendor.o(($event) => showActionSheetSlot.value = $event),
+        k: common_vendor.p({
           footerBtnText: "立即购买",
           show: showActionSheetSlot.value
         })

@@ -215,6 +215,7 @@ function choose_nav(id) {
 .activity_list_container {
 	// background-color: aquamarine;
 	min-height: 100vh;
-	padding-bottom: $tabbar-height;
+	// padding-bottom: $tabbar-height;
+	padding-bottom: calc($tabbar-height + env(safe-area-inset-bottom));
 }
 </style>

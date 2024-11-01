@@ -2,14 +2,14 @@
 	<view class="present_container">
 		<view class="present_header">
 			<view class="present_header_item">
-				<image class="w-full h-full" src="../../static/images/present-img.png" mode="widthFix"></image>
+				<image class="w-full h-full" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-img.png" mode="widthFix"></image>
 			</view>
 		</view>
 
 		<!-- card item list -->
 		<view class="present_card_list">
 			<view class="present_card_item" v-for="item in 3" @click="toPage('/pages/mine/presentDetail')">
-				<image class="w-[290rpx] h-[195rpx] mr-[20rpx]" src="../../static/images/present-default.png"
+				<image class="w-[290rpx] h-[195rpx] mr-[20rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-default.png"
 					mode="widthFix"></image>
 				<view>
 					<view class="text-[27.78rpx] mb-[20rpx] mt-[5rpx]">2025新春礼品卡</view>

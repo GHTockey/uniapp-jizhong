@@ -28,6 +28,7 @@
   min-height: calc(100vh - 44px);
   padding-top: 85rpx;
   padding-bottom: 95.83rpx;
+  position: relative;
 }
 .present_card_container .present_card_tabs.data-v-5cbe5b80 {
   height: 85rpx;

@@ -1,6 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
+const utils_index = require("../../utils/index.js");
 if (!Math) {
   CouponList();
 }
@@ -57,7 +57,7 @@ const _sfc_main = {
         a: common_vendor.p({
           coupons: coupons.value
         }),
-        b: common_assets._imports_0$2
+        b: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/coupon/myCoupon"))
       };
     };
   }

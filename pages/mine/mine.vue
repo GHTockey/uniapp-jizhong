@@ -1,7 +1,8 @@
 <template>
-	<view class="mine_container p-[20rpx]">
+	<view class="mine_container p-[20rpx]" style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/my-bg.svg');">
 		<!-- 状态栏 + 小程序胶囊栏高度占位 -->
-		<view class="status_bar" :style="{ height: `${titleBarHeight}px` }"></view>
+		<!-- <view class="status_bar" :style="{ height: `${titleBarHeight}px` }"></view> -->
+		<HeightBar appendTitleBar />
 
 		<!-- 头像昵称设置 -->
 		<view class=" flex justify-between text-white my-3">
@@ -20,7 +21,7 @@
 			<!-- right -->
 			<view class="flex items-center opacity-55" @click="edit_user_info">
 				<text class="mr-[10rpx]">设置</text>
-				<image class="w-[33.33rpx] h-[33.33rpx]" src="../../static/icon/setting.svg" mode="widthFix"></image>
+				<image class="w-[33.33rpx] h-[33.33rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/setting.svg" mode="widthFix"></image>
 			</view>
 		</view>
 
@@ -47,7 +48,7 @@
 				<text class=" text-[28rpx]">我的订单</text>
 				<view @click="toPage('/pages/mine/order')">
 					<text class=" text-[25rpx] text-[#575757]">详情</text>
-					<image class="w-[14rpx] h-[20rpx] ml-[10rpx]" src="../../static/images/next1.svg" mode="widthFix">
+					<image class="w-[14rpx] h-[20rpx] ml-[10rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/images/next1.svg" mode="widthFix">
 					</image>
 				</view>
 			</view>
@@ -56,7 +57,7 @@
 				<scroll-view class="scroll-view_H" scroll-x="true" scroll-left="120">
 					<view class="scroll-view-item_H" v-for="item in 5">
 						<view class="flex flex-col items-center ">
-							<image class="w-[42rpx] h-[42rpx]" src="../../static/icon/qb.svg"></image>
+							<image class="w-[42rpx] h-[42rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/qb.svg"></image>
 							<text class="text-[24rpx] mt-[13rpx]">待付款</text>
 						</view>
 					</view>
@@ -73,23 +74,49 @@
 			</view>
 			<!-- 按钮列表 -->
 			<view class="common_tool_list">
+				<view class="common_tool_item" @click="toPage('/pages/mine/present')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">礼品卡</text>
+				</view>
 				<view class="common_tool_item" @click="toPage('/pages/mine/address?type=edit')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="../../static/icon/my-address.svg"></image>
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/my-address.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">收货地址</text>
 				</view>
 
 				<view class="common_tool_item" @click="toPage('/pages/mine/collect_list')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="../../static/icon/my-sc.svg"></image>
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/my-sc.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">商品收藏</text>
 				</view>
 
+				<view class="common_tool_item" @click="toPage('/pages/notify/notifyList')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">消息</text>
+				</view>
+				<view class="common_tool_item" @click="toPage('/pages/coupon/myCoupon')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">优惠券</text>
+				</view>
+
+				<view class="common_tool_item" @click="toPage('/pages/test/test')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">test</text>
+				</view>
+
 				<view class="common_tool_item">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<!-- <image class=" h-full w-full" src="../../static/images/wx.svg"></image> -->
+						<!-- <image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/images/wx.svg"></image> -->
 						<image lazy-load style="width: 71.5rpx;"
 							src="https://saas.jizhongkeji.com/static/jzkj/images/kefu_wei.png" mode="widthFix" />
 					</view>
@@ -98,18 +125,10 @@
 
 				<view class="common_tool_item">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="../../static/icon/ppjs.svg"></image>
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/ppjs.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">品牌介绍tem</text>
 				</view>
-
-				<view class="common_tool_item" @click="toPage('/pages/mine/present')">
-					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full" src="../../static/icon/sm-logo.svg"></image>
-					</view>
-					<text class="text-[24rpx] mt-[13rpx]">礼品卡</text>
-				</view>
-
 			</view>
 		</view>
 
@@ -396,7 +415,7 @@ async function tixian(e) {
 .mine_container {
 	height: 100vh;
 	background-color: #f8f9fa;
-	background-image: url('../../static/images/my-bg.svg');
+	// background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/my-bg.svg');
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding-bottom: $tabbar-height;
@@ -437,7 +456,7 @@ async function tixian(e) {
 				// border-left: 1px solid #ff0000;
 				// border-right: 1px solid #ff0000;
 				// border: 1px solid red;
-				background-image: url('../../static/images/mine-lr-border.svg');
+				background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/mine-lr-border.svg');
 				background-size: 100%;
 				background-repeat: no-repeat;
 			}

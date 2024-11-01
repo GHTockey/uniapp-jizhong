@@ -1,18 +1,15 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_index = require("../../utils/index.js");
 const _sfc_main = {
   __name: "presentDetail",
   setup(__props) {
     return (_ctx, _cache) => {
       return {
-        a: common_assets._imports_0$15,
-        b: common_vendor.f(2, (item, k0, i0) => {
+        a: common_vendor.f(2, (item, k0, i0) => {
           return {};
         }),
-        c: common_assets._imports_0$15,
-        d: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentPay"))
+        b: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentPay"))
       };
     };
   }

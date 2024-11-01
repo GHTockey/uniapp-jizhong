@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_request = require("../../utils/request.js");
 const utils_index = require("../../utils/index.js");
 if (!Array) {
@@ -36,7 +35,15 @@ const _sfc_main = {
     const iconlist = common_vendor.ref([]);
     const bubbleTipsData = common_vendor.ref();
     const goodsList = common_vendor.ref([]);
+    function addBubbleTipsData() {
+      bubbleTipsData.value = {
+        id: Date.now(),
+        img: "https://img0.baidu.com/it/u=4294353355,1624915568&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500",
+        text: `张${Math.floor(Math.random() * 10)}一分钟前购买了商品`
+      };
+    }
     setInterval(() => {
+      addBubbleTipsData();
     }, 3e3);
     common_vendor.index.showLoading({
       title: "加载中..."
@@ -176,7 +183,7 @@ const _sfc_main = {
         c: common_vendor.s(`height: ${common_vendor.unref(utils_index.getStatusBarHeight)()}px;`)
       } : {}, {
         d: common_vendor.s(`height: ${common_vendor.unref(utils_index.getTitleBarHeight)()}px;`),
-        e: common_assets._imports_0,
+        e: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/onlineSearch/onlineSearch")),
         f: isFixedHeadeContent.value ? 1 : "",
         g: common_vendor.s(isFixedHeadeContent.value ? `top: ${common_vendor.unref(utils_index.getStatusBarHeight)()}px` : ""),
         h: common_vendor.f((_a = banner_swiper.value) == null ? void 0 : _a.images, (image, index, i0) => {
@@ -203,13 +210,12 @@ const _sfc_main = {
             b: index == 9 ? "0" : "22rpx"
           };
         }),
-        p: common_assets._imports_1,
-        q: `url('../../static//images/new-p-bg.png')`,
-        r: common_vendor.p({
+        p: `url('https://saas.jizhongkeji.com/static/jzkj/static/images/new-p-bg.png')`,
+        q: common_vendor.p({
           goods: goodsList.value
         }),
-        s: common_vendor.s(isFixedHeadeContent.value ? `padding-top: ${containerMarTop.value}px; background-image: url('../../static/icon/thumb.png');` : `background-image: url('../../static/icon/thumb.png');`),
-        t: common_vendor.p({
+        r: common_vendor.s(isFixedHeadeContent.value ? `padding-top: ${containerMarTop.value}px; background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/icon/thumb.png');` : `background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/icon/thumb.png');`),
+        s: common_vendor.p({
           isAppMode: true
         })
       });

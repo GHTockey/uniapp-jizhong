@@ -1,16 +1,17 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_index = require("../../utils/index.js");
 if (!Array) {
+  const _easycom_HeightBar2 = common_vendor.resolveComponent("HeightBar");
   const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
   const _easycom_DefaultTip2 = common_vendor.resolveComponent("DefaultTip");
-  (_easycom_NavBar2 + _easycom_DefaultTip2)();
+  (_easycom_HeightBar2 + _easycom_NavBar2 + _easycom_DefaultTip2)();
 }
+const _easycom_HeightBar = () => "../../components/HeightBar/HeightBar.js";
 const _easycom_NavBar = () => "../../components/NavBar/NavBar.js";
 const _easycom_DefaultTip = () => "../../components/DefaultTip/DefaultTip.js";
 if (!Math) {
-  (_easycom_NavBar + _easycom_DefaultTip)();
+  (_easycom_HeightBar + _easycom_NavBar + _easycom_DefaultTip)();
 }
 const _sfc_main = {
   __name: "money",
@@ -63,31 +64,29 @@ const _sfc_main = {
           title: "我的钱包",
           isWhite: true
         }),
-        b: common_assets._imports_0$10,
-        c: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/topUpCenter")),
-        d: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/withdraw")),
-        e: selectTab.value == 0
+        b: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/topUpCenter")),
+        c: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/withdraw")),
+        d: selectTab.value == 0
       }, selectTab.value == 0 ? {} : {}, {
-        f: common_vendor.o(($event) => selectTab.value = 0),
-        g: selectTab.value == 1
+        e: common_vendor.o(($event) => selectTab.value = 0),
+        f: selectTab.value == 1
       }, selectTab.value == 1 ? {} : {}, {
-        h: common_vendor.o(($event) => selectTab.value = 1),
-        i: selectTab.value == 2
+        g: common_vendor.o(($event) => selectTab.value = 1),
+        h: selectTab.value == 2
       }, selectTab.value == 2 ? {} : {}, {
-        j: common_vendor.o(($event) => selectTab.value = 2),
-        k: common_vendor.t(years.value[0][yearsIndex1.value]),
-        l: common_vendor.t(years.value[1][yearsIndex2.value]),
-        m: common_assets._imports_1$4,
-        n: years.value,
-        o: echoVal.value,
-        p: common_vendor.o(yearChange),
-        q: listData.value.length == 0
+        i: common_vendor.o(($event) => selectTab.value = 2),
+        j: common_vendor.t(years.value[0][yearsIndex1.value]),
+        k: common_vendor.t(years.value[1][yearsIndex2.value]),
+        l: years.value,
+        m: echoVal.value,
+        n: common_vendor.o(yearChange),
+        o: listData.value.length == 0
       }, listData.value.length == 0 ? {
-        r: common_vendor.p({
+        p: common_vendor.p({
           text: "暂无数据, 请选择其它时间"
         })
       } : {}, {
-        s: common_vendor.f(showListData.value, (item, k0, i0) => {
+        q: common_vendor.f(showListData.value, (item, k0, i0) => {
           return common_vendor.e({
             a: common_vendor.t(item.text),
             b: common_vendor.t(item.time),

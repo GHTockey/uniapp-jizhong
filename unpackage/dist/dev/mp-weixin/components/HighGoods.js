@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
-const common_assets = require("../common/assets.js");
 const _sfc_main = {
   __name: "HighGoods",
   props: {
@@ -53,10 +52,8 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: __props.isShowHeader
-      }, __props.isShowHeader ? {
-        b: common_assets._imports_0$23
-      } : {}, {
-        c: common_vendor.f(__props.goods, (product, index, i0) => {
+      }, __props.isShowHeader ? {} : {}, {
+        b: common_vendor.f(__props.goods, (product, index, i0) => {
           return common_vendor.e({
             a: product.image_uri,
             b: common_vendor.t(product.name),

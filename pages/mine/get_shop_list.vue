@@ -8,7 +8,7 @@
 			</uni-search-bar>
 			<!-- 收起/展开地图按钮 -->
 			<view class="map_btn_box">
-				<image style="width: 33.33rpx;height: 21.53rpx;" src="../../static//icon/map-icon.svg" mode="widthFix">
+				<image style="width: 33.33rpx;height: 21.53rpx;" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/map-icon.svg" mode="widthFix">
 				</image>
 				<text>收取地图</text>
 			</view>
@@ -46,7 +46,7 @@
 						<view class="shop_list_item_detail_btn">
 							<text>门店详情</text>
 							<uni-icons type="arrowright" size="18" color="#999999"></uni-icons>
-							<!-- <image style="width: 12.5rpx;height: 18.06rpx;" src="../../static//icon/down-map.svg"
+							<!-- <image style="width: 12.5rpx;height: 18.06rpx;" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/down-map.svg"
 								mode="widthFix">
 							</image> -->
 						</view>

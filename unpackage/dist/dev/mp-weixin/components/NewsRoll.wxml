@@ -1,1 +1,1 @@
-<view class="news-box"><image src="{{a}}" mode=""></image><view style="overflow:hidden"><view class="{{['txt-box', c && 'txt-box-animation']}}" bindtap="{{d}}"><text wx:for="{{b}}" wx:for-item="item" wx:key="b">{{item.a}}</text></view></view></view>
+<view class="news-box"><image src="https://saas.jizhongkeji.com/static/jzkj/static/images/news.png" mode=""></image><view style="overflow:hidden"><view class="{{['txt-box', b && 'txt-box-animation']}}" bindtap="{{c}}"><text wx:for="{{a}}" wx:for-item="item" wx:key="b">{{item.a}}</text></view></view></view>

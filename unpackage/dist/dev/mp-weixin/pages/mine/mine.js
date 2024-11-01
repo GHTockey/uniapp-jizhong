@@ -1,24 +1,25 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_index = require("../../utils/index.js");
 const stores_temp = require("../../stores/temp.js");
 const utils_request = require("../../utils/request.js");
 if (!Array) {
+  const _easycom_HeightBar2 = common_vendor.resolveComponent("HeightBar");
   const _easycom_TabBar2 = common_vendor.resolveComponent("TabBar");
   const _easycom_PopChooseAvatar2 = common_vendor.resolveComponent("PopChooseAvatar");
-  (_easycom_TabBar2 + _easycom_PopChooseAvatar2)();
+  (_easycom_HeightBar2 + _easycom_TabBar2 + _easycom_PopChooseAvatar2)();
 }
+const _easycom_HeightBar = () => "../../components/HeightBar/HeightBar.js";
 const _easycom_TabBar = () => "../../components/TabBar/TabBar.js";
 const _easycom_PopChooseAvatar = () => "../../components/PopChooseAvatar/PopChooseAvatar.js";
 if (!Math) {
-  (_easycom_TabBar + _easycom_PopChooseAvatar)();
+  (_easycom_HeightBar + _easycom_TabBar + _easycom_PopChooseAvatar)();
 }
 const _sfc_main = {
   __name: "mine",
   setup(__props) {
     const { business, user } = common_vendor.storeToRefs(stores_temp.useTempStore());
-    const titleBarHeight = utils_index.getTitleBarHeight();
+    utils_index.getTitleBarHeight();
     common_vendor.ref([
       { id: 1, name: "收货地址", path: "/pages/mine/address?type=edit" },
       { id: 2, name: "商品收藏", path: "/pages/mine/collect_list" },
@@ -122,7 +123,9 @@ const _sfc_main = {
     }
     return (_ctx, _cache) => {
       return common_vendor.e({
-        a: `${common_vendor.unref(titleBarHeight)}px`,
+        a: common_vendor.p({
+          appendTitleBar: true
+        }),
         b: common_vendor.o(show_pop_avatar_handler),
         c: common_vendor.unref(user).wx_image,
         d: common_vendor.t(common_vendor.unref(user).user_name),
@@ -131,31 +134,27 @@ const _sfc_main = {
       }, !common_vendor.unref(user).user_name ? {
         g: common_vendor.o(edit_user_info)
       } : {}, {
-        h: common_assets._imports_0$8,
-        i: common_vendor.o(edit_user_info),
-        j: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/money")),
-        k: common_assets._imports_4$2,
-        l: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/order")),
-        m: common_vendor.f(5, (item, k0, i0) => {
+        h: common_vendor.o(edit_user_info),
+        i: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/money")),
+        j: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/order")),
+        k: common_vendor.f(5, (item, k0, i0) => {
           return {};
         }),
-        n: common_assets._imports_2$2,
-        o: common_assets._imports_3$2,
-        p: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/address?type=edit")),
-        q: common_assets._imports_4$3,
-        r: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/collect_list")),
-        s: common_assets._imports_5$1,
-        t: common_assets._imports_7,
-        v: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/present")),
-        w: common_vendor.p({
+        l: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/present")),
+        m: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/address?type=edit")),
+        n: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/collect_list")),
+        o: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/notify/notifyList")),
+        p: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/coupon/myCoupon")),
+        q: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/test/test")),
+        r: common_vendor.p({
           isAppMode: true
         }),
-        x: show_pop_avatar.value
+        s: show_pop_avatar.value
       }, show_pop_avatar.value ? {
-        y: common_vendor.o(on_pop_avatar_submit),
-        z: common_vendor.o(on_pop_avatar_close),
-        A: common_vendor.o(($event) => show_pop_avatar.value = $event),
-        B: common_vendor.p({
+        t: common_vendor.o(on_pop_avatar_submit),
+        v: common_vendor.o(on_pop_avatar_close),
+        w: common_vendor.o(($event) => show_pop_avatar.value = $event),
+        x: common_vendor.p({
           modelValue: show_pop_avatar.value
         })
       } : {});

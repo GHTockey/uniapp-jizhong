@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const _sfc_main = {
   __name: "addBank",
   setup(__props) {
@@ -62,17 +61,14 @@ const _sfc_main = {
         d: common_vendor.o(($event) => formData.value.phone = $event.detail.value),
         e: (_a = bankList.value[bankValue.value]) == null ? void 0 : _a.name
       }, ((_b = bankList.value[bankValue.value]) == null ? void 0 : _b.name) ? {
-        f: common_vendor.t(bankList.value[bankValue.value].name),
-        g: common_assets._imports_2$4
-      } : {
-        h: common_assets._imports_2$4
-      }, {
-        i: common_vendor.o(bankChangeHandler),
-        j: bankValue.value,
-        k: bankList.value,
-        l: formData.value.bankCard,
-        m: common_vendor.o(($event) => formData.value.bankCard = $event.detail.value),
-        n: common_vendor.o(saveHandler)
+        f: common_vendor.t(bankList.value[bankValue.value].name)
+      } : {}, {
+        g: common_vendor.o(bankChangeHandler),
+        h: bankValue.value,
+        i: bankList.value,
+        j: formData.value.bankCard,
+        k: common_vendor.o(($event) => formData.value.bankCard = $event.detail.value),
+        l: common_vendor.o(saveHandler)
       });
     };
   }

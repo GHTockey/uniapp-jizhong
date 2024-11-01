@@ -75,8 +75,7 @@
 
 			</view>
 
-			<view
-				style="position: fixed;bottom: 100rpx;width: 100%;height: 100rpx;padding-bottom: constant(safe-area-inset-bottom); padding-bottom: env(safe-area-inset-bottom);">
+			<view class="tool_box_container">
 				<view class="tool_box flex_row_space_bt" style="bottom: 0;top:0;"
 					v-if="good_list && good_list.length > 0">
 					<view class="choose_all flex_row_space_bt width_max_content">
@@ -477,6 +476,17 @@ async function click_page(type) {
 .shopcar_container {
 	min-height: 100vh;
 	background-color: #f8f9fa;
-	padding-bottom: $tabbar-height;
+	// padding-bottom: $tabbar-height;
+	padding-bottom: calc($tabbar-height + env(safe-area-inset-bottom));
+}
+
+.tool_box_container {
+	position: fixed;
+	bottom: 100rpx;
+	width: 100%;
+	height: 100rpx;
+	// padding-bottom: constant(safe-area-inset-bottom);
+	// padding-bottom: env(safe-area-inset-bottom);
+	padding-bottom: calc($tabbar-height + env(safe-area-inset-bottom));
 }
 </style>

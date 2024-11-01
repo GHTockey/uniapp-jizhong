@@ -51,8 +51,6 @@ watch(() => props.itemData, (newData) => {
   }, 3000);
 });
 
-
-
 // onMounted(() => {
 //   console.log('bubbleTipsItemEl :>> ', bubbleTipsItemEl.value);
 // });

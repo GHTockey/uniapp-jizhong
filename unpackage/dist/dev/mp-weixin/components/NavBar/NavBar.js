@@ -34,7 +34,7 @@ const _sfc_main = {
       return common_vendor.e({
         a: __props.showBack
       }, __props.showBack ? {
-        b: __props.isWhite ? "../../static/icon/left-white-icon.svg" : "../../static/icon/left-black-icon.svg",
+        b: __props.isWhite ? "https://saas.jizhongkeji.com/static/jzkj/static/icon/left-white-icon.svg" : "https://saas.jizhongkeji.com/static/jzkj/static/icon/left-black-icon.svg",
         c: common_vendor.o(goBack)
       } : {}, {
         d: !__props.showSearch

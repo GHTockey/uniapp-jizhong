@@ -1,5 +1,10 @@
 <template>
-	<view class="present_pay_container">
+	<view class="present_pay_container"
+		style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/goods-pay-bg.svg');">
+
+		
+		<HeightBar />
+
 		<!-- 标题栏 -->
 		<NavBar showBack isWhite>
 			<template #title>
@@ -11,12 +16,14 @@
 		<view class="present_pay_card">
 			<!-- header -->
 			<view class="flex items-center gap-[20rpx]">
-				<image class="w-[40rpx] h-[28rpx]" src="../../static/icon/present-card.svg" mode="widthFix"></image>
+				<image class="w-[40rpx] h-[28rpx]"
+					src="https://saas.jizhongkeji.com/static/jzkj/static/icon/present-card.svg" mode="widthFix"></image>
 				<text class="text-[27.78rpx] text-[#2C2C2C]">礼品卡</text>
 			</view>
 			<!-- 礼品信息 -->
 			<view class="present_pay_card_info my-[25rpx] h-[160rpx]">
-				<image class="w-[237.5rpx] h-[160rpx]" src="../../static/images/present_item.png" z>
+				<image class="w-[237.5rpx] h-[160rpx]"
+					src="https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png" z>
 				</image>
 				<view class="flex-1 flex flex-col h-full !justify-between ml-[25rpx]">
 					<text
@@ -40,9 +47,11 @@
 		<view class="buyer_msg_box" @click="showActionSheet = true">
 			<text class="buyer_msg_title">买家留言</text>
 			<view style="display: flex;align-items: center;">
-				<view class="line-clamp-1" style="font-size: 27.78rpx;font-weight: 500;color: #a0a0a0;">{{ buyerMsg || '无留言' }}</view>
+				<view class="line-clamp-1" style="font-size: 27.78rpx;font-weight: 500;color: #a0a0a0;">{{ buyerMsg ||
+					'无留言' }}
+				</view>
 				<image style="width: 13.89rpx; height: 20.83rpx; margin-left: 19.44rpx;" mode="aspectFit"
-					src="/static/icon/right1.svg">
+					src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right1.svg">
 				</image>
 			</view>
 		</view>
@@ -85,7 +94,7 @@ const buyerMsg = ref('');
 .present_pay_container {
 	height: 100vh;
 	background-color: #f6f8fe;
-	background-image: url('@/static/images/goods-pay-bg.svg');
+	// background-image: url('@/static/images/goods-pay-bg.svg');
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding: 0 14rpx;

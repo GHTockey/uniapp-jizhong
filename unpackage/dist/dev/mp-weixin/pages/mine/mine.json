@@ -2,6 +2,7 @@
   "navigationBarTitleText": "我的",
   "navigationStyle": "custom",
   "usingComponents": {
+    "height-bar": "../../components/HeightBar/HeightBar",
     "tab-bar": "../../components/TabBar/TabBar",
     "pop-choose-avatar": "../../components/PopChooseAvatar/PopChooseAvatar"
   }

@@ -55,10 +55,10 @@ const _sfc_main = {
     }
     return (_ctx, _cache) => {
       return common_vendor.e({
-        a: common_assets._imports_0$5
+        a: common_assets._imports_0
       }, {
         b: common_vendor.o(handleClearSearchHistory),
-        c: common_assets._imports_1$1,
+        c: common_assets._imports_1,
         d: common_vendor.f(searchHistory.value, (item, k0, i0) => {
           return {
             a: common_vendor.t(item.keyword),

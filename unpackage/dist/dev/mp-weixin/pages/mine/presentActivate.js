@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_index = require("../../utils/index.js");
 if (!Array) {
   const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
@@ -39,16 +38,11 @@ const _sfc_main = {
         a: common_vendor.p({
           showBack: true
         }),
-        b: common_assets._imports_0$19,
-        c: common_assets._imports_1$8,
-        d: common_assets._imports_2$7,
-        e: formData.value.cardNum,
-        f: common_vendor.o(($event) => formData.value.cardNum = $event.detail.value),
-        g: common_assets._imports_3$5,
-        h: formData.value.cardPwd,
-        i: common_vendor.o(($event) => formData.value.cardPwd = $event.detail.value),
-        j: common_vendor.o(handleActivate),
-        k: common_assets._imports_4$5
+        b: formData.value.cardNum,
+        c: common_vendor.o(($event) => formData.value.cardNum = $event.detail.value),
+        d: formData.value.cardPwd,
+        e: common_vendor.o(($event) => formData.value.cardPwd = $event.detail.value),
+        f: common_vendor.o(handleActivate)
       };
     };
   }

@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
-const common_assets = require("../common/assets.js");
 if (!Array) {
   const _component_transition = common_vendor.resolveComponent("transition");
   _component_transition();
@@ -43,18 +42,16 @@ const _sfc_main = {
       return common_vendor.e({
         a: __props.visible
       }, __props.visible ? {
-        b: common_assets._imports_0$25,
-        c: common_vendor.t(__props.title),
-        d: common_vendor.t(__props.amount),
-        e: common_vendor.t(__props.condition),
-        f: common_vendor.t(__props.expiryDate),
-        g: common_vendor.o(claimCoupon),
-        h: common_assets._imports_1$11,
-        i: common_vendor.o(closePopup),
-        j: common_vendor.o(() => {
+        b: common_vendor.t(__props.title),
+        c: common_vendor.t(__props.amount),
+        d: common_vendor.t(__props.condition),
+        e: common_vendor.t(__props.expiryDate),
+        f: common_vendor.o(claimCoupon),
+        g: common_vendor.o(closePopup),
+        h: common_vendor.o(() => {
         })
       } : {}, {
-        k: common_vendor.p({
+        i: common_vendor.p({
           name: "fade"
         })
       });

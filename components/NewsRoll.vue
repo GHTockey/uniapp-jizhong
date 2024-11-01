@@ -1,6 +1,6 @@
 <template>
 	<view class="news-box">
-		<image src="../static/images/news.png" mode=""></image>
+		<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/news.png" mode=""></image>
 		<view style="overflow: hidden;">
 			<view class="txt-box" :class="{ 'txt-box-animation': txtBoxAnimation }" @click="scrollNews">
 				<text v-for="(item, index) in visibleNewsList" :key="item.id">{{ item.title }}</text>

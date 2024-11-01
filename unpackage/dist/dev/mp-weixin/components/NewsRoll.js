@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
-const common_assets = require("../common/assets.js");
 const _sfc_main = {
   __name: "NewsRoll",
   setup(__props) {
@@ -28,15 +27,14 @@ const _sfc_main = {
     });
     return (_ctx, _cache) => {
       return {
-        a: common_assets._imports_0$24,
-        b: common_vendor.f(visibleNewsList.value, (item, index, i0) => {
+        a: common_vendor.f(visibleNewsList.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.title),
             b: item.id
           };
         }),
-        c: txtBoxAnimation.value ? 1 : "",
-        d: common_vendor.o(scrollNews)
+        b: txtBoxAnimation.value ? 1 : "",
+        c: common_vendor.o(scrollNews)
       };
     };
   }

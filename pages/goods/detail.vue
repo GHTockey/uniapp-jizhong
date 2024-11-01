@@ -7,7 +7,7 @@
 				<video id="video" :src="item" :controls="false" object-fit="cover"></video>
 			</swiper-item>
 			<!-- <swiper-item class="goods-detail-swiper-item" key="video">
-				<video id="video" src="../../static/video/mp41.mp4" :controls="false" object-fit="cover"></video>
+				<video id="video" src="https://saas.jizhongkeji.com/static/jzkj/static/video/mp41.mp4" :controls="false" object-fit="cover"></video>
 			</swiper-item> -->
 			<swiper-item class="goods-detail-swiper-item" v-for="(item, index) in swiper.swiperImgUrls" :key="index">
 				<image class="goods-detail-swiper-item-image" :src="item" />
@@ -21,7 +21,7 @@
 		<view class="goods-detail-swiper-operation">
 			<!-- 左上角返回按钮 -->
 			<view class="goods-detail-swiper-back" @tap="goBack">
-				<image class="goods-detail-swiper-back-icon" src="../../static/icon/left-white-icon.svg"
+				<image class="goods-detail-swiper-back-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/left-white-icon.svg"
 					mode="widthFix" />
 			</view>
 			<!-- 左下角当前视频/图片数量 -->
@@ -60,7 +60,7 @@
 				<!-- 立即购买按钮-右对齐 -->
 				<view class="o-buy" style="margin-left: auto;" @click="showActionSheetSlot = true">
 					立即购买
-					<image class="o-buy-icon" src="../../static/icon/right-jiantou.svg" mode="widthFix" />
+					<image class="o-buy-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right-jiantou.svg" mode="widthFix" />
 				</view>
 			</view>
 			<!-- 商品标题 -->
@@ -70,7 +70,7 @@
 			<!-- 商品的配送方式-服务保障-商品参数 -->
 			<view class="goods-detail-info-delivery">
 				<view class="delivery-item" @tap="showActionSheet = true">
-					<image class="delivery-item-icon" src="../../static/icon/goods-peisong-icon.svg" mode="widthFix" />
+					<image class="delivery-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-peisong-icon.svg" mode="widthFix" />
 					<text class="delivery-item-text">配送方式：</text>
 					<text class="delivery-item-text">门店自提</text>
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
@@ -78,12 +78,12 @@
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">同城配送</text>
 					<text class="delivery-item-text" style="margin-left: auto;">
-						<image src="../../static/images/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
+						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
 						</image>
 					</text>
 				</view>
 				<view class="delivery-item" @tap="showActionSheet = true">
-					<image class="delivery-item-icon" src="../../static/icon/goods-baozhang-icon.svg" mode="widthFix" />
+					<image class="delivery-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-baozhang-icon.svg" mode="widthFix" />
 					<text class="delivery-item-text">服务保障：</text>
 					<text class="delivery-item-text">无忧退款（运费险）</text>
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
@@ -91,12 +91,12 @@
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">假一赔十</text>
 					<text class="delivery-item-text" style="margin-left: auto;">
-						<image src="../../static/images/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
+						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
 						</image>
 					</text>
 				</view>
 				<view class="delivery-item" @tap="showActionSheet = true">
-					<image class="delivery-item-icon" src="../../static/icon/goods-parm-icon.svg" mode="widthFix" />
+					<image class="delivery-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-parm-icon.svg" mode="widthFix" />
 					<text class="delivery-item-text">商品参数：</text>
 					<text class="delivery-item-text">美辰</text>
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
@@ -108,7 +108,7 @@
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">食品工艺...</text>
 					<text class="delivery-item-text" style="margin-left: auto;">
-						<image src="../../static/images/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
+						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
 						</image>
 					</text>
 				</view>
@@ -122,7 +122,7 @@
 				<text class="comment-header-title">客户评价（2万+）</text>
 				<text class="comment-header-rate">好评率99%</text>
 				<text class="comment-header-more">
-					<image src="../../static/images/next1.svg" style="width: 20.56rpx;height: 20.08rpx;"></image>
+					<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg" style="width: 20.56rpx;height: 20.08rpx;"></image>
 				</text>
 			</view>
 			<!-- 评价内容 -->
@@ -158,7 +158,7 @@
 
 			<!-- 技术支持 -->
 			<view class="goods-detail-info-detail-support">
-				<image class="goods-detail-info-detail-support-image" src="../../static/icon/sm-logo.svg"
+				<image class="goods-detail-info-detail-support-image" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"
 					mode="widthFix" />
 				<text class="goods-detail-info-detail-support-content">集中科技提供技术支持</text>
 			</view>
@@ -168,17 +168,17 @@
 		<view class="goods-detail-info-bottom">
 			<view class="goods-detail-info-bottom-left">
 				<view class="goods-detail-info-bottom-left-item">
-					<image class="goods-detail-info-bottom-left-item-icon" src="../../static/icon/home-icon.svg"
+					<image class="goods-detail-info-bottom-left-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/home-icon.svg"
 						mode="widthFix" />
 					<text class="goods-detail-info-bottom-left-item-text">首页</text>
 				</view>
 				<view class="goods-detail-info-bottom-left-item">
-					<image class="goods-detail-info-bottom-left-item-icon" src="../../static/icon/kefu.svg"
+					<image class="goods-detail-info-bottom-left-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/kefu.svg"
 						mode="widthFix" />
 					<text class="goods-detail-info-bottom-left-item-text">客服</text>
 				</view>
 				<view class="goods-detail-info-bottom-left-item">
-					<image class="goods-detail-info-bottom-left-item-icon" src="../../static/icon/shoucang-active.svg"
+					<image class="goods-detail-info-bottom-left-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/shoucang-active.svg"
 						mode="widthFix" />
 					<text class="goods-detail-info-bottom-left-item-text">收藏</text>
 				</view>
@@ -198,7 +198,7 @@
 				<view class="ActionSheetSlotComponentBody">
 					<!-- 商品图片价格 -->
 					<view class="goods-img-price-box">
-						<image src="../../static//images/kun.png" alt="" class="goods-img"></image>
+						<image src="https://saas.jizhongkeji.com/static/jzkj/kun.png" alt="" class="goods-img"></image>
 						<view class="goods-price-box">
 							<text class="goods-price"><text style="font-size: 27.78rpx;">￥</text>100</text>
 							<text class="goods-price-unit"><text style="font-size: 27.78rpx;">￥</text>10~360</text>
@@ -209,24 +209,24 @@
 						<view class="goods-params-title" style="display: flex; justify-content: space-between;">
 							<text>商品型号:</text>
 							<view class="goods-params-title-right">
-								<image src="../../static/icon/list.svg" style="width: 30.56rpx;height: 27.08rpx;">
+								<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/list.svg" style="width: 30.56rpx;height: 27.08rpx;">
 								</image>
 								<text>列表</text>
 							</view>
 						</view>
 						<view class="goods-params-item-box">
 							<view class="goods-params-item">
-								<image src="../../static/images/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
+								<image src="https://saas.jizhongkeji.com/static/jzkj/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
 								</image>
 								<text>固始鸡1200gx1只（共2.4斤）</text>
 							</view>
 							<view class="goods-params-item active">
-								<image src="../../static/images/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
+								<image src="https://saas.jizhongkeji.com/static/jzkj/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
 								</image>
 								<text>固始鸡1200gx1只（共2.4斤）</text>
 							</view>
 							<view class="goods-params-item disabled">
-								<image src="../../static/images/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
+								<image src="https://saas.jizhongkeji.com/static/jzkj/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
 								</image>
 								<text>固始鸡1200gx1只（共2.4斤）</text>
 							</view>

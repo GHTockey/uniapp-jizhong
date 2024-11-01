@@ -9,7 +9,7 @@
 				<text>{{ title }}</text>
 				<!-- 关闭按钮 -->
 				<view @click="closeActionSheet">
-					<image style="width: 27.78rpx; height: 27.78rpx;" src="../../static//icon/action-sheet-close.svg"
+					<image style="width: 27.78rpx; height: 27.78rpx;" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/action-sheet-close.svg"
 						mode="widthFix" />
 				</view>
 			</view>

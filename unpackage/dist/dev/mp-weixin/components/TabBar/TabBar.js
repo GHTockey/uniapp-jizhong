@@ -45,7 +45,7 @@ const _sfc_main = {
   },
   emits: ["update:selectedIndex"],
   setup(__props, { emit: __emit }) {
-    const systemStore = stores_system.useSystemStore();
+    stores_system.useSystemStore();
     const tabBarStore = stores_tabBar.useTabBarStore();
     const { list: tabbarList, selectedIndex: tabbarSelectedIndex } = common_vendor.storeToRefs(tabBarStore);
     const emit = __emit;
@@ -90,7 +90,7 @@ const _sfc_main = {
       }, __props.isAppMode ? {
         b: common_vendor.f(common_vendor.unref(tabbarList), (item, index, i0) => {
           return {
-            a: common_vendor.unref(tabbarSelectedIndex) == index ? "../../static/" + item.selected_icon_path : "../../static/" + item.icon_path,
+            a: common_vendor.unref(tabbarSelectedIndex) == index ? "https://saas.jizhongkeji.com/static/jzkj/static/" + item.selected_icon_path : "https://saas.jizhongkeji.com/static/jzkj/static/" + item.icon_path,
             b: common_vendor.t(item.text),
             c: common_vendor.n({
               "active": common_vendor.unref(tabbarSelectedIndex) == index
@@ -102,7 +102,7 @@ const _sfc_main = {
       } : {
         c: common_vendor.f(__props.list, (item, index, i0) => {
           return {
-            a: __props.selectedIndex == index ? "../../static/" + item.selected_icon_path : "../../static/" + item.icon_path,
+            a: __props.selectedIndex == index ? "https://saas.jizhongkeji.com/static/jzkj/static/" + item.selected_icon_path : "https://saas.jizhongkeji.com/static/jzkj/static/" + item.icon_path,
             b: common_vendor.t(item.text),
             c: common_vendor.n({
               "active": __props.selectedIndex == index
@@ -111,8 +111,6 @@ const _sfc_main = {
             e: common_vendor.o(($event) => selectTab(index), index)
           };
         })
-      }, {
-        d: common_vendor.unref(systemStore).isIos ? 1 : ""
       });
     };
   }

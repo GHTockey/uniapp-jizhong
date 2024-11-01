@@ -1,5 +1,5 @@
 <template>
-	<HeightBar />
+	<HeightBar appendTitleBar />
 	<view class="shop_list_container">
 		<!-- 分类 -->
 		<view class="menu flex_col_cen_cen shop_list_container_menu" :style="{ top: menu_top + 'px' }">
@@ -60,7 +60,7 @@
 		</view>
 
 		<!-- 标题栏 -->
-		<NavBar>
+		<NavBar class="bg-red-white">
 			<template #title>门店</template>
 		</NavBar>
 
@@ -251,7 +251,8 @@ function get_user_location(e) {
 	// min-height: calc(100vh - $nav-height - $tabbar-height);
 	min-height: 100vh;
 	// padding-top: $nav-height;
-	padding-bottom: $tabbar-height;
+	// padding-bottom: $tabbar-height;
+	padding-bottom: calc($tabbar-height + env(safe-area-inset-bottom));
 
 	.shop_list_container_menu {
 		// top: $nav-height;

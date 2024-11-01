@@ -1,9 +1,10 @@
 <template>
-	<view class="tabbar" :class="{ 'ios-bottom': systemStore.isIos }">
+	<!-- <view class="tabbar" :class="{ 'ios-bottom': systemStore.isIos }"> -->
+	<view class="tabbar">
 		<template v-if="isAppMode">
 			<view v-for="(item, index) in tabbarList" :key="index" class="tabbar-item" @click="selectTab(index)">
 				<image
-					:src="tabbarSelectedIndex == index ? ('../../static/' + item.selected_icon_path) : ('../../static/' + item.icon_path)"
+					:src="tabbarSelectedIndex == index ? ('https://saas.jizhongkeji.com/static/jzkj/static/' + item.selected_icon_path) : ('https://saas.jizhongkeji.com/static/jzkj/static/' + item.icon_path)"
 					class="tabbar-icon" />
 				<!-- <image src="/static/images/init_tab4.png" class="tabbar-icon" /> -->
 				<text :class="['tabbar-text', { 'active': tabbarSelectedIndex == index }]">{{ item.text }}</text>
@@ -12,7 +13,7 @@
 		<template v-else>
 			<view v-for="(item, index) in list" :key="index" class="tabbar-item" @click="selectTab(index)">
 				<image
-					:src="selectedIndex == index ? ('../../static/' + item.selected_icon_path) : ('../../static/' + item.icon_path)"
+					:src="selectedIndex == index ? ('https://saas.jizhongkeji.com/static/jzkj/static/' + item.selected_icon_path) : ('https://saas.jizhongkeji.com/static/jzkj/static/' + item.icon_path)"
 					class="tabbar-icon" />
 				<!-- <image src="/static/images/init_tab4.png" class="tabbar-icon" /> -->
 				<text :class="['tabbar-text', { 'active': selectedIndex == index }]">{{ item.text }}</text>
@@ -110,7 +111,8 @@ async function selectTab(index) {
 <style lang="scss">
 // ios 底部的导航条
 .ios-bottom {
-	padding-bottom: env(safe-area-inset-bottom) !important;
+	// padding-bottom: env(safe-area-inset-bottom) !important;
+	padding-bottom: Max(env(safe-area-inset-bottom), 16rpx) !important;
 }
 
 .tabbar {

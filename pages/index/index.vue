@@ -1,6 +1,6 @@
 <template>
   <view class="content"
-    :style="isFixedHeadeContent ? `padding-top: ${containerMarTop}px; background-image: url('../../static/icon/thumb.png');` : `background-image: url('../../static/icon/thumb.png');`">
+    :style="isFixedHeadeContent ? `padding-top: ${containerMarTop}px; background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/icon/thumb.png');` : `background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/icon/thumb.png');`">
 
     <!-- 气泡提示 -->
     <BubbleTips :itemData="bubbleTipsData" />
@@ -17,13 +17,13 @@
         <text>集中科技</text>
       </view>
       <!-- 搜索栏 -->
-      <view class="searchBar">
-        <image src="../../static/icon/组 9954@2x.png" />
+      <view class="searchBar" @click="toPage('/pages/onlineSearch/onlineSearch')">
+        <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/组 9954@2x.png" />
         <input type="text" placeholder="请输入关键词进行搜索" placeholder-class="searchPlace" />
       </view>
 
       <!-- 背景图片 -->
-      <!-- <image src="../../static/icon/thumb.png" ></image> -->
+      <!-- <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/thumb.png" ></image> -->
     </view>
 
     <!-- 轮播图 -->
@@ -57,13 +57,13 @@
     <!-- 新品列表 -->
     <scroll-view class="new-product" scroll-x>
       <view class="new-product-item" v-for="(item, index) in 10" :key="index"
-        :style="{ marginRight: index == 9 ? '0' : '22rpx', backgroundImage: `url('../../static//images/new-p-bg.png')` }">
+        :style="{ marginRight: index == 9 ? '0' : '22rpx', backgroundImage: `url('https://saas.jizhongkeji.com/static/jzkj/static/images/new-p-bg.png')` }">
         <view class="txt-box">
           <text>新品首发</text>
           <text>这是一个测试标题</text>
         </view>
         <view class="image-box">
-          <image src="../../static/images/bg-test.png"></image>
+          <image src="https://saas.jizhongkeji.com/static/jzkj/static/images/bg-test.png"></image>
         </view>
       </view>
     </scroll-view>
@@ -95,7 +95,8 @@ import Tarbar from "@/components/Tarbar.vue";
 import NewsRoll from "@/components/NewsRoll.vue";
 import {
   getStatusBarHeight,
-  getTitleBarHeight
+  getTitleBarHeight,
+  toPage
 } from "@/utils/index.js";
 
 
@@ -133,7 +134,7 @@ function addBubbleTipsData() {
   }
 };
 setInterval(() => {
-  // addBubbleTipsData()
+  addBubbleTipsData()
 }, 3000);
 
 // console.log('系统信息', uni.getSystemInfoSync());
@@ -299,13 +300,12 @@ async function getData() {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .content {
   // z-index: 1;
   padding: 0 19.44rpx;
-  padding-bottom: 100rpx;
-  // margin-top: 100rpx;
-  // padding-top: 150rpx;
+  padding-bottom: $tabbar-height;
+  // border-bottom: calc(env(safe-area-inset-bottom)px) solid red;
   background-color: #f8f9fa;
   background-repeat: no-repeat;
   background-size: contain;
@@ -326,7 +326,7 @@ async function getData() {
     z-index: 999;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('../../static/icon/thumb.png');
+    background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/icon/thumb.png');
   }
 
   .header-content {
@@ -397,7 +397,7 @@ async function getData() {
           left: 35rpx;
           top: 50%;
           transform: translateY(-50%);
-          background: url('../../static/icon/search-icon.png') no-repeat center;
+          background: url('https://saas.jizhongkeji.com/static/jzkj/static/icon/search-icon.png') no-repeat center;
           background-size: contain;
         }
       }

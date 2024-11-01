@@ -2,6 +2,7 @@
   "navigationBarTitleText": "提交订单",
   "navigationStyle": "custom",
   "usingComponents": {
+    "height-bar": "../../components/HeightBar/HeightBar",
     "nav-bar": "../../components/NavBar/NavBar",
     "action-sheet-slot": "../../components/ActionSheetSlot/ActionSheetSlot",
     "uni-popup": "../../uni_modules/uni-popup/components/uni-popup/uni-popup"

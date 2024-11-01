@@ -404,6 +404,8 @@ text {
 	left: 0;
 	width: 100%;
 	z-index: 1000;
+	background-color: #fff;
+	padding-bottom: Max(env(safe-area-inset-bottom), 16rpx) !important;
 }
 
 // 虚空按钮

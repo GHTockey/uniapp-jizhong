@@ -18,21 +18,21 @@
 					<text class="text-[#424242] text-[30.56rpx]">100元</text>
 					<text class="text-[#FF0000] text-[22.22rpx] mt-[10rpx]">售价100</text>
 					<!-- 选中图标 -->
-					<image src="../../static/icon/topUp-ac.svg"
+					<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/topUp-ac.svg"
 						class="w-[30.56rpx] h-[30.56rpx] absolute bottom-[-1px] right-0" v-if="activeIndex == index">
 					</image>
 				</view>
 				<!-- 其它金额 -->
 				<view class="top_up_center_amount_item justify-center !flex-row !p-0" @click="isShowOtherAmount = true">
 					<text class="text-[#424242] text-[30.56rpx] mr-[10rpx]">其它金额</text>
-					<image src="../../static/icon/edit.svg" class="w-[29.17rpx] h-[26.39rpx]"></image>
+					<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/edit.svg" class="w-[29.17rpx] h-[26.39rpx]"></image>
 				</view>
 			</view>
 			<!-- 其它金额输入框 -->
 			<view v-else class="top_up_center_other_amount_input_box">
 				<view class="top_up_center_other_amount_input" @click="inputRef.open('bottom')">
 					<text class="text-[#A8A8A8] text-[30.56rpx]">{{ inputValue || '请输入要充值的金额' }}</text>
-					<image src="../../static/icon/edit.svg" class="w-[29.17rpx] h-[26.39rpx]"></image>
+					<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/edit.svg" class="w-[29.17rpx] h-[26.39rpx]"></image>
 				</view>
 			</view>
 		</view>
@@ -83,7 +83,7 @@
 					<!-- right -->
 					<view class="top_up_center_input_btns_right">
 						<view class="h-1/2 flex justify-center items-center" @click="inputEvent('close')">
-							<image src="../../static/icon/action-sheet-close.svg" class="w-[30rpx] h-[30rpx]"></image>
+							<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/action-sheet-close.svg" class="w-[30rpx] h-[30rpx]"></image>
 						</view>
 						<view class="h-1/2 flex justify-center items-center top_up_center_input_btns_right_btn"
 							@click="inputEvent('submit')">
@@ -99,7 +99,7 @@
 	<view class="top_up_center_status_box" v-else>
 		<view class="top_up_center_status_item">
 			<image class="w-[83rpx] h-[83rpx]"
-				:src="`../../static/icon/topUp${isShowTopUpStatus == 'ok' ? 'Ok' : 'No'}.svg`"></image>
+				:src="`https://saas.jizhongkeji.com/static/jzkj/static/icon/topUp${isShowTopUpStatus == 'ok' ? 'Ok' : 'No'}.svg`"></image>
 			<text class="text-[#333333] text-[37.5rpx]">充值{{ isShowTopUpStatus == 'ok' ? '成功' : '失败' }}</text>
 			<view class="w-[389rpx] text-[#9A9A9A] text-[27.78rpx] text-center">
 				{{ isShowTopUpStatus == 'ok' ? '金额已自动充值到您的储值余额可进入“我的钱包”查看' : '本次充值失败，请检查支付密码是否正确或者重新充值' }}

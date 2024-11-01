@@ -28,7 +28,7 @@
 				<view class="flex items-center justify-between">
 					<view class="flex items-center gap-2">
 						<image class="w-[40rpx] h-[27rpx]"
-							:src="`../../static/icon/${item.type ? 'chuzhi' : 'lipin'}-card.svg`" mode="widthFix">
+							:src="`https://saas.jizhongkeji.com/static/jzkj/static/icon/${item.type ? 'chuzhi' : 'lipin'}-card.svg`" mode="widthFix">
 						</image>
 						<text class="text-[27rpx]">{{ getTypeName(item.type) }}</text>
 					</view>
@@ -73,7 +73,7 @@
 				<!-- header -->
 				<view class="flex items-center justify-between">
 					<view class="flex items-center gap-2">
-						<image class="w-[40rpx] h-[27rpx]" src="../../static/icon/lipin-card.svg" mode="widthFix">
+						<image class="w-[40rpx] h-[27rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/lipin-card.svg" mode="widthFix">
 						</image>
 						<text class="text-[27rpx]">礼品卡</text>
 					</view>
@@ -81,7 +81,7 @@
 				</view>
 				<!-- 卡片信息 -->
 				<view class="present_records_item_card_info">
-					<image class="w-[237.5rpx] h-[160rpx] rounded-[14rpx]" src="../../static/images/present_item.png"
+					<image class="w-[237.5rpx] h-[160rpx] rounded-[14rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png"
 						mode="widthFix">
 					</image>
 					<view class="flex-1">
@@ -103,7 +103,7 @@
 				<!-- header -->
 				<view class="flex items-center justify-between">
 					<view class="flex items-center gap-2">
-						<image class="w-[40rpx] h-[27rpx]" src="../../static/icon/chuzhi-card.svg" mode="widthFix">
+						<image class="w-[40rpx] h-[27rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/chuzhi-card.svg" mode="widthFix">
 						</image>
 						<text class="text-[27rpx]">储值卡</text>
 					</view>
@@ -111,7 +111,7 @@
 				</view>
 				<!-- 卡片信息 -->
 				<view class="present_records_item_card_info">
-					<image class="w-[237.5rpx] h-[160rpx] rounded-[14rpx]" src="../../static/images/present_item.png"
+					<image class="w-[237.5rpx] h-[160rpx] rounded-[14rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png"
 						mode="widthFix">
 					</image>
 					<view class="flex-1">
@@ -133,7 +133,7 @@
 				<!-- header -->
 				<view class="flex items-center justify-between">
 					<view class="flex items-center gap-2">
-						<image class="w-[40rpx] h-[27rpx]" src="../../static/icon/lipin-card.svg" mode="widthFix">
+						<image class="w-[40rpx] h-[27rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/lipin-card.svg" mode="widthFix">
 						</image>
 						<text class="text-[27rpx]">礼品卡</text>
 					</view>
@@ -141,7 +141,7 @@
 				</view>
 				<!-- 卡片信息 -->
 				<view class="present_records_item_card_info">
-					<image class="w-[237.5rpx] h-[160rpx] rounded-[14rpx]" src="../../static/images/present_item.png"
+					<image class="w-[237.5rpx] h-[160rpx] rounded-[14rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png"
 						mode="widthFix">
 					</image>
 					<view class="flex-1">
@@ -203,7 +203,7 @@ const records = ref([
 		id: 1,
 		type: TYPE_GIFT_CARD, // 礼品卡
 		status: STATUS_CLOSED, // 已关闭
-		image: '../../static/images/present_item.png',
+		image: 'https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png',
 		description: '2025新春礼品卡2025新春礼品卡2025新春礼2025新春礼品卡2025新春礼品卡2025新春礼',
 		price: 180,
 		quantity: 2,
@@ -214,7 +214,7 @@ const records = ref([
 		id: 2,
 		type: TYPE_STORE_CARD, // 储值卡
 		status: STATUS_COMPLETED, // 已完成
-		image: '../../static/images/present_item.png',
+		image: 'https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png',
 		description: '2025新春礼品卡2025新春礼品卡2025新春礼2025新春礼品卡2025新春礼品卡2025新春礼',
 		price: 180,
 		quantity: 2,
@@ -225,7 +225,7 @@ const records = ref([
 		id: 3,
 		type: TYPE_GIFT_CARD, // 礼品卡
 		status: STATUS_PENDING, // 待支付
-		image: '../../static/images/present_item.png',
+		image: 'https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png',
 		description: '2025新春礼品卡2025新春礼品卡2025新春礼2025新春礼品卡2025新春礼品卡2025新春礼',
 		price: 180,
 		quantity: 2,

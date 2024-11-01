@@ -44,7 +44,6 @@
 .mine_container.data-v-7c2ebfa5 {
   height: 100vh;
   background-color: #f8f9fa;
-  background-image: url("../../static/images/my-bg.svg");
   background-size: 100%;
   background-repeat: no-repeat;
   padding-bottom: 95.83rpx;
@@ -76,7 +75,7 @@
   margin-top: 15rpx;
 }
 .mine_container .mine_data_box .mine_data_item.data-v-7c2ebfa5:nth-child(2) {
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzM2IiBoZWlnaHQ9IjE1NiIgdmlld0JveD0iMCAwIDMzNiAxNTYiPjxkZWZzPjxzdHlsZT4uYXtvcGFjaXR5OjAuNjU7fS5ie29wYWNpdHk6MC42Njt9LmN7ZmlsbDp1cmwoI2EpO308L3N0eWxlPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjAuNSIgeDI9IjAuNSIgeTI9IjEiIGdyYWRpZW50VW5pdHM9Im9iamVjdEJvdW5kaW5nQm94Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmMWE2YTYiIHN0b3Atb3BhY2l0eT0iMC4yIi8+PHN0b3Agb2Zmc2V0PSIwLjQ4OCIgc3RvcC1jb2xvcj0iI2Y0ODc4NyIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2YxYTZhNiIgc3RvcC1vcGFjaXR5PSIwLjIiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48ZyBjbGFzcz0iYSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTM3MiAtNTQyKSI+PGcgY2xhc3M9ImIiPjxyZWN0IGNsYXNzPSJjIiB3aWR0aD0iMiIgaGVpZ2h0PSIxNTYiIHJ4PSIxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3MDYgNTQyKSIvPjxyZWN0IGNsYXNzPSJjIiB3aWR0aD0iMiIgaGVpZ2h0PSIxNTYiIHJ4PSIxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNzIgNTQyKSIvPjwvZz48L2c+PC9zdmc+");
+  background-image: url("https://saas.jizhongkeji.com/static/jzkj/static/images/mine-lr-border.svg");
   background-size: 100%;
   background-repeat: no-repeat;
 }

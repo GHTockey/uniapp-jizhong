@@ -2,7 +2,7 @@
   <view class="logistics-notify-container">
     <!-- 空状态 -->
     <view class="empty-state" v-if="false">
-      <image src="../../static/images/logistics-empty.png" />
+      <image src="https://saas.jizhongkeji.com/static/jzkj/logistics-empty.png" />
       <text class="txt">当前暂未收到消息</text>
       <!-- 返回按钮 -->
       <view class="back-btn">返回</view>

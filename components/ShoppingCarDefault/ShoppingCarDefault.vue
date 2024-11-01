@@ -66,12 +66,12 @@ const buttonConfig = {
 }
 // 图片配置
 const imageConfig = {
-	404: '../../static/default/404.svg',
-	unpublished: '../../static/default/kong.svg',
-	network: '../../static/default/wifi.svg',
-	pay_fail: '../../static/default/pay_fail.svg',
-	no_permission: '../../static/default/no_permission.svg',
-	empty: '../../static/default/shoppingCart-empty.svg'
+	404: 'https://saas.jizhongkeji.com/static/jzkj/static/default/404.svg',
+	unpublished: 'https://saas.jizhongkeji.com/static/jzkj/static/default/kong.svg',
+	network: 'https://saas.jizhongkeji.com/static/jzkj/static/default/wifi.svg',
+	pay_fail: 'https://saas.jizhongkeji.com/static/jzkj/static/default/pay_fail.svg',
+	no_permission: 'https://saas.jizhongkeji.com/static/jzkj/static/default/no_permission.svg',
+	empty: 'https://saas.jizhongkeji.com/static/jzkj/static/default/shoppingCart-empty.svg'
 }
 
 // 按钮点击事件

@@ -2,6 +2,7 @@
   "navigationBarTitleText": "待付款订单[presentPay]",
   "navigationStyle": "custom",
   "usingComponents": {
+    "height-bar": "../../components/HeightBar/HeightBar",
     "nav-bar": "../../components/NavBar/NavBar",
     "uni-number-box": "../../uni_modules/uni-number-box/components/uni-number-box/uni-number-box",
     "action-sheet-slot": "../../components/ActionSheetSlot/ActionSheetSlot"

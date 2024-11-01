@@ -290,7 +290,7 @@ function navbarSelectvideo_category_id(id) {
 
 <style lang="scss" scoped>
 .menu-container {
-	padding-bottom: $tabbar-height;
+	padding-bottom: calc($tabbar-height + env(safe-area-inset-bottom));
 	// padding-top: $nav-height;
 }
 </style>

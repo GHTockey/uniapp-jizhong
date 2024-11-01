@@ -1203,6 +1203,8 @@ view,text {
   left: 0;
   width: 100%;
   z-index: 1000;
+  background-color: #fff;
+  padding-bottom: max(env(safe-area-inset-bottom), 16rpx) !important;
 }
 .tce_empty_btn {
   opacity: 0.9;

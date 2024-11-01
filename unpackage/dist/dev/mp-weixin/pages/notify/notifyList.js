@@ -18,7 +18,7 @@ const _sfc_main = {
     });
     return (_ctx, _cache) => {
       return common_vendor.e({}, {
-        b: common_vendor.f(3, (item, k0, i0) => {
+        a: common_vendor.f(3, (item, k0, i0) => {
           return {
             a: item,
             b: "51974676-0-" + i0

@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 if (!Array) {
   const _easycom_uni_popup2 = common_vendor.resolveComponent("uni-popup");
   _easycom_uni_popup2();
@@ -55,49 +54,44 @@ const _sfc_main = {
         c: common_vendor.f(6, (item, index, i0) => {
           return common_vendor.e({
             a: activeIndex.value == index
-          }, activeIndex.value == index ? {
-            b: common_assets._imports_0$12
-          } : {}, {
-            c: common_vendor.n(`top_up_center_amount_item ${activeIndex.value == index ? "active" : ""}`),
-            d: common_vendor.o(($event) => activeIndex.value = index)
+          }, activeIndex.value == index ? {} : {}, {
+            b: common_vendor.n(`top_up_center_amount_item ${activeIndex.value == index ? "active" : ""}`),
+            c: common_vendor.o(($event) => activeIndex.value = index)
           });
         }),
-        d: common_assets._imports_1$5,
-        e: common_vendor.o(($event) => isShowOtherAmount.value = true)
+        d: common_vendor.o(($event) => isShowOtherAmount.value = true)
       } : {
-        f: common_vendor.t(inputValue.value || "请输入要充值的金额"),
-        g: common_assets._imports_1$5,
-        h: common_vendor.o(($event) => inputRef.value.open("bottom"))
+        e: common_vendor.t(inputValue.value || "请输入要充值的金额"),
+        f: common_vendor.o(($event) => inputRef.value.open("bottom"))
       }, {
-        i: common_vendor.o(rechargeEvent),
-        j: common_vendor.t(inputValue.value || "请输入要充值的金额"),
-        k: common_vendor.o(($event) => inputEvent("1")),
-        l: common_vendor.o(($event) => inputEvent("2")),
-        m: common_vendor.o(($event) => inputEvent("3")),
-        n: common_vendor.o(($event) => inputEvent("4")),
-        o: common_vendor.o(($event) => inputEvent("5")),
-        p: common_vendor.o(($event) => inputEvent("6")),
-        q: common_vendor.o(($event) => inputEvent("7")),
-        r: common_vendor.o(($event) => inputEvent("8")),
-        s: common_vendor.o(($event) => inputEvent("9")),
-        t: common_vendor.o(($event) => inputEvent("0")),
-        v: common_vendor.o(($event) => inputEvent(".")),
-        w: common_assets._imports_0$11,
-        x: common_vendor.o(($event) => inputEvent("close")),
-        y: common_vendor.o(($event) => inputEvent("submit")),
-        z: common_vendor.sr(inputRef, "ad8f55dc-0", {
+        g: common_vendor.o(rechargeEvent),
+        h: common_vendor.t(inputValue.value || "请输入要充值的金额"),
+        i: common_vendor.o(($event) => inputEvent("1")),
+        j: common_vendor.o(($event) => inputEvent("2")),
+        k: common_vendor.o(($event) => inputEvent("3")),
+        l: common_vendor.o(($event) => inputEvent("4")),
+        m: common_vendor.o(($event) => inputEvent("5")),
+        n: common_vendor.o(($event) => inputEvent("6")),
+        o: common_vendor.o(($event) => inputEvent("7")),
+        p: common_vendor.o(($event) => inputEvent("8")),
+        q: common_vendor.o(($event) => inputEvent("9")),
+        r: common_vendor.o(($event) => inputEvent("0")),
+        s: common_vendor.o(($event) => inputEvent(".")),
+        t: common_vendor.o(($event) => inputEvent("close")),
+        v: common_vendor.o(($event) => inputEvent("submit")),
+        w: common_vendor.sr(inputRef, "ad8f55dc-0", {
           "k": "inputRef"
         }),
-        A: common_vendor.o(($event) => ""),
-        B: common_vendor.p({
+        x: common_vendor.o(($event) => ""),
+        y: common_vendor.p({
           ["background-color"]: "#fff"
         })
       }) : {
-        C: `../../static/icon/topUp${isShowTopUpStatus.value == "ok" ? "Ok" : "No"}.svg`,
-        D: common_vendor.t(isShowTopUpStatus.value == "ok" ? "成功" : "失败"),
-        E: common_vendor.t(isShowTopUpStatus.value == "ok" ? "金额已自动充值到您的储值余额可进入“我的钱包”查看" : "本次充值失败，请检查支付密码是否正确或者重新充值"),
-        F: common_vendor.o(($event) => isShowTopUpStatus.value = null),
-        G: common_vendor.o(backEvent)
+        z: `https://saas.jizhongkeji.com/static/jzkj/static/icon/topUp${isShowTopUpStatus.value == "ok" ? "Ok" : "No"}.svg`,
+        A: common_vendor.t(isShowTopUpStatus.value == "ok" ? "成功" : "失败"),
+        B: common_vendor.t(isShowTopUpStatus.value == "ok" ? "金额已自动充值到您的储值余额可进入“我的钱包”查看" : "本次充值失败，请检查支付密码是否正确或者重新充值"),
+        C: common_vendor.o(($event) => isShowTopUpStatus.value = null),
+        D: common_vendor.o(backEvent)
       });
     };
   }

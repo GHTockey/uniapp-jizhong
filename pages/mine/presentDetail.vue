@@ -2,7 +2,7 @@
 	<view class="present_detail_container">
 		<!-- 头部 img -->
 		<view class="present_detail_header">
-			<image class="w-full" src="../../static/images/present-default.png" mode="widthFix"></image>
+			<image class="w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-default.png" mode="widthFix"></image>
 		</view>
 
 		<!-- 标题/有效期 -->
@@ -21,7 +21,7 @@
 
 			<view class="present_detail_goods_item_box">
 				<view class="present_detail_goods_item_box_item" v-for="item in 2">
-					<image class="w-[166rpx] h-[166rpx] mr-[20rpx]" src="../../static/images/present-default.png">
+					<image class="w-[166rpx] h-[166rpx] mr-[20rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-default.png">
 					</image>
 					<view class="flex-1 flex flex-col justify-between">
 						<!-- 最多显示两行 超出显示省略号 -->
@@ -60,7 +60,7 @@
 
 		<!-- 显示图片区域 -->
 		<view class="present_detail_show_img_box">
-			<!-- <image class="w-full" src="../../static/images/present-default.png" mode="widthFix"></image> -->
+			<!-- <image class="w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-default.png" mode="widthFix"></image> -->
 		</view>
 
 		<!-- 底部操作栏 -->

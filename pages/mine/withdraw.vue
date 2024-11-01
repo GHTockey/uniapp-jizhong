@@ -6,7 +6,7 @@
 			<!-- <view class="flex items-center gap-2">
 				<view @click="toPage('/pages/mine/addBank')" v-if="withdrawType == 2"
 					class="text-[27.78rpx] text-[#FF4F26]">提现到银行卡</view>
-				<image class="w-[15rpx] h-[15rpx]" src="../../static/icon/right1.svg" mode="widthFix"></image>
+				<image class="w-[15rpx] h-[15rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right1.svg" mode="widthFix"></image>
 			</view> -->
 		</view>
 

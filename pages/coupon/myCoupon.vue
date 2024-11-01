@@ -9,7 +9,7 @@
 			<view v-if="activeTab == 0" style="height: 100%;">
 				<!-- 空状态 -->
 				<!-- <view class="empty">
-					<image src="../../static/images/kong.png" mode="aspectFit"></image>
+					<image src="https://saas.jizhongkeji.com/static/jzkj/kong.png" mode="aspectFit"></image>
 					<text>暂无优惠券</text>
 				</view> -->
 				<!-- 券列表 -->
@@ -18,14 +18,14 @@
 			<view v-if="activeTab == 1" style="height: 100%;">
 				<!-- 空状态 -->
 				<view class="empty">
-					<image src="../../static/images/kong.png" mode="aspectFit"></image>
+					<image src="https://saas.jizhongkeji.com/static/jzkj/kong.png" mode="aspectFit"></image>
 					<text>已使用的优惠券</text>
 				</view>
 			</view>
 			<view v-if="activeTab == 2" style="height: 100%;">
 				<!-- 空状态 -->
 				<view class="empty">
-					<image src="../../static/images/kong.png" mode="aspectFit"></image>
+					<image src="https://saas.jizhongkeji.com/static/jzkj/kong.png" mode="aspectFit"></image>
 					<text>已过期的优惠券</text>
 				</view>
 			</view>
@@ -39,6 +39,7 @@
 <script setup>
 import { ref } from 'vue';
 import CouponList from '@/components/CouponsList.vue';
+import { toPage } from '@/utils';
 
 const activeTab = ref(0);
 
@@ -59,6 +60,7 @@ const changeTab = (index) => {
 const getMoreCoupons = () => {
 	// 这里可以添加领取更多优惠券的逻辑
 	console.log('领取更多优惠券');
+	toPage('/pages/coupon/couponCenter');
 };
 </script>
 

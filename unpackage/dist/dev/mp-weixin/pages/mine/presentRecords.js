@@ -27,7 +27,7 @@ const _sfc_main = {
         // 礼品卡
         status: STATUS_CLOSED,
         // 已关闭
-        image: "../../static/images/present_item.png",
+        image: "https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png",
         description: "2025新春礼品卡2025新春礼品卡2025新春礼2025新春礼品卡2025新春礼品卡2025新春礼",
         price: 180,
         quantity: 2,
@@ -40,7 +40,7 @@ const _sfc_main = {
         // 储值卡
         status: STATUS_COMPLETED,
         // 已完成
-        image: "../../static/images/present_item.png",
+        image: "https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png",
         description: "2025新春礼品卡2025新春礼品卡2025新春礼2025新春礼品卡2025新春礼品卡2025新春礼",
         price: 180,
         quantity: 2,
@@ -53,7 +53,7 @@ const _sfc_main = {
         // 礼品卡
         status: STATUS_PENDING,
         // 待支付
-        image: "../../static/images/present_item.png",
+        image: "https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png",
         description: "2025新春礼品卡2025新春礼品卡2025新春礼2025新春礼品卡2025新春礼品卡2025新春礼",
         price: 180,
         quantity: 2,
@@ -101,7 +101,7 @@ const _sfc_main = {
         h: common_vendor.o(($event) => currentTabIndex.value = 3),
         i: common_vendor.f(filteredRecords.value, (item, k0, i0) => {
           return common_vendor.e({
-            a: `../../static/icon/${item.type ? "chuzhi" : "lipin"}-card.svg`,
+            a: `https://saas.jizhongkeji.com/static/jzkj/static/icon/${item.type ? "chuzhi" : "lipin"}-card.svg`,
             b: common_vendor.t(getTypeName(item.type)),
             c: common_vendor.t(getStatusName(item.status)),
             d: item.image,

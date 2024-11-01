@@ -24,7 +24,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 .ios-bottom {
-  padding-bottom: env(safe-area-inset-bottom) !important;
+  padding-bottom: max(env(safe-area-inset-bottom), 16rpx) !important;
 }
 .tabbar {
   height: 95.83rpx;

@@ -6,7 +6,7 @@
 				src="https://saas.jizhongkeji.com/static/jzkj/images/with_ing.png">
 			</image> -->
 			<image style="width: 84rpx;height: 84rpx;"
-				src="../../static/icon/withdraw.svg">
+				src="https://saas.jizhongkeji.com/static/jzkj/static/icon/withdraw.svg">
 			</image>
 
 			<view style="margin-top:40rpx">你的提现申请已完成提交</view>

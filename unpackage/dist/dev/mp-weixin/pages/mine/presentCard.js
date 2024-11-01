@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_index = require("../../utils/index.js");
 if (!Array) {
   const _easycom_TabBar2 = common_vendor.resolveComponent("TabBar");
@@ -19,7 +18,7 @@ const _sfc_main = {
     const itemListData = common_vendor.ref([]);
     itemListData.value = [
       {
-        img: "../../static/images/present_item.png",
+        img: "https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png",
         card_text: "礼品卡",
         title: "2025新春礼品卡2025新春礼品卡2025新春礼2025新春礼品卡2025新春礼品卡2025新春礼",
         time: "2024-08-09 14:56:45 至 2024-08-09 14:56:45",
@@ -27,7 +26,7 @@ const _sfc_main = {
         // 0: 未使用 1: 已使用 2: 已过期
       },
       {
-        img: "../../static/images/present_item.png",
+        img: "https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png",
         card_text: "礼品卡",
         title: "2024中秋礼品卡2024中秋礼品卡2024中秋礼2024中秋礼品卡2024中秋礼品卡2024中秋礼",
         time: "2023-09-21 10:00:00 至 2023-09-21 10:00:00",
@@ -35,7 +34,7 @@ const _sfc_main = {
         // 0: 未使用 1: 已使用 2: 已过期
       },
       {
-        img: "../../static/images/present_item.png",
+        img: "https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png",
         card_text: "储值卡",
         title: "2023端午礼品卡2023端午礼品卡2023端午礼2023端午礼品卡2023端午礼品卡2023端午礼",
         time: "2023-06-14 08:00:00 至 2023-06-14 08:00:00",
@@ -43,7 +42,7 @@ const _sfc_main = {
         // 0: 未使用 1: 已使用 2: 已过期
       },
       {
-        img: "../../static/images/present_item.png",
+        img: "https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png",
         card_text: "储值卡",
         title: "2022春节礼品卡2022春节礼品卡2022春节礼2022春节礼品卡2022春节礼品卡2022春节礼",
         time: "2022-02-01 12:00:00 至 2022-02-01 12:00:00",
@@ -81,9 +80,8 @@ const _sfc_main = {
             i: index
           });
         }),
-        c: common_assets._imports_1$6,
-        d: common_vendor.o(($event) => selectedIndex.value = $event),
-        e: common_vendor.p({
+        c: common_vendor.o(($event) => selectedIndex.value = $event),
+        d: common_vendor.p({
           selectedIndex: selectedIndex.value
         })
       };

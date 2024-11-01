@@ -1,19 +1,19 @@
 <template>
 	<view class="coupon-container" style="
 		height: calc(100vh - 44px); 
-		background-image: url('../../static//images/coupons.png');">
+		background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/coupons.png');">
 		<!-- 空状态 -->
 <!-- 		<view class="empty-box">
-			<image src="../../static/images/kong.png" mode="aspectFill"></image>
+			<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/kong.png" mode="aspectFill"></image>
 			<view>暂无优惠券, 敬请期待</view>
 		</view> -->
 		<!-- 券列表 -->
 		<CouponList :coupons="coupons" style="padding-bottom: 100rpx;" />
 
 		<!-- 底部按钮 -->
-		<view class="coupon-bottom">
+		<view class="coupon-bottom" @click="toPage('/pages/coupon/myCoupon')">
 			<text>查看我的优惠券</text>
-			<image src="../../static/icon/right.png"></image>
+			<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right.png"></image>
 		</view>
 	</view>
 </template>
@@ -21,6 +21,7 @@
 <script setup>
 import { ref } from "vue";
 import CouponList from '@/components/CouponsList.vue';
+import { toPage } from '@/utils';
 
 const coupons = ref([
 	{

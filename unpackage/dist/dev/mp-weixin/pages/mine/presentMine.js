@@ -1,16 +1,17 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_index = require("../../utils/index.js");
 if (!Array) {
+  const _easycom_HeightBar2 = common_vendor.resolveComponent("HeightBar");
   const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
   const _easycom_TabBar2 = common_vendor.resolveComponent("TabBar");
-  (_easycom_NavBar2 + _easycom_TabBar2)();
+  (_easycom_HeightBar2 + _easycom_NavBar2 + _easycom_TabBar2)();
 }
+const _easycom_HeightBar = () => "../../components/HeightBar/HeightBar.js";
 const _easycom_NavBar = () => "../../components/NavBar/NavBar.js";
 const _easycom_TabBar = () => "../../components/TabBar/TabBar.js";
 if (!Math) {
-  (_easycom_NavBar + _easycom_TabBar)();
+  (_easycom_HeightBar + _easycom_NavBar + _easycom_TabBar)();
 }
 const _sfc_main = {
   __name: "presentMine",
@@ -19,21 +20,15 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
+          appendTitleBar: true
+        }),
+        b: common_vendor.p({
           showBack: true
         }),
-        b: common_assets._imports_0$16,
-        c: common_assets._imports_1$7,
-        d: common_assets._imports_1$7,
-        e: common_assets._imports_2$5,
-        f: common_assets._imports_2$4,
-        g: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentRecords")),
-        h: common_assets._imports_4$4,
-        i: common_assets._imports_2$4,
-        j: common_assets._imports_5$2,
-        k: common_assets._imports_2$4,
-        l: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentActivate")),
-        m: common_vendor.o(($event) => selectedIndex.value = $event),
-        n: common_vendor.p({
+        c: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentRecords")),
+        d: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentActivate")),
+        e: common_vendor.o(($event) => selectedIndex.value = $event),
+        f: common_vendor.p({
           selectedIndex: selectedIndex.value
         })
       };

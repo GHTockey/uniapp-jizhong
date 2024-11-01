@@ -1,5 +1,9 @@
 <template>
-	<view class="pay_container">
+	<view class="pay_container" style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/goods-pay-bg.svg');">
+
+
+		<HeightBar />
+
 		<!-- 标题栏 -->
 		<NavBar title="待付款订单" showBack isWhite>
 			<template #title>
@@ -124,7 +128,7 @@
 						||
 						'无留言' }}</view>
 					<image style="width: 13.89rpx; height: 20.83rpx; margin-left: 19.44rpx;" mode="aspectFit"
-						src="/static/icon/right1.svg">
+						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right1.svg">
 					</image>
 				</view>
 			</view>
@@ -143,7 +147,7 @@
 						<text
 							style="font-size: 27.78rpx;font-family: PingFang SC, PingFang SC-Medium;font-weight: 500;color: #a0a0a0;">100</text>
 						<image style="width: 13.89rpx; height: 20.83rpx; margin-left: 19.44rpx;" mode="aspectFit"
-							src="/static/icon/right1.svg">
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right1.svg">
 						</image>
 					</view>
 				</view>
@@ -153,7 +157,7 @@
 						<text
 							style="font-size: 27.78rpx;font-family: PingFang SC, PingFang SC-Medium;font-weight: 500;color: #a0a0a0;">无需发票</text>
 						<image style="width: 13.89rpx; height: 20.83rpx; margin-left: 19.44rpx;" mode="aspectFit"
-							src="/static/icon/right1.svg">
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right1.svg">
 						</image>
 					</view>
 				</view>
@@ -202,7 +206,7 @@
 				<view class="pay_popup_pay_item" @click="change_pay_type(1)">
 					<view style="display: flex;align-items: center;">
 						<image mode="widthFix" style="width: 83.33rpx;height: 83.33rpx; margin-right: 25rpx;"
-							src="/static/images/wx.svg">
+							src="https://saas.jizhongkeji.com/static/jzkj/static/images/wx.svg">
 						</image>
 						<view>
 							<view style="font-size: 30.56rpx;font-weight: bold;color: #000000;">微信支付</view>
@@ -210,13 +214,13 @@
 						</view>
 					</view>
 					<image mode="widthFix" style="width: 41.67rpx;"
-						:src="`/static/icon/select_fill-${selectPayType == 1 ? 'a' : 'n'}.svg`" />
+						:src="`https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType == 1 ? 'a' : 'n'}.svg`" />
 				</view>
 				<!-- 佣金支付 -->
 				<view class="pay_popup_pay_item" @click="change_pay_type(2)">
 					<view style="display: flex;align-items: center;">
 						<image mode="widthFix" style="width: 83.33rpx;height: 83.33rpx; margin-right: 25rpx;"
-							src="/static/images/yj.svg">
+							src="https://saas.jizhongkeji.com/static/jzkj/static/images/yj.svg">
 						</image>
 						<view>
 							<view style="font-size: 30.56rpx;font-weight: bold;color: #000000;">佣金支付</view>
@@ -224,13 +228,13 @@
 						</view>
 					</view>
 					<image mode="widthFix" style="width: 41.67rpx;"
-						:src="`/static/icon/select_fill-${selectPayType == 2 ? 'a' : 'n'}.svg`" />
+						:src="`https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType == 2 ? 'a' : 'n'}.svg`" />
 				</view>
 				<!-- 储值支付 -->
 				<view class="pay_popup_pay_item" @click="change_pay_type(3)">
 					<view style="display: flex;align-items: center;">
 						<image mode="widthFix" style="width: 83.33rpx;height: 83.33rpx; margin-right: 25rpx;"
-							src="/static/images/cz.svg">
+							src="https://saas.jizhongkeji.com/static/jzkj/static/images/cz.svg">
 						</image>
 						<view>
 							<view style="font-size: 30.56rpx;font-weight: bold;color: #000000;">储值支付</view>
@@ -238,7 +242,7 @@
 						</view>
 					</view>
 					<image mode="widthFix" style="width: 41.67rpx;"
-						:src="`/static/icon/select_fill-${selectPayType == 3 ? 'a' : 'n'}.svg`" />
+						:src="`https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType == 3 ? 'a' : 'n'}.svg`" />
 				</view>
 			</view>
 			<!-- 确认支付按钮 -->
@@ -247,7 +251,7 @@
 			</view>
 			<!-- 关闭图标 -->
 			<image class="pay_popup_close_icon" mode="widthFix" style="width: 33.33rpx;height: 33.33rpx;"
-				src="/static/icon/pay-pup-close.svg" @click="payPopup.close()" />
+				src="https://saas.jizhongkeji.com/static/jzkj/static/icon/pay-pup-close.svg" @click="payPopup.close()" />
 		</view>
 	</uni-popup>
 
@@ -263,7 +267,7 @@
 						{{ item.user_name }}, {{ item.mobile }}, {{ item.address }}, {{ item.address_detail }}
 					</view>
 					<image mode="widthFix" style="width: 41.67rpx;height: 41.67rpx;"
-						:src="`/static/icon/Checkbox_selected2-${item.id == address.id ? 'a' : 'n'}.svg`">
+						:src="`https://saas.jizhongkeji.com/static/jzkj/static/icon/Checkbox_selected2-${item.id == address.id ? 'a' : 'n'}.svg`">
 					</image>
 				</view>
 			</view>
@@ -918,7 +922,7 @@ function to_address() {
 	height: 100vh;
 	position: relative; // 相对定位
 	padding-top: $nav-height;
-	background-image: url('/static/images/goods-pay-bg.svg');
+	// background-image: url('/static/images/goods-pay-bg.svg');
 	background-size: 100%;
 	background-repeat: no-repeat;
 	background-color: #F8F9FA;

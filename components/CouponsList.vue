@@ -2,7 +2,7 @@
 	<view class="coupons-list">
 		<view class="coupon" v-for="(item, index) in coupons" :key="index">
 			<!-- 背景图片 -->
-			<image class="img-bg" src="../static//images//youhuiquan-bg.svg"></image>
+			<image class="img-bg" src="https://saas.jizhongkeji.com/static/jzkj/static/images//youhuiquan-bg.svg"></image>
 			<view class="coupon-left">
 				<text class="coupon-amount">
 					<text style="font-size: 30rpx;">¥</text>{{ item.amount }}

@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_index = require("../../utils/index.js");
 const _sfc_main = {
   __name: "presentDetailSimple",
@@ -16,11 +15,9 @@ const _sfc_main = {
     });
     return (_ctx, _cache) => {
       return common_vendor.e({
-        a: common_assets._imports_0$17,
-        b: common_assets._imports_1$6,
-        c: !isRecords.value
+        a: !isRecords.value
       }, !isRecords.value ? {
-        d: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentCard"))
+        b: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentCard"))
       } : {});
     };
   }

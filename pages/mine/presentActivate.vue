@@ -1,5 +1,5 @@
 <template>
-	<view class="present_activate_container">
+	<view class="present_activate_container" style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/present-activate-bg.svg');">
 		<!-- 标题栏 -->
 		<NavBar showBack>
 			<template #title>
@@ -10,19 +10,19 @@
 		<!-- 头部样式 -->
 		<view class="present_activate_header">
 			<image class="w-[486rpx] absolute right-0 bottom-[20rpx]"
-				src="../../static/images/present-activate-icon.png" mode="widthFix"></image>
+				src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-activate-icon.png" mode="widthFix"></image>
 			<image class="w-[360rpx] absolute top-1/2 -translate-y-1/2 left-[20rpx]"
-				src="../../static/images/present-activate-txt.svg" mode="widthFix"></image>
+				src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-activate-txt.svg" mode="widthFix"></image>
 		</view>
 
 		<!-- 输入卡号/密码 -->
 		<view class="present_activate_input_box">
 			<view class=" h-[100rpx] flex gap-2 items-center bg-[#ececec] rounded-[14rpx] px-4">
-				<image class="w-[40rpx]" src="../../static/icon/present-card-num.svg" mode="widthFix"></image>
+				<image class="w-[40rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/present-card-num.svg" mode="widthFix"></image>
 				<input v-model="formData.cardNum" class="flex-1 text-[30rpx]" placeholder="请输入卡片号码" />
 			</view>
 			<view class=" h-[100rpx] flex gap-2 items-center bg-[#ececec] rounded-[14rpx] px-4">
-				<image class="w-[40rpx]" src="../../static/icon/present-card-pwd.svg" mode="widthFix"></image>
+				<image class="w-[40rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/present-card-pwd.svg" mode="widthFix"></image>
 				<input v-model="formData.cardPwd" class="flex-1 text-[30rpx]" placeholder="请输入卡片密码" />
 			</view>
 
@@ -43,7 +43,7 @@
 
 		<!-- 商家电话 -->
 		<view class="flex items-center justify-center gap-2 mt-[216rpx]">
-			<image class="w-[31rpx] h-[31rpx]" src="../../static/icon/sj-mobile.svg" />
+			<image class="w-[31rpx] h-[31rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sj-mobile.svg" />
 			<text>商家客服热线：18888888888</text>
 		</view>
 	</view>
@@ -88,7 +88,7 @@ const handleActivate = () => {
 .present_activate_container {
 	height: 100vh;
 	background-color: #f6f8fe;
-	background-image: url(../../static/images/present-activate-bg.svg);
+	// background-image: url(https://saas.jizhongkeji.com/static/jzkj/present-activate-bg.svg);
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding: 0 30rpx;

@@ -1,20 +1,21 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_request = require("../../utils/request.js");
 if (!Array) {
+  const _easycom_HeightBar2 = common_vendor.resolveComponent("HeightBar");
   const _easycom_ActionSheet2 = common_vendor.resolveComponent("ActionSheet");
   const _easycom_uni_number_box2 = common_vendor.resolveComponent("uni-number-box");
   const _easycom_ActionSheetSlot2 = common_vendor.resolveComponent("ActionSheetSlot");
   const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
-  (_easycom_ActionSheet2 + _easycom_uni_number_box2 + _easycom_ActionSheetSlot2 + _easycom_NavBar2)();
+  (_easycom_HeightBar2 + _easycom_ActionSheet2 + _easycom_uni_number_box2 + _easycom_ActionSheetSlot2 + _easycom_NavBar2)();
 }
+const _easycom_HeightBar = () => "../../components/HeightBar/HeightBar.js";
 const _easycom_ActionSheet = () => "../../components/ActionSheet/ActionSheet.js";
 const _easycom_uni_number_box = () => "../../uni_modules/uni-number-box/components/uni-number-box/uni-number-box.js";
 const _easycom_ActionSheetSlot = () => "../../components/ActionSheetSlot/ActionSheetSlot.js";
 const _easycom_NavBar = () => "../../components/NavBar/NavBar.js";
 if (!Math) {
-  (CouponPopup + _easycom_ActionSheet + _easycom_uni_number_box + _easycom_ActionSheetSlot + _easycom_NavBar)();
+  (_easycom_HeightBar + CouponPopup + _easycom_ActionSheet + _easycom_uni_number_box + _easycom_ActionSheetSlot + _easycom_NavBar)();
 }
 const CouponPopup = () => "../../components/CouponPopup.js";
 const _sfc_main = {
@@ -97,9 +98,7 @@ const _sfc_main = {
           title: actionSheetData.value.title,
           show: showActionSheet.value
         }),
-        o: common_assets._imports_4,
-        p: common_assets._imports_12,
-        q: common_vendor.f(goodsParamsData.value, (item, k0, i0) => {
+        o: common_vendor.f(goodsParamsData.value, (item, k0, i0) => {
           return {
             a: common_vendor.t(item.value),
             b: item.id,
@@ -108,13 +107,12 @@ const _sfc_main = {
             e: item.id == 3 ? 1 : ""
           };
         }),
-        r: common_assets._imports_4,
-        s: common_vendor.o(($event) => showActionSheetSlot.value = $event),
-        t: common_vendor.p({
+        p: common_vendor.o(($event) => showActionSheetSlot.value = $event),
+        q: common_vendor.p({
           footerBtnText: "立即购买",
           show: showActionSheetSlot.value
         }),
-        v: common_vendor.p({
+        r: common_vendor.p({
           title: "标题",
           showBack: true
         })

@@ -36,7 +36,7 @@
 		<view v-if="false" class="online-search-result">
 			<!-- 空状态 -->
 			<view class="online-search-result-empty">
-				<image class="online-search-result-empty-icon" src="../../static//images/fangdajing.svg" />
+				<image class="online-search-result-empty-icon" src="https://saas.jizhongkeji.com/static/jzkj/fangdajing.svg" />
 				<text class="online-search-result-empty-text">没有搜到相关内容，换个关键词试试吧</text>
 			</view>
 		</view>

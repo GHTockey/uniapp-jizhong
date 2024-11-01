@@ -11,7 +11,7 @@
     <!-- 通知列表 -->
     <view class="notify-item-box">
       <view class="notify-item">
-        <image src="../../static//icon/yue.png" />
+        <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/yue.png" />
         <view>
           <text>余额通知</text>
           <!-- <text>暂未收到余额通知</text> -->
@@ -23,7 +23,7 @@
         </view>
       </view>
       <view class="notify-item">
-        <image src="../../static//icon/wuliu.png" />
+        <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/wuliu.png" />
         <view>
           <text>物流信息</text>
           <!-- <text>暂未收到物流通知</text> -->
@@ -35,7 +35,7 @@
         </view>
       </view>
       <view class="notify-item">
-        <image src="../../static//icon/fangke.png" />
+        <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/fangke.png" />
         <view>
           <text>访客通知</text>
           <!-- <text>暂未收到访客通知</text> -->
@@ -47,7 +47,7 @@
         </view>
       </view>
       <view class="notify-item">
-        <image src="../../static//icon/jifen.png" />
+        <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/jifen.png" />
         <view>
           <text>积分通知</text>
           <!-- <text>暂未收到积分通知</text> -->
@@ -59,7 +59,7 @@
         </view>
       </view>
       <view class="notify-item">
-        <image src="../../static//icon/yingxiao.png" />
+        <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/yingxiao.png" />
         <view>
           <text>营销通知</text>
           <!-- <text>暂未收到优惠券通知</text> -->

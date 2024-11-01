@@ -24,7 +24,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 .menu-container.data-v-dddef5a4 {
-  padding-bottom: 95.83rpx;
+  padding-bottom: calc(95.83rpx + env(safe-area-inset-bottom));
 }
 
 .my_page {

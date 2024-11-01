@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_request = require("../../utils/request.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
@@ -71,12 +70,11 @@ const _sfc_main = {
           placeholder: "请输入关键词",
           modelValue: searchValue.value
         }),
-        j: common_assets._imports_0$9,
-        k: common_vendor.o(($event) => changeActiveIndex(0)),
-        l: activeIndex.value == 0 ? 1 : "",
-        m: common_vendor.o(($event) => changeActiveIndex(1)),
-        n: activeIndex.value == 1 ? 1 : "",
-        o: common_vendor.f(shopList.value, (item, k0, i0) => {
+        j: common_vendor.o(($event) => changeActiveIndex(0)),
+        k: activeIndex.value == 0 ? 1 : "",
+        l: common_vendor.o(($event) => changeActiveIndex(1)),
+        m: activeIndex.value == 1 ? 1 : "",
+        n: common_vendor.f(shopList.value, (item, k0, i0) => {
           return {
             a: item.image_uri,
             b: "3fc93fa5-2-" + i0,
@@ -87,19 +85,19 @@ const _sfc_main = {
             g: common_vendor.t(item.end_time)
           };
         }),
-        p: common_vendor.p({
+        o: common_vendor.p({
           type: "arrowright",
           size: "18",
           color: "#999999"
         }),
-        q: common_vendor.p({
+        p: common_vendor.p({
           type: "star",
           size: "20",
           color: "#999999"
         }),
-        r: shopList.value.length == 0
+        q: shopList.value.length == 0
       }, shopList.value.length == 0 ? {
-        s: common_vendor.p({
+        r: common_vendor.p({
           tipText: "暂无收藏或常去门店"
         })
       } : {});

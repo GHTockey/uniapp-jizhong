@@ -1,5 +1,9 @@
 <template>
 	<view class="intro_product_container">
+		
+		<!-- 状态栏高度 -->
+		<!-- <view :style="{ height: statusBarHeight + 'px' }"></view> -->
+
 		<image v-if="!is_show_bar_title" class="img_home_bg"
 			src="https://saas.jizhongkeji.com/static/jzkj/images/img_home_bg.png"></image>
 
@@ -101,6 +105,7 @@ import { request } from "@/utils/request.js";
 import { onLoad, onShow, onReachBottom, onShareAppMessage, onPageScroll } from '@dcloudio/uni-app';
 import { useTempStore } from '@/stores/temp.js'
 import { storeToRefs } from 'pinia';
+import { getStatusBarHeight } from '@/utils';
 
 const { user: userInfo, business } = storeToRefs(useTempStore())
 
@@ -232,6 +237,7 @@ function choose_nav(i) {
 
 .intro_product_container {
 	min-height: calc(100vh - $tabbar-height - $nav-height);
-	padding-bottom: $tabbar-height;
+	// padding-bottom: $tabbar-height;
+	padding-bottom: calc($tabbar-height + env(safe-area-inset-bottom));
 }
 </style>

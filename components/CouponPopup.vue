@@ -2,9 +2,9 @@
 	<transition name="fade">
 		<view v-if="visible" class="overlay">
 <!-- 			<view class="coupon-popup" @click.stop
-				style="background-image: url('../static/images/youhuiquan.png');"> -->
+				style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/youhuiquan.png');"> -->
 			<view class="coupon-popup" @click.stop>
-				<image class="bg-img" src="../static/images/youhuiquan.png" mode="aspectFill"></image>
+				<image class="bg-img" src="https://saas.jizhongkeji.com/static/jzkj/static/images/youhuiquan.png" mode="aspectFill"></image>
 				<view class="popup-header">
 					<span>{{ title }}</span>
 				</view>
@@ -18,7 +18,7 @@
 				</view>
 				<!-- 关闭按钮 -->
 				<view class="close-btn" @click.stop="closePopup">				
-					<image style="width: 100%; height: 100%;" mode="aspectFill" src="../static/icon/close-icon.png">
+					<image style="width: 100%; height: 100%;" mode="aspectFill" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/close-icon.png">
 					</image>
 				</view>
 			</view>

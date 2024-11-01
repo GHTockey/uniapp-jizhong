@@ -26,11 +26,9 @@
 .present_mine_container.data-v-c279e8aa {
   height: calc(100vh - 44px);
   background-color: #f6f8fe;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTA4MCIgaGVpZ2h0PSI3MzAiIHZpZXdCb3g9IjAgMCAxMDgwIDczMCI+PGRlZnM+PHN0eWxlPi5he2ZpbGw6dXJsKCNhKTt9PC9zdHlsZT48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIwLjU1NiIgeDI9IjAuNTU5IiB5Mj0iMC45ODkiIGdyYWRpZW50VW5pdHM9Im9iamVjdEJvdW5kaW5nQm94Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmYzY2QiLz48c3RvcCBvZmZzZXQ9IjAuNzM3IiBzdG9wLWNvbG9yPSIjZmZlOWNjIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjZmOGZlIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgY2xhc3M9ImEiIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjczMCIvPjwvc3ZnPg==);
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 0 30rpx;
-  padding-top: 44px;
 }
 .present_mine_container .present_mine_card_box.data-v-c279e8aa {
   display: flex;

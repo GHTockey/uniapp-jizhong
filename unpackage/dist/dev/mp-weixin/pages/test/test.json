@@ -3,6 +3,7 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": false,
   "usingComponents": {
+    "height-bar": "../../components/HeightBar/HeightBar",
     "action-sheet": "../../components/ActionSheet/ActionSheet",
     "uni-number-box": "../../uni_modules/uni-number-box/components/uni-number-box/uni-number-box",
     "action-sheet-slot": "../../components/ActionSheetSlot/ActionSheetSlot",

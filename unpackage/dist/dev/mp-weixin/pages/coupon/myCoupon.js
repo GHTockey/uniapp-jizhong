@@ -1,6 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
+const utils_index = require("../../utils/index.js");
 if (!Math) {
   CouponList();
 }
@@ -23,6 +23,7 @@ const _sfc_main = {
     };
     const getMoreCoupons = () => {
       console.log("领取更多优惠券");
+      utils_index.toPage("/pages/coupon/couponCenter");
     };
     return (_ctx, _cache) => {
       return common_vendor.e({
@@ -39,14 +40,10 @@ const _sfc_main = {
         })
       } : {}, {
         i: activeTab.value == 1
-      }, activeTab.value == 1 ? {
-        j: common_assets._imports_0$1
-      } : {}, {
-        k: activeTab.value == 2
-      }, activeTab.value == 2 ? {
-        l: common_assets._imports_0$1
-      } : {}, {
-        m: common_vendor.o(getMoreCoupons)
+      }, activeTab.value == 1 ? {} : {}, {
+        j: activeTab.value == 2
+      }, activeTab.value == 2 ? {} : {}, {
+        k: common_vendor.o(getMoreCoupons)
       });
     };
   }

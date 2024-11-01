@@ -2,6 +2,7 @@
   "navigationBarTitleText": "礼品卡",
   "navigationStyle": "custom",
   "usingComponents": {
+    "height-bar": "../../components/HeightBar/HeightBar",
     "nav-bar": "../../components/NavBar/NavBar",
     "tab-bar": "../../components/TabBar/TabBar"
   }

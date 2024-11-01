@@ -1,8 +1,8 @@
 <template>
-	<view class="container">
+	<view class="container" :style="{ marginBottom: 'env(safe-area-inset-bottom)' }">
 		<view class="header" v-if="isShowHeader">
 			<view class="line"></view>
-			<image src="../static/icon/aixin.png" class="icon" />
+			<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/aixin.png" class="icon" />
 			<text class="title">好物优选</text>
 			<view class="line"></view>
 		</view>

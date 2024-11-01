@@ -4,14 +4,14 @@
 		<view class="head">
 			<!-- 图标和主题 -->
 			<view>
-				<image src="../static/images/hot-icon.png"></image>
+				<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/hot-icon.png"></image>
 				<text>超值秒杀</text>
 			</view>
 			<!-- 时间信息 -->
 			<view>距活动结束仅剩2时38分55秒</view>
 			<!-- 更多 -->
 			<!-- <view>3</view> -->
-			<image src="../static/images/gengduo.png"></image>
+			<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/gengduo.png"></image>
 		</view>
 		<!-- 内容 -->
 		<scroll-view scroll-x class="content-box">

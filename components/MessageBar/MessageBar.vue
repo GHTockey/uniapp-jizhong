@@ -4,7 +4,7 @@
     <view class="message-bar-header">
       <view class="icon-title-box">
         <!-- 图标 -->
-        <image class="icon-img" src="../../static/icon/wuliu.png" />
+        <image class="icon-img" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/wuliu.png" />
         <!-- 标题 -->
         <text class="message-bar-title">物流消息</text>
       </view>
