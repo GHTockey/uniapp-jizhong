@@ -27,7 +27,7 @@ const _sfc_main = {
       { id: 4, name: "拨打电话" },
       { id: 5, name: "线下门店", path: "/pages/mine/shop_info_list" }
     ]);
-    common_vendor.ref([
+    const order_nav_list = common_vendor.ref([
       { id: 1, name: "待付款", status: 1, nav_index: 1 },
       { id: 2, name: "待发货", status: 2, nav_index: 2 },
       { id: 3, name: "待收货", status: 4, nav_index: 3 },
@@ -92,6 +92,38 @@ const _sfc_main = {
         url: "/pages/mine/info_edit"
       });
     }
+    function makePhoneCall() {
+      var phone = business.value.phone;
+      if (!phone) {
+        common_vendor.index.showToast({
+          title: "商家未留有电话",
+          icon: "none"
+        });
+        return;
+      }
+      common_vendor.index.makePhoneCall({
+        phoneNumber: phone
+      });
+    }
+    function tool_nav(path) {
+      if (path) {
+        common_vendor.index.navigateTo({
+          url: path
+        });
+      } else {
+        common_vendor.index.showToast({
+          title: "敬请期待",
+          icon: "none"
+        });
+      }
+    }
+    function nav_to(item) {
+      if (item.nav_index) {
+        common_vendor.index.navigateTo({
+          url: "/pages/mine/order?status=" + item.status + "&nav_index=" + item.nav_index
+        });
+      }
+    }
     async function recommend_product(length) {
       let goods_list = productList.value;
       let goods_count_temp = 0;
@@ -143,8 +175,12 @@ const _sfc_main = {
         h: common_vendor.o(edit_user_info),
         i: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/money")),
         j: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/order")),
-        k: common_vendor.f(5, (item, k0, i0) => {
-          return {};
+        k: common_vendor.f(order_nav_list.value, (item, k0, i0) => {
+          return {
+            a: `https://saas.jizhongkeji.com/static/jzkj/images/order${item.nav_index * 1 + 1}.png`,
+            b: common_vendor.t(item.name),
+            c: common_vendor.o(($event) => nav_to(item))
+          };
         }),
         l: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/present")),
         m: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/address?type=edit")),
@@ -154,22 +190,25 @@ const _sfc_main = {
         q: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/coupon/myCoupon")),
         r: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/test/test")),
         s: common_vendor.o(open_is_image),
-        t: common_vendor.p({
+        t: common_vendor.o(makePhoneCall),
+        v: common_vendor.o(($event) => tool_nav("/pages/mine/shopInfoList")),
+        w: common_vendor.o(($event) => tool_nav("/pages/mine/distribution_center")),
+        x: common_vendor.p({
           isAppMode: true
         }),
-        v: show_pop_avatar.value
+        y: show_pop_avatar.value
       }, show_pop_avatar.value ? {
-        w: common_vendor.o(on_pop_avatar_submit),
-        x: common_vendor.o(on_pop_avatar_close),
-        y: common_vendor.o(($event) => show_pop_avatar.value = $event),
-        z: common_vendor.p({
+        z: common_vendor.o(on_pop_avatar_submit),
+        A: common_vendor.o(on_pop_avatar_close),
+        B: common_vendor.o(($event) => show_pop_avatar.value = $event),
+        C: common_vendor.p({
           modelValue: show_pop_avatar.value
         })
       } : {}, {
-        A: is_image.value
+        D: is_image.value
       }, is_image.value ? {
-        B: common_vendor.o(close_is_image),
-        C: common_vendor.unref(business).erweima_serve
+        E: common_vendor.o(close_is_image),
+        F: common_vendor.unref(business).erweima_serve
       } : {});
     };
   }

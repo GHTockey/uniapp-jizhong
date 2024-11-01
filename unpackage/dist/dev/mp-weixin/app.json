@@ -47,7 +47,9 @@
     "pages/mine/collect_list",
     "pages/mine/info_edit",
     "pages/mine/order",
-    "pages/mine/drawback"
+    "pages/mine/drawback",
+    "pages/mine/distribution_center",
+    "pages/mine/promot"
   ],
   "window": {
     "navigationBarTextStyle": "black",

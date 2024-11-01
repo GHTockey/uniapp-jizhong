@@ -56,16 +56,27 @@
 				</view>
 			</view>
 			<!-- 按钮列表 -->
-			<view class="my_order_list">
+			<!-- 左右滑动版 -->
+			<!-- <view class="my_order_list">
 				<scroll-view class="scroll-view_H" scroll-x="true" scroll-left="120">
-					<view class="scroll-view-item_H" v-for="item in 5">
+					<view class="scroll-view-item_H" v-for="item in order_nav_list">
 						<view class="flex flex-col items-center ">
 							<image class="w-[42rpx] h-[42rpx]"
-								src="https://saas.jizhongkeji.com/static/jzkj/static/icon/qb.svg"></image>
-							<text class="text-[24rpx] mt-[13rpx]">待付款</text>
+								:src="`https://saas.jizhongkeji.com/static/jzkj/images/order${item.nav_index * 1 + 1}.png`"></image>
+							<text class="text-[24rpx] mt-[13rpx]">{{ item.name }}</text>
 						</view>
 					</view>
 				</scroll-view>
+			</view> -->
+			<view class="my_order_list flex justify-around">
+				<view class="" v-for="item in order_nav_list" @click="nav_to(item)">
+					<view class="flex flex-col items-center ">
+						<image class="w-[42rpx] h-[42rpx]"
+							:src="`https://saas.jizhongkeji.com/static/jzkj/images/order${item.nav_index * 1 + 1}.png`">
+						</image>
+						<text class="text-[24rpx] mt-[13rpx]">{{ item.name }}</text>
+					</view>
+				</view>
 			</view>
 		</view>
 
@@ -140,12 +151,28 @@
 					<text class="text-[24rpx] mt-[13rpx]">微信客服</text>
 				</view>
 
-				<view class="common_tool_item">
+				<view class="common_tool_item" @click="makePhoneCall">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/images/gongju4.png">
+						</image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">拨打电话</text>
+				</view>
+
+				<view class="common_tool_item" @click="tool_nav('/pages/mine/shopInfoList')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/images/gongju5.png">
+						</image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">线下门店</text>
+				</view>
+
+				<view class="common_tool_item" @click="tool_nav('/pages/mine/distribution_center')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<image class=" h-full w-full"
-							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/ppjs.svg"></image>
+							src="https://saas.jizhongkeji.com/static/jzkj/images/promotion1.png"></image>
 					</view>
-					<text class="text-[24rpx] mt-[13rpx]">品牌介绍tem</text>
+					<text class="text-[24rpx] mt-[13rpx]">分销中心</text>
 				</view>
 			</view>
 		</view>
@@ -154,12 +181,10 @@
 		<!-- 底部 tabbar -->
 		<!-- <Tarbar class="fixed-bottom" /> -->
 		<TabBar class="fixed-bottom" :isAppMode="true" />
-
-
 		<!-- 授权头像/昵称 pop -->
 		<PopChooseAvatar v-model="show_pop_avatar" v-if="show_pop_avatar" @submit="on_pop_avatar_submit"
 			@close="on_pop_avatar_close" />
-
+		<!-- 微信客服二维码弹窗 -->
 		<view class="tc_baoming" v-if="is_image">
 			<view class="image_box">
 				<view style="width: 100%;display: flex;justify-content: flex-end;margin-bottom: 30rpx;">
@@ -324,10 +349,10 @@ function makePhoneCall() {
 	})
 }
 
-function tool_nav(e) {
-	if (e.currentTarget.dataset.path) {
+function tool_nav(path) {
+	if (path) {
 		uni.navigateTo({
-			url: e.currentTarget.dataset.path
+			url: path
 		})
 	} else {
 		uni.showToast({
@@ -336,10 +361,10 @@ function tool_nav(e) {
 		})
 	}
 }
-function nav_to(e) {
-	if (e.currentTarget.dataset.nav_index) {
+function nav_to(item) {
+	if (item.nav_index) {
 		uni.navigateTo({
-			url: '/pages/mine/order?status=' + e.currentTarget.dataset.status + '&nav_index=' + e.currentTarget.dataset.nav_index,
+			url: '/pages/mine/order?status=' + item.status + '&nav_index=' + item.nav_index,
 		})
 	}
 }

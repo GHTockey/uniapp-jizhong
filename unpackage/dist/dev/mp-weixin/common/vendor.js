@@ -9107,6 +9107,19 @@ const pages = [
     style: {
       navigationBarTitleText: "退款"
     }
+  },
+  {
+    path: "pages/mine/distribution_center",
+    style: {
+      navigationBarTitleText: "分销中心",
+      navigationStyle: "custom"
+    }
+  },
+  {
+    path: "pages/mine/promot",
+    style: {
+      navigationBarTitleText: "推广规则"
+    }
   }
 ];
 const globalStyle = {
