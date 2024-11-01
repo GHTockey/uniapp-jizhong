@@ -57,6 +57,7 @@ if (!Math) {
   "./pages/mine/distribution_order_list.js";
   "./pages/mine/team.js";
   "./pages/mine/distribute_goods.js";
+  "./pages/mine/scan_order.js";
 }
 const __default__ = {
   onLaunch: function() {

@@ -124,7 +124,6 @@
   margin-top: 30rpx;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   row-gap: 25rpx;
 }
 .mine_container .common_tool_box .common_tool_list .common_tool_item.data-v-7c2ebfa5 {

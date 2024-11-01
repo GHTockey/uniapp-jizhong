@@ -174,6 +174,13 @@
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">分销中心</text>
 				</view>
+				<view class="common_tool_item" @click="to_scan_order">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/images/tool22.png">
+						</image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">核销订单</text>
+				</view>
 			</view>
 		</view>
 
@@ -576,7 +583,7 @@ async function tixian(e) {
 			margin-top: 30rpx;
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: space-between;
+			// justify-content: space-between;
 			row-gap: 25rpx;
 
 			.common_tool_item {

@@ -107,12 +107,12 @@
 							<view class="small">待入账(元)</view>
 						</view>
 					</view>
-					<view class="tool_item" style="display: none;">
+					<view class="tool_item">
 						<image class="promotion_img"
 							src="https://saas.jizhongkeji.com/static/jzkj/images/promotion_img3.png">
 						</image>
 						<view class="text_tips">
-							<view>邀请好友</view>
+							<view>邀请好友*</view>
 							<view class="small">邀请好友赚好礼</view>
 						</view>
 					</view>
@@ -127,12 +127,12 @@
 						</view>
 					</view>
 
-					<view class="tool_item" style="display: none;">
+					<view class="tool_item">
 						<image class="promotion_img"
 							src="https://saas.jizhongkeji.com/static/jzkj/images/promotion_img5.png">
 						</image>
 						<view class="text_tips">
-							<view>佣金排行</view>
+							<view>佣金排行*</view>
 							<view class="small">您排名第{{ user_paiming }}位</view>
 						</view>
 					</view>

@@ -159,6 +159,11 @@ const _sfc_main = {
       productList.value = goods_list;
       goods_count.value = goods_count_temp;
     }
+    function to_scan_order() {
+      common_vendor.index.navigateTo({
+        url: "/pages/mine/scan_order"
+      });
+    }
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: common_vendor.p({
@@ -193,22 +198,23 @@ const _sfc_main = {
         t: common_vendor.o(makePhoneCall),
         v: common_vendor.o(($event) => tool_nav("/pages/mine/shopInfoList")),
         w: common_vendor.o(($event) => tool_nav("/pages/mine/distribution_center")),
-        x: common_vendor.p({
+        x: common_vendor.o(to_scan_order),
+        y: common_vendor.p({
           isAppMode: true
         }),
-        y: show_pop_avatar.value
+        z: show_pop_avatar.value
       }, show_pop_avatar.value ? {
-        z: common_vendor.o(on_pop_avatar_submit),
-        A: common_vendor.o(on_pop_avatar_close),
-        B: common_vendor.o(($event) => show_pop_avatar.value = $event),
-        C: common_vendor.p({
+        A: common_vendor.o(on_pop_avatar_submit),
+        B: common_vendor.o(on_pop_avatar_close),
+        C: common_vendor.o(($event) => show_pop_avatar.value = $event),
+        D: common_vendor.p({
           modelValue: show_pop_avatar.value
         })
       } : {}, {
-        D: is_image.value
+        E: is_image.value
       }, is_image.value ? {
-        E: common_vendor.o(close_is_image),
-        F: common_vendor.unref(business).erweima_serve
+        F: common_vendor.o(close_is_image),
+        G: common_vendor.unref(business).erweima_serve
       } : {});
     };
   }

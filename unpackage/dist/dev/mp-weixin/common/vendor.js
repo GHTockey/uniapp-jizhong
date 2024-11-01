@@ -9138,6 +9138,12 @@ const pages = [
     style: {
       navigationBarTitleText: "分销商品"
     }
+  },
+  {
+    path: "pages/mine/scan_order",
+    style: {
+      navigationBarTitleText: "核销订单"
+    }
   }
 ];
 const globalStyle = {
