@@ -60,7 +60,7 @@
 		</view>
 
 		<!-- 标题栏 -->
-		<NavBar class="bg-red-white">
+		<NavBar class="!bg-white">
 			<template #title>门店</template>
 		</NavBar>
 

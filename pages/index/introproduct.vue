@@ -1,24 +1,31 @@
 <template>
 	<view class="intro_product_container">
-		
+
 		<!-- 状态栏高度 -->
 		<!-- <view :style="{ height: statusBarHeight + 'px' }"></view> -->
 
 		<image v-if="!is_show_bar_title" class="img_home_bg"
 			src="https://saas.jizhongkeji.com/static/jzkj/images/img_home_bg.png"></image>
 
-		<view v-if="!is_show_bar_title"
+		<!-- <view v-if="!is_show_bar_title"
 			:style="`padding-top:${statusBarHeight}px;height:${navHeight}px;display: flex;align-items: center;color: #000;z-index: 109;position: fixed;`">
 			<text style="margin-left: 24rpx;z-index: 99;">资讯</text>
-		</view>
+		</view> -->
 		<!-- <customNavigation wx:if="{{is_show_bar_title}}"
 			class="bar_title {{has_bar_title_color?'bar_title_color':''}} {{is_show_bar_title? '':'bar_title_none'}}">
 			<text style="margin-left: 24rpx;">资讯</text>
 		</customNavigation> -->
-		<NavBar class="!justify-start"
+		<NavBar v-if="!is_show_bar_title">
+			<template v-slot:title>
+				<view class="w-full text-left">资讯</view>
+			</template>
+		</NavBar>
+		<NavBar
 			:class="`bar_title ${has_bar_title_color ? 'bar_title_color' : ''} ${is_show_bar_title ? '' : 'bar_title_none'}`"
 			v-if="is_show_bar_title">
-			<template v-slot:title><text style="margin-left: 24rpx;">资讯</text></template>
+			<template v-slot:title>
+				<view class="w-full text-left">资讯</view>
+			</template>
 		</NavBar>
 
 		<!-- 多方案 -->
@@ -70,19 +77,19 @@
 				<view class="product_list" v-if="productList.length > 0">
 					<!-- <template v-for="item in productList" :key="item.id">
 						<navigator hover-class="none" :url="`/pages/index/introproduct_detail?id=${item.id}`"> -->
-							<view class="product_item_v"  v-for="item in productList" :key="item.id" @click="toPage(`/pages/index/introproduct_detail?id=${item.id}`)">
-								<image
-									style="width: 174rpx;height: 174rpx;border-radius: 10rpx;margin-right: 33rpx;flex: none;"
-									lazy-load :src="item.image_uri" mode="aspectFill" />
-								<view class="product_info_v">
-									<text class="title_v">{{ item.name }}</text>
-									<view class="click_count">
-										<view>{{ item.update_time }}</view>
-										<view>{{ item.click_count }}阅读</view>
-									</view>
-								</view>
+					<view class="product_item_v" v-for="item in productList" :key="item.id"
+						@click="toPage(`/pages/index/introproduct_detail?id=${item.id}`)">
+						<image style="width: 174rpx;height: 174rpx;border-radius: 10rpx;margin-right: 33rpx;flex: none;"
+							lazy-load :src="item.image_uri" mode="aspectFill" />
+						<view class="product_info_v">
+							<text class="title_v">{{ item.name }}</text>
+							<view class="click_count">
+								<view>{{ item.update_time }}</view>
+								<view>{{ item.click_count }}阅读</view>
 							</view>
-						<!-- </navigator>
+						</view>
+					</view>
+					<!-- </navigator>
 					</template> -->
 				</view>
 

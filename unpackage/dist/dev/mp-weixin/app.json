@@ -53,7 +53,8 @@
     "pages/mine/distribution_order_list",
     "pages/mine/team",
     "pages/mine/distribute_goods",
-    "pages/mine/scan_order"
+    "pages/mine/scan_order",
+    "pages/index/auding_order"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -9144,6 +9144,12 @@ const pages = [
     style: {
       navigationBarTitleText: "核销订单"
     }
+  },
+  {
+    path: "pages/index/auding_order",
+    style: {
+      navigationBarTitleText: "核销订单"
+    }
   }
 ];
 const globalStyle = {

@@ -32,7 +32,8 @@
 				<view class="ActionSheetSlotComponentBody">
 					<!-- 商品图片价格 -->
 					<view class="goods-img-price-box">
-						<image src="https://saas.jizhongkeji.com/static/jzkj/kun.png" alt="" class="goods-img"></image>
+						<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/kun.png" alt=""
+							class="goods-img"></image>
 						<view class="goods-price-box">
 							<text class="goods-price"><text style="font-size: 27.78rpx;">￥</text>100</text>
 							<text class="goods-price-unit"><text style="font-size: 27.78rpx;">￥</text>10~360</text>
@@ -43,7 +44,8 @@
 						<view class="goods-params-title" style="display: flex; justify-content: space-between;">
 							<text>商品型号:</text>
 							<view class="goods-params-title-right">
-								<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/list.svg" style="width: 30.56rpx;height: 27.08rpx;">
+								<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/list.svg"
+									style="width: 30.56rpx;height: 27.08rpx;">
 								</image>
 								<text>列表</text>
 							</view>
@@ -52,7 +54,8 @@
 							<view class="goods-params-item" v-for="item in goodsParamsData" :key="item.id"
 								@click="handleSelectGoodsParams(item.id)"
 								:class="{ 'active': selectedGoodsParams.includes(item.id), 'disabled': item.id == 3 }">
-								<image src="https://saas.jizhongkeji.com/static/jzkj/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
+								<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/kun.png"
+									style="width: 61.11rpx; height: 61.11rpx;">
 								</image>
 								<text>{{ item.value }}</text>
 							</view>

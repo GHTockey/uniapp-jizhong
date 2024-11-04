@@ -29,7 +29,6 @@ const number = ref('');
 // 扫码按钮的事件处理函数
 function scanCode() {
 	if (uni.scanCode) {
-		console.log('scanCode');
 		uni.scanCode({
 			success: function (res) {
 				console.log('111111111', res);
@@ -52,7 +51,6 @@ function scanCode() {
 
 
 				if (active_str.indexOf('pages/index/auding_order?scene=order_id') === 0) {
-
 					apply_id = active_str.substr('pages/index/auding_order?scene=order_id'.length);
 					// console.log('55555');
 					// apply_id = parseInt(active_str.split()[1]);
@@ -63,7 +61,13 @@ function scanCode() {
 				}
 
 			},
-			fail: function (res) { }
+			fail: function (error) {
+				console.log('fail', error);
+				uni.showToast({
+					title: '当前环境不支持扫码',
+					icon: 'none'
+				})
+			}
 		})
 	} else {
 		uni.showToast({

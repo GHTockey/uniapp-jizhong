@@ -587,6 +587,14 @@ view,text,::before,::after {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity))
 }
+.bg-red-300 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(252 165 165 / var(--tw-bg-opacity))
+}
+.ibg-white {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important
+}
 .ip-0 {
     padding: 0px !important
 }
@@ -640,6 +648,9 @@ view,text,::before,::after {
 }
 .pt-_50rpx_ {
     padding-top: 50rpx
+}
+.text-left {
+    text-align: left
 }
 .text-center {
     text-align: center
