@@ -20,6 +20,11 @@ const _sfc_main = {
   __name: "pay",
   setup(__props) {
     const { user, business } = common_vendor.storeToRefs(stores_temp.useTempStore());
+    const good_list = common_vendor.ref([]);
+    common_vendor.ref(0);
+    common_vendor.ref(null);
+    const type = common_vendor.ref();
+    const good_count = common_vendor.ref();
     const is_loading = common_vendor.ref(true);
     const buy_type = common_vendor.ref(1);
     const is_saving = common_vendor.ref(0);
@@ -62,16 +67,32 @@ const _sfc_main = {
       { id: 0, name: "物流配送" }
     ]);
     common_vendor.onLoad((options) => {
-      console.log("页面加载：pay");
-      if (options && options.goods_id) {
+      common_vendor.index.showLoading({
+        title: "loading"
+      });
+      if (business && business.buy_type == 1) {
+        var list = [{
+          "id": 1,
+          "name": "门店自提"
+        }, {
+          "id": 0,
+          "name": "物流配送"
+        }];
+        buy_type_list.value = list;
         buy_type.value = 1;
-        get_good_info(options.goods_id, options.price_id, options.count);
-        console.log("获取的options", options);
       }
-      get_info_list();
+      console.log("onload====", buy_type.value);
+      if (options && options.goods_id) {
+        type.value = "buy_now";
+        console.log("获取的options", options);
+        get_good_info(options.goods_id, options.price_id, options.count);
+      } else {
+        get_info_list();
+      }
     });
     common_vendor.onShow(() => {
       get_address();
+      get_select_shop();
     });
     common_vendor.onUnload(() => {
       console.log("页面卸载：pay");
@@ -179,11 +200,21 @@ const _sfc_main = {
       address.value = res.data.address;
     }
     async function get_info_list() {
-      let res = await utils_request.request("/WxAppCustomer/get_address_list", "post", {});
+      let res = await utils_request.request("/WxAppCustomer/get_shopcar_v2", "post", { type: "selected" });
       console.log("get_info_list res", res);
-      if (res.code != 0)
-        return common_vendor.index.showToast({ title: res.msg, icon: "error", duration: 2e3 });
-      address_list.value = res.data.address_list;
+      if (res.code == 1) {
+        common_vendor.index.showToast({
+          title: res.msg,
+          icon: "none",
+          mask: true
+        });
+      } else {
+        common_vendor.index.hideLoading();
+        good_count.value = res.data.good_count;
+        good_list.value = res.data.good_list;
+        price_all.value = res.data.price_all;
+        is_loading.value = true;
+      }
     }
     async function get_good_info(goods_id, price_id, count) {
       let res = await utils_request.request("/WxAppCustomer/get_good_info", "post", {
@@ -192,9 +223,18 @@ const _sfc_main = {
         count: count || 0
       });
       console.log("get_good_info res", res);
-      if (res.code != 0)
-        return common_vendor.index.showToast({ title: res.msg, icon: "error", duration: 2e3 });
-      goods_info.value = res.data.goods_info;
+      if (res.code == 1) {
+        common_vendor.index.showToast({
+          title: res.msg,
+          icon: "none",
+          mask: true
+        });
+      } else {
+        common_vendor.index.hideLoading();
+        goods_info.value = res.data.goods_info;
+        price_all.value = res.data.price_all;
+        is_loading.value = true;
+      }
     }
     async function clear_select_address() {
       let res = await utils_request.request("/WxAppCustomer/clear_select_address", "post", {});
@@ -235,6 +275,18 @@ const _sfc_main = {
       common_vendor.index.navigateTo({
         url: "/pages/mine/get_shop_list"
       });
+    }
+    async function get_select_shop() {
+      let res = await utils_request.request("/WxAppCustomer/select_shop", "post", {});
+      if (res.code == 1) {
+        common_vendor.index.showToast({
+          title: res.msg,
+          icon: "none",
+          mask: true
+        });
+      } else {
+        targte_shop.value = res.data.targte_shop;
+      }
     }
     return (_ctx, _cache) => {
       var _a, _b, _c;

@@ -283,6 +283,103 @@
 				</view>
 			</template>
 		</ActionSheetSlot>
+		<!-- 加购/购买 pop -->
+		<template v-if="show_pop == 'add' || show_pop == 'buy'">
+			<view class="my_pop" @click="close_pop" style="position: fixed;">
+				<view class="my_pop_inner" @click.stop="return_close">
+					<image lazy-load class="pop_close" mode="heightFix"
+						src="https://saas.jizhongkeji.com/static/jzkj/images/close_pop_icon.png" @click="close_pop">
+					</image>
+
+					<view class="flex_row_space_bt pop_intro">
+						<image lazy-load class="pop_img" mode="aspectFill"
+							:src="act_img ? act_img : 'https://saas.jizhongkeji.com/static/jzkj/images/tool_1.png'"
+							@click="close_pop"></image>
+						<view class="flex_col_str_str pop_price">
+							<view class="red_text">
+								<text style="font-size: 35rpx;">￥</text>{{ price_show }}<text v-if="!have_chosed"
+									style="font-size: 29rpx;font-weight: 400;margin-left: 4rpx;">起</text>
+							</view>
+							<view class="grey_text">
+								¥{{ price_inter[0] }}~{{ price_inter[1] }}
+							</view>
+						</view>
+					</view>
+
+					<view class="pop_group" v-if="product.spec_list1?.option && product.spec_list1.option.length > 0">
+						<view class="pop_group_title flex_row_space_bt">
+							<view>{{ product.spec_list1.name }}</view>
+							<view v-if="show_select_change" class="layout_btn flex_row_cen_cen" @click="change_layout">
+								<image lazy-load class="layout_btn_icon" mode="widthFix"
+									src="https://saas.jizhongkeji.com/static/jzkj/images/layout_btn_icon.png"></image>
+								<view class="layout_btn_text">{{ is_big_layout ? '大图' : '列表' }}</view>
+							</view>
+						</view>
+						<view
+							:class="`spec_list flex_row_str_str flex_wrap have_image ${is_big_layout ? 'big_type' : ''}`">
+							<template v-for="(item, index) in product.spec_list1.option" :key="index">
+								<view
+									:class="`spec_item ${act_spec1 == item.name ? 'active' : ''} ${item.store == 0 ? 'no_store' : ''} ${!is_big_layout && item.store == 0 ? 'sell_out' : 'sell_have'}`"
+									@click="choose_spec1(item)">
+									<view v-if="item.img_uri && show_select_change">
+										<image lazy-load class="spec_item_img" mode="aspectFill" :src="item.img_uri">
+										</image>
+									</view>
+									<view v-if="!item.img_uri && show_select_change">
+										<image lazy-load class="spec_item_img" mode="aspectFill"
+											src="https://saas.jizhongkeji.com/static/jzkj/images/big_guige.png">
+										</image>
+									</view>
+									<view class="spec_name_text">{{ item.name }}</view>
+									<view v-if="item.store == 0" class="no_store_lable flex_col_cen_cen">已售罄</view>
+								</view>
+							</template>
+						</view>
+					</view>
+					<view class="pop_group" v-if="product.spec_list2?.option && product.spec_list2.option.length > 0">
+						<view class="pop_group_title">
+							{{ product.spec_list2.name }}
+						</view>
+						<view class="spec_list flex_row_str_str flex_wrap">
+							<template v-for="item in product.spec_list2.option" :key="item.id">
+								<view
+									:class="`spec_item ${act_spec2 == item.name ? 'active' : ''} ${item.store == 0 ? 'no_store no_store_juli' : ''}`"
+									@click="choose_spec2(item)">
+									{{ item.name }}
+									<view v-if="item.store == 0" class="no_store_lable flex_col_cen_cen">已售罄</view>
+								</view>
+							</template>
+						</view>
+					</view>
+					<view class="pop_group">
+						<view class="pop_group_title">
+							购买数量：
+						</view>
+						<view class="count_btn_box width_max_content flex_row_space_bt">
+							<view :class="`de_btn count_btn flex_col_cen_cen ${add_count == 1 ? 'no_active' : ''}`"
+								@click="reduce_count">
+								<image lazy-load class="reduce_icon_new" mode="widthFix"
+									src="https://saas.jizhongkeji.com/static/jzkj/images/reduce.png"></image>
+							</view>
+							<view class="count flex_col_cen_cen" style="height: unset;">{{ add_count || 1 }}</view>
+							<view
+								:class="`add_btn count_btn flex_col_cen_cen ${add_count == max_count ? 'no_active' : ''}`"
+								@click="add_count">
+								<image lazy-load class="reduce_icon_new" mode="widthFix"
+									src="https://saas.jizhongkeji.com/static/jzkj/images/add.png"></image>
+							</view>
+							<!-- <view class="reduce count_btn flex_col_cen_cen {{add_count == max_count ? 'no_active' : ''}}" bindtap="add_count">+</view> -->
+						</view>
+					</view>
+					<view wx:if="{{show_pop == 'add'}}" class="pop_btn add flex_col_cen_cen" bindtap="add_shopcar">
+						我选好了，加入购物车
+					</view>
+					<view wx:if="{{show_pop == 'buy'}}" class="pop_btn flex_col_cen_cen" bindtap="to_buy">
+						立即购买
+					</view>
+				</view>
+			</view>
+		</template>
 	</view>
 </template>
 
@@ -315,7 +412,7 @@ const detail_image_uri = ref([]); // 商品详情图片
 const swiperIndex = ref(0); // 轮播图当前索引
 const act_info = ref(0); // 活动价格 ???
 
-const show_pop = ref()
+const show_pop = ref('')
 const have_chosed = ref()
 const height = ref()
 const width = ref()

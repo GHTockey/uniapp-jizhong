@@ -1,7 +1,6 @@
 <template>
-	<view class="pay_container" style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/goods-pay-bg.svg');">
-
-
+	<view class="pay_container"
+		style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/goods-pay-bg.svg');">
 		<HeightBar />
 
 		<!-- 标题栏 -->
@@ -251,7 +250,8 @@
 			</view>
 			<!-- 关闭图标 -->
 			<image class="pay_popup_close_icon" mode="widthFix" style="width: 33.33rpx;height: 33.33rpx;"
-				src="https://saas.jizhongkeji.com/static/jzkj/static/icon/pay-pup-close.svg" @click="payPopup.close()" />
+				src="https://saas.jizhongkeji.com/static/jzkj/static/icon/pay-pup-close.svg"
+				@click="payPopup.close()" />
 		</view>
 	</uni-popup>
 
@@ -288,6 +288,14 @@ import { request } from "@/utils/request";
 import { onUnload, onLoad, onShow } from "@dcloudio/uni-app";
 
 const { user, business } = storeToRefs(useTempStore());
+
+const has_bar_title_color = 'unset';
+const is_show_locate = false;
+const good_list = ref([]);
+const is_checking = ref(0);
+const inter = ref(null);
+const type = ref();
+const good_count = ref()
 
 const is_loading = ref(true); // 是否加载中
 const buy_type = ref(1); // 购买类型
@@ -337,23 +345,50 @@ const buy_type_list = ref([
 
 
 onLoad((options) => {
-	console.log('页面加载：pay');
+	uni.showLoading({
+		title: 'loading',
+	})
+	// this.onLogin(user => {
+	// 	this.setData({
+	// 		user: user,
+	// 		business: user.business,
+	// 	})
+	// })
 
-	// 获取 user 数据后
-
-	if (options && options.goods_id) {
-		buy_type.value = 1; // 默认门店自提
-		get_good_info(options.goods_id, options.price_id, options.count)
-		console.log('获取的options', options);
+	if (business && business.buy_type == 1) {
+		// 商家默认方式为自提
+		var list = [{
+			'id': 1,
+			'name': '门店自提'
+		}, {
+			'id': 0,
+			'name': '物流配送'
+		},]
+		// this.setData({
+		// 	buy_type_list: list,
+		// 	buy_type: 1,
+		// });
+		buy_type_list.value = list;
+		buy_type.value = 1;
 	}
-	get_info_list()
-	// else {
-	// 	get_info_list()
-	// }
+
+	console.log('onload====', buy_type.value);
+	if (options && options.goods_id) {
+		// this.setData({
+		// 	type: 'buy_now'
+		// })
+		type.value = 'buy_now';
+		console.log('获取的options', options);
+		get_good_info(options.goods_id, options.price_id, options.count)
+	} else {
+		get_info_list()
+	}
 })
 
 onShow(() => {
+	// get_address();
 	get_address();
+	get_select_shop();
 })
 
 onUnload(() => {
@@ -511,26 +546,25 @@ async function get_address() {
 
 // 获取地址列表
 async function get_info_list() {
-	// this.request({
-	// 	url: '/WxAppCustomer/get_address_list',
-	// 	data: {},
-	// 	success: (res) => {
-	// 		if (res.data && res.data.code == 1) {
-	// 			wx.showToast({
-	// 				title: res.data.msg,
-	// 				icon: 'none',
-	// 				mask: true
-	// 			})
-	// 		} else {
-	// 			this.setData(res.data.data)
-	// 		}
-	// 	}
-	// });
-
-	let res = await request('/WxAppCustomer/get_address_list', 'post', {});
+	let res = await request('/WxAppCustomer/get_shopcar_v2', 'post', { type: 'selected' });
 	console.log('get_info_list res', res);
-	if (res.code != 0) return uni.showToast({ title: res.msg, icon: 'error', duration: 2000 });
-	address_list.value = res.data.address_list;
+	if (res.code == 1) {
+		uni.showToast({
+			title: res.msg,
+			icon: 'none',
+			mask: true
+		})
+	} else {
+		uni.hideLoading();
+		// this.setData(res.data.data)
+		good_count.value = res.data.good_count;
+		good_list.value = res.data.good_list;
+		price_all.value = res.data.price_all;
+		// this.setData({
+		// 	is_loading: true,
+		// })
+		is_loading.value = true;
+	}
 }
 
 // 获取商品信息
@@ -541,35 +575,19 @@ async function get_good_info(goods_id, price_id, count) {
 		count: count || 0,
 	});
 	console.log('get_good_info res', res);
-	// 获取数据失败提示
-	if (res.code != 0) return uni.showToast({ title: res.msg, icon: 'error', duration: 2000 });
-	goods_info.value = res.data.goods_info;
-
-	// this.request({
-	// 	url: '/WxAppCustomer/get_good_info',
-	// 	data: {
-	// 		goods_id: goods_id || 0,
-	// 		price_id: price_id || 0,
-	// 		count: count || 0,
-	// 	},
-	// 	success: (res) => {
-	// 		if (res.data && res.data.code == 1) {
-	// 			wx.showToast({
-	// 				title: res.data.msg,
-	// 				icon: 'none',
-	// 				mask: true
-	// 			})
-	// 		} else {
-	// 			wx.hideLoading();
-	// 			this.setData(res.data.data)
-	// 			this.setData({
-	// 				is_loading: true,
-	// 			})
-	// 		}
-	// 	}
-	// });
+	if (res.code == 1) {
+		uni.showToast({
+			title: res.msg,
+			icon: 'none',
+			mask: true
+		})
+	} else {
+		uni.hideLoading();
+		goods_info.value = res.data.goods_info
+		price_all.value = res.data.price_all;
+		is_loading.value = true;
+	}
 }
-
 
 
 async function clear_select_address() { // 清空选择地址
@@ -629,6 +647,159 @@ function to_address() {
 	uni.navigateTo({
 		url: '/pages/mine/address'
 	})
+}
+
+
+function reduce_count(item) {
+	// let item = e.currentTarget.dataset.item;
+	if (item.count == item.limit[0]) {
+		uni.showToast({
+			title: '亲，不能再减少了',
+			icon: "none",
+		})
+		return
+	}
+
+	let new_good_list = good_list.value.map(m => {
+		if (m.id == item.id) {
+			m.count -= 1;
+			m.price_all = Math.round((m.unit_price * (m.count) * 100), 2) / 100;
+		}
+		return m
+	})
+	console.log('减少后的列表', new_good_list);
+	good_list.value = new_good_list;
+	comput_price_all(new_good_list)
+}
+function add_count(item) {
+	// let item = e.currentTarget.dataset.item;
+	// let good_list = good_list.value
+
+	if (item.count == item.limit[1]) {
+		uni.showToast({
+			title: '亲，不能再添加了',
+			icon: "none",
+		})
+		return
+	}
+	let new_good_list = good_list.value.map(m => {
+		if (m.id == item.id) {
+			m.count += 1;
+			m.price_all = Math.round((m.unit_price * (m.count) * 100), 2) / 100;
+		}
+		return m
+	})
+	console.log('增加后的列表', new_good_list);
+	good_list.value = new_good_list;
+	comput_price_all(new_good_list)
+}
+function info_reduce_count(item) {
+	// let item = e.currentTarget.dataset.item;
+	if (item.count == item.limit[0]) {
+		uni.showToast({
+			title: '亲，不能再减少了',
+			icon: "none",
+		})
+		return
+	}
+	item.count = item.count * 1 - 1
+	item.price_all = Math.round((item.unit_price * (item.count) * 100), 2) / 100;
+
+	// this.setData({
+	// 	goods_info: item,
+	// 	price_all: item.price_all,
+	// })
+	goods_info.value = item;
+	price_all.value = item.price_all;
+}
+function info_add_count(item) {
+	// let item = e.currentTarget.dataset.item;
+
+	if (item.count == item.limit[1]) {
+		uni.showToast({
+			title: '亲，不能再添加了',
+			icon: "none",
+		})
+		return
+	}
+	item.count = item.count * 1 + 1
+	item.price_all = Math.round((item.unit_price * (item.count) * 100), 2) / 100;
+
+	// this.setData({
+	// 	goods_info: item,
+	// 	price_all: item.price_all,
+	// })
+	goods_info.value = item;
+	price_all.value = item.price_all;
+}
+function comput_price_all(list) {
+	let price_all_temp = 0
+	list.map(m => {
+		price_all_temp = Math.round(((price_all_temp * 1 + m.price_all * 1) * 100), 2) / 100;
+	})
+	console.log('合计', price_all_temp);
+	// this.setData({
+	// 	price_all: price_all_temp
+	// })
+	price_all.value = price_all_temp;
+}
+function to_list(e) {
+	uni.navigateTo({
+		url: '/pages/mine/address',
+	})
+}
+function wx_pay(wxAppJsSign) {
+	console.log('wx_pay', wxAppJsSign);
+	uni.requestPayment({
+		timeStamp: '' + wxAppJsSign.timeStamp,
+		nonceStr: wxAppJsSign.nonceStr,
+		package: wxAppJsSign.package,
+		signType: wxAppJsSign.signType,
+		paySign: wxAppJsSign.paySign,
+		fail: (res) => {
+			// TODO 记录微信支付取消
+			is_saving.value = 0
+		},
+		success: (res) => {
+			let pay_status = 0;
+			is_checking.value = 1
+
+			inter.value = setInterval(async () => {
+
+				let res = await request('/WxAppCustomer/check_user_order', 'post', {
+					id: order_id.value,
+				});
+				pay_status = res.data.info ? res.data.info.pay_status : 0;
+				if (pay_status == 1) {
+					clearInterval(inter.value);
+					is_checking.value = 0
+					setTimeout(() => {
+						// TODO 下单成功页面
+						uni.redirectTo({
+							url: '/pages/mine/order_success?buy_type=' + buy_type.value,
+						})
+						is_saving.value = 0
+					}, 1000)
+				}
+			}, 1000);
+			return;
+		}
+	})
+}
+async function get_select_shop() {
+	let res = await request('/WxAppCustomer/select_shop', 'post', {});
+	if (res.code == 1) {
+		uni.showToast({
+			title: res.msg,
+			icon: 'none',
+			mask: true
+		})
+	} else {
+		// targte_shop
+		// console.log('get_select_shop res', res);
+		// this.setData(res.data.data)
+		targte_shop.value = res.data.targte_shop;
+	}
 }
 </script>
 

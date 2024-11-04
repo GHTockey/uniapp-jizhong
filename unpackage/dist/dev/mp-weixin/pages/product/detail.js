@@ -38,7 +38,7 @@ const _sfc_main = {
     const detail_image_uri = common_vendor.ref([]);
     const swiperIndex = common_vendor.ref(0);
     const act_info = common_vendor.ref(0);
-    const show_pop = common_vendor.ref();
+    const show_pop = common_vendor.ref("");
     const have_chosed = common_vendor.ref();
     common_vendor.ref();
     common_vendor.ref();
@@ -340,6 +340,14 @@ const _sfc_main = {
         url: "/pages/index/index"
       });
     }
+    function change_layout(e) {
+      let is_big_layout = !is_big_layout.value;
+      is_big_layout.value = is_big_layout;
+      console.log("sssssssssssssss", is_big_layout);
+    }
+    function return_close(e) {
+      return;
+    }
     function close_pop() {
       show_pop.value = "";
       common_vendor.index.setPageStyle({
@@ -347,6 +355,60 @@ const _sfc_main = {
           overflow: "unset"
         }
       });
+    }
+    function reduce_count(e) {
+      if (add_count.value > limit[0]) {
+        if (!have_chosed.value) {
+          let show = Math.round(product.value.price_min * (add_count.value - 1) * 100, 2) / 100;
+          add_count.value = add_count.value * 1 - 1;
+          price_show.value = show;
+        } else {
+          add_count.value = add_count.value * 1 - 1;
+          filter_by_spec();
+        }
+        return;
+      } else {
+        common_vendor.index.showToast({
+          title: "亲，不能再减少了",
+          icon: "none"
+        });
+      }
+    }
+    function choose_spec1(item) {
+      console.log("当前规格的数据", item);
+      if (item.store == 0) {
+        common_vendor.index.showToast({
+          title: "该规格已售罄，请选择其他规格",
+          icon: "none"
+        });
+        return;
+      }
+      have_chosed.value = 1;
+      act_spec1.value = item.name;
+      act_spec2.value = 0;
+      add_count.value = 1;
+      filter_by_spec();
+      console.log("点击了选择规格", act_spec1.value, act_spec2.value);
+    }
+    function choose_spec2(item) {
+      if (!act_spec1.value && need_spec2.value) {
+        let name = product.value.spec_list1.name;
+        common_vendor.index.showToast({
+          title: "请先选择" + name,
+          icon: "none"
+        });
+        return;
+      }
+      if (item.store == 0) {
+        common_vendor.index.showToast({
+          title: "该规格已售罄，请选择其他规格",
+          icon: "none"
+        });
+        return;
+      }
+      have_chosed.value = 1;
+      act_spec2.value = item.name;
+      filter_by_spec();
     }
     async function click_page(type, goods_id, goods_group_id) {
       let res = await utils_request.request("/WxAppCustomer/visit_page", "post", {
@@ -396,7 +458,7 @@ const _sfc_main = {
       };
     });
     return (_ctx, _cache) => {
-      var _a, _b;
+      var _a, _b, _c, _d, _e, _f;
       return common_vendor.e({
         a: video_list.value.length > 0
       }, video_list.value.length > 0 ? {
@@ -459,8 +521,65 @@ const _sfc_main = {
         G: common_vendor.p({
           footerBtnText: "立即购买",
           show: showActionSheetSlot.value
+        }),
+        H: show_pop.value == "add" || show_pop.value == "buy"
+      }, show_pop.value == "add" || show_pop.value == "buy" ? common_vendor.e({
+        I: common_vendor.o(close_pop),
+        J: act_img.value ? act_img.value : "https://saas.jizhongkeji.com/static/jzkj/images/tool_1.png",
+        K: common_vendor.o(close_pop),
+        L: common_vendor.t(price_show.value),
+        M: !have_chosed.value
+      }, !have_chosed.value ? {} : {}, {
+        N: common_vendor.t(price_inter.value[0]),
+        O: common_vendor.t(price_inter.value[1]),
+        P: ((_c = product.value.spec_list1) == null ? void 0 : _c.option) && product.value.spec_list1.option.length > 0
+      }, ((_d = product.value.spec_list1) == null ? void 0 : _d.option) && product.value.spec_list1.option.length > 0 ? common_vendor.e({
+        Q: common_vendor.t(product.value.spec_list1.name),
+        R: show_select_change.value
+      }, show_select_change.value ? {
+        S: common_vendor.t(_ctx.is_big_layout ? "大图" : "列表"),
+        T: common_vendor.o(change_layout)
+      } : {}, {
+        U: common_vendor.f(product.value.spec_list1.option, (item, index2, i0) => {
+          return common_vendor.e({
+            a: item.img_uri && show_select_change.value
+          }, item.img_uri && show_select_change.value ? {
+            b: item.img_uri
+          } : {}, {
+            c: !item.img_uri && show_select_change.value
+          }, !item.img_uri && show_select_change.value ? {} : {}, {
+            d: common_vendor.t(item.name),
+            e: item.store == 0
+          }, item.store == 0 ? {} : {}, {
+            f: common_vendor.n(`spec_item ${act_spec1.value == item.name ? "active" : ""} ${item.store == 0 ? "no_store" : ""} ${!_ctx.is_big_layout && item.store == 0 ? "sell_out" : "sell_have"}`),
+            g: common_vendor.o(($event) => choose_spec1(item), index2),
+            h: index2
+          });
+        }),
+        V: common_vendor.n(`spec_list flex_row_str_str flex_wrap have_image ${_ctx.is_big_layout ? "big_type" : ""}`)
+      }) : {}, {
+        W: ((_e = product.value.spec_list2) == null ? void 0 : _e.option) && product.value.spec_list2.option.length > 0
+      }, ((_f = product.value.spec_list2) == null ? void 0 : _f.option) && product.value.spec_list2.option.length > 0 ? {
+        X: common_vendor.t(product.value.spec_list2.name),
+        Y: common_vendor.f(product.value.spec_list2.option, (item, k0, i0) => {
+          return common_vendor.e({
+            a: common_vendor.t(item.name),
+            b: item.store == 0
+          }, item.store == 0 ? {} : {}, {
+            c: common_vendor.n(`spec_item ${act_spec2.value == item.name ? "active" : ""} ${item.store == 0 ? "no_store no_store_juli" : ""}`),
+            d: common_vendor.o(($event) => choose_spec2(item), item.id),
+            e: item.id
+          });
         })
-      });
+      } : {}, {
+        Z: common_vendor.n(`de_btn count_btn flex_col_cen_cen ${add_count.value == 1 ? "no_active" : ""}`),
+        aa: common_vendor.o(reduce_count),
+        ab: common_vendor.t(add_count.value || 1),
+        ac: common_vendor.n(`add_btn count_btn flex_col_cen_cen ${add_count.value == max_count.value ? "no_active" : ""}`),
+        ad: common_vendor.o((...args) => add_count.value && add_count.value(...args)),
+        ae: common_vendor.o(return_close),
+        af: common_vendor.o(close_pop)
+      }) : {});
     };
   }
 };
