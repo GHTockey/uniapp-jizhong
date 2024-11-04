@@ -1,5 +1,11 @@
 <template>
-	<view class="page_box">
+	<view class="page_box scan_order_container">
+
+		<HeightBar />
+		<NavBar class="bg-white" showBack bgc="white">
+			<template #title>核销订单</template>
+		</NavBar>
+
 		<view class="saomatext">请使用摄像头扫描核销码图案，或输入核销码</view>
 		<view class="sacn_box" @click="scanCode">
 			<image class="scan_img" mode="widthFix" src="https://saas.jizhongkeji.com/static/jzkj/images/scan_img.png">
@@ -28,53 +34,33 @@ import { request } from '@/utils/request.js';
 const number = ref('');
 // 扫码按钮的事件处理函数
 function scanCode() {
-	if (uni.scanCode) {
-		uni.scanCode({
-			success: function (res) {
-				console.log('111111111', res);
-				console.log('111111111', res.path);
+	uni.scanCode({
+		success: function (res) {
+			console.log('111111111', res);
 
-				// return;
-				var active_str = decodeURIComponent(res.path)
-				var apply_id = 0;
+			// return;
+			var active_str = decodeURIComponent(res.path)
+			var apply_id = 0;
 
-				// if (active_str.indexOf('pages/index/auding?scene=apply_id') === 0) {
+			if (active_str.indexOf('pages/index/auding_order?scene=order_id') == 0) {
+				apply_id = active_str.substr('pages/index/auding_order?scene=order_id'.length);
+				// console.log('55555');
+				// apply_id = parseInt(active_str.split()[1]);
 
-				//   apply_id = active_str.substr('pages/index/auding?scene=apply_id'.length);
-				//   // console.log('55555');
-				//   // apply_id = parseInt(active_str.split()[1]);
-
-				//   wx.navigateTo({
-				//     url: '/pages/index/auding?apply_id=' + apply_id,
-				//   })
-				// }
-
-
-				if (active_str.indexOf('pages/index/auding_order?scene=order_id') === 0) {
-					apply_id = active_str.substr('pages/index/auding_order?scene=order_id'.length);
-					// console.log('55555');
-					// apply_id = parseInt(active_str.split()[1]);
-
-					uni.navigateTo({
-						url: '/pages/index/auding_order?order_id=' + apply_id,
-					})
-				}
-
-			},
-			fail: function (error) {
-				console.log('fail', error);
-				uni.showToast({
-					title: '当前环境不支持扫码',
-					icon: 'none'
+				uni.navigateTo({
+					url: '/pages/index/auding_order?order_id=' + apply_id,
 				})
 			}
-		})
-	} else {
-		uni.showToast({
-			title: '当前环境不支持扫码',
-			icon: 'none'
-		})
-	}
+
+		},
+		fail: function (error) {
+			console.log('fail', error);
+			uni.showToast({
+				title: '当前环境不支持扫码',
+				icon: 'none'
+			})
+		}
+	})
 
 }
 
@@ -166,5 +152,15 @@ page {
 .saomatext {
 	color: #7D7D7D;
 	margin-top: 30rpx;
+}
+</style>
+
+<style lang="scss" scoped>
+.scan_order_container {
+	background-color: #F5F5F5;
+	overflow: hidden;
+	// min-height: calc(100vh - $nav-height);
+	min-height: 100vh;
+	padding-top: $nav-height;
 }
 </style>

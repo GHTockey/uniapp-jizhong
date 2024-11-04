@@ -62,7 +62,8 @@ const _sfc_main = {
       if (detail.goods_id > 0) {
         console.log("跳转至商品详情页面");
         common_vendor.index.navigateTo({
-          url: "/pages/goods/detail?id=" + detail.goods_id
+          // url: '/pages/goods/detail?id=' + detail.goods_id
+          url: "/pages/product/detail?id=" + detail.goods_id
         });
         return;
       }

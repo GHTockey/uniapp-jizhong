@@ -1,8 +1,9 @@
 <template>
-	<view class="nav-bar-container" :style="{ marginTop: getStatusBarHeight() + 'px' }">
+	<view class="nav-bar-container" :style="{ marginTop: getStatusBarHeight() + 'px', backgroundColor: bgc }">
 		<!-- 返回按钮 -->
 		<view class="nav-bar-back" v-if="showBack" @click="goBack">
-			<image :src="isWhite ? 'https://saas.jizhongkeji.com/static/jzkj/static/icon/left-white-icon.svg' : 'https://saas.jizhongkeji.com/static/jzkj/static/icon/left-black-icon.svg'"
+			<image
+				:src="isWhite ? 'https://saas.jizhongkeji.com/static/jzkj/static/icon/left-white-icon.svg' : 'https://saas.jizhongkeji.com/static/jzkj/static/icon/left-black-icon.svg'"
 				style="width: 30rpx; height: 30rpx;" />
 		</view>
 		<!-- 标题 -->
@@ -52,6 +53,9 @@ const props = defineProps({
 	showSearch: {
 		type: Boolean,
 		default: false
+	},
+	bgc: {
+		type: String
 	}
 })
 

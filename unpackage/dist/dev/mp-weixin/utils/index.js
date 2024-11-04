@@ -29,7 +29,12 @@ function formatNumber(n) {
   n = n.toString();
   return n[1] ? n : "0" + n;
 }
+function replaceRichTextImage(text) {
+  let reg = new RegExp("<img", "gi");
+  return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
+}
 exports.formatTime = formatTime;
 exports.getStatusBarHeight = getStatusBarHeight;
 exports.getTitleBarHeight = getTitleBarHeight;
+exports.replaceRichTextImage = replaceRichTextImage;
 exports.toPage = toPage;

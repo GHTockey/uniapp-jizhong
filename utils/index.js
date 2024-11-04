@@ -62,3 +62,13 @@ export function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+
+
+
+// 替换富文本中的图片
+// let reg = new RegExp('<img','gi');
+// this.info = this.info.replace(reg,'<img style="max-width:100%;vertical-align: top;"');
+export function replaceRichTextImage(text) {
+  let reg = new RegExp('<img', 'gi');
+  return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
+}

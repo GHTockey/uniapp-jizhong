@@ -169,7 +169,8 @@ function to_detail(detail) {
     console.log('跳转至商品详情页面');
     // console.log('detail.category_iddetail.category_iddetail.category_id', detail.category_id);
     uni.navigateTo({
-      url: '/pages/goods/detail?id=' + detail.goods_id
+      // url: '/pages/goods/detail?id=' + detail.goods_id
+      url: '/pages/product/detail?id=' + detail.goods_id
     })
     return;
   }

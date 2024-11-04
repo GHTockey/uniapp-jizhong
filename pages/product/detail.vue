@@ -21,8 +21,8 @@
 		<view class="goods-detail-swiper-operation">
 			<!-- 左上角返回按钮 -->
 			<view class="goods-detail-swiper-back" @click="goBack">
-				<image class="goods-detail-swiper-back-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/left-white-icon.svg"
-					mode="widthFix" />
+				<image class="goods-detail-swiper-back-icon"
+					src="https://saas.jizhongkeji.com/static/jzkj/static/icon/left-white-icon.svg" mode="widthFix" />
 			</view>
 			<!-- 左下角当前视频/图片数量 -->
 			<view class="goods-detail-swiper-index">
@@ -37,15 +37,17 @@
 		</view>
 
 
-
 		<!-- 商品信息区域 -->
 		<view class="goods-detail-info">
 			<!-- 价格信息 -->
 			<view class="goods-detail-info-price">
 				<view class="left">
-					<text>券后<text style="font-size: 23rpx;">￥</text><text style="font-size: 23.61px;font-weight: 700;color: #ff2626;
-">123</text></text>
-					<text class="right" style="margin-left: 14rpx;">优惠前￥123</text>
+					<text><text style="font-size: 28rpx;">￥</text><text
+							style="font-size: 39rpx;font-weight: 700;color: #ff2626;">{{ product.price || 0
+							}}</text></text>
+					<text style="margin-left: 14rpx;">券后<text style="font-size: 28rpx;">￥</text><text
+							style="font-size: 39rpx;font-weight: 700;color: #ff2626;">xxx</text></text>
+					<text class="right" style="margin-left: 14rpx;">优惠前￥ {{ price_show || '???' }}</text>
 				</view>
 				<text class="right">已售123+</text>
 			</view>
@@ -61,17 +63,21 @@
 				<!-- 立即购买按钮-右对齐 -->
 				<view class="o-buy" style="margin-left: auto;" @click="showActionSheetSlot = true">
 					立即购买
-					<image class="o-buy-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right-jiantou.svg" mode="widthFix" />
+					<image class="o-buy-icon"
+						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right-jiantou.svg" mode="widthFix" />
 				</view>
 			</view>
 			<!-- 商品标题 -->
 			<view class="goods-detail-info-title">
-				<text>{{ goodsDetail?.name }}</text>
+				<!-- <text>{{ goodsDetail?.name }}</text> -->
+				<text>{{ product.name }}</text>
 			</view>
 			<!-- 商品的配送方式-服务保障-商品参数 -->
 			<view class="goods-detail-info-delivery">
 				<view class="delivery-item" @tap="showActionSheet = true">
-					<image class="delivery-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-peisong-icon.svg" mode="widthFix" />
+					<image class="delivery-item-icon"
+						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-peisong-icon.svg"
+						mode="widthFix" />
 					<text class="delivery-item-text">配送方式：</text>
 					<text class="delivery-item-text">门店自提</text>
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
@@ -79,12 +85,15 @@
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">同城配送</text>
 					<view class="delivery-item-text" style="margin-left: auto;">
-						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
+						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg"
+							style="width: 20.56rpx;height: 20.08rpx;">
 						</image>
 					</view>
 				</view>
 				<view class="delivery-item" @tap="showActionSheet = true">
-					<image class="delivery-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-baozhang-icon.svg" mode="widthFix" />
+					<image class="delivery-item-icon"
+						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-baozhang-icon.svg"
+						mode="widthFix" />
 					<text class="delivery-item-text">服务保障：</text>
 					<text class="delivery-item-text">无忧退款（运费险）</text>
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
@@ -92,12 +101,15 @@
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">假一赔十</text>
 					<view class="delivery-item-text" style="margin-left: auto;">
-						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
+						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg"
+							style="width: 20.56rpx;height: 20.08rpx;">
 						</image>
 					</view>
 				</view>
 				<view class="delivery-item" @tap="showActionSheet = true">
-					<image class="delivery-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-parm-icon.svg" mode="widthFix" />
+					<image class="delivery-item-icon"
+						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-parm-icon.svg"
+						mode="widthFix" />
 					<text class="delivery-item-text">商品参数：</text>
 					<text class="delivery-item-text">美辰</text>
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
@@ -109,7 +121,8 @@
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">食品工艺...</text>
 					<view class="delivery-item-text" style="margin-left: auto;">
-						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg" style="width: 20.56rpx;height: 20.08rpx;">
+						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg"
+							style="width: 20.56rpx;height: 20.08rpx;">
 						</image>
 					</view>
 				</view>
@@ -123,7 +136,8 @@
 				<text class="comment-header-title">客户评价（2万+）</text>
 				<text class="comment-header-rate">好评率99%</text>
 				<view class="comment-header-more">
-					<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg" style="width: 20.56rpx;height: 20.08rpx;"></image>
+					<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg"
+						style="width: 20.56rpx;height: 20.08rpx;"></image>
 				</view>
 			</view>
 			<!-- 评价内容 -->
@@ -149,18 +163,27 @@
 		<view class="goods-detail-info-detail">
 			<!-- 商品详情标题 -->
 			<view class="goods-detail-info-detail-title">商品详情</view>
+			<view>
+				<!--   <template is="wxParse" data="{{wxParseData:detail_content.nodes}}" /> -->
+				<view v-html="product.detail"></view>
+			</view>
+
+			<view v-for="(item, index) in detail_image_uri" :key="index" class="detail_image">
+				<image lazy-load :src="item" mode="widthFix" @click="previewImg(index)"></image>
+			</view>
+
 			<!-- 商品详情图片 -->
-			<image class="goods-detail-info-detail-image" mode="widthFix" style="width: 100%; height: 390px;"
+			<!-- <image class="goods-detail-info-detail-image" mode="widthFix" style="width: 100%; height: 390px;"
 				src="https://saascdn.jizhongkeji.com/oss_jzkj/jpg/817f5a51a4aafe53fb3cd53c6c67e17f.w750.h780.d0.b23746.s121584.jpg" />
 			<image class="goods-detail-info-detail-image" mode="widthFix" style="width: 100%; height: 390px;"
 				src="https://saascdn.jizhongkeji.com/oss_jzkj/jpg/817f5a51a4aafe53fb3cd53c6c67e17f.w750.h780.d0.b23746.s121584.jpg" />
 			<image class="goods-detail-info-detail-image" mode="widthFix" style="width: 100%; height: 390px;"
-				src="https://saascdn.jizhongkeji.com/oss_jzkj/jpg/817f5a51a4aafe53fb3cd53c6c67e17f.w750.h780.d0.b23746.s121584.jpg" />
+				src="https://saascdn.jizhongkeji.com/oss_jzkj/jpg/817f5a51a4aafe53fb3cd53c6c67e17f.w750.h780.d0.b23746.s121584.jpg" /> -->
 
 			<!-- 技术支持 -->
 			<view class="goods-detail-info-detail-support">
-				<image class="goods-detail-info-detail-support-image" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"
-					mode="widthFix" />
+				<image class="goods-detail-info-detail-support-image"
+					src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg" mode="widthFix" />
 				<text class="goods-detail-info-detail-support-content">集中科技提供技术支持</text>
 			</view>
 		</view>
@@ -168,25 +191,34 @@
 		<!-- 底部操作栏 -->
 		<view class="goods-detail-info-bottom">
 			<view class="goods-detail-info-bottom-left">
-				<view class="goods-detail-info-bottom-left-item">
-					<image class="goods-detail-info-bottom-left-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/home-icon.svg"
-						mode="widthFix" />
+				<view class="goods-detail-info-bottom-left-item" @click="go_home">
+					<image class="goods-detail-info-bottom-left-item-icon"
+						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/home-icon.svg" mode="widthFix" />
 					<text class="goods-detail-info-bottom-left-item-text">首页</text>
 				</view>
-				<view class="goods-detail-info-bottom-left-item">
-					<image class="goods-detail-info-bottom-left-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/kefu.svg"
-						mode="widthFix" />
+				<view open-type="contact"
+					class="goods-detail-info-bottom-left-item bg-transparent m-0 h-auto border-none rounded-none shadow-none p-0">
+					<image class="goods-detail-info-bottom-left-item-icon"
+						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/kefu.svg" mode="widthFix" />
 					<text class="goods-detail-info-bottom-left-item-text">客服</text>
 				</view>
-				<view class="goods-detail-info-bottom-left-item">
-					<image class="goods-detail-info-bottom-left-item-icon" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/shoucang-active.svg"
+				<view class="goods-detail-info-bottom-left-item" v-if="product.is_shoucang == 0"
+					@click="good_colect(1)">
+					<image class="goods-detail-info-bottom-left-item-icon"
+						src="https://saas.jizhongkeji.com/static/jzkj/images/tool_3.png" mode="widthFix" />
+					<text class="goods-detail-info-bottom-left-item-text">收藏</text>
+				</view>
+				<view class="goods-detail-info-bottom-left-item" v-else-if="product.is_shoucang == 1"
+					@click="good_colect(0)">
+					<image class="goods-detail-info-bottom-left-item-icon"
+						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/shoucang-active.svg"
 						mode="widthFix" />
 					<text class="goods-detail-info-bottom-left-item-text">收藏</text>
 				</view>
 			</view>
-			<view class="goods-detail-info-bottom-right">
-				<view class="bottom-right-item">加入购物车</view>
-				<view class="bottom-right-item" @click="showActionSheetSlot = true">立即购买</view>
+			<view class="goods-detail-info-bottom-right" v-if="business.is_open_shopping == 1">
+				<view class="bottom-right-item" @click="show_buy_pop_handler('add')">加入购物车</view>
+				<view class="bottom-right-item" @click="show_buy_pop_handler('buy')">立即购买</view>
 			</view>
 		</view>
 
@@ -199,7 +231,8 @@
 				<view class="ActionSheetSlotComponentBody">
 					<!-- 商品图片价格 -->
 					<view class="goods-img-price-box">
-						<image src="https://saas.jizhongkeji.com/static/jzkj/kun.png" alt="" class="goods-img"></image>
+						<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/kun.png" alt=""
+							class="goods-img"></image>
 						<view class="goods-price-box">
 							<view class="goods-price"><text style="font-size: 27.78rpx;">￥</text>100</view>
 							<view class="goods-price-unit"><text style="font-size: 27.78rpx;">￥</text>10~360</view>
@@ -210,24 +243,28 @@
 						<view class="goods-params-title" style="display: flex; justify-content: space-between;">
 							<text>商品型号:</text>
 							<view class="goods-params-title-right">
-								<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/list.svg" style="width: 30.56rpx;height: 27.08rpx;">
+								<image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/list.svg"
+									style="width: 30.56rpx;height: 27.08rpx;">
 								</image>
 								<text>列表</text>
 							</view>
 						</view>
 						<view class="goods-params-item-box">
 							<view class="goods-params-item">
-								<image src="https://saas.jizhongkeji.com/static/jzkj/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
+								<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/kun.png"
+									style="width: 61.11rpx; height: 61.11rpx;">
 								</image>
 								<text>固始鸡1200gx1只（共2.4斤）</text>
 							</view>
 							<view class="goods-params-item active">
-								<image src="https://saas.jizhongkeji.com/static/jzkj/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
+								<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/kun.png"
+									style="width: 61.11rpx; height: 61.11rpx;">
 								</image>
 								<text>固始鸡1200gx1只（共2.4斤）</text>
 							</view>
 							<view class="goods-params-item disabled">
-								<image src="https://saas.jizhongkeji.com/static/jzkj/kun.png" style="width: 61.11rpx; height: 61.11rpx;">
+								<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/kun.png"
+									style="width: 61.11rpx; height: 61.11rpx;">
 								</image>
 								<text>固始鸡1200gx1只（共2.4斤）</text>
 							</view>
@@ -250,9 +287,13 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from 'vue';
-import { onLoad } from '@dcloudio/uni-app';
+import { ref } from 'vue';
+import { onLoad, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app';
 import { request } from '@/utils/request.js';
+import { useTempStore } from '@/stores/temp';
+import { storeToRefs } from 'pinia';
+import { replaceRichTextImage } from '@/utils';
+const { user, business } = storeToRefs(useTempStore());
 
 const goodsId = ref(); // 商品id
 const goodsDetail = ref({}); // 商品详情
@@ -274,7 +315,15 @@ const detail_image_uri = ref([]); // 商品详情图片
 const swiperIndex = ref(0); // 轮播图当前索引
 const act_info = ref(0); // 活动价格 ???
 
-
+const show_pop = ref()
+const have_chosed = ref()
+const height = ref()
+const width = ref()
+const bofang_show = ref(true)
+const current_page = ref()
+const product_id = ref()
+const is_loading = ref(false)
+const spec_list2_init = ref()
 
 const showActionSheet = ref(false)
 const showActionSheetSlot = ref(false)
@@ -299,11 +348,214 @@ function goBack() {
 
 onLoad((options) => {
 	// console.log(options, 'options');
-	goodsId.value = options.id;
-	getData();
+	// goodsId.value = options.id;
+	// getData();
+
+
+	if (options && options.scene) {
+		var sceneStr = decodeURIComponent(options.scene);
+		var params = sceneStr.split('&');
+
+		params.forEach(param => {
+			const [key, value] = param.split('=');
+			if (key === 'fuid') {
+				getApp().globalData.fuid = value;
+			} else if (key === 'productid') {
+				product_id.value = value;
+			}
+		});
+		console.log('product_id', product_id.value);
+	}
+
+	if (options && options.id) {
+		console.log('options.idoptions.id');
+		product_id.value = options.id;
+	}
+
+	// console.log(options.category_id);
+	if (options.category_id) {
+		click_page(3, product_id.value, options.category_id)
+	} else {
+		click_page(3, product_id.value, '')
+	}
+
+	goods_detail_v2()
 })
 
 
+async function goods_detail_v2() {
+	// var that = this
+
+	let res = await request('/WxAppCustomer/goods_detail_v2', 'post', { id: product_id.value })
+	// 更新数据
+	console.log(res);
+	if (res.code != 0) {
+		wx.showToast({
+			title: res.msg,
+			icon: 'none'
+		})
+		return;
+	}
+	product.value = res.data.detail
+
+	product.value.detail = replaceRichTextImage(product.value.detail) // 替换富文本中的图片
+
+	is_loading.value = true
+	console.log('产品详情', product.value);
+	// 修改页面标题
+	if (res.data.detail) {
+		uni.setNavigationBarTitle({
+			title: res.data.detail.name
+		})
+
+		// 处理规格
+		let product_temp = res.data.detail
+		if (product_temp.spec_list1 && product_temp.spec_list1.option.length > 0) {
+			need_spec1.value = 1
+
+			product_temp.spec_list1.option.forEach((ele, index) => {
+				if (ele.img_uri) {
+					show_select_change.value = true
+					return
+				}
+			});
+			console.log('规格', product_temp.spec_list1);
+		}
+		if (product_temp.spec_list2 && product_temp.spec_list2.option.length > 0) {
+			need_spec2.value = 1
+			spec_list2_init.value = product_temp.spec_list2.option
+		}
+
+		if (add_count.value > 0) {
+			let show = Math.round((product.value.price_min * add_count.value * 100), 2) / 100;
+			let min = Math.round((product.value.price_min * add_count.value * 100), 2) / 100;
+			let max = Math.round((product.value.price_max * add_count.value * 100), 2) / 100;
+			price_show.value = show
+			price_inter.value = [min, max]
+			act_img.value = product_temp.image_uris_arr ? product_temp.image_uris_arr[0] : ''
+			max_count.value = product_temp.max_count
+		} else {
+			price_show.value = product_temp.price_min
+			price_inter.value = [product_temp.price_min, product_temp.price_max]
+			act_img.value = product_temp.image_uris_arr ? product_temp.image_uris_arr[0] : ''
+			max_count.value = product_temp.max_count
+		}
+
+		// 视频列表
+		if (res.data.detail.video_uri_arr.length > 0) {
+			res.data.detail.video_uri_arr.forEach(ele => {
+				video_list.value.push({
+					url: ele,
+					width: 375,
+					height: 375,
+					bofang_show: true,
+				});
+			});
+			console.log("视频视频视频", video_list);
+		}
+
+		// that.imgs_list_all=[];
+		// if(){
+		//     that.imgs_list_all=[];
+		// }
+
+		swiper.value.swiperImgUrls = res.data.detail.image_uris_arr;
+		swiper.value.video = res.data.detail.video_1;
+		swiper.value = swiper.value
+
+		console.log('swiperswiperswiper', swiper.value.swiperImgUrls.length);
+		if (swiper.value.swiperImgUrls.length == 1) {
+			swiper.value.indicatorDots = false
+		} else {
+			// LRR 修改swiper样式 改为false
+			swiper.value.indicatorDots = false
+		}
+
+		// if (that.data.swiper.video) {
+		//   that.data.swiper.autoplay = false;
+		// }
+		if (res.data.detail.detail) {
+			// WxParse.wxParse('detail_content', 'html', res.data.detail.detail, that, 5);
+			console.log(`WxParse.wxParse('detail_content', 'html', res.data.detail.detail, that, 5);`);
+		}
+		// that.setData({
+		// 	detail_image_uri: res.data.data.detail.detail_images,
+		// 	swiper: that.data.swiper
+		// })
+		detail_image_uri.value = res.data.detail.detail_images
+		// swiper.value = swiper.value
+
+		// console.log('detail_image_uridetail_image_uri', that.data.detail_image_uri);
+
+		console.log('5555555556666666', product.value.spec_list1);
+
+
+
+		if (business.value.is_show_buy_pop == 1) {
+			// ---打开立即购买弹窗
+			if (!(!product.value.spec_list1 && product.value.price > 0)) {
+				// if (type == 'buy') {
+				console.log('dakai13333333333333333333333333');
+				// console.log('立即购买111111111', that.data.product.spec_list2.option[0].name);
+				show_pop.value = 'buy'
+				act_spec1.value = 0
+				act_spec2.value = 0
+
+				// 选中默认规格1
+				if (product.value.spec_list1 && product.value.spec_list1.option.length > 0) {
+					act_spec1.value = product.value.spec_list1.option[0].name
+					filter_by_spec()
+				}
+				//  选中默认规格2
+				if (product.value.spec_list2 && product.value.spec_list2.option && product.value.spec_list2.option.length > 0) {
+					act_spec2.value = product.value.spec_list2.option[0].name
+					filter_by_spec()
+				}
+
+				uni.setPageStyle({
+					style: {
+						overflow: 'hidden'
+					}
+				})
+			}
+		}
+	}
+}
+
+// 预览图片放大
+function previewImg_detail(e) {
+	//获取当前图片的下标
+	var index = e.currentTarget.dataset.index;
+
+	// type 1:商品图  2：详情图
+	if (e.currentTarget.dataset.type == 1) {
+		//所有图片
+		var imgs = product.value.image_uris_arr;
+	} else if (e.currentTarget.dataset.type == 2) {
+		//所有图片
+		var imgs = product.value.detail_images;
+	}
+
+	uni.previewImage({
+		//当前显示图片
+		current: imgs[index],
+		//所有图片
+		urls: imgs
+	})
+}
+// 预览图片
+function previewImg(tuindex) {
+	//获取当前图片的下标
+	// var index = e.currentTarget.dataset.tuindex;
+	//所有图片
+	var imgs = detail_image_uri.value;
+	uni.previewImage({
+		//当前显示图片
+		current: imgs[index],
+		//所有图片
+		urls: imgs
+	})
+}
 
 async function getData() {
 	uni.showLoading({ title: '加载中' })
@@ -431,7 +683,147 @@ async function getData() {
 	// }
 }
 
-// 弹窗 点击购买
+function filter_by_spec() {
+	if (need_spec1.value && need_spec2.value) { // 双规格
+		let rel_spec_list2 = goodsDetail.value.spec_all.filter(m => {
+			return m.spec1_value == act_spec1.value
+		}).map(m1 => {
+			return {
+				name: m1.spec2_value,
+				store: m1.store,
+			}
+		})
+		console.log('当前的规格1', rel_spec_list2);
+
+		product.value.spec_list2.option = rel_spec_list2 || []
+
+
+		let info = null
+		if (act_spec2.value) {
+			info = goodsDetail.value.spec_all.filter(m => m.spec1_value == act_spec1.value && m.spec2_value == act_spec2.value)[0]
+		} else {
+			info = goodsDetail.value.spec_all.filter(m => (m.spec1_value == act_spec1.value))[0]
+		}
+
+		if (info.img_uri && info.img_uri.length > 0) {
+			act_img.value = info.img_uri
+		}
+		console.log('多选', info);
+
+		let show = Math.round((info.price * (add_count.value) * 100), 2) / 100;
+		price_show.value = show
+		act_info.value = info
+		max_count.value = info.store
+		return
+	} else {
+		let spec1 = act_spec1.value
+		console.log('选择规格后的数据', goodsDetail.value.spec_all);
+		let info = goodsDetail.value.spec_all.filter(m => m.spec1_value == spec1)[0]
+		let show = Math.round((info.price * (add_count.value) * 100), 2) / 100;
+
+		console.log('选择规格后', info);
+		if (info.img_uri && info.img_uri.length > 0) {
+			act_img.value = info.img_uri
+		}
+		price_show.value = show
+		act_info.value = info
+		max_count.value = info.store
+
+		console.log('选择规格后的最大数量', max_count.value);
+	}
+}
+async function show_buy_pop_handler(type) {
+	// showActionSheetSlot.value = true
+	if (!product.value.spec_list1 && !product.value.price) {
+		uni.showToast({
+			title: '该商品暂不支持购买',
+			icon: 'none'
+		})
+		return
+	}
+
+	// 只有价格没有多规格
+	if (!product.value.spec_list1 && product.value.price > 0) {
+		if (type == 'add') {
+
+			let res = await request('/WxAppCustomer/add_shopcar_only_price', 'post', {
+				goods_id: product.value.id,
+				count: 1
+			})
+			if (res) {
+				uni.showToast({
+					title: res.msg,
+					icon: 'none',
+					mask: true
+				})
+				close_pop()
+			}
+		}
+
+		if (type == 'buy') {
+			uni.navigateTo({
+				url: '/pages/mine/pay?goods_id=' + product.value.id + '&price_id=0&count=1',
+			})
+		}
+		return
+	} else {
+		if (type == 'add') {
+
+			show_pop.value = 'add';
+			act_spec1.value = 0;
+			act_spec2.value = 0;
+			have_chosed.value = 0;
+			add_count.value = 1;
+			// product.value.spec_list2.option = product.value.spec_list2.option;
+			price_show.value = product.value.price_min;
+			price_inter.value = [product.value.price_min, product.value.price_max];
+			act_img.value = product.value.image_uris_arr ? product.value.image_uris_arr[0] : '';
+
+
+			// 选中默认规格1
+			if (product.value.spec_list1 && product.value.spec_list1.option.length > 0) {
+				act_spec1.value = product.value.spec_list1.option[0].name
+				filter_by_spec()
+			}
+			//  选中默认规格2
+			if (product.value.spec_list2 && product.value.spec_list2.option && product.value.spec_list2.option.length > 0) {
+				act_spec2.value = product.value.spec_list2.option[0].name
+				filter_by_spec()
+			}
+
+			uni.setPageStyle({
+				style: {
+					overflow: 'hidden'
+				}
+			})
+		}
+		if (type == 'buy') {
+
+			// console.log('立即购买111111111', this.data.product.spec_list2.option[0].name);
+			show_pop.value = 'buy'
+			act_spec1.value = 0
+			act_spec2.value = 0
+
+			// 选中默认规格1
+			if (product.value.spec_list1 && product.value.spec_list1.option.length > 0) {
+				act_spec1.value = product.value.spec_list1.option[0].name
+				filter_by_spec()
+			}
+			//  选中默认规格2
+			if (product.value.spec_list2 && product.value.spec_list2.option.length > 0) {
+				act_spec2.value = product.value.spec_list2.option[0].name
+				filter_by_spec()
+			}
+
+
+			uni.setPageStyle({
+				style: {
+					overflow: 'hidden'
+				}
+			})
+		}
+	}
+}
 function to_buy() {
 	console.log('点击购买');
 	console.log('商品id', goodsDetail.value.id);
@@ -467,65 +859,351 @@ function to_buy() {
 
 }
 
-async function filter_by_spec() {
-	if (need_spec1.value && need_spec2.value) { // 双规格
-		let rel_spec_list2 = goodsDetail.value.spec_all.filter(m => {
-			return m.spec1_value == act_spec1.value
-		}).map(m1 => {
-			return {
-				name: m1.spec2_value,
-				store: m1.store,
-			}
-		})
-		console.log('当前的规格1', rel_spec_list2);
-
-		if (product.value && product.value.spec_list2) {
-			product.value.spec_list2.option = rel_spec_list2 || []
-		}
-
-		await nextTick()
-		let info = null;
-		if (act_spec2.value) {
-			info = goodsDetail.value.spec_all.filter(m => m.spec1_value == act_spec1.value && m.spec2_value == act_spec2.value)[0]
-		} else {
-			info = goodsDetail.value.spec_all.filter(m => (m.spec1_value == act_spec1.value))[0]
-		}
-
-		if (info.img_uri && info.img_uri.length > 0) {
-			act_img.value = info.img_uri
-		}
-		console.log('多选', info);
-
-		let show = Math.round((info.price * (add_count.value) * 100), 2) / 100;
-		price_show.value = show
-		act_info.value = info
-		max_count.value = info.store
-		return
-
-
-	} else {
-		let spec1 = act_spec1.value
-		console.log('选择规格后的数据', goodsDetail.value.spec_all);
-		let info = goodsDetail.value.spec_all.filter(m => m.spec1_value == spec1)[0]
-		let show = Math.round((info.price * (add_count.value) * 100), 2) / 100;
-
-		console.log('选择规格后', info);
-		if (info.img_uri && info.img_uri.length > 0) {
-			act_img.value = info.img_uri
-		}
-		price_show.value = show
-		act_info.value = info
-		max_count.value = info.store
-
-		console.log('选择规格后的最大数量', max_count.value);
-	}
-}
-
 // 轮播图改变事件 [更新swiperIndex]
 function swiperChange(e) {
 	// console.log(e, '轮播图改变');
 	swiperIndex.value = e.detail.current
 }
+
+function startVideoPlay(e) {
+	swiper.value.autoplay = false
+}
+function onVideoEnded(e) {
+	console.log('111');
+	swiper.value.autoplay = true
+}
+function go_home(e) {
+	uni.redirectTo({
+		url: '/pages/index/index',
+	})
+}
+function change_layout(e) {
+	let is_big_layout = !is_big_layout.value
+	is_big_layout.value = is_big_layout
+	console.log('sssssssssssssss', is_big_layout);
+}
+function return_close(e) {
+	return
+}
+function close_pop() {
+	show_pop.value = ''
+	uni.setPageStyle({
+		style: {
+			overflow: 'unset'
+		}
+	})
+}
+function reduce_count(e) {
+	if (add_count.value > limit[0]) {
+		if (!have_chosed.value) {
+			let show = Math.round((product.value.price_min * (add_count.value - 1) * 100), 2) / 100;
+			add_count.value = add_count.value * 1 - 1
+			price_show.value = show
+		} else {
+			add_count.value = add_count.value * 1 - 1
+			filter_by_spec()
+		}
+		return
+	} else {
+		uni.showToast({
+			title: '亲，不能再减少了',
+			icon: "none",
+		})
+	}
+}
+function add_count_handler(e) {
+	console.log('添加商品数量和最大数量', add_count.value, max_count.value);
+	if (add_count.value >= max_count.value) {
+		uni.showToast({
+			title: '亲，不能再添加了',
+			icon: "none",
+		})
+		return
+	}
+	if (!have_chosed.value) {
+		let show = Math.round((product.value.price_min * (add_count.value + 1) * 100), 2) / 100;
+		add_count.value = add_count.value * 1 + 1
+		price_show.value = show
+
+		return
+	} else {
+		add_count.value = add_count.value * 1 + 1
+		filter_by_spec()
+	}
+	return
+}
+function choose_spec1(item) {
+
+	console.log('当前规格的数据', item);
+	if (item.store == 0) {
+		uni.showToast({
+			title: '该规格已售罄，请选择其他规格',
+			icon: 'none'
+		})
+		return
+	}
+	have_chosed.value = 1
+	act_spec1.value = item.name
+	act_spec2.value = 0
+	add_count.value = 1
+	filter_by_spec()
+
+	console.log('点击了选择规格', act_spec1.value, act_spec2.value);
+}
+function choose_spec2(item) {
+	if (!act_spec1.value && need_spec2.value) {
+		let name = product.value.spec_list1.name
+		uni.showToast({
+			title: '请先选择' + name,
+			icon: 'none'
+		})
+		return
+	}
+
+	if (item.store == 0) {
+		uni.showToast({
+			title: '该规格已售罄，请选择其他规格',
+			icon: 'none'
+		})
+		return
+	}
+
+	have_chosed.value = 1
+	act_spec2.value = item.name
+	filter_by_spec()
+}
+async function add_shopcar(e) {
+	if (!act_spec1.value) {
+		uni.showToast({
+			title: '请先选择规格',
+			icon: 'none'
+		})
+		return
+	}
+
+	if (need_spec1.value && need_spec2.value) {
+		let name = product.value.spec_list2.name || '规格';
+		if (!act_spec2.value) {
+			uni.showToast({
+				title: '请选择' + name,
+				icon: 'none'
+			})
+			return
+		}
+	}
+
+	// wx.showToast({
+	//     title: '微信支付接口审核中，暂不能付款',
+	//     icon:'none'
+	// })
+
+	let goods_price = act_info.value
+	console.log('goods_price', goods_price);
+
+	let res = await request('/WxAppCustomer/add_shopcar_v2', 'post', {
+		price_id: goods_price.id,
+		goods_id: product.value.id,
+		count: add_count.value || 0,
+	})
+	if (res.data) {
+		uni.showToast({
+			title: res.msg,
+			icon: 'none',
+			mask: true
+		})
+		close_pop()
+	}
+}
+//获取视频的宽高
+function videometa(e) {
+	//获取系统信息
+	uni.getSystemInfo({
+		success(res) {
+			//视频的高
+			let height_temp = e.detail.height;
+			//视频的宽
+			let width_temp = e.detail.width;
+			//算出视频的比例
+			let proportion = height_temp / width_temp;
+			//res.windowWidth为手机屏幕的宽。
+			let windowWidth = res.windowWidth;
+			//算出当前宽度下高度的数值
+			height_temp = proportion * windowWidth;
+
+			// var video_list=this.data.product
+
+			// TODO 多个视频
+
+			height.value = height_temp
+			width.value = windowWidth
+		}
+	})
+}
+//获取视频的宽高
+function videometa2(e) {
+	let video_index = e.currentTarget.dataset.index;
+	console.log("skskdkskd视频高度", e);
+	// return;
+	//获取系统信息
+	uni.getSystemInfo({
+		success(res) {
+			//视频的高
+			let height_temp = e.detail.height;
+			//视频的宽
+			let width_temp = e.detail.width;
+			//算出视频的比例
+			let proportion = height_temp / width_temp;
+			//res.windowWidth为手机屏幕的宽。
+			let windowWidth = res.windowWidth;
+			//算出当前宽度下高度的数值
+			height_temp = proportion * windowWidth;
+
+			video_list.value && video_list.value.forEach((m, i) => {
+				if (i == video_index) {
+					m.height = height_temp;
+					m.width = windowWidth;
+
+				}
+			});
+		}
+	})
+}
+function stop_all_video(e) {
+	video_list.value && video_list.value.forEach((m, i) => {
+		try {
+			uni.createVideoContext('video_id_' + i).pause();
+		} catch (error) { }
+		m.bofang_show = true;
+	});
+}
+function play_video2(e) {
+	stop_all_video();
+	console.log("播放视频", e);
+
+	let video_id = e.currentTarget.dataset.id;
+	let video_index = e.currentTarget.dataset.index;
+	uni.createVideoContext(video_id).play(); //wx.createVideoContext() 可以用这个函数控制视频的暂停与播放
+
+	video_list.value && video_list.value.forEach((ele, index) => {
+		if (index == video_index) {
+			ele.bofang_show = false;
+		}
+
+	});
+}
+function play_video(video_id) {
+	console.log("播放视频", video_id);
+
+	// let video_id = e.currentTarget.dataset.id;
+	uni.createVideoContext(video_id).play(); //wx.createVideoContext() 可以用这个函数控制视频的暂停与播放
+	// this.setData({
+	// 	bofang_show: false, //播放按钮消失
+	// })
+	bofang_show.value = false
+}
+function bindplay() {
+	// this.setData({
+	// 	bofang_show: false //播放视频，播放按钮消失
+	// // })
+	bofang_show.value = false
+}
+function bindplay2(e) {
+	let video_index = e.currentTarget.dataset.index;
+	video_list.value && video_list.value.forEach((m, i) => {
+		if (i == video_index) {
+			m.bofang_show = false;
+		}
+	});
+
+	// this.setData({
+	// 	video_list: this.data.video_list
+	// })
+}
+function bindpause() { //视频暂停，播放按钮出现
+	bofang_show.value = true
+}
+function bindpause2(video_index) { //视频暂停，播放按钮出现
+	// let video_index = e.currentTarget.dataset.index;
+	video_list.value && video_list.value.forEach((m, i) => {
+		if (i == video_index) {
+			m.bofang_show = true;
+		}
+	});
+	// this.setData({
+	// 	video_list: this.data.video_list
+	// })
+}
+// 监听当前滑块
+function currentPage(e) {
+	let index = e.detail.current * 1 + 1;
+	// console.log('监听当前滑块', e.detail.current);
+	// TODO 
+	// this.setData({
+	// 	current_page: index
+	// })
+	current_page.value = index
+}
+// 点击页面
+async function click_page(type, goods_id, goods_group_id) {
+	let res = await request('/WxAppCustomer/visit_page', 'post', {
+		type: type,
+		goods_id: goods_id,
+		goods_group_id: '' || goods_group_id
+	})
+	// 更新数据
+	if (res.code == 0) { } else {
+		// console.log(24444,res);
+		uni.showToast({
+			title: res.msg,
+			icon: 'none',
+			mask: true
+		})
+	}
+}
+// 点击收藏按钮
+async function good_colect(actiontype) {
+	let res = await request('/WxAppCustomer/costomer_collect', 'post', {
+		// action_type: e.currentTarget.dataset.actiontype,
+		action_type: actiontype,
+		goods_id: product.value.id,
+	})
+	// 更新数据
+	if (res.code == 0) {
+		// that.goods_detail_v2();
+		product.value.is_shoucang = res.data.is_shoucang;
+	} else {
+		// console.log(24444,res);
+		uni.showToast({
+			title: res.data.msg,
+			icon: 'none',
+			mask: true
+		})
+	}
+}
+
+
+
+
+/**
+ * 用户点击右上角分享
+ */
+onShareAppMessage(options => {
+	// return app.onShareAppMessage(options);
+	return {
+		title: product.value.name,
+		path: 'pages/product/detail?id=' + product.value.id,
+		imageUrl: product.value.image_uris_arr[0]
+	};
+})
+onShareTimeline(() => {
+	// return app.onShareAppMessage(options);
+	console.log('111111', product.value);
+	return {
+		title: product.value.name,
+		path: 'pages/product/detail?id=' + product.value.id,
+		imageUrl: product.value.image_uris_arr[0]
+	};
+}) 
 </script>
 
 <style lang="scss" scoped>

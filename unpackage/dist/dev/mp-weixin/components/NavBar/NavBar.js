@@ -19,6 +19,9 @@ const _sfc_main = {
     showSearch: {
       type: Boolean,
       default: false
+    },
+    bgc: {
+      type: String
     }
   },
   setup(__props) {
@@ -49,7 +52,8 @@ const _sfc_main = {
         i: common_vendor.o(($event) => search_str.value = $event.detail.value),
         j: common_vendor.unref(boundingWidth) + "px"
       }) : {}, {
-        k: common_vendor.unref(utils_index.getStatusBarHeight)() + "px"
+        k: common_vendor.unref(utils_index.getStatusBarHeight)() + "px",
+        l: __props.bgc
       });
     };
   }

@@ -74,14 +74,14 @@ import { ref } from "vue";
 import { request } from "@/utils/request";
 import { onLoad } from "@dcloudio/uni-app";
 import { getTitleBarHeight, getStatusBarHeight } from '@/utils';
-const category_list = ref([])
-const idnex = ref(0)
-const gps = ref('')
-const store_list = ref([])
-const yuanshi = ref([])
+const category_list = ref([]);
+const idnex = ref(0);
+const gps = ref('');
+const store_list = ref([]);
+const yuanshi = ref([]);
 
 // 左侧分类菜单top值
-const menu_top = ref(getStatusBarHeight() + getTitleBarHeight())
+const menu_top = ref(getStatusBarHeight() + getTitleBarHeight());
 
 
 

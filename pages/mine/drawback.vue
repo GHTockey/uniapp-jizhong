@@ -1,6 +1,5 @@
 <template>
 	<view v-if="is_loading">
-
 		<view style="height:auto;" class="new_layout">
 			<view style="height: auto;"
 				:class="`new_layout_cotent ${draw_good_info && draw_good_info.length > 0 ? 'bottom_juli' : ''}`">

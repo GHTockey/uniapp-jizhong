@@ -9142,7 +9142,8 @@ const pages = [
   {
     path: "pages/mine/scan_order",
     style: {
-      navigationBarTitleText: "核销订单"
+      navigationBarTitleText: "核销订单",
+      navigationStyle: "custom"
     }
   },
   {
