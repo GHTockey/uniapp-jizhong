@@ -28,25 +28,36 @@ const _sfc_main = {
     const show_select_change = common_vendor.ref(false);
     const need_spec1 = common_vendor.ref(0);
     const need_spec2 = common_vendor.ref(0);
-    const add_count = common_vendor.ref(0);
+    const add_count = common_vendor.ref(1);
     const price_show = common_vendor.ref(0);
     const price_inter = common_vendor.ref([0, 0]);
     const act_img = common_vendor.ref("");
-    const max_count = common_vendor.ref(0);
+    const max_count = common_vendor.ref(5);
     const video_list = common_vendor.ref([]);
-    const swiper = common_vendor.ref({});
+    const swiper = common_vendor.ref({
+      // 轮播图
+      swiperImgUrls: [],
+      indicatorDots: "",
+      autoplay: true,
+      interval: 5e3,
+      duration: 1e3,
+      video: null
+    });
     const detail_image_uri = common_vendor.ref([]);
     const swiperIndex = common_vendor.ref(0);
     const act_info = common_vendor.ref(0);
+    const limit = common_vendor.ref([1, 999]);
     const show_pop = common_vendor.ref("");
     const have_chosed = common_vendor.ref();
-    common_vendor.ref();
-    common_vendor.ref();
+    common_vendor.ref(1200);
+    common_vendor.ref(750);
     common_vendor.ref(true);
-    common_vendor.ref();
+    common_vendor.ref(1);
     const product_id = common_vendor.ref();
     const is_loading = common_vendor.ref(false);
     const spec_list2_init = common_vendor.ref();
+    common_vendor.ref(0);
+    const is_big_layout = common_vendor.ref(0);
     const showActionSheet = common_vendor.ref(false);
     const showActionSheetSlot = common_vendor.ref(false);
     const actionSheetData = common_vendor.ref({
@@ -89,6 +100,7 @@ const _sfc_main = {
       goods_detail_v2();
     });
     async function goods_detail_v2() {
+      var _a, _b;
       let res = await utils_request.request("/WxAppCustomer/goods_detail_v2", "post", { id: product_id.value });
       console.log(res);
       if (res.code != 0) {
@@ -144,20 +156,18 @@ const _sfc_main = {
               bofang_show: true
             });
           });
-          console.log("视频视频视频", video_list);
+          console.log("视频视频视频", video_list.value);
         }
         swiper.value.swiperImgUrls = res.data.detail.image_uris_arr;
         swiper.value.video = res.data.detail.video_1;
         swiper.value = swiper.value;
-        console.log("swiperswiperswiper", swiper.value.swiperImgUrls.length);
         if (swiper.value.swiperImgUrls.length == 1) {
           swiper.value.indicatorDots = false;
         } else {
           swiper.value.indicatorDots = false;
         }
-        if (res.data.detail.detail) {
-          console.log(`WxParse.wxParse('detail_content', 'html', res.data.detail.detail, that, 5);`);
-        }
+        if (res.data.detail.detail)
+          ;
         detail_image_uri.value = res.data.detail.detail_images;
         console.log("5555555556666666", product.value.spec_list1);
         if (business.value.is_show_buy_pop == 1) {
@@ -174,7 +184,7 @@ const _sfc_main = {
               act_spec2.value = product.value.spec_list2.option[0].name;
               filter_by_spec();
             }
-            common_vendor.index.setPageStyle({
+            (_b = (_a = common_vendor.index).setPageStyle) == null ? void 0 : _b.call(_a, {
               style: {
                 overflow: "hidden"
               }
@@ -194,6 +204,7 @@ const _sfc_main = {
     }
     function filter_by_spec() {
       if (need_spec1.value && need_spec2.value) {
+        console.log("filter_by_spec [选中默认规格]");
         let rel_spec_list2 = goodsDetail.value.spec_all.filter((m) => {
           return m.spec1_value == act_spec1.value;
         }).map((m1) => {
@@ -235,6 +246,7 @@ const _sfc_main = {
       }
     }
     async function show_buy_pop_handler(type) {
+      var _a, _b, _c, _d;
       if (!product.value.spec_list1 && !product.value.price) {
         common_vendor.index.showToast({
           title: "该商品暂不支持购买",
@@ -281,7 +293,7 @@ const _sfc_main = {
             act_spec2.value = product.value.spec_list2.option[0].name;
             filter_by_spec();
           }
-          common_vendor.index.setPageStyle({
+          (_b = (_a = common_vendor.index).setPageStyle) == null ? void 0 : _b.call(_a, {
             style: {
               overflow: "hidden"
             }
@@ -299,7 +311,7 @@ const _sfc_main = {
             act_spec2.value = product.value.spec_list2.option[0].name;
             filter_by_spec();
           }
-          common_vendor.index.setPageStyle({
+          (_d = (_c = common_vendor.index).setPageStyle) == null ? void 0 : _d.call(_c, {
             style: {
               overflow: "hidden"
             }
@@ -341,23 +353,24 @@ const _sfc_main = {
       });
     }
     function change_layout(e) {
-      let is_big_layout = !is_big_layout.value;
-      is_big_layout.value = is_big_layout;
-      console.log("sssssssssssssss", is_big_layout);
+      let is_big_layout2 = !is_big_layout2.value;
+      is_big_layout2.value = is_big_layout2;
+      console.log("sssssssssssssss", is_big_layout2);
     }
     function return_close(e) {
       return;
     }
     function close_pop() {
+      var _a, _b;
       show_pop.value = "";
-      common_vendor.index.setPageStyle({
+      (_b = (_a = common_vendor.index).setPageStyle) == null ? void 0 : _b.call(_a, {
         style: {
           overflow: "unset"
         }
       });
     }
     function reduce_count(e) {
-      if (add_count.value > limit[0]) {
+      if (add_count.value > limit.value[0]) {
         if (!have_chosed.value) {
           let show = Math.round(product.value.price_min * (add_count.value - 1) * 100, 2) / 100;
           add_count.value = add_count.value * 1 - 1;
@@ -591,7 +604,7 @@ const _sfc_main = {
         Q: common_vendor.t(product.value.spec_list1.name),
         R: show_select_change.value
       }, show_select_change.value ? {
-        S: common_vendor.t(_ctx.is_big_layout ? "大图" : "列表"),
+        S: common_vendor.t(is_big_layout.value ? "大图" : "列表"),
         T: common_vendor.o(change_layout)
       } : {}, {
         U: common_vendor.f(product.value.spec_list1.option, (item, index, i0) => {
@@ -605,12 +618,12 @@ const _sfc_main = {
             d: common_vendor.t(item.name),
             e: item.store == 0
           }, item.store == 0 ? {} : {}, {
-            f: common_vendor.n(`spec_item ${act_spec1.value == item.name ? "active" : ""} ${item.store == 0 ? "no_store" : ""} ${!_ctx.is_big_layout && item.store == 0 ? "sell_out" : "sell_have"}`),
+            f: common_vendor.n(`spec_item ${act_spec1.value == item.name ? "active" : ""} ${item.store == 0 ? "no_store" : ""} ${!is_big_layout.value && item.store == 0 ? "sell_out" : "sell_have"}`),
             g: common_vendor.o(($event) => choose_spec1(item), index),
             h: index
           });
         }),
-        V: common_vendor.n(`spec_list flex_row_str_str flex_wrap have_image ${_ctx.is_big_layout ? "big_type" : ""}`)
+        V: common_vendor.n(`spec_list flex_row_str_str flex_wrap have_image ${is_big_layout.value ? "big_type" : ""}`)
       }) : {}, {
         W: ((_e = product.value.spec_list2) == null ? void 0 : _e.option) && product.value.spec_list2.option.length > 0
       }, ((_f = product.value.spec_list2) == null ? void 0 : _f.option) && product.value.spec_list2.option.length > 0 ? {

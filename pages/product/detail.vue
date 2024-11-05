@@ -402,26 +402,36 @@ const act_spec2 = ref(0); // 规格2
 const show_select_change = ref(false); // 是否展示列表或者大图的选项
 const need_spec1 = ref(0); // 是否需要规格1
 const need_spec2 = ref(0); // 是否需要规格2
-const add_count = ref(0); // 购买数量
+const add_count = ref(1); // 购买数量
 const price_show = ref(0); // 显示价格
 const price_inter = ref([0, 0]); // 价格区间
 const act_img = ref(''); // 活动图片
-const max_count = ref(0); // 最大购买数量
+const max_count = ref(5); // 最大购买数量
 const video_list = ref([]); // 视频列表
-const swiper = ref({}); // 轮播图
+const swiper = ref({// 轮播图
+	swiperImgUrls: [],
+	indicatorDots: '',
+	autoplay: true,
+	interval: 5000,
+	duration: 1000,
+	video: null,
+});
 const detail_image_uri = ref([]); // 商品详情图片
 const swiperIndex = ref(0); // 轮播图当前索引
 const act_info = ref(0); // 活动价格 ???
+const limit = ref([1, 999]); // 购买数量限制
 
 const show_pop = ref('')
 const have_chosed = ref()
-const height = ref()
-const width = ref()
+const height = ref(1200)
+const width = ref(750)
 const bofang_show = ref(true)
-const current_page = ref()
+const current_page = ref(1)
 const product_id = ref()
 const is_loading = ref(false)
 const spec_list2_init = ref()
+const current_item = ref(0) // 当前选中的规格
+const is_big_layout = ref(0)
 
 const showActionSheet = ref(false)
 const showActionSheetSlot = ref(false)
@@ -482,7 +492,6 @@ onLoad((options) => {
 
 
 async function goods_detail_v2() {
-	// var that = this
 
 	let res = await request('/WxAppCustomer/goods_detail_v2', 'post', { id: product_id.value })
 	// 更新数据
@@ -501,8 +510,8 @@ async function goods_detail_v2() {
 
 	is_loading.value = true
 	console.log('产品详情', product.value);
-	// 修改页面标题
 	if (res.data.detail) {
+		// 修改页面标题
 		uni.setNavigationBarTitle({
 			title: res.data.detail.name
 		})
@@ -510,7 +519,7 @@ async function goods_detail_v2() {
 		// 处理规格
 		let product_temp = res.data.detail
 		if (product_temp.spec_list1 && product_temp.spec_list1.option.length > 0) {
-			need_spec1.value = 1
+			need_spec1.value = 1 // 需要规格1
 
 			product_temp.spec_list1.option.forEach((ele, index) => {
 				if (ele.img_uri) {
@@ -520,24 +529,30 @@ async function goods_detail_v2() {
 			});
 			console.log('规格', product_temp.spec_list1);
 		}
+
+		// 需要规格2
 		if (product_temp.spec_list2 && product_temp.spec_list2.option.length > 0) {
 			need_spec2.value = 1
 			spec_list2_init.value = product_temp.spec_list2.option
 		}
 
+
 		if (add_count.value > 0) {
 			let show = Math.round((product.value.price_min * add_count.value * 100), 2) / 100;
 			let min = Math.round((product.value.price_min * add_count.value * 100), 2) / 100;
 			let max = Math.round((product.value.price_max * add_count.value * 100), 2) / 100;
-			price_show.value = show
-			price_inter.value = [min, max]
-			act_img.value = product_temp.image_uris_arr ? product_temp.image_uris_arr[0] : ''
-			max_count.value = product_temp.max_count
+			// let show = Math.round((product_temp.price_min * add_count.value * 100), 2) / 100;
+			// let min = Math.round((product_temp.price_min * add_count.value * 100), 2) / 100;
+			// let max = Math.round((product_temp.price_max * add_count.value * 100), 2) / 100;
+			price_show.value = show;
+			price_inter.value = [min, max];
+			act_img.value = product_temp.image_uris_arr ? product_temp.image_uris_arr[0] : '';
+			max_count.value = product_temp.max_count;
 		} else {
-			price_show.value = product_temp.price_min
-			price_inter.value = [product_temp.price_min, product_temp.price_max]
-			act_img.value = product_temp.image_uris_arr ? product_temp.image_uris_arr[0] : ''
-			max_count.value = product_temp.max_count
+			price_show.value = product_temp.price_min;
+			price_inter.value = [product_temp.price_min, product_temp.price_max];
+			act_img.value = product_temp.image_uris_arr ? product_temp.image_uris_arr[0] : '';
+			max_count.value = product_temp.max_count;
 		}
 
 		// 视频列表
@@ -550,7 +565,7 @@ async function goods_detail_v2() {
 					bofang_show: true,
 				});
 			});
-			console.log("视频视频视频", video_list);
+			console.log("视频视频视频", video_list.value);
 		}
 
 		// that.imgs_list_all=[];
@@ -562,7 +577,7 @@ async function goods_detail_v2() {
 		swiper.value.video = res.data.detail.video_1;
 		swiper.value = swiper.value
 
-		console.log('swiperswiperswiper', swiper.value.swiperImgUrls.length);
+		// console.log('swiperswiperswiper', swiper.value.swiperImgUrls.length);
 		if (swiper.value.swiperImgUrls.length == 1) {
 			swiper.value.indicatorDots = false
 		} else {
@@ -575,7 +590,7 @@ async function goods_detail_v2() {
 		// }
 		if (res.data.detail.detail) {
 			// WxParse.wxParse('detail_content', 'html', res.data.detail.detail, that, 5);
-			console.log(`WxParse.wxParse('detail_content', 'html', res.data.detail.detail, that, 5);`);
+			// console.log(`WxParse.wxParse('detail_content...`, res.data.detail.detail);
 		}
 		// that.setData({
 		// 	detail_image_uri: res.data.data.detail.detail_images,
@@ -611,7 +626,7 @@ async function goods_detail_v2() {
 					filter_by_spec()
 				}
 
-				uni.setPageStyle({
+				uni.setPageStyle?.({
 					style: {
 						overflow: 'hidden'
 					}
@@ -784,6 +799,7 @@ async function getData() {
 
 function filter_by_spec() {
 	if (need_spec1.value && need_spec2.value) { // 双规格
+		console.log('filter_by_spec [选中默认规格]');
 		let rel_spec_list2 = goodsDetail.value.spec_all.filter(m => {
 			return m.spec1_value == act_spec1.value
 		}).map(m1 => {
@@ -890,7 +906,7 @@ async function show_buy_pop_handler(type) {
 				filter_by_spec()
 			}
 
-			uni.setPageStyle({
+			uni.setPageStyle?.({
 				style: {
 					overflow: 'hidden'
 				}
@@ -915,7 +931,7 @@ async function show_buy_pop_handler(type) {
 			}
 
 
-			uni.setPageStyle({
+			uni.setPageStyle?.({
 				style: {
 					overflow: 'hidden'
 				}
@@ -986,14 +1002,14 @@ function return_close(e) {
 }
 function close_pop() {
 	show_pop.value = ''
-	uni.setPageStyle({
+	uni.setPageStyle?.({
 		style: {
 			overflow: 'unset'
 		}
 	})
 }
 function reduce_count(e) {
-	if (add_count.value > limit[0]) {
+	if (add_count.value > limit.value[0]) {
 		if (!have_chosed.value) {
 			let show = Math.round((product.value.price_min * (add_count.value - 1) * 100), 2) / 100;
 			add_count.value = add_count.value * 1 - 1
@@ -1306,6 +1322,8 @@ onShareTimeline(() => {
 </script>
 
 <style lang="scss" scoped>
+@import '../../static/styles/detailOld.css';
+
 .goods-detail-container {
 	background-color: #f7f8fa;
 	padding-bottom: 100rpx;
