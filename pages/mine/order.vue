@@ -224,7 +224,7 @@
 import { ref } from 'vue';
 import { request } from '@/utils/request.js';
 import { onShow, onLoad, onHide, onUnload, onReachBottom } from '@dcloudio/uni-app';
-import { formatTime } from '@/utils';
+import { formatTime, formatSecond } from '@/utils';
 
 const nav_list = ref([
 	{ id: 1, name: "全部", status: 0, },
@@ -510,7 +510,7 @@ function suan_countdown() {
 				const remainingTime = element.countdown - ((currentTime - show_page_time.value) / 1000);
 
 				// 如果剩余时间小于 0，设置为 0 表示时间已过
-				element.countdown_time2 = remainingTime < 0 ? '0' : '00' + ':' + util.formatSecond(remainingTime);
+				element.countdown_time2 = remainingTime < 0 ? '0' : '00' + ':' + formatSecond(remainingTime);
 
 				if (element.countdown_time2 <= 0) {
 					element.countdown = 0;

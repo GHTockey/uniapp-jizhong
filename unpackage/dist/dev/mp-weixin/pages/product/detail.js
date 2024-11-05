@@ -99,7 +99,7 @@ const _sfc_main = {
         return;
       }
       product.value = res.data.detail;
-      product.value.detail = utils_index.replaceRichTextImage(product.value.detail);
+      product.value.detail ? product.value.detail = utils_index.replaceRichTextImage(product.value.detail) : "";
       is_loading.value = true;
       console.log("产品详情", product.value);
       if (res.data.detail) {
@@ -109,7 +109,7 @@ const _sfc_main = {
         let product_temp = res.data.detail;
         if (product_temp.spec_list1 && product_temp.spec_list1.option.length > 0) {
           need_spec1.value = 1;
-          product_temp.spec_list1.option.forEach((ele, index2) => {
+          product_temp.spec_list1.option.forEach((ele, index) => {
             if (ele.img_uri) {
               show_select_change.value = true;
               return;
@@ -183,7 +183,7 @@ const _sfc_main = {
         }
       }
     }
-    function previewImg(tuindex) {
+    function previewImg(index) {
       var imgs = detail_image_uri.value;
       common_vendor.index.previewImage({
         //当前显示图片
@@ -516,17 +516,17 @@ const _sfc_main = {
       return common_vendor.e({
         a: video_list.value.length > 0
       }, video_list.value.length > 0 ? {
-        b: common_vendor.f(video_list.value, (item, index2, i0) => {
+        b: common_vendor.f(video_list.value, (item, index, i0) => {
           return {
             a: item.url,
-            b: index2
+            b: index
           };
         })
       } : {}, {
-        c: common_vendor.f(swiper.value.swiperImgUrls, (item, index2, i0) => {
+        c: common_vendor.f(swiper.value.swiperImgUrls, (item, index, i0) => {
           return {
             a: item,
-            b: index2
+            b: index
           };
         }),
         d: common_vendor.o(swiperChange),
@@ -544,11 +544,11 @@ const _sfc_main = {
         p: common_assets._imports_0$1,
         q: common_assets._imports_0$1,
         r: product.value.detail,
-        s: common_vendor.f(detail_image_uri.value, (item, index2, i0) => {
+        s: common_vendor.f(detail_image_uri.value, (item, index, i0) => {
           return {
             a: item,
-            b: common_vendor.o(($event) => previewImg(), index2),
-            c: index2
+            b: common_vendor.o(($event) => previewImg(index), index),
+            c: index
           };
         }),
         t: common_vendor.o(go_home),
@@ -594,7 +594,7 @@ const _sfc_main = {
         S: common_vendor.t(_ctx.is_big_layout ? "大图" : "列表"),
         T: common_vendor.o(change_layout)
       } : {}, {
-        U: common_vendor.f(product.value.spec_list1.option, (item, index2, i0) => {
+        U: common_vendor.f(product.value.spec_list1.option, (item, index, i0) => {
           return common_vendor.e({
             a: item.img_uri && show_select_change.value
           }, item.img_uri && show_select_change.value ? {
@@ -606,8 +606,8 @@ const _sfc_main = {
             e: item.store == 0
           }, item.store == 0 ? {} : {}, {
             f: common_vendor.n(`spec_item ${act_spec1.value == item.name ? "active" : ""} ${item.store == 0 ? "no_store" : ""} ${!_ctx.is_big_layout && item.store == 0 ? "sell_out" : "sell_have"}`),
-            g: common_vendor.o(($event) => choose_spec1(item), index2),
-            h: index2
+            g: common_vendor.o(($event) => choose_spec1(item), index),
+            h: index
           });
         }),
         V: common_vendor.n(`spec_list flex_row_str_str flex_wrap have_image ${_ctx.is_big_layout ? "big_type" : ""}`)

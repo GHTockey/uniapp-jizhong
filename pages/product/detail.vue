@@ -168,8 +168,9 @@
 				<view v-html="product.detail"></view>
 			</view>
 
+			<!-- 商品详情图片 -->
 			<view v-for="(item, index) in detail_image_uri" :key="index" class="detail_image">
-				<image lazy-load :src="item" mode="widthFix" @click="previewImg(index)"></image>
+				<image lazy-load :src="item" mode="widthFix" class="w-full" @click="previewImg(index)"></image>
 			</view>
 
 			<!-- 商品详情图片 -->
@@ -495,7 +496,8 @@ async function goods_detail_v2() {
 	}
 	product.value = res.data.detail
 
-	product.value.detail = replaceRichTextImage(product.value.detail) // 替换富文本中的图片
+	// console.log(product.value);
+	product.value.detail ? product.value.detail = replaceRichTextImage(product.value.detail) : '' // 替换富文本中的图片
 
 	is_loading.value = true
 	console.log('产品详情', product.value);
@@ -641,7 +643,7 @@ function previewImg_detail(e) {
 	})
 }
 // 预览图片
-function previewImg(tuindex) {
+function previewImg(index) {
 	//获取当前图片的下标
 	// var index = e.currentTarget.dataset.tuindex;
 	//所有图片

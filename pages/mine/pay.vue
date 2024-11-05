@@ -67,9 +67,9 @@
 				</view>
 
 
-				<!-- 物流配送选择地址 -->
+				<!-- 物流配送选择地址 showAddressSheet = true -->
 				<view class="address_item flex_row_space_bt buy_address_top buy_address_top_v" v-if="buy_type == 0"
-					style="box-sizing: border-box;" @click="showAddressSheet = true">
+					style="box-sizing: border-box;" @click="addressSheetBtnHandler">
 					<template v-if="address && address.mobile">
 						<image lazy-load class="address_icon" mode="widthFix"
 							src="https://saas.jizhongkeji.com/static/jzkj/images/address_icon.png"></image>

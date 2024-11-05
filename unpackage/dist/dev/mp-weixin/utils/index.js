@@ -25,6 +25,27 @@ function formatTime(date) {
   var second = date.getSeconds();
   return [year, month, day].map(formatNumber).join("-") + " " + [hour, minute, second].map(formatNumber).join(":");
 }
+function formatSecond(time) {
+  var theTime = parseInt(time);
+  var middle = 0;
+  var hour = 0;
+  if (theTime >= 60) {
+    middle = parseInt(theTime / 60);
+    theTime = parseInt(theTime % 60);
+    if (middle >= 60) {
+      hour = parseInt(middle / 60);
+      middle = parseInt(middle % 60);
+    }
+  }
+  var result = "" + formatNumber(parseInt(theTime));
+  if (middle > 0) {
+    result = "" + formatNumber(parseInt(middle)) + ":" + result;
+  }
+  if (hour > 0) {
+    result = "" + formatNumber(parseInt(hour)) + ":" + result;
+  }
+  return result;
+}
 function formatNumber(n) {
   n = n.toString();
   return n[1] ? n : "0" + n;
@@ -33,6 +54,7 @@ function replaceRichTextImage(text) {
   let reg = new RegExp("<img", "gi");
   return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
 }
+exports.formatSecond = formatSecond;
 exports.formatTime = formatTime;
 exports.getStatusBarHeight = getStatusBarHeight;
 exports.getTitleBarHeight = getTitleBarHeight;

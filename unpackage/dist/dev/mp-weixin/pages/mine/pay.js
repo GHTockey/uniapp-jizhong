@@ -437,7 +437,7 @@ const _sfc_main = {
         r: common_vendor.t(address.value.address_detail),
         s: address.value.is_default
       }, address.value.is_default ? {} : {}) : {}, {
-        t: common_vendor.o(($event) => showAddressSheet.value = true)
+        t: common_vendor.o(addressSheetBtnHandler)
       }) : {}, {}, {
         A: type.value != "buy_now"
       }, type.value != "buy_now" ? common_vendor.e({
