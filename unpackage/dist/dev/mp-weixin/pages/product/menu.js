@@ -136,7 +136,7 @@ const _sfc_main = {
       var _a, _b;
       return common_vendor.e({
         a: common_vendor.p({
-          title: "标题",
+          title: "",
           showSearch: true
         }),
         b: business.value.is_open_product_menu == 1

@@ -2,9 +2,10 @@
 	<!-- <view class="menu-container" :style="{ marginTop: containerMarTop + 'px' }"> -->
 	<view class="menu-container">
 
+		<!-- <HeightBar /> -->
 
 		<!-- 导航栏 -->
-		<NavBar title="标题" showSearch />
+		<NavBar title="" showSearch />
 
 		<!-- 顶部菜单 -->
 		<scroll-view v-if="business.is_open_product_menu == 1" scroll-x="true" class="nav"

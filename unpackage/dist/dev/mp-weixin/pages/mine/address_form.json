@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "添加收货地址",
   "usingComponents": {
-    "uni-data-picker": "../../uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker"
+    "city-picker": "../../uni_modules/piaoyi-cityPicker/components/piaoyi-cityPicker/piaoyi-cityPicker"
   }
 }

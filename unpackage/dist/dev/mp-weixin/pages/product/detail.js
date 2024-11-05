@@ -21,7 +21,7 @@ const _sfc_main = {
   setup(__props) {
     const { user, business } = common_vendor.storeToRefs(stores_temp.useTempStore());
     common_vendor.ref();
-    const goodsDetail = common_vendor.ref({});
+    common_vendor.ref({});
     const product = common_vendor.ref({});
     const act_spec1 = common_vendor.ref(0);
     const act_spec2 = common_vendor.ref(0);
@@ -172,7 +172,6 @@ const _sfc_main = {
         console.log("5555555556666666", product.value.spec_list1);
         if (business.value.is_show_buy_pop == 1) {
           if (!(!product.value.spec_list1 && product.value.price > 0)) {
-            console.log("dakai13333333333333333333333333");
             show_pop.value = "buy";
             act_spec1.value = 0;
             act_spec2.value = 0;
@@ -204,8 +203,7 @@ const _sfc_main = {
     }
     function filter_by_spec() {
       if (need_spec1.value && need_spec2.value) {
-        console.log("filter_by_spec [选中默认规格]");
-        let rel_spec_list2 = goodsDetail.value.spec_all.filter((m) => {
+        let rel_spec_list2 = product.value.spec_all.filter((m) => {
           return m.spec1_value == act_spec1.value;
         }).map((m1) => {
           return {
@@ -217,9 +215,9 @@ const _sfc_main = {
         product.value.spec_list2.option = rel_spec_list2 || [];
         let info = null;
         if (act_spec2.value) {
-          info = goodsDetail.value.spec_all.filter((m) => m.spec1_value == act_spec1.value && m.spec2_value == act_spec2.value)[0];
+          info = product.value.spec_all.filter((m) => m.spec1_value == act_spec1.value && m.spec2_value == act_spec2.value)[0];
         } else {
-          info = goodsDetail.value.spec_all.filter((m) => m.spec1_value == act_spec1.value)[0];
+          info = product.value.spec_all.filter((m) => m.spec1_value == act_spec1.value)[0];
         }
         if (info.img_uri && info.img_uri.length > 0) {
           act_img.value = info.img_uri;
@@ -232,8 +230,8 @@ const _sfc_main = {
         return;
       } else {
         let spec1 = act_spec1.value;
-        console.log("选择规格后的数据", goodsDetail.value.spec_all);
-        let info = goodsDetail.value.spec_all.filter((m) => m.spec1_value == spec1)[0];
+        console.log("选择规格后的数据", product.value.spec_all);
+        let info = product.value.spec_all.filter((m) => m.spec1_value == spec1)[0];
         let show = Math.round(info.price * add_count.value * 100, 2) / 100;
         console.log("选择规格后", info);
         if (info.img_uri && info.img_uri.length > 0) {
@@ -319,17 +317,16 @@ const _sfc_main = {
         }
       }
     }
-    function to_buy() {
-      console.log("点击购买");
-      console.log("商品id", goodsDetail.value.id);
+    function to_buy(e) {
       if (!act_spec1.value) {
         common_vendor.index.showToast({
           title: "请先选择规格",
           icon: "none"
         });
+        return;
       }
       if (need_spec1.value && need_spec2.value) {
-        let name = goodsDetail.value.spec_list2.name || "规格";
+        let name = product.value.spec_list2.name || "规格";
         if (!act_spec2.value) {
           common_vendor.index.showToast({
             title: "请选择" + name,
@@ -338,11 +335,11 @@ const _sfc_main = {
           return;
         }
       }
-      act_info.value;
+      let goods_price = act_info.value;
       common_vendor.index.navigateTo({
-        url: `/pages/mine/pay?goods_id=${goodsDetail.value.id}&price_id=1073&count=1`
-        // url: '/pages/mine/pay?goods_id=' + goodsDetail.value.id + '&price_id=' + goods_price.id + '&count=' + add_count.value,
+        url: "/pages/mine/pay?goods_id=" + product.value.id + "&price_id=" + goods_price.id + "&count=" + add_count.value
       });
+      close_pop();
     }
     function swiperChange(e) {
       swiperIndex.value = e.detail.current;
@@ -468,7 +465,7 @@ const _sfc_main = {
         goods_id: product.value.id,
         count: add_count.value || 0
       });
-      if (res.data) {
+      if (res) {
         common_vendor.index.showToast({
           title: res.msg,
           icon: "none",
@@ -549,7 +546,7 @@ const _sfc_main = {
         h: common_vendor.t(product.value.price || 0),
         i: common_vendor.t(price_show.value || "???"),
         j: common_assets._imports_0$1,
-        k: common_vendor.o(($event) => showActionSheetSlot.value = true),
+        k: common_vendor.o(($event) => show_buy_pop_handler("buy")),
         l: common_vendor.t(product.value.name),
         m: common_vendor.o(($event) => showActionSheet.value = true),
         n: common_vendor.o(($event) => showActionSheet.value = true),

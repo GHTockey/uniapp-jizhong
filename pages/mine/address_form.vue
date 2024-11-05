@@ -8,23 +8,12 @@
 					<template v-if="item.my_column_name == 'address'">
 						<view class="form_item flex_row_space_bt">
 							<view class="form_lable">{{ item.vi_name }}</view>
-							<!-- <picker @change="choose_address" :name="item.my_column_name"
-								:value="form_info[item.my_column_name] || ''" mode="region">
-								<view
-									:class="`form_picker flex_row_str_str ${!form_info[item.my_column_name] ? 'placeholder_text' : ''}`">
-									{{ !form_info[item.my_column_name] ? '请选择' : form_info[item.my_column_name] }}
-								</view>
-							</picker> -->
-
-							<uni-data-picker :name="item.my_column_name" style="flex: none;" :localdata="items"
-								popup-title="请选择" @change="choose_address" v-model="form_info[item.my_column_name]"
-								@nodeclick="''">
-								<view
-									:class="`form_picker flex_row_str_str  ${!form_info[item.my_column_name] ? 'placeholder_text' : ''}`">
-									{{ !form_info[item.my_column_name] ? '请选择' :
-										form_info[item.my_column_name].join(',') }}
-								</view>
-							</uni-data-picker>
+							<view @click="cityPickerVisible = true" 
+								:class="`form_picker flex_row_str_str ${!form_info[item.my_column_name] ? 'placeholder_text' : ''}`">
+								{{ !form_info[item.my_column_name] ? '请选择' : form_info[item.my_column_name] }}
+							</view>
+							<cityPicker :column="column" :mask-close-able="maskCloseAble"
+								@confirm="confirm($event, item.my_column_name)" :visible="cityPickerVisible" />
 
 						</view>
 					</template>
@@ -77,6 +66,7 @@
 import { ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { request } from '@/utils/request.js';
+import cityPicker from '@/uni_modules/piaoyi-cityPicker/components/piaoyi-cityPicker/piaoyi-cityPicker';
 
 const switch1Checked = ref(false); // 设为默认收货地址
 const type = ref('add'); // 地址类型
@@ -111,6 +101,22 @@ const items = ref([{
 	text: "北京市",
 	value: "3-0"
 }]); // 地址列表
+
+
+const cityPickerVisible = ref(false); // 是否显示
+const maskCloseAble = ref(true); // 是否可以点击遮罩关闭
+const column = ref(3); // 列数
+
+
+function confirm(valObj, item) {
+	// console.log(valObj, item)
+
+	let str = valObj.provinceName + ',' + valObj.cityName + ',' + valObj.areaName
+	// console.log('str', str)
+	form_info.value[item] = str
+
+	cityPickerVisible.value = false
+}
 
 
 onLoad((options) => {

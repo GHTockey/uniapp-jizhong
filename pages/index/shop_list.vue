@@ -24,9 +24,9 @@
 					<view class="hang1">
 						<view>{{ item.shop_name }}</view>
 						<view class="daohang_box">
-							<image @click="to_address(item)" class="daohang"
+							<image @click.stop.prevent="to_address(item)" class="daohang"
 								src="https://saas.jizhongkeji.com/static/jzkj/images/daohang.png"></image>
-							<image @click="makePhoneCall(item.phone)" class="daohang"
+							<image @click.stop.prevent="makePhoneCall(item.phone)" class="daohang"
 								src="https://saas.jizhongkeji.com/static/jzkj/images/phone_img.png"></image>
 						</view>
 					</view>

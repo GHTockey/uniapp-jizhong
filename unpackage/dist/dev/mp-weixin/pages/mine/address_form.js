@@ -1,14 +1,10 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const utils_request = require("../../utils/request.js");
-if (!Array) {
-  const _easycom_uni_data_picker2 = common_vendor.resolveComponent("uni-data-picker");
-  _easycom_uni_data_picker2();
-}
-const _easycom_uni_data_picker = () => "../../uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.js";
 if (!Math) {
-  _easycom_uni_data_picker();
+  common_vendor.unref(cityPicker)();
 }
+const cityPicker = () => "../../uni_modules/piaoyi-cityPicker/components/piaoyi-cityPicker/piaoyi-cityPicker.js";
 const _sfc_main = {
   __name: "address_form",
   setup(__props) {
@@ -17,7 +13,7 @@ const _sfc_main = {
     const form_info = common_vendor.ref({});
     const cols = common_vendor.ref([]);
     const id = common_vendor.ref(0);
-    const items = common_vendor.ref([
+    common_vendor.ref([
       {
         text: "河北省",
         value: "1-0",
@@ -47,6 +43,14 @@ const _sfc_main = {
         value: "3-0"
       }
     ]);
+    const cityPickerVisible = common_vendor.ref(false);
+    const maskCloseAble = common_vendor.ref(true);
+    const column = common_vendor.ref(3);
+    function confirm(valObj, item) {
+      let str = valObj.provinceName + "," + valObj.cityName + "," + valObj.areaName;
+      form_info.value[item] = str;
+      cityPickerVisible.value = false;
+    }
     common_vendor.onLoad((options) => {
       get_form_col();
       if (options && options.id) {
@@ -60,14 +64,6 @@ const _sfc_main = {
     });
     function switch1Change(e) {
       console.log("switch1Change e", e);
-    }
-    function choose_address(e) {
-      console.log("choose_address e", e);
-      let addressArr = [];
-      e.detail.value.forEach((item) => {
-        addressArr.push(item.text);
-      });
-      form_info.value.address = addressArr;
     }
     function change_texare(e) {
       console.log("change_texare e", e);
@@ -144,31 +140,29 @@ const _sfc_main = {
             a: item.my_column_name == "address"
           }, item.my_column_name == "address" ? {
             b: common_vendor.t(item.vi_name),
-            c: common_vendor.t(!form_info.value[item.my_column_name] ? "请选择" : form_info.value[item.my_column_name].join(",")),
-            d: common_vendor.n(`form_picker flex_row_str_str  ${!form_info.value[item.my_column_name] ? "placeholder_text" : ""}`),
-            e: common_vendor.o(choose_address, item.id),
-            f: common_vendor.o(($event) => "", item.id),
+            c: common_vendor.t(!form_info.value[item.my_column_name] ? "请选择" : form_info.value[item.my_column_name]),
+            d: common_vendor.o(($event) => cityPickerVisible.value = true, item.id),
+            e: common_vendor.n(`form_picker flex_row_str_str ${!form_info.value[item.my_column_name] ? "placeholder_text" : ""}`),
+            f: common_vendor.o(($event) => confirm($event, item.my_column_name), item.id),
             g: "2b87a36e-0-" + i0,
-            h: common_vendor.o(($event) => form_info.value[item.my_column_name] = $event, item.id),
-            i: common_vendor.p({
-              name: item.my_column_name,
-              localdata: items.value,
-              ["popup-title"]: "请选择",
-              modelValue: form_info.value[item.my_column_name]
+            h: common_vendor.p({
+              column: column.value,
+              ["mask-close-able"]: maskCloseAble.value,
+              visible: cityPickerVisible.value
             })
           } : item.my_column_name == "address_detail" ? {
-            k: common_vendor.t(item.vi_name),
-            l: common_vendor.o(change_texare, item.id),
-            m: item.my_column_name,
-            n: form_info.value[item.my_column_name]
+            j: common_vendor.t(item.vi_name),
+            k: common_vendor.o(change_texare, item.id),
+            l: item.my_column_name,
+            m: form_info.value[item.my_column_name]
           } : {
-            o: common_vendor.t(item.vi_name),
-            p: item.my_column_name,
-            q: item.noneed_input ? "自动识别" : "请输入" + item.vi_name,
-            r: form_info.value[item.my_column_name]
+            n: common_vendor.t(item.vi_name),
+            o: item.my_column_name,
+            p: item.noneed_input ? "自动识别" : "请输入" + item.vi_name,
+            q: form_info.value[item.my_column_name]
           }, {
-            j: item.my_column_name == "address_detail",
-            s: item.id
+            i: item.my_column_name == "address_detail",
+            r: item.id
           });
         }),
         b: switch1Checked.value,

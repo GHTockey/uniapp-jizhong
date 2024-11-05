@@ -61,7 +61,7 @@
 				<image class="o-avatar" src="../../static/logo.png" mode="widthFix" />
 				<text class="o-text">张**48秒前正在加购</text>
 				<!-- 立即购买按钮-右对齐 -->
-				<view class="o-buy" style="margin-left: auto;" @click="showActionSheetSlot = true">
+				<view class="o-buy" style="margin-left: auto;" @click="show_buy_pop_handler('buy')">
 					立即购买
 					<image class="o-buy-icon"
 						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/right-jiantou.svg" mode="widthFix" />
@@ -164,7 +164,7 @@
 			<!-- 商品详情标题 -->
 			<view class="goods-detail-info-detail-title">商品详情</view>
 			<view>
-				<!--   <template is="wxParse" data="{{wxParseData:detail_content.nodes}}" /> -->
+				<!-- <template is="wxParse" data="{{wxParseData:detail_content.nodes}}" /> -->
 				<view v-html="product.detail"></view>
 			</view>
 
@@ -286,8 +286,8 @@
 		</ActionSheetSlot>
 		<!-- 加购/购买 pop -->
 		<template v-if="show_pop == 'add' || show_pop == 'buy'">
-			<view class="my_pop" @click="close_pop" style="position: fixed;">
-				<view class="my_pop_inner" @click.stop="return_close">
+			<view class="my_pop !z-[100]" @click="close_pop" style="position: fixed;">
+				<view class="my_pop_inner" @click.stop.prevent="return_close">
 					<image lazy-load class="pop_close" mode="heightFix"
 						src="https://saas.jizhongkeji.com/static/jzkj/images/close_pop_icon.png" @click="close_pop">
 					</image>
@@ -609,11 +609,11 @@ async function goods_detail_v2() {
 			// ---打开立即购买弹窗
 			if (!(!product.value.spec_list1 && product.value.price > 0)) {
 				// if (type == 'buy') {
-				console.log('dakai13333333333333333333333333');
 				// console.log('立即购买111111111', that.data.product.spec_list2.option[0].name);
 				show_pop.value = 'buy'
 				act_spec1.value = 0
 				act_spec2.value = 0
+				// console.log('dakai13333333333333333333333333');
 
 				// 选中默认规格1
 				if (product.value.spec_list1 && product.value.spec_list1.option.length > 0) {
@@ -671,136 +671,9 @@ function previewImg(index) {
 	})
 }
 
-async function getData() {
-	uni.showLoading({ title: '加载中' })
-	let res = await request('/WxAppCustomer/goods_detail', 'POST', {
-		id: goodsId.value
-	})
-	console.log('getData res', res);
-	uni.hideLoading();
-	if (res.code != 0) return uni.showToast({ title: res.msg, icon: 'error' });
-	goodsDetail.value = res.data.detail;
-
-	// 修改页面标题
-	uni.setNavigationBarTitle({
-		title: goodsDetail.value.name
-	})
-
-
-	// 处理规格
-	let product = goodsDetail.value
-	if (product.spec_list1 && product.spec_list1.option.length > 0) {
-		need_spec1.value = 1
-
-		product.spec_list1.option.forEach((ele, index) => {
-			if (ele.img_uri) {
-				show_select_change.value = true
-				return
-			}
-		});
-		console.log('规格', product.spec_list1);
-	}
-	if (product.spec_list2 && product.spec_list2.option.length > 0) {
-		need_spec2.value = 1
-		// that.data.spec_list2_init = product.spec_list2.option  // TODO: 没看懂
-	}
-
-
-	// 处理价格
-	if (add_count.value > 0) {
-		let show = Math.round((product.price_min * add_count.value * 100), 2) / 100;
-		let min = Math.round((product.price_min * add_count.value * 100), 2) / 100;
-		let max = Math.round((product.price_max * add_count.value * 100), 2) / 100;
-		price_show.value = show;
-		price_inter.value = [min, max];
-		act_img.value = product.image_uris_arr ? product.image_uris_arr[0] : '';
-		max_count.value = product.max_count;
-	} else {
-		price_show.value = product.price_min;
-		price_inter.value = [product.price_min, product.price_max];
-		act_img.value = product.image_uris_arr ? product.image_uris_arr[0] : '';
-		max_count.value = product.max_count;
-	}
-
-
-	// 视频列表
-	if (product.video_uri_arr.length > 0) {
-		let video_list_temp = [];
-
-		product.video_uri_arr.forEach(ele => {
-			video_list_temp.push({
-				url: ele,
-				width: 375,
-				height: 375,
-				bofang_show: true,
-			});
-		});
-
-		console.log("视频视频视频", video_list_temp);
-
-		video_list.value = video_list_temp;
-	}
-
-
-	// 轮播图
-	swiper.value = {
-		swiperImgUrls: product.image_uris_arr,
-		video: product.video_1
-	}
-	// 轮播图指示器
-	console.log('swiper.value.swiperImgUrls.length', swiper.value.swiperImgUrls.length);
-	if (swiper.value.swiperImgUrls.length == 1) {
-		swiper.value.indicatorDots = false
-	} else {
-		// LRR 修改swiper样式 改为false
-		swiper.value.indicatorDots = false
-	}
-
-
-	//
-	if (product.detail) {
-		console.log('WxParse');
-		return
-		WxParse.wxParse('detail_content', 'html', product.detail, that, 5);
-	}
-	detail_image_uri.value = product.detail_images
-	swiper.value = swiper.value
-
-
-
-	// if (product.business.is_show_buy_pop == 1) {
-	// 	// ---打开立即购买弹窗
-	// 	if (!(!product.spec_list1 && product.price > 0)) {
-	// 		// if (type == 'buy') {
-	// 		console.log('dakai13333333333333333333333333');
-	// 		// console.log('立即购买111111111', that.data.product.spec_list2.option[0].name);
-	// 		show_pop.value = 'buy'
-	// 		act_spec1.value = 0
-	// 		act_spec2.value = 0
-
-	// 		// 选中默认规格1
-	// 		if (product.spec_list1 && product.spec_list1.option.length > 0) {
-	// 			act_spec1.value = product.spec_list1.option[0].name
-	// 		}
-	// 		//  选中默认规格2
-	// 		if (product.spec_list2 && product.spec_list2.option && product.spec_list2.option.length > 0) {
-	// 			act_spec2.value = product.spec_list2.option[0].name
-	// 			filter_by_spec()
-	// 		}
-
-	// 		wx.setPageStyle({
-	// 			style: {
-	// 				overflow: 'hidden'
-	// 			}
-	// 		})
-	// 	}
-	// }
-}
-
 function filter_by_spec() {
 	if (need_spec1.value && need_spec2.value) { // 双规格
-		console.log('filter_by_spec [选中默认规格]');
-		let rel_spec_list2 = goodsDetail.value.spec_all.filter(m => {
+		let rel_spec_list2 = product.value.spec_all.filter(m => {
 			return m.spec1_value == act_spec1.value
 		}).map(m1 => {
 			return {
@@ -811,13 +684,12 @@ function filter_by_spec() {
 		console.log('当前的规格1', rel_spec_list2);
 
 		product.value.spec_list2.option = rel_spec_list2 || []
-
-
+		// 数据更新后
 		let info = null
 		if (act_spec2.value) {
-			info = goodsDetail.value.spec_all.filter(m => m.spec1_value == act_spec1.value && m.spec2_value == act_spec2.value)[0]
+			info = product.value.spec_all.filter(m => m.spec1_value == act_spec1.value && m.spec2_value == act_spec2.value)[0]
 		} else {
-			info = goodsDetail.value.spec_all.filter(m => (m.spec1_value == act_spec1.value))[0]
+			info = product.value.spec_all.filter(m => (m.spec1_value == act_spec1.value))[0]
 		}
 
 		if (info.img_uri && info.img_uri.length > 0) {
@@ -826,20 +698,33 @@ function filter_by_spec() {
 		console.log('多选', info);
 
 		let show = Math.round((info.price * (add_count.value) * 100), 2) / 100;
+		// this.setData({
+		// 	'price_show': show,
+		// 	'act_info': info,
+		// 	'max_count': info.store,
+		// })
 		price_show.value = show
 		act_info.value = info
 		max_count.value = info.store
 		return
 	} else {
 		let spec1 = act_spec1.value
-		console.log('选择规格后的数据', goodsDetail.value.spec_all);
-		let info = goodsDetail.value.spec_all.filter(m => m.spec1_value == spec1)[0]
+		console.log('选择规格后的数据', product.value.spec_all);
+		let info = product.value.spec_all.filter(m => m.spec1_value == spec1)[0]
 		let show = Math.round((info.price * (add_count.value) * 100), 2) / 100;
 
 		console.log('选择规格后', info);
 		if (info.img_uri && info.img_uri.length > 0) {
+			// this.setData({
+			// 	'act_img': info.img_uri,
+			// })
 			act_img.value = info.img_uri
 		}
+		// this.setData({
+		// 	'price_show': show,
+		// 	'act_info': info,
+		// 	'max_count': info.store,
+		// })
 		price_show.value = show
 		act_info.value = info
 		max_count.value = info.store
@@ -939,20 +824,18 @@ async function show_buy_pop_handler(type) {
 		}
 	}
 }
-function to_buy() {
-	console.log('点击购买');
-	console.log('商品id', goodsDetail.value.id);
-
+// 立即购买
+function to_buy(e) {
 	if (!act_spec1.value) {
 		uni.showToast({
 			title: '请先选择规格',
 			icon: 'none'
 		})
-		// return
+		return
 	}
 
 	if (need_spec1.value && need_spec2.value) {
-		let name = goodsDetail.value.spec_list2.name || '规格';
+		let name = product.value.spec_list2.name || '规格';
 		if (!act_spec2.value) {
 			uni.showToast({
 				title: '请选择' + name,
@@ -963,15 +846,10 @@ function to_buy() {
 	}
 	let goods_price = act_info.value
 
-
 	uni.navigateTo({
-		url: `/pages/mine/pay?goods_id=${goodsDetail.value.id}&price_id=1073&count=1`,
-		// url: '/pages/mine/pay?goods_id=' + goodsDetail.value.id + '&price_id=' + goods_price.id + '&count=' + add_count.value,
+		url: '/pages/mine/pay?goods_id=' + product.value.id + '&price_id=' + goods_price.id + '&count=' + add_count.value,
 	})
-
-	// 关闭弹窗 [这里不需要操作，点击后自动关闭]
-	// showActionSheetSlot.value = false
-
+	close_pop()
 }
 
 // 轮播图改变事件 [更新swiperIndex]
@@ -1120,7 +998,7 @@ async function add_shopcar(e) {
 		goods_id: product.value.id,
 		count: add_count.value || 0,
 	})
-	if (res.data) {
+	if (res) {
 		uni.showToast({
 			title: res.msg,
 			icon: 'none',
