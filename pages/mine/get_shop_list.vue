@@ -1,333 +1,424 @@
 <template>
-	<view class="get_shop_list_box">
-		<!-- 搜索栏 -->
-		<view class="search_box">
-			<uni-search-bar style="flex: 1;" @confirm="" v-model="searchValue" @blur="" @focus="" @input="" @cancel=""
-				@clear="" clearButton="none" cancelButton="none" placeholder="请输入关键词">
-				<uni-icons slot="searchIcon" color="#999999" size="18" type="home" />
-			</uni-search-bar>
-			<!-- 收起/展开地图按钮 -->
-			<view class="map_btn_box">
-				<image style="width: 33.33rpx;height: 21.53rpx;" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/map-icon.svg" mode="widthFix">
-				</image>
-				<text>收取地图</text>
-			</view>
-		</view>
+    <view v-if="is_loading" class="list_page">
+        <view class="search_input_box">
+            <view class="input_box1">
+                <image lazy-load class="search_icon" style="width: 30rpx;height: 30rpx;margin-right: 15rpx;"
+                    src="https://saas.jizhongkeji.com/static/jzkj/images/search.png" mode="aspectFit"
+                    v-if="!search_str || search_str.length == 0" />
 
-		<!-- 地图 -->
-		<!-- <view class="map_box">
-		</view> -->
+                <input hold-keyboard="true" class="search_input" confirm-type="search" type="text" placeholder="输入关键词"
+                    @input="change_search_str" name="search_str" placeholder-class="input_placeholder_class"
+                    @confirm="to_search" v-model="search_str" />
+            </view>
 
+            <view class="sousuo" @click="to_search_v">搜索</view>
+        </view>
 
-		<!-- 门店列表容器 -->
-		<view class="shop_list_box">
-			<!-- 头部 标签栏 -->
-			<view class="shop_list_header">
-				<view @click="changeActiveIndex(0)" class="shop_list_header_item"
-					:class="{ 'shop_list_header_item_active': activeIndex == 0 }">
-					<text>附近门店</text>
-					<!-- 高亮横线 -->
-					<view class="shop_list_header_line"></view>
-				</view>
-				<view @click="changeActiveIndex(1)" class="shop_list_header_item"
-					:class="{ 'shop_list_header_item_active': activeIndex == 1 }">
-					<text>收藏&常去</text>
-					<!-- 高亮横线 -->
-					<view class="shop_list_header_line"></view>
-				</view>
-			</view>
-			<!-- 门店列表 -->
-			<view class="shop_list_content">
-				<view class="shop_list_item" v-for="item in shopList">
-					<!-- img box -->
-					<view class="shop_list_item_img_box">
-						<image style="width: 100%;height: 120.14rpx;" :src="item.image_uri">
-						</image>
-						<view class="shop_list_item_detail_btn">
-							<text>门店详情</text>
-							<uni-icons type="arrowright" size="18" color="#999999"></uni-icons>
-							<!-- <image style="width: 12.5rpx;height: 18.06rpx;" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/down-map.svg"
-								mode="widthFix">
-							</image> -->
-						</view>
-						<!-- 收藏按钮 -->
-						<view class="shop_list_item_collect_btn">
-							<uni-icons type="star" size="20" color="#999999"></uni-icons>
-						</view>
-					</view>
-					<!-- 门店信息 -->
-					<view class="shop_list_item_info">
-						<!-- 门店标题 -->
-						<view class="shop_list_item_title">
-							{{ item.shop_name }}
-						</view>
-						<!-- 距离&地址 -->
-						<view class="shop_list_item_distance_address">
-							<text>2.1km</text>
-							<text style="margin: 0 10rpx; color: #909090;">|</text>
-							<text style="color: #909090;">{{ item.address_detail }}</text>
-						</view>
-						<!-- 营业时间 -->
-						<view class="shop_list_item_business_time">
-							<text>{{ item.start_time }}-{{ item.end_time }}</text>
-						</view>
-					</view>
-				</view>
-			</view>
+        <!-- <view style="height: 20rpx;"></view> -->
 
-			<!-- 空状态 -->
-			<DefaultTip :tipText="'暂无收藏或常去门店'" v-if="shopList.length == 0" />
-		</view>
+        <!-- <view class="top_change">
+    <view wx:for="{{type_list}}" bind:tap="to_change" data-typeindex="{{index}}" class="{{type_index==index ? 'type_name_active type_name':'type_name'}}" wx:key="index">
+      <view> {{item.name}}</view>
+      <view class="line"></view>
+    </view>
+  </view> -->
+
+        <view @click="to_choose" :data-id="item.id" v-for="item in store_list" :key="item.id" class="item_store">
+            <view class="image_uris">
+                <!-- <view class="dianzan" catch:tap="to_dianzan" data-dianzanid="{{item.id}}">
+        <image wx:if="{{item.is_shoucang == 0}}" lazy-load="{{true}}" class="xin_with" mode="aspectFit" src="https://saas.jizhongkeji.com/static/jzkj/images/xin_with.png"></image>
+        <image wx:if="{{item.is_shoucang == 1}}" lazy-load="{{true}}" class="xin_with" mode="aspectFit" src="https://saas.jizhongkeji.com/static/jzkj/images/xin_withred.png"></image>
+      </view> -->
+
+                <image style="width: 100%;height: 100%;" mode="aspectFill" :src="item.image_uris_arr[0]"></image>
+                <view @click.stop.prevent="to_shop(item.id)" class="bottom_img">
+                    <view>门店详情</view>
+                    <image lazy-load class="arrow_icon" mode="aspectFit"
+                        src="https://saas.jizhongkeji.com/static/jzkj/images/arrow_right.png"></image>
+                </view>
+            </view>
+
+            <view class="right_item">
+                <view>{{ item.shop_name }}</view>
+                <view class="address_detail"><text v-if="item.distance > 0" style="color: #000000;">{{
+                    item.distance }}km</text> | {{ item.address_detail }}</view>
+                <view class="start_time">{{ item.start_time }}-{{ item.end_time }}</view>
+            </view>
+
+        </view>
 
 
-
-		<!-- 确定按钮 -->
-		<view class="confirm_btn_box">
-			<view class="confirm_btn">确定</view>
-		</view>
-	</view>
+        <view class="kong_box" v-if="is_kong">
+            <image class="kong_img" src="https://saas.jizhongkeji.com/static/jzkj/images/kong.png"></image>
+            <view>换个搜索词试试</view>
+        </view>
+    </view>
 </template>
 
+
 <script setup>
-import { ref } from "vue";
-import { request } from "../../utils/request";
-import { onLoad } from "@dcloudio/uni-app";
+import { ref } from 'vue';
+import { request } from '@/utils/request';
+import { onLoad } from '@dcloudio/uni-app';
 
-const searchValue = ref(''); // 搜索框内容
-const activeIndex = ref(0); // 选中标签栏索引
-const shopList = ref([]); // 门店列表
 
-onLoad(() => {
-	getData();
+const is_loading = ref(false);
+const type_list = ref([
+    { id: 1, name: '附近门店', },
+    { id: 2, name: '收藏', }
+]);
+const type_index = ref(0);
+const store_list = ref([]);
+const search_str = ref('');
+const is_kong = ref(false);
+
+const gps = ref();
+const yuan_list = ref([]);
+const appointent_list = ref();
+
+
+onLoad(options => {
+    uni.showLoading({
+        title: 'loading',
+    })
+    get_user_location();
 })
 
-async function getData() {
-	uni.showLoading({ title: '加载中...' })
-	let res = await request('/WxAppCustomer/store_list', 'post', {
-		// user_id
-		// gps
-	})
-	uni.hideLoading();
-	if (res.code != 0) return uni.showToast({
-		title: res.msg,
-		icon: 'error'
-	})
-	shopList.value = res.data.store_list;
 
+function to_shop(shopid) {
+    // console.log('/pages/index/shop_detail?id=' + shopid);
+    // return
+    uni.navigateTo({
+        url: '/pages/index/shop_detail?id=' + shopid,
+    })
 }
+function get_user_location(e) {
+    //获取当前用户的坐标
+    gps.value = '';
 
-// 切换标签栏
-const changeActiveIndex = (index) => {
-	activeIndex.value = index;
-
-	// TODO: temp
-	if (activeIndex.value == 0) {
-		getData();
-	} else {
-		shopList.value = [];
-	}
+    uni.getLocation({
+        type: 'wgs84',
+        success: (res) => {
+            gps.value = [res.latitude, res.longitude].join(',')
+            console.log('获取的位置', res);
+            get_store_list()
+        },
+        complete: (res) => {
+            console.log('获取的位置', res);
+            get_store_list()
+        },
+    })
 }
+async function get_store_list(type, name) {
+    let res = await request('/WxAppCustomer/store_list', 'post', {
+        gps: gps.value || '',
+        type: type_index.value || '',
+        name: search_str.value || '',
+    })
+    if (res.code == 1) {
+        uni.showToast({
+            title: res.msg,
+            icon: 'none',
+            mask: true
+        })
+    } else {
+        uni.hideLoading();
+        // this.setData({
+        //     store_list: res.data.store_list,
+        //     yuan_list: res.data.store_list,
+        //     is_loading: true,
+        // })
+        store_list.value = res.data.store_list;
+        yuan_list.value = res.data.store_list;
+        is_loading.value = true;
 
+        if (store_list.value.length <= 0) {
+            is_kong.value = true;
+        }
+    }
+}
+async function to_choose(e) {
+    let shop_id = e.currentTarget.dataset.id;
+
+    let res = await request('/WxAppCustomer/choose_shop', 'post', { shop_id: shop_id || 0 })
+    if (res.code == 1) {
+        uni.showToast({
+            title: res.msg,
+            icon: 'none',
+            mask: true
+        })
+    } else {
+        uni.navigateBack();
+    }
+}
+async function to_dianzan(e) {
+    let shop_id = e.currentTarget.dataset.dianzanid;
+
+    let res = await request('/WxAppCustomer/collect_shop', 'post', { shop_id: shop_id || 0 })
+    if (res.code == 1) {
+        uni.showToast({
+            title: res.msg,
+            icon: 'none',
+            mask: true
+        })
+    } else {
+        let store = store_list.value.find((m) => {
+            return m.id == shop_id
+        })
+        if (store) {
+            store.is_shoucang = res.data.is_shoucang;
+
+            // this.setData({
+            //     store_list: this.data.store_list
+            // })
+        }
+    }
+}
+function to_search(e) {
+    search_str.value = e.detail.value
+    if (!search_str.value || search_str.value == '') {
+        uni.showToast({
+            title: '请输入关键词',
+            icon: 'none'
+        })
+        return
+    }
+
+    store_list.value = [];
+    get_store_list()
+}
+function change_search_str(e) {
+    if (e.detail.value.length == 0) {
+        // this.setData({
+        //     search_str: '',
+        //     appointent_list: [],
+        //     is_kong: false,
+        // })
+        search_str.value = '';
+        appointent_list.value = [];
+        is_kong.value = false;
+        get_store_list()
+    } else {
+        search_str.value = e.detail.value
+    }
+}
+function to_search_v(e) {
+    console.log('333', search_str.value);
+    if (!search_str.value || search_str.value == '') {
+        uni.showToast({
+            title: '请输入关键词',
+            icon: 'none'
+        })
+        return
+    }
+
+    store_list.value = [];
+    get_store_list()
+}
+function to_change(index) {
+    // let index = e.currentTarget.dataset.typeindex
+
+    // this.setData({
+    //     type_index: index,
+    // });
+    type_index.value = index;
+    get_store_list();
+}
 </script>
 
-<style lang="scss" scoped>
-.get_shop_list_box {
-	height: calc(100vh - $nav-height);
-	background-color: #f5f5f5;
-	display: flex;
-	flex-direction: column;
-
-	.search_box {
-		height: 125rpx;
-		background-color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0 20rpx;
 
 
-		.map_btn_box {
-			width: 180rpx;
-			height: 40rpx;
+<style>
+.list_page {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 29rpx;
+    display: flex;
+    flex-direction: column;
+}
 
-			font-size: 26.39rpx;
-			font-weight: 500;
-			color: #a0a0a0;
+.item_store {
+    width: 100%;
+    border-radius: 6rpx 6rpx 6rpx 6rpx;
+    border: 1rpx solid #E5E5E5;
+    box-sizing: border-box;
+    padding: 22rpx 25rpx;
+    display: flex;
+    margin-top: 30rpx;
+    font-weight: bold;
+    font-size: 29rpx;
+    color: #1D1D1D;
+}
 
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 10rpx;
-		}
-	}
+.image_uris {
+    position: relative;
+    width: 158rpx;
+    height: 185rpx;
+    border-radius: 11rpx 11rpx 11rpx 11rpx;
+    margin-right: 30rpx;
+    flex: none;
+    overflow: hidden;
+}
 
+.right_item {
+    display: flex;
+    flex-direction: column;
+}
 
-	// 地图
-	.map_box {
-		box-sizing: border-box;
-		height: 460rpx;
-		// border: 1px solid red;
-	}
+.address_detail {
+    margin-top: 18rpx;
+    font-weight: normal;
+    font-size: 25rpx;
+    color: #909090;
+}
 
-	// 门店列表容器
-	.shop_list_box {
-		// border: 1px solid red;
-		padding: 10rpx 30rpx;
-		background-color: #fff;
-		// height: calc(100vh - 460rpx - 125rpx - $nav-height);
-		flex: 1;
-		border-radius: 13.89rpx 13.89rpx 0rpx 0rpx;
-		padding-bottom: 106.94rpx;
+.start_time {
+    font-weight: normal;
+    font-size: 25rpx;
+    color: #212121;
+    margin-top: 10rpx;
+}
 
+.bottom_img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 64rpx;
+    background-color: #ECECEC;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    font-size: 24rpx;
+    color: #3D3D3D;
+    box-sizing: border-box;
+    justify-content: center;
+}
 
-		// 标签栏
-		.shop_list_header {
-			height: 80rpx;
-			display: flex;
-			align-items: center;
-			gap: 50rpx;
+.arrow_icon {
+    height: 32rpx;
+    width: 14rpx;
+    flex: none;
+    margin-left: 10rpx;
+    margin-top: 3rpx;
+}
 
-			.shop_list_header_item {
-				font-size: 30.56rpx;
-				font-weight: 400;
-				color: #a0a0a0;
-			}
+.dianzan {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 47rpx;
+    height: 47rpx;
+    background: rgb(0, 0, 0, 0.4);
+    border-radius: 11rpx 0rpx 11rpx 0rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.xin_with {
+    width: 25rpx;
+    height: 22rpx;
+    flex: none;
+}
 
-			// 选中样式
-			.shop_list_header_item_active {
-				font-size: 31.94rpx;
-				font-weight: 700;
-				color: #333333;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
+.top_change {
+    display: flex;
+    align-items: center;
+    font-size: 31rpx;
+    color: #A0A0A0;
+}
 
-				.shop_list_header_line {
-					background-color: #eb2c2a;
-					width: 50rpx;
-					height: 4rpx;
-					border-radius: 2rpx;
-					margin-top: 5rpx;
-				}
-			}
+.type_name {
+    margin-right: 20rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-		}
+.type_name_active {
+    font-weight: bold;
+    font-size: 32rpx;
+    color: #333333;
+}
 
-		// 门店列表
-		.shop_list_content {
-			display: flex;
-			flex-direction: column;
-			gap: 20rpx;
+.type_name .line {
+    width: 50%;
+    height: 4rpx;
+    background-color: transparent
+}
 
-
-			.shop_list_item {
-				height: 230rpx;
-				border: 1.39rpx solid #e5e5e5;
-				border-radius: 5.56rpx;
-				display: flex;
-				align-items: center;
-				padding: 20rpx;
-
-
-				.shop_list_item_img_box {
-					width: 158.33rpx;
-					border-radius: 10rpx;
-					overflow: hidden;
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
-					margin-right: 30rpx;
-					position: relative;
-
-					// 门店详情按钮
-					.shop_list_item_detail_btn {
-						width: 100%;
-						height: 64.58rpx;
-						background-color: #ececec;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						font-size: 23.61rpx;
-						color: #3D3D3D;
-					}
-
-					// 收藏按钮
-					.shop_list_item_collect_btn {
-						position: absolute;
-						left: 0;
-						top: 0;
-						background-color: red;
-						border-radius: 0 0 20rpx 0;
-
-						width: 47.22rpx;
-						height: 47.22rpx;
-						background: #45454573;
-						border-radius: 11.11rpx 0rpx 11.11rpx 0rpx;
-
-						display: flex;
-						align-items: center;
-						justify-content: center;
-					}
-				}
-
-				.shop_list_item_info {
-					flex: 1;
-					height: 100%;
-					// display: flex;
-					// flex-direction: column;
-					// justify-content: space-between;
-
-					// 门店标题
-					.shop_list_item_title {
-						font-size: 29.17rpx;
-						font-weight: 700;
-						text-align: left;
-					}
-
-					// 距离&地址
-					.shop_list_item_distance_address {
-						font-size: 25rpx;
-						color: #000000;
-						margin-top: 20rpx;
-					}
-
-					// 营业时间
-					.shop_list_item_business_time {
-						margin-top: 20rpx;
-						font-size: 25rpx;
-						color: #212121;
-					}
-				}
-			}
-		}
-	}
+.type_name_active .line {
+    width: 50%;
+    height: 4rpx;
+    background-color: #FF4F26
+}
 
 
-	// 确定按钮
-	.confirm_btn_box {
-		width: 100%;
-		height: 106.94rpx;
-		background-color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		box-shadow: 0rpx 2rpx 0rpx 0rpx rgba(131, 131, 131, 0.16) inset;
-		position: fixed;
-		bottom: 0;
 
-		.confirm_btn {
-			width: 691.67rpx;
-			height: 73.61rpx;
-			opacity: 0.9;
-			background: $uni-color-gradient-primary;
-			border-radius: 13.89rpx;
-			text-align: center;
-			line-height: 73.61rpx;
-			font-size: 30.56rpx;
-			color: #fff;
-		}
-	}
+.search_input_box {
+    position: sticky;
+    top: 0rpx;
+    box-sizing: border-box;
+    width: 100%;
+    /* padding: 0 29rpx; */
+    z-index: 100;
+    padding-top: 30rpx;
+    height: 130rpx;
+    /* background-color: #F5F5F5; */
+    display: flex;
+    align-items: center;
+    padding-bottom: 30rpx;
+}
+
+
+.search_input {
+    /* background-color: #fff; */
+}
+
+.sousuo {
+    height: 60rpx;
+    padding: 0rpx 30rpx;
+    font-size: 28rpx;
+    text-align: center;
+    background-color: #09C161;
+    color: #fff;
+    flex: none;
+    border-radius: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    margin-left: 20rpx;
+}
+
+
+.kong_box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-weight: 500;
+    font-size: 28rpx;
+    color: #838383;
+    margin-top: 260rpx;
+}
+
+.kong_img {
+    width: 238.89rpx;
+    height: 127.78rpx;
+    flex: none;
+    margin-bottom: 15rpx;
+}
+
+.input_box1 {
+    display: flex;
+    align-items: center;
+    background-color: #F5F5F5;
+    width: 80%;
+    height: 100%;
+    border-radius: 15rpx;
+    font-size: 30rpx;
+    padding: 0 30rpx;
 }
 </style>
