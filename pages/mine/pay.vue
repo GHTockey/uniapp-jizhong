@@ -96,7 +96,7 @@
 			</view>
 
 			<!-- 商品信息 -->
-			<view class="goods_item">
+			<view v-if="false" class="goods_item">
 				<image class="good_img !w-[160rpx] !h-[160rpx]" mode="aspectFill"
 					:src="goods_info.good_imgs || 'https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png'">
 				</image>
@@ -114,10 +114,131 @@
 					<view class="good_num_price_box">
 						<view class="good_price"><span style="font-size: 20rpx;">￥</span>{{ goods_info.unit_price }}
 						</view>
-						<text class="good_num">×{{ goods_info.count || 1 }}</text>
+						<!-- <text class="good_num">×{{ goods_info.count || 1 }}</text> -->
+						<!-- <uni-number-box v-model="goods_info.count"
+							@change="change_count(unref(goods_info.count), $event)" /> -->
 					</view>
 				</view>
 			</view>
+
+
+			<!-- 购物车 -->
+			<template v-if="type != 'buy_now'">
+				<view class="new_layout" v-if="good_list && good_list.length > 0">
+					<view class="new_layout_cotent">
+
+						<tempalte v-for="item in good_list" :key="item.id">
+							<view class="good_item flex_row_space_bt">
+								<image lazy-load="true" class="good_img" mode="widthFix"
+									:src="item.good_imgs || 'https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png'">
+								</image>
+								<view class="good_detail">
+									<view class="good_name">
+										{{ item.name }}
+									</view>
+									<view class="spec_totall flex_row_str_str word_break"
+										v-if="item.spec_totall && item.spec_totall.length > 0">
+										{{ item.spec_totall }}
+									</view>
+									<view class="flex_row_space_bt">
+										<view class="good_price">
+											<text style="color:#333333;font-size:22rpx;">￥</text>{{ item.price_all }}
+										</view>
+										<view class="count_btn_box width_max_content flex_row_space_bt !max-w-max">
+											<view
+												:class="`de_btn count_btn flex_col_cen_cen ${item.count == item.limit[0] ? 'no_active' : ''}`"
+												@click="reduce_count(item)">
+												<view class="reduce_icon"></view>
+											</view>
+											<view class="count flex_col_cen_cen px-2 mx-2">{{ item.count || 1 }}</view>
+											<view
+												:class="`reduce count_btn flex_col_cen_cen ${item.count == item.limit[1] ? 'no_active' : ''}`"
+												@click="add_count">+</view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</tempalte>
+						<view class="address_item have_text flex_col_cen_cen" v-if="false">
+							<view class="flex_row_space_bt">
+								<view class="font_bold">商品金额</view>
+								<view class="">￥{{ price_all }}</view>
+							</view>
+							<view class="flex_row_space_bt margin_top20">
+								<view class="font_bold">商品金额</view>
+								<view class="">￥{{ price_all }}</view>
+							</view>
+						</view>
+					</view>
+					<view class="tool_box flex_row_end_cen">
+						<view class="price_totall">
+							合计：<text class="price">￥{{ price_all }}</text>
+						</view>
+						<!-- <view class="sub_btn" bindtap="to_sub">
+							提交订单
+							</view> -->
+						<button class="sub_btn" form-type="submit">提交订单</button>
+					</view>
+				</view>
+			</template>
+
+			<!-- 立即购买 -->
+			<template v-if="type == 'buy_now'">
+				<view class="new_layout" v-if="goods_info">
+					<view class="new_layout_cotent">
+						<view class="good_item flex_row_space_bt">
+							<image lazy-load class="good_img" mode="aspectFill"
+								:src="goods_info.good_imgs || 'https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png'">
+							</image>
+							<view class="good_detail">
+								<view class="good_name">
+									{{ goods_info.name }}
+								</view>
+								<view class="spec_totall flex_row_str_str word_break"
+									v-if="goods_info.spec_totall && goods_info.spec_totall.length > 0">
+									{{ goods_info.spec_totall }}
+								</view>
+								<view class="flex_row_space_bt">
+									<view class="good_price">
+										<text style="color:#333333;font-size:22rpx;">￥</text>{{ goods_info.unit_price }}
+									</view>
+									<view class="count_btn_box width_max_content flex_row_space_bt !max-w-max">
+										<view
+											:class="`de_btn count_btn flex_col_cen_cen ${goods_info.count == goods_info.limit?.[0] ? 'no_active' : ''}`"
+											@click="info_reduce_count(goods_info)">
+											<view class="reduce_icon"></view>
+										</view>
+										<view class="count flex_col_cen_cen px-2 mx-2">{{ goods_info.count || 1 }}
+										</view>
+										<view
+											:class="`reduce count_btn flex_col_cen_cen ${goods_info.count == goods_info.limit?.[1] ? 'no_active' : ''}`"
+											@click="info_add_count(goods_info)">+</view>
+									</view>
+								</view>
+							</view>
+						</view>
+						<view class="address_item have_text flex_col_cen_cen" v-if="false">
+							<view class="flex_row_space_bt">
+								<view class="font_bold">商品金额</view>
+								<view class="">￥{{ price_all }}</view>
+							</view>
+							<view class="flex_row_space_bt margin_top20">
+								<view class="font_bold">商品金额</view>
+								<view class="">￥{{ price_all }}</view>
+							</view>
+						</view>
+					</view>
+					<view class="tool_box flex_row_end_cen">
+						<view class="price_totall">
+							合计：<text class="price">￥{{ price_all }}</text>
+						</view>
+						<!-- <view class="sub_btn" bindtap="to_sub">
+						提交订单
+						</view> -->
+						<button class="sub_btn" form-type="submit">提交订单</button>
+					</view>
+				</view>
+			</template>
 
 			<!-- 买家留言 -->
 			<view class="buyer_msg_box" @click="showActionSheet = true">
@@ -133,7 +254,7 @@
 			</view>
 
 			<!-- 其它项 -->
-			<view class="other_item_box">
+			<view class="other_item_box" v-if="1">
 				<view class="other_item">
 					<text class="buyer_msg_title">优惠券</text>
 					<view>
@@ -141,7 +262,7 @@
 					</view>
 				</view>
 				<view class="other_item">
-					<text class="buyer_msg_title">使用150积分可以地沟</text>
+					<text class="buyer_msg_title">使用150积分可以低购</text>
 					<view>
 						<text
 							style="font-size: 27.78rpx;font-family: PingFang SC, PingFang SC-Medium;font-weight: 500;color: #a0a0a0;">100</text>
@@ -163,7 +284,7 @@
 			</view>
 
 			<!-- 底部提交 -->
-			<view class="bottom_submit_box">
+			<view v-if="false" class="bottom_submit_box">
 				<view class="bottom_submit_price_box">
 					<view style="color: #A7A7A7; margin-right: 20rpx;">共3件</view>
 					<view>
@@ -174,20 +295,16 @@
 				<view @click="to_pay" class="bottom_submit_btn">去付款</view>
 			</view>
 		</form>
-
-
-
-		<!-- 留言弹窗 -->
-		<ActionSheetSlot v-model:show="showActionSheet" :title="'买家留言'">
-			<template #body>
-				<view style="height: 422.22rpx; border-radius: 13.89rpx; padding: 32rpx; background-color: #ececec;">
-					<!-- 输入框 -->
-					<textarea class="buyer_msg_input" placeholder="请与商家客服沟通一致后再留言，留言内容勿超过100个汉字" v-model="buyerMsg" />
-				</view>
-			</template>
-		</ActionSheetSlot>
-
 	</view>
+	<!-- 留言弹窗 -->
+	<ActionSheetSlot v-model:show="showActionSheet" :title="'买家留言'">
+		<template #body>
+			<view style="height: 422.22rpx; border-radius: 13.89rpx; padding: 32rpx; background-color: #ececec;">
+				<!-- 输入框 -->
+				<textarea class="buyer_msg_input" placeholder="请与商家客服沟通一致后再留言，留言内容勿超过100个汉字" v-model="buyerMsg" />
+			</view>
+		</template>
+	</ActionSheetSlot>
 	<!-- 支付弹窗 -->
 	<uni-popup ref="payPopup" background-color="#fff" @change="" border-radius="27.78rpx" :mask-click="false">
 		<view class="pay_popup_box">
@@ -254,7 +371,6 @@
 				@click="payPopup.close()" />
 		</view>
 	</uni-popup>
-
 	<!-- 选择地址弹窗 -->
 	<ActionSheetSlot v-model:show="showAddressSheet" :title="'选择地址'"
 		:footerBtnText="address_list?.length ? '立即购买' : '添加收货地址'" @confirm="addressSheetBtnHandler">
@@ -281,7 +397,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, unref, watch } from "vue";
 import { useTempStore } from "@/stores/temp";
 import { storeToRefs } from "pinia";
 import { request } from "@/utils/request";
@@ -296,6 +412,7 @@ const is_checking = ref(0);
 const inter = ref(null);
 const type = ref();
 const good_count = ref()
+const order_id = ref();
 
 const is_loading = ref(true); // 是否加载中
 const buy_type = ref(1); // 购买类型
@@ -342,6 +459,19 @@ const buy_type_list = ref([
 	{ id: 1, name: '门店自提' },
 	{ id: 0, name: '物流配送' }
 ]);
+
+
+// watch(() => goods_info.value.count, (newVal, oldVal) => {
+// 	// console.log('watch goods_info.value.count', newVal, oldVal);
+// 	// 判断是加还是减
+// 	if (newVal > oldVal) {
+// 		// console.log('加');
+// 		info_add_count(goods_info.value)
+// 	} else {
+// 		// console.log('减');
+// 		info_reduce_count(goods_info.value)
+// 	}
+// })
 
 
 onLoad((options) => {
@@ -418,7 +548,9 @@ function to_pay() {
 }
 
 // 提交订单
-function to_sub() {
+async function to_sub(e) {
+	// console.log(e);
+	// return
 	console.log('提交订单提交订单', buy_type.value);
 	if (is_saving.value == 1) {
 		console.log('加购物车 防止连点啦');
@@ -467,57 +599,49 @@ function to_sub() {
 		}
 	}
 
-	// if ((!this.data.targte_shop || !this.data.targte_shop.shop_name) && this.data.buy_type == 1) {
-	//   // 物流配送
-	//   uni.showToast({
-	//     title: '请选择自提门店',
-	//     icon: 'none',
-	//     mask: true
-	//   })
-	//   return
-	// }
-
 	var json_goods = null;
-	if (this.data.type == 'buy_now') {
+	if (type.value == 'buy_now') {
 		let good_arr = []
-		good_arr.push(this.data.goods_info)
+		good_arr.push(goods_info.value)
 		json_goods = JSON.stringify(good_arr)
 
 	} else {
-		json_goods = JSON.stringify(this.data.good_list)
+		json_goods = JSON.stringify(good_list.value)
 	}
-	console.log('下单', json_goods);
-	this.data.is_saving = 1
-	this.request({
-		url: '/WxAppCustomer/sub_order',
-		data: {
-			json_info: json_goods,
-			address_id: this.data.address ? this.data.address.id : null,
-			price_all: this.data.price_all || 0,
-			type: this.data.type || '',
-			buy_type: this.data.buy_type,
-			mobile: e.detail.value.phone || '',
-			user_name: e.detail.value.user_name || '',
-			shoper_id: this.data.targte_shop ? this.data.targte_shop.id : null,
-		},
-		success: (res) => {
+	// console.log('下单', json_goods);
 
-			if (res.data && res.data.code == 1) {
-				this.data.is_saving = 0
 
-				uni.showToast({
-					title: res.data.msg,
-					icon: 'none',
-					mask: true
-				})
-			} else {
-				if (res.data.data.wxAppJsSign) {
-					this.data.order_id = res.data.data.order_id
-					this.wx_pay(res.data.data.wxAppJsSign)
-				}
-			}
-		}
+	is_saving.value = 1
+	uni.showLoading({
+		title: '正在请求数据'
 	});
+	let res = await request('/WxAppCustomer/sub_order', 'post', {
+		json_info: json_goods,
+		address_id: address.value ? address.value.id : null,
+		price_all: price_all.value || 0,
+		type: type.value || '',
+		buy_type: buy_type.value,
+		mobile: e.detail.value.phone || '',
+		user_name: e.detail.value.user_name || '',
+		shoper_id: targte_shop.value ? targte_shop.value.id : null,
+	})
+	uni.hideLoading();
+	if (res.code == 1) {
+		is_saving.value = 0
+		uni.showToast({
+			title: res.msg,
+			icon: 'none',
+			mask: true
+		})
+	} else {
+		if (res.data.wxAppJsSign) {
+			order_id.value = res.data.order_id
+			uni.showLoading({
+				title: '调起微信支付'
+			});
+			wx_pay(res.data.wxAppJsSign)
+		}
+	}
 }
 
 // 获取用户地址 [默认]
@@ -702,19 +826,14 @@ function info_reduce_count(item) {
 		})
 		return
 	}
-	item.count = item.count * 1 - 1
+	item.count = item.count * 1 - 1;
 	item.price_all = Math.round((item.unit_price * (item.count) * 100), 2) / 100;
 
-	// this.setData({
-	// 	goods_info: item,
-	// 	price_all: item.price_all,
-	// })
 	goods_info.value = item;
 	price_all.value = item.price_all;
 }
 function info_add_count(item) {
-	// let item = e.currentTarget.dataset.item;
-
+	// console.log('info_add_count', item);
 	if (item.count == item.limit[1]) {
 		uni.showToast({
 			title: '亲，不能再添加了',
@@ -725,12 +844,11 @@ function info_add_count(item) {
 	item.count = item.count * 1 + 1
 	item.price_all = Math.round((item.unit_price * (item.count) * 100), 2) / 100;
 
-	// this.setData({
-	// 	goods_info: item,
-	// 	price_all: item.price_all,
-	// })
 	goods_info.value = item;
 	price_all.value = item.price_all;
+}
+function change_count(e, e2) {
+	// console.log('change_count', e, e2);
 }
 function comput_price_all(list) {
 	let price_all_temp = 0
@@ -748,8 +866,9 @@ function to_list(e) {
 		url: '/pages/mine/address',
 	})
 }
-function wx_pay(wxAppJsSign) {
+async function wx_pay(wxAppJsSign) {
 	console.log('wx_pay', wxAppJsSign);
+	if (!uni.requestPayment) return uni.showToast({ title: '当前环境不支持微信支付', icon: 'none' });
 	uni.requestPayment({
 		timeStamp: '' + wxAppJsSign.timeStamp,
 		nonceStr: wxAppJsSign.nonceStr,
@@ -759,30 +878,43 @@ function wx_pay(wxAppJsSign) {
 		fail: (res) => {
 			// TODO 记录微信支付取消
 			is_saving.value = 0
+			console.log('wx_pay 失败', res);
 		},
 		success: (res) => {
 			let pay_status = 0;
 			is_checking.value = 1
 
-			inter.value = setInterval(async () => {
+			uni.hideLoading();
+			uni.showToast({
+				title: '支付成功',
+				duration: 2000
+			});
 
+			// console.log('wx_pay 支付成功', res);
+			// return
+
+			inter.value = setInterval(async () => {
 				let res = await request('/WxAppCustomer/check_user_order', 'post', {
 					id: order_id.value,
 				});
 				pay_status = res.data.info ? res.data.info.pay_status : 0;
 				if (pay_status == 1) {
 					clearInterval(inter.value);
-					is_checking.value = 0
+					is_checking.value = 0;
 					setTimeout(() => {
-						// TODO 下单成功页面
-						uni.redirectTo({
-							url: '/pages/mine/order_success?buy_type=' + buy_type.value,
-						})
 						is_saving.value = 0
+						// TODO 下单成功页面
+						// console.log('/pages/mine/order_success?buy_type=' + buy_type.value);
+						uni.redirectTo({
+							url: `/pages/mine/order_success?buy_type=${buy_type.value}`,
+						})
 					}, 1000)
 				}
 			}, 1000);
 			return;
+		},
+		complete: () => {
+			console.log('wx_pay 结束');
 		}
 	})
 }
@@ -808,6 +940,7 @@ async function get_select_shop() {
 
 .new_layout {
 	height: unset;
+	background-color: transparent;
 }
 
 .new_layout_cotent {
@@ -1090,7 +1223,7 @@ async function get_select_shop() {
 }
 
 .pay_container {
-	height: 100vh;
+	min-height: 100vh;
 	position: relative; // 相对定位
 	padding-top: $nav-height;
 	// background-image: url('/static/images/goods-pay-bg.svg');

@@ -1,108 +1,146 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const utils_request = require("../../utils/request.js");
-if (!Array) {
-  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
-  const _easycom_uni_search_bar2 = common_vendor.resolveComponent("uni-search-bar");
-  const _easycom_DefaultTip2 = common_vendor.resolveComponent("DefaultTip");
-  (_easycom_uni_icons2 + _easycom_uni_search_bar2 + _easycom_DefaultTip2)();
-}
-const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
-const _easycom_uni_search_bar = () => "../../uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar.js";
-const _easycom_DefaultTip = () => "../../components/DefaultTip/DefaultTip.js";
-if (!Math) {
-  (_easycom_uni_icons + _easycom_uni_search_bar + _easycom_DefaultTip)();
-}
 const _sfc_main = {
   __name: "get_shop_list",
   setup(__props) {
-    const searchValue = common_vendor.ref("");
-    const activeIndex = common_vendor.ref(0);
-    const shopList = common_vendor.ref([]);
-    common_vendor.onLoad(() => {
-      getData();
-    });
-    async function getData() {
-      common_vendor.index.showLoading({ title: "加载中..." });
-      let res = await utils_request.request("/WxAppCustomer/store_list", "post", {
-        // user_id
-        // gps
+    const is_loading = common_vendor.ref(false);
+    common_vendor.ref([
+      { id: 1, name: "附近门店" },
+      { id: 2, name: "收藏" }
+    ]);
+    const type_index = common_vendor.ref(0);
+    const store_list = common_vendor.ref([]);
+    const search_str = common_vendor.ref("");
+    const is_kong = common_vendor.ref(false);
+    const gps = common_vendor.ref();
+    const yuan_list = common_vendor.ref([]);
+    const appointent_list = common_vendor.ref();
+    common_vendor.onLoad((options) => {
+      common_vendor.index.showLoading({
+        title: "loading"
       });
-      common_vendor.index.hideLoading();
-      if (res.code != 0)
-        return common_vendor.index.showToast({
-          title: res.msg,
-          icon: "error"
-        });
-      shopList.value = res.data.store_list;
+      get_user_location();
+    });
+    function to_shop(shopid) {
+      common_vendor.index.navigateTo({
+        url: "/pages/index/shop_detail?id=" + shopid
+      });
     }
-    const changeActiveIndex = (index) => {
-      activeIndex.value = index;
-      if (activeIndex.value == 0) {
-        getData();
+    function get_user_location(e) {
+      gps.value = "";
+      common_vendor.index.getLocation({
+        type: "wgs84",
+        success: (res) => {
+          gps.value = [res.latitude, res.longitude].join(",");
+          console.log("获取的位置", res);
+          get_store_list();
+        },
+        complete: (res) => {
+          console.log("获取的位置", res);
+          get_store_list();
+        }
+      });
+    }
+    async function get_store_list(type, name) {
+      let res = await utils_request.request("/WxAppCustomer/store_list", "post", {
+        gps: gps.value || "",
+        type: type_index.value || "",
+        name: search_str.value || ""
+      });
+      if (res.code == 1) {
+        common_vendor.index.showToast({
+          title: res.msg,
+          icon: "none",
+          mask: true
+        });
       } else {
-        shopList.value = [];
+        common_vendor.index.hideLoading();
+        store_list.value = res.data.store_list;
+        yuan_list.value = res.data.store_list;
+        is_loading.value = true;
+        if (store_list.value.length <= 0) {
+          is_kong.value = true;
+        }
       }
-    };
+    }
+    async function to_choose(e) {
+      let shop_id = e.currentTarget.dataset.id;
+      let res = await utils_request.request("/WxAppCustomer/choose_shop", "post", { shop_id: shop_id || 0 });
+      if (res.code == 1) {
+        common_vendor.index.showToast({
+          title: res.msg,
+          icon: "none",
+          mask: true
+        });
+      } else {
+        common_vendor.index.navigateBack();
+      }
+    }
+    function to_search(e) {
+      search_str.value = e.detail.value;
+      if (!search_str.value || search_str.value == "") {
+        common_vendor.index.showToast({
+          title: "请输入关键词",
+          icon: "none"
+        });
+        return;
+      }
+      store_list.value = [];
+      get_store_list();
+    }
+    function change_search_str(e) {
+      if (e.detail.value.length == 0) {
+        search_str.value = "";
+        appointent_list.value = [];
+        is_kong.value = false;
+        get_store_list();
+      } else {
+        search_str.value = e.detail.value;
+      }
+    }
+    function to_search_v(e) {
+      console.log("333", search_str.value);
+      if (!search_str.value || search_str.value == "") {
+        common_vendor.index.showToast({
+          title: "请输入关键词",
+          icon: "none"
+        });
+        return;
+      }
+      store_list.value = [];
+      get_store_list();
+    }
     return (_ctx, _cache) => {
       return common_vendor.e({
-        a: common_vendor.p({
-          color: "#999999",
-          size: "18",
-          type: "home"
+        a: is_loading.value
+      }, is_loading.value ? common_vendor.e({
+        b: !search_str.value || search_str.value.length == 0
+      }, !search_str.value || search_str.value.length == 0 ? {} : {}, {
+        c: common_vendor.o([($event) => search_str.value = $event.detail.value, change_search_str]),
+        d: common_vendor.o(to_search),
+        e: search_str.value,
+        f: common_vendor.o(to_search_v),
+        g: common_vendor.f(store_list.value, (item, k0, i0) => {
+          return common_vendor.e({
+            a: item.image_uris_arr[0],
+            b: common_vendor.o(($event) => to_shop(item.id), item.id),
+            c: common_vendor.t(item.shop_name),
+            d: item.distance > 0
+          }, item.distance > 0 ? {
+            e: common_vendor.t(item.distance)
+          } : {}, {
+            f: common_vendor.t(item.address_detail),
+            g: common_vendor.t(item.start_time),
+            h: common_vendor.t(item.end_time),
+            i: common_vendor.o(to_choose, item.id),
+            j: item.id,
+            k: item.id
+          });
         }),
-        b: common_vendor.o(() => {
-        }),
-        c: common_vendor.o(() => {
-        }),
-        d: common_vendor.o(() => {
-        }),
-        e: common_vendor.o(() => {
-        }),
-        f: common_vendor.o(() => {
-        }),
-        g: common_vendor.o(() => {
-        }),
-        h: common_vendor.o(($event) => searchValue.value = $event),
-        i: common_vendor.p({
-          clearButton: "none",
-          cancelButton: "none",
-          placeholder: "请输入关键词",
-          modelValue: searchValue.value
-        }),
-        j: common_vendor.o(($event) => changeActiveIndex(0)),
-        k: activeIndex.value == 0 ? 1 : "",
-        l: common_vendor.o(($event) => changeActiveIndex(1)),
-        m: activeIndex.value == 1 ? 1 : "",
-        n: common_vendor.f(shopList.value, (item, k0, i0) => {
-          return {
-            a: item.image_uri,
-            b: "3fc93fa5-2-" + i0,
-            c: "3fc93fa5-3-" + i0,
-            d: common_vendor.t(item.shop_name),
-            e: common_vendor.t(item.address_detail),
-            f: common_vendor.t(item.start_time),
-            g: common_vendor.t(item.end_time)
-          };
-        }),
-        o: common_vendor.p({
-          type: "arrowright",
-          size: "18",
-          color: "#999999"
-        }),
-        p: common_vendor.p({
-          type: "star",
-          size: "20",
-          color: "#999999"
-        }),
-        q: shopList.value.length == 0
-      }, shopList.value.length == 0 ? {
-        r: common_vendor.p({
-          tipText: "暂无收藏或常去门店"
-        })
-      } : {});
+        h: is_kong.value
+      }, is_kong.value ? {} : {}) : {});
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-3fc93fa5"]]);
-wx.createPage(MiniProgramPage);
+wx.createPage(_sfc_main);

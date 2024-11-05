@@ -91,6 +91,7 @@
 }
 .new_layout.data-v-87306594 {
 	height: unset;
+	background-color: transparent;
 }
 .new_layout_cotent.data-v-87306594 {
 	padding-bottom: 150rpx;
@@ -350,7 +351,7 @@
   color: #03081a;
 }
 .pay_container.data-v-87306594 {
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   padding-top: 44px;
   background-size: 100%;

@@ -374,6 +374,26 @@ const _sfc_main = {
         });
       }
     }
+    function add_count_handler(e) {
+      console.log("添加商品数量和最大数量", add_count.value, max_count.value);
+      if (add_count.value >= max_count.value) {
+        common_vendor.index.showToast({
+          title: "亲，不能再添加了",
+          icon: "none"
+        });
+        return;
+      }
+      if (!have_chosed.value) {
+        let show = Math.round(product.value.price_min * (add_count.value + 1) * 100, 2) / 100;
+        add_count.value = add_count.value * 1 + 1;
+        price_show.value = show;
+        return;
+      } else {
+        add_count.value = add_count.value * 1 + 1;
+        filter_by_spec();
+      }
+      return;
+    }
     function choose_spec1(item) {
       console.log("当前规格的数据", item);
       if (item.store == 0) {
@@ -409,6 +429,40 @@ const _sfc_main = {
       have_chosed.value = 1;
       act_spec2.value = item.name;
       filter_by_spec();
+    }
+    async function add_shopcar(e) {
+      if (!act_spec1.value) {
+        common_vendor.index.showToast({
+          title: "请先选择规格",
+          icon: "none"
+        });
+        return;
+      }
+      if (need_spec1.value && need_spec2.value) {
+        let name = product.value.spec_list2.name || "规格";
+        if (!act_spec2.value) {
+          common_vendor.index.showToast({
+            title: "请选择" + name,
+            icon: "none"
+          });
+          return;
+        }
+      }
+      let goods_price = act_info.value;
+      console.log("goods_price", goods_price);
+      let res = await utils_request.request("/WxAppCustomer/add_shopcar_v2", "post", {
+        price_id: goods_price.id,
+        goods_id: product.value.id,
+        count: add_count.value || 0
+      });
+      if (res.data) {
+        common_vendor.index.showToast({
+          title: res.msg,
+          icon: "none",
+          mask: true
+        });
+        close_pop();
+      }
     }
     async function click_page(type, goods_id, goods_group_id) {
       let res = await utils_request.request("/WxAppCustomer/visit_page", "post", {
@@ -576,9 +630,17 @@ const _sfc_main = {
         aa: common_vendor.o(reduce_count),
         ab: common_vendor.t(add_count.value || 1),
         ac: common_vendor.n(`add_btn count_btn flex_col_cen_cen ${add_count.value == max_count.value ? "no_active" : ""}`),
-        ad: common_vendor.o((...args) => add_count.value && add_count.value(...args)),
-        ae: common_vendor.o(return_close),
-        af: common_vendor.o(close_pop)
+        ad: common_vendor.o(add_count_handler),
+        ae: show_pop.value == "add"
+      }, show_pop.value == "add" ? {
+        af: common_vendor.o(add_shopcar)
+      } : {}, {
+        ag: show_pop.value == "buy"
+      }, show_pop.value == "buy" ? {
+        ah: common_vendor.o(to_buy)
+      } : {}, {
+        ai: common_vendor.o(return_close),
+        aj: common_vendor.o(close_pop)
       }) : {});
     };
   }

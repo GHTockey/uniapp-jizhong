@@ -4,6 +4,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/mine/order_success",
+          "pathName": "pages/mine/order_success",
+          "query": "buy_type=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/mine/presentPay",
           "pathName": "pages/mine/presentPay",
           "query": "",

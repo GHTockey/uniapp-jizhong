@@ -5,9 +5,10 @@ const utils_request = require("../../utils/request.js");
 if (!Array) {
   const _easycom_HeightBar2 = common_vendor.resolveComponent("HeightBar");
   const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
+  const _component_tempalte = common_vendor.resolveComponent("tempalte");
   const _easycom_ActionSheetSlot2 = common_vendor.resolveComponent("ActionSheetSlot");
   const _easycom_uni_popup2 = common_vendor.resolveComponent("uni-popup");
-  (_easycom_HeightBar2 + _easycom_NavBar2 + _easycom_ActionSheetSlot2 + _easycom_uni_popup2)();
+  (_easycom_HeightBar2 + _easycom_NavBar2 + _component_tempalte + _easycom_ActionSheetSlot2 + _easycom_uni_popup2)();
 }
 const _easycom_HeightBar = () => "../../components/HeightBar/HeightBar.js";
 const _easycom_NavBar = () => "../../components/NavBar/NavBar.js";
@@ -21,10 +22,11 @@ const _sfc_main = {
   setup(__props) {
     const { user, business } = common_vendor.storeToRefs(stores_temp.useTempStore());
     const good_list = common_vendor.ref([]);
-    common_vendor.ref(0);
-    common_vendor.ref(null);
+    const is_checking = common_vendor.ref(0);
+    const inter = common_vendor.ref(null);
     const type = common_vendor.ref();
     const good_count = common_vendor.ref();
+    const order_id = common_vendor.ref();
     const is_loading = common_vendor.ref(true);
     const buy_type = common_vendor.ref(1);
     const is_saving = common_vendor.ref(0);
@@ -98,20 +100,7 @@ const _sfc_main = {
       console.log("页面卸载：pay");
       clear_select_address();
     });
-    function to_pay() {
-      console.log("去付款");
-      if (buy_type.value == 1) {
-        if (!targte_shop.value || !targte_shop.value.shop_name) {
-          common_vendor.index.showToast({
-            title: "  请选择提货的门店  ",
-            icon: "error"
-          });
-          return;
-        }
-      }
-      payPopup.value.open("center");
-    }
-    function to_sub() {
+    async function to_sub(e) {
       console.log("提交订单提交订单", buy_type.value);
       if (is_saving.value == 1) {
         console.log("加购物车 防止连点啦");
@@ -154,43 +143,44 @@ const _sfc_main = {
         }
       }
       var json_goods = null;
-      if (this.data.type == "buy_now") {
+      if (type.value == "buy_now") {
         let good_arr = [];
-        good_arr.push(this.data.goods_info);
+        good_arr.push(goods_info.value);
         json_goods = JSON.stringify(good_arr);
       } else {
-        json_goods = JSON.stringify(this.data.good_list);
+        json_goods = JSON.stringify(good_list.value);
       }
-      console.log("下单", json_goods);
-      this.data.is_saving = 1;
-      this.request({
-        url: "/WxAppCustomer/sub_order",
-        data: {
-          json_info: json_goods,
-          address_id: this.data.address ? this.data.address.id : null,
-          price_all: this.data.price_all || 0,
-          type: this.data.type || "",
-          buy_type: this.data.buy_type,
-          mobile: e.detail.value.phone || "",
-          user_name: e.detail.value.user_name || "",
-          shoper_id: this.data.targte_shop ? this.data.targte_shop.id : null
-        },
-        success: (res) => {
-          if (res.data && res.data.code == 1) {
-            this.data.is_saving = 0;
-            common_vendor.index.showToast({
-              title: res.data.msg,
-              icon: "none",
-              mask: true
-            });
-          } else {
-            if (res.data.data.wxAppJsSign) {
-              this.data.order_id = res.data.data.order_id;
-              this.wx_pay(res.data.data.wxAppJsSign);
-            }
-          }
-        }
+      is_saving.value = 1;
+      common_vendor.index.showLoading({
+        title: "正在请求数据"
       });
+      let res = await utils_request.request("/WxAppCustomer/sub_order", "post", {
+        json_info: json_goods,
+        address_id: address.value ? address.value.id : null,
+        price_all: price_all.value || 0,
+        type: type.value || "",
+        buy_type: buy_type.value,
+        mobile: e.detail.value.phone || "",
+        user_name: e.detail.value.user_name || "",
+        shoper_id: targte_shop.value ? targte_shop.value.id : null
+      });
+      common_vendor.index.hideLoading();
+      if (res.code == 1) {
+        is_saving.value = 0;
+        common_vendor.index.showToast({
+          title: res.msg,
+          icon: "none",
+          mask: true
+        });
+      } else {
+        if (res.data.wxAppJsSign) {
+          order_id.value = res.data.order_id;
+          common_vendor.index.showLoading({
+            title: "调起微信支付"
+          });
+          wx_pay(res.data.wxAppJsSign);
+        }
+      }
     }
     async function get_address() {
       let res = await utils_request.request("/WxAppCustomer/get_user_address", "post", {});
@@ -276,6 +266,123 @@ const _sfc_main = {
         url: "/pages/mine/get_shop_list"
       });
     }
+    function reduce_count(item) {
+      if (item.count == item.limit[0]) {
+        common_vendor.index.showToast({
+          title: "亲，不能再减少了",
+          icon: "none"
+        });
+        return;
+      }
+      let new_good_list = good_list.value.map((m) => {
+        if (m.id == item.id) {
+          m.count -= 1;
+          m.price_all = Math.round(m.unit_price * m.count * 100, 2) / 100;
+        }
+        return m;
+      });
+      console.log("减少后的列表", new_good_list);
+      good_list.value = new_good_list;
+      comput_price_all(new_good_list);
+    }
+    function add_count(item) {
+      if (item.count == item.limit[1]) {
+        common_vendor.index.showToast({
+          title: "亲，不能再添加了",
+          icon: "none"
+        });
+        return;
+      }
+      let new_good_list = good_list.value.map((m) => {
+        if (m.id == item.id) {
+          m.count += 1;
+          m.price_all = Math.round(m.unit_price * m.count * 100, 2) / 100;
+        }
+        return m;
+      });
+      console.log("增加后的列表", new_good_list);
+      good_list.value = new_good_list;
+      comput_price_all(new_good_list);
+    }
+    function info_reduce_count(item) {
+      if (item.count == item.limit[0]) {
+        common_vendor.index.showToast({
+          title: "亲，不能再减少了",
+          icon: "none"
+        });
+        return;
+      }
+      item.count = item.count * 1 - 1;
+      item.price_all = Math.round(item.unit_price * item.count * 100, 2) / 100;
+      goods_info.value = item;
+      price_all.value = item.price_all;
+    }
+    function info_add_count(item) {
+      if (item.count == item.limit[1]) {
+        common_vendor.index.showToast({
+          title: "亲，不能再添加了",
+          icon: "none"
+        });
+        return;
+      }
+      item.count = item.count * 1 + 1;
+      item.price_all = Math.round(item.unit_price * item.count * 100, 2) / 100;
+      goods_info.value = item;
+      price_all.value = item.price_all;
+    }
+    function comput_price_all(list) {
+      let price_all_temp = 0;
+      list.map((m) => {
+        price_all_temp = Math.round((price_all_temp * 1 + m.price_all * 1) * 100, 2) / 100;
+      });
+      console.log("合计", price_all_temp);
+      price_all.value = price_all_temp;
+    }
+    async function wx_pay(wxAppJsSign) {
+      console.log("wx_pay", wxAppJsSign);
+      if (!common_vendor.index.requestPayment)
+        return common_vendor.index.showToast({ title: "当前环境不支持微信支付", icon: "none" });
+      common_vendor.index.requestPayment({
+        timeStamp: "" + wxAppJsSign.timeStamp,
+        nonceStr: wxAppJsSign.nonceStr,
+        package: wxAppJsSign.package,
+        signType: wxAppJsSign.signType,
+        paySign: wxAppJsSign.paySign,
+        fail: (res) => {
+          is_saving.value = 0;
+          console.log("wx_pay 失败", res);
+        },
+        success: (res) => {
+          let pay_status = 0;
+          is_checking.value = 1;
+          common_vendor.index.hideLoading();
+          common_vendor.index.showToast({
+            title: "支付成功",
+            duration: 2e3
+          });
+          inter.value = setInterval(async () => {
+            let res2 = await utils_request.request("/WxAppCustomer/check_user_order", "post", {
+              id: order_id.value
+            });
+            pay_status = res2.data.info ? res2.data.info.pay_status : 0;
+            if (pay_status == 1) {
+              clearInterval(inter.value);
+              is_checking.value = 0;
+              setTimeout(() => {
+                is_saving.value = 0;
+                common_vendor.index.redirectTo({
+                  url: `/pages/mine/order_success?buy_type=${buy_type.value}`
+                });
+              }, 1e3);
+            }
+          }, 1e3);
+          return;
+        },
+        complete: () => {
+          console.log("wx_pay 结束");
+        }
+      });
+    }
     async function get_select_shop() {
       let res = await utils_request.request("/WxAppCustomer/select_shop", "post", {});
       if (res.code == 1) {
@@ -289,7 +396,7 @@ const _sfc_main = {
       }
     }
     return (_ctx, _cache) => {
-      var _a, _b, _c;
+      var _a, _b, _c, _d, _e;
       return common_vendor.e({
         a: common_vendor.p({
           title: "待付款订单",
@@ -331,48 +438,84 @@ const _sfc_main = {
         s: address.value.is_default
       }, address.value.is_default ? {} : {}) : {}, {
         t: common_vendor.o(($event) => showAddressSheet.value = true)
-      }) : {}, {
-        v: goods_info.value.good_imgs || "https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png",
-        w: common_vendor.t(goods_info.value.name),
-        x: goods_info.value.spec_totall && goods_info.value.spec_totall.length > 0
+      }) : {}, {}, {
+        A: type.value != "buy_now"
+      }, type.value != "buy_now" ? common_vendor.e({
+        B: good_list.value && good_list.value.length > 0
+      }, good_list.value && good_list.value.length > 0 ? common_vendor.e({
+        C: common_vendor.f(good_list.value, (item, k0, i0) => {
+          return common_vendor.e({
+            a: item.good_imgs || "https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png",
+            b: common_vendor.t(item.name),
+            c: item.spec_totall && item.spec_totall.length > 0
+          }, item.spec_totall && item.spec_totall.length > 0 ? {
+            d: common_vendor.t(item.spec_totall)
+          } : {}, {
+            e: common_vendor.t(item.price_all),
+            f: common_vendor.n(`de_btn count_btn flex_col_cen_cen ${item.count == item.limit[0] ? "no_active" : ""}`),
+            g: common_vendor.o(($event) => reduce_count(item), item.id),
+            h: common_vendor.t(item.count || 1),
+            i: common_vendor.n(`reduce count_btn flex_col_cen_cen ${item.count == item.limit[1] ? "no_active" : ""}`),
+            j: common_vendor.o(add_count, item.id),
+            k: item.id,
+            l: "87306594-2-" + i0
+          });
+        })
+      }, {}, {
+        F: common_vendor.t(price_all.value)
+      }) : {}) : {}, {
+        G: type.value == "buy_now"
+      }, type.value == "buy_now" ? common_vendor.e({
+        H: goods_info.value
+      }, goods_info.value ? common_vendor.e({
+        I: goods_info.value.good_imgs || "https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png",
+        J: common_vendor.t(goods_info.value.name),
+        K: goods_info.value.spec_totall && goods_info.value.spec_totall.length > 0
       }, goods_info.value.spec_totall && goods_info.value.spec_totall.length > 0 ? {
-        y: common_vendor.t(goods_info.value.spec_totall)
+        L: common_vendor.t(goods_info.value.spec_totall)
       } : {}, {
-        z: common_vendor.t(goods_info.value.unit_price),
-        A: common_vendor.t(goods_info.value.count || 1),
-        B: common_vendor.t(buyerMsg.value || "无留言"),
-        C: common_vendor.o(($event) => showActionSheet.value = true),
-        D: common_vendor.o(to_pay),
-        E: common_vendor.o(to_sub)
+        M: common_vendor.t(goods_info.value.unit_price),
+        N: common_vendor.n(`de_btn count_btn flex_col_cen_cen ${goods_info.value.count == ((_a = goods_info.value.limit) == null ? void 0 : _a[0]) ? "no_active" : ""}`),
+        O: common_vendor.o(($event) => info_reduce_count(goods_info.value)),
+        P: common_vendor.t(goods_info.value.count || 1),
+        Q: common_vendor.n(`reduce count_btn flex_col_cen_cen ${goods_info.value.count == ((_b = goods_info.value.limit) == null ? void 0 : _b[1]) ? "no_active" : ""}`),
+        R: common_vendor.o(($event) => info_add_count(goods_info.value))
+      }, {}, {
+        U: common_vendor.t(price_all.value)
+      }) : {}) : {}, {
+        V: common_vendor.t(buyerMsg.value || "无留言"),
+        W: common_vendor.o(($event) => showActionSheet.value = true)
+      }, {}, {}, {
+        Y: common_vendor.o(to_sub)
       }) : {}, {
-        F: buyerMsg.value,
-        G: common_vendor.o(($event) => buyerMsg.value = $event.detail.value),
-        H: common_vendor.o(($event) => showActionSheet.value = $event),
-        I: common_vendor.p({
+        Z: buyerMsg.value,
+        aa: common_vendor.o(($event) => buyerMsg.value = $event.detail.value),
+        ab: common_vendor.o(($event) => showActionSheet.value = $event),
+        ac: common_vendor.p({
           title: "买家留言",
           show: showActionSheet.value
         }),
-        J: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 1 ? "a" : "n"}.svg`,
-        K: common_vendor.o(($event) => change_pay_type(1)),
-        L: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
-        M: common_vendor.o(($event) => change_pay_type(2)),
-        N: common_vendor.t(save_money.value),
-        O: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 3 ? "a" : "n"}.svg`,
-        P: common_vendor.o(($event) => change_pay_type(3)),
-        Q: common_vendor.o(($event) => payPopup.value.close()),
-        R: common_vendor.sr(payPopup, "87306594-3", {
+        ad: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 1 ? "a" : "n"}.svg`,
+        ae: common_vendor.o(($event) => change_pay_type(1)),
+        af: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
+        ag: common_vendor.o(($event) => change_pay_type(2)),
+        ah: common_vendor.t(save_money.value),
+        ai: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 3 ? "a" : "n"}.svg`,
+        aj: common_vendor.o(($event) => change_pay_type(3)),
+        ak: common_vendor.o(($event) => payPopup.value.close()),
+        al: common_vendor.sr(payPopup, "87306594-4", {
           "k": "payPopup"
         }),
-        S: common_vendor.o(() => {
+        am: common_vendor.o(() => {
         }),
-        T: common_vendor.p({
+        an: common_vendor.p({
           ["background-color"]: "#fff",
           ["border-radius"]: "27.78rpx",
           ["mask-click"]: false
         }),
-        U: (_a = address_list.value) == null ? void 0 : _a.length
-      }, ((_b = address_list.value) == null ? void 0 : _b.length) ? {
-        V: common_vendor.f(address_list.value, (item, index, i0) => {
+        ao: (_c = address_list.value) == null ? void 0 : _c.length
+      }, ((_d = address_list.value) == null ? void 0 : _d.length) ? {
+        ap: common_vendor.f(address_list.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.user_name),
             b: common_vendor.t(item.mobile),
@@ -384,11 +527,11 @@ const _sfc_main = {
           };
         })
       } : {}, {
-        W: common_vendor.o(addressSheetBtnHandler),
-        X: common_vendor.o(($event) => showAddressSheet.value = $event),
-        Y: common_vendor.p({
+        aq: common_vendor.o(addressSheetBtnHandler),
+        ar: common_vendor.o(($event) => showAddressSheet.value = $event),
+        as: common_vendor.p({
           title: "选择地址",
-          footerBtnText: ((_c = address_list.value) == null ? void 0 : _c.length) ? "立即购买" : "添加收货地址",
+          footerBtnText: ((_e = address_list.value) == null ? void 0 : _e.length) ? "立即购买" : "添加收货地址",
           show: showAddressSheet.value
         })
       });

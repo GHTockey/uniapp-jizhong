@@ -59,6 +59,7 @@ if (!Math) {
   "./pages/mine/distribute_goods.js";
   "./pages/mine/scan_order.js";
   "./pages/index/auding_order.js";
+  "./pages/mine/order_success.js";
 }
 const __default__ = {
   onLaunch: function() {

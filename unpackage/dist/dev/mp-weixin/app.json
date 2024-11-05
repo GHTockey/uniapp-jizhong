@@ -54,7 +54,8 @@
     "pages/mine/team",
     "pages/mine/distribute_goods",
     "pages/mine/scan_order",
-    "pages/index/auding_order"
+    "pages/index/auding_order",
+    "pages/mine/order_success"
   ],
   "window": {
     "navigationBarTextStyle": "black",

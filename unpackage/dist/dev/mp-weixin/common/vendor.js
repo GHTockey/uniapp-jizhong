@@ -9151,6 +9151,13 @@ const pages = [
     style: {
       navigationBarTitleText: "核销订单"
     }
+  },
+  {
+    path: "pages/mine/order_success",
+    style: {
+      navigationBarTitleText: "下单结果",
+      navigationStyle: "custom"
+    }
   }
 ];
 const globalStyle = {

@@ -74,7 +74,7 @@
 			</view>
 			<!-- 商品的配送方式-服务保障-商品参数 -->
 			<view class="goods-detail-info-delivery">
-				<view class="delivery-item" @tap="showActionSheet = true">
+				<view class="delivery-item" @click="showActionSheet = true">
 					<image class="delivery-item-icon"
 						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-peisong-icon.svg"
 						mode="widthFix" />
@@ -85,12 +85,12 @@
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">同城配送</text>
 					<view class="delivery-item-text" style="margin-left: auto;">
-						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg"
+						<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/next1.svg"
 							style="width: 20.56rpx;height: 20.08rpx;">
 						</image>
 					</view>
 				</view>
-				<view class="delivery-item" @tap="showActionSheet = true">
+				<view class="delivery-item" @click="showActionSheet = true">
 					<image class="delivery-item-icon"
 						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-baozhang-icon.svg"
 						mode="widthFix" />
@@ -101,12 +101,12 @@
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">假一赔十</text>
 					<view class="delivery-item-text" style="margin-left: auto;">
-						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg"
+						<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/next1.svg"
 							style="width: 20.56rpx;height: 20.08rpx;">
 						</image>
 					</view>
 				</view>
-				<view class="delivery-item" @tap="showActionSheet = true">
+				<view class="delivery-item" @click="showActionSheet = true">
 					<image class="delivery-item-icon"
 						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/goods-parm-icon.svg"
 						mode="widthFix" />
@@ -121,7 +121,7 @@
 					<text class="delivery-item-text" style="height: 80%; overflow: hidden;">|</text>
 					<text class="delivery-item-text">食品工艺...</text>
 					<view class="delivery-item-text" style="margin-left: auto;">
-						<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg"
+						<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/next1.svg"
 							style="width: 20.56rpx;height: 20.08rpx;">
 						</image>
 					</view>
@@ -136,7 +136,7 @@
 				<text class="comment-header-title">客户评价（2万+）</text>
 				<text class="comment-header-rate">好评率99%</text>
 				<view class="comment-header-more">
-					<image src="https://saas.jizhongkeji.com/static/jzkj/next1.svg"
+					<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/next1.svg"
 						style="width: 20.56rpx;height: 20.08rpx;"></image>
 				</view>
 			</view>
@@ -364,17 +364,17 @@
 							<view class="count flex_col_cen_cen" style="height: unset;">{{ add_count || 1 }}</view>
 							<view
 								:class="`add_btn count_btn flex_col_cen_cen ${add_count == max_count ? 'no_active' : ''}`"
-								@click="add_count">
+								@click="add_count_handler">
 								<image lazy-load class="reduce_icon_new" mode="widthFix"
 									src="https://saas.jizhongkeji.com/static/jzkj/images/add.png"></image>
 							</view>
 							<!-- <view class="reduce count_btn flex_col_cen_cen {{add_count == max_count ? 'no_active' : ''}}" bindtap="add_count">+</view> -->
 						</view>
 					</view>
-					<view wx:if="{{show_pop == 'add'}}" class="pop_btn add flex_col_cen_cen" bindtap="add_shopcar">
+					<view v-if="show_pop == 'add'" class="pop_btn add flex_col_cen_cen" @click="add_shopcar">
 						我选好了，加入购物车
 					</view>
-					<view wx:if="{{show_pop == 'buy'}}" class="pop_btn flex_col_cen_cen" bindtap="to_buy">
+					<view v-if="show_pop == 'buy'" class="pop_btn flex_col_cen_cen" @click="to_buy">
 						立即购买
 					</view>
 				</view>

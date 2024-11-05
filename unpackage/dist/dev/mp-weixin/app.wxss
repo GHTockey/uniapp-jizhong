@@ -168,6 +168,10 @@ view,text,::before,::after {
 .m-0 {
     margin: 0px
 }
+.mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem
+}
 .my-3 {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem
@@ -356,11 +360,11 @@ view,text,::before,::after {
 .h-_9rpx_ {
     height: 9rpx
 }
-.h-full {
-    height: 100%
-}
 .h-auto {
     height: auto
+}
+.h-full {
+    height: 100%
 }
 .iw-_160rpx_ {
     width: 160rpx !important
@@ -463,6 +467,10 @@ view,text,::before,::after {
 }
 .w-full {
     width: 100%
+}
+.imax-w-max {
+    max-width: -webkit-max-content !important;
+    max-width: max-content !important
 }
 .flex-1 {
     flex: 1 1 0%
@@ -568,8 +576,9 @@ view,text,::before,::after {
 .border-none {
     border-style: none
 }
-.iborder-none {
-    border-style: none !important
+.ibg-white {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important
 }
 .bg-_hE8F1FF_ {
     --tw-bg-opacity: 1;
@@ -598,23 +607,18 @@ view,text,::before,::after {
     --tw-bg-opacity: 1;
     background-color: rgb(220 38 38 / var(--tw-bg-opacity))
 }
+.bg-transparent {
+    background-color: transparent
+}
 .bg-white {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity))
 }
-.bg-red-300 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(252 165 165 / var(--tw-bg-opacity))
-}
-.ibg-white {
-    --tw-bg-opacity: 1 !important;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important
-}
-.bg-transparent {
-    background-color: transparent
-}
 .ip-0 {
     padding: 0px !important
+}
+.p-0 {
+    padding: 0px
 }
 .p-_20rpx_ {
     padding: 20rpx
@@ -624,9 +628,6 @@ view,text,::before,::after {
 }
 .p-_35rpx_ {
     padding: 35rpx
-}
-.p-0 {
-    padding: 0px
 }
 .ipy-_18rpx_ {
     padding-top: 18rpx !important;
@@ -639,6 +640,10 @@ view,text,::before,::after {
 .ipy-_5rpx_ {
     padding-top: 5rpx !important;
     padding-bottom: 5rpx !important
+}
+.px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem
 }
 .px-4 {
     padding-left: 1rem;
