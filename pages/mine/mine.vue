@@ -28,17 +28,17 @@
 		</view>
 
 		<!-- 个人数据积分/余额/优惠券 -->
-		<view class="mine_data_box flex justify-evenly items-center" @click="toPage('/pages/mine/money')">
-			<view class="mine_data_item">
-				<text class="mine_data_value">1000</text>
+		<view class="mine_data_box flex justify-evenly items-center">
+			<view class="mine_data_item" @click="toPage('/pages/mine/integral')">
+				<text class="mine_data_value">1250</text>
 				<text class="mine_data_name">我的积分</text>
 			</view>
-			<view class="mine_data_item">
-				<text class="mine_data_value">1000</text>
+			<view class="mine_data_item" @click="toPage('/pages/mine/money')">
+				<text class="mine_data_value">9595.00</text>
 				<text class="mine_data_name">我的余额</text>
 			</view>
-			<view class="mine_data_item">
-				<text class="mine_data_value">1000</text>
+			<view class="mine_data_item" @click="toPage('/pages/coupon/myCoupon')">
+				<text class="mine_data_value">23</text>
 				<text class="mine_data_name">优惠券</text>
 			</view>
 		</view>
@@ -79,7 +79,6 @@
 				</view>
 			</view>
 		</view>
-
 
 		<!-- 常用工具 -->
 		<view class="common_tool_box">
@@ -161,13 +160,6 @@
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">物流消息</text>
 				</view>
-				<view class="common_tool_item" @click="toPage('/pages/coupon/myCoupon')">
-					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full"
-							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
-					</view>
-					<text class="text-[24rpx] mt-[13rpx]">优惠券</text>
-				</view>
 				<view class="common_tool_item" @click="toPage('/pages/mine/present')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<image class=" h-full w-full"
@@ -192,7 +184,6 @@
 				</view>
 			</view>
 		</view>
-
 
 		<!-- 猜你喜欢 -->
 		<view class="product_area">

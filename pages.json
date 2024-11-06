@@ -381,6 +381,14 @@
 				"navigationBarTitleText" : "限时秒杀",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/mine/integral",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的积分",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

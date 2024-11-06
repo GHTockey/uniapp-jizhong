@@ -105,7 +105,7 @@ const remainingTime = ref({
 	minutes: 0,
 	seconds: 0,
 });
-let timer;
+let timer; // 定时器
 onMounted(() => {
 	calculateRemainingTime(); // 初始化剩余时间
 	timer = setInterval(calculateRemainingTime, 1000); // 每秒更新一次剩余时间
@@ -116,9 +116,6 @@ onUnmounted(() => {
 });
 // 是否空状态
 const isEmpty = ref(false);
-
-
-
 
 
 // 计算结束时间
@@ -137,6 +134,11 @@ const calculateRemainingTime = () => {
 		remainingTime.value.minutes = 0;
 		remainingTime.value.seconds = 0;
 	}
+};
+
+// 随机生成一个0-100的数字
+const randomNum = () => {
+	return Math.floor(Math.random() * 100) + 1;
 };
 </script>
 
