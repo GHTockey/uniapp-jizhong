@@ -89,13 +89,6 @@
 			</view>
 			<!-- 按钮列表 -->
 			<view class="common_tool_list">
-				<view class="common_tool_item" @click="toPage('/pages/mine/present')">
-					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full"
-							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
-					</view>
-					<text class="text-[24rpx] mt-[13rpx]">礼品卡</text>
-				</view>
 				<view class="common_tool_item" @click="toPage('/pages/mine/address?type=edit')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<image class=" h-full w-full"
@@ -110,36 +103,6 @@
 							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/my-sc.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">商品收藏</text>
-				</view>
-
-				<view class="common_tool_item" @click="toPage('/pages/notify/notify')">
-					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full"
-							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
-					</view>
-					<text class="text-[24rpx] mt-[13rpx]">消息通知</text>
-				</view>
-				<view class="common_tool_item" @click="toPage('/pages/notify/notifyList')">
-					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full"
-							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
-					</view>
-					<text class="text-[24rpx] mt-[13rpx]">物流消息</text>
-				</view>
-				<view class="common_tool_item" @click="toPage('/pages/coupon/myCoupon')">
-					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full"
-							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
-					</view>
-					<text class="text-[24rpx] mt-[13rpx]">优惠券</text>
-				</view>
-
-				<view class="common_tool_item" @click="toPage('/pages/test/test')">
-					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full"
-							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
-					</view>
-					<text class="text-[24rpx] mt-[13rpx]">test</text>
 				</view>
 
 				<view class="common_tool_item" @click="open_is_image">
@@ -180,6 +143,52 @@
 						</image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">核销订单</text>
+				</view>
+
+
+
+				<view class="common_tool_item" @click="toPage('/pages/notify/notify')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">消息通知</text>
+				</view>
+				<view class="common_tool_item" @click="toPage('/pages/notify/notifyList')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">物流消息</text>
+				</view>
+				<view class="common_tool_item" @click="toPage('/pages/coupon/myCoupon')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">优惠券</text>
+				</view>
+				<view class="common_tool_item" @click="toPage('/pages/mine/present')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">礼品卡</text>
+				</view>
+				<view class="common_tool_item" @click="toPage('/pages/product/seckill')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg">
+						</image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">限时秒杀</text>
+				</view>
+				<view class="common_tool_item" @click="toPage('/pages/test/test')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">test</text>
 				</view>
 			</view>
 		</view>

@@ -43,7 +43,7 @@
 													@click="reduce_count_car(item)">
 													<view class="reduce_icon"></view>
 												</view>
-												<view class="count flex_col_cen_cen">{{ item.count || 1 }}</view>
+												<view class="count flex_col_cen_cen px-1">{{ item.count || 1 }}</view>
 												<view
 													:class="`reduce count_btn flex_col_cen_cen ${item.count == item.limit[1] ? 'no_active' : ''}`"
 													@click="add_count_car(item)">

@@ -1,16 +1,20 @@
 {
-  "dependencies": {
-    "pinia": "^2.2.2",
-    "vant": "^4.9.8"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "sass-resources-loader": "^2.2.5",
-    "tailwindcss": "^3.4.14",
-    "weapp-tailwindcss": "^3.6.2"
-  },
-  "scripts": {
-  	"postinstall": "weapp-tw patch"
-  }
+    "id": "hao-slider",
+    "name": "滑块选择器，slider ，视频播放进度条，等多场景应用，可以用图片滑块，功能高",
+    "displayName": "滑块选择器，slider ，视频播放进度条，等多场景应用，可以用图片滑块，功能高",
+    "version": "1.0.0",
+    "description": "滑块选择器，slider ，视频播放进度条，等多场景应用，可以用图片滑块，功能高度自定义",
+    "keywords": [
+        "滑块选择器",
+        "slider",
+        "进度条",
+        "图片滑块",
+        "高度自定义"
+    ],
+    "dcloudext": {
+        "category": [
+            "前端组件",
+            "通用组件"
+        ]
+    }
 }

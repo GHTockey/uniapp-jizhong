@@ -373,6 +373,14 @@
 				"navigationBarTitleText" : "下单结果",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/product/seckill",
+			"style" : 
+			{
+				"navigationBarTitleText" : "限时秒杀",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
