@@ -58,7 +58,8 @@
     "pages/mine/order_success",
     "pages/product/seckill",
     "pages/mine/integral",
-    "pages/mine/integral_detail"
+    "pages/mine/integral_detail",
+    "pages/product/search"
   ],
   "window": {
     "navigationBarTextStyle": "black",

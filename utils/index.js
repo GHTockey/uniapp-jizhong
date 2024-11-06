@@ -11,6 +11,10 @@ export function getTitleBarHeight() {
     return 40 // 默认高度
   }
 };
+// 小程序胶囊按钮宽度
+export function getTitleBarWidth() {
+  return (uni.getSystemInfoSync?.()['windowWidth'] - uni.getMenuButtonBoundingClientRect?.()?.right) * 2 + uni.getMenuButtonBoundingClientRect?.()?.width || 0;
+};
 
 
 // 跳转指定页
@@ -86,12 +90,12 @@ export function replaceRichTextImage(text) {
   }, 300); // 300 毫秒的节流时间
  */
 function throttle(func, delay) {
-	let lastTime = 0;
-	return function (...args) {
-		const now = Date.now();
-		if (now - lastTime >= delay) {
-			lastTime = now;
-			func.apply(this, args);
-		}
-	};
+  let lastTime = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - lastTime >= delay) {
+      lastTime = now;
+      func.apply(this, args);
+    }
+  };
 }

@@ -22,9 +22,9 @@
 			<view class="search_input_box">
 				<image lazy-load class="search_icon" src="https://saas.jizhongkeji.com/static/jzkj/images/search.png"
 					mode="aspectFit" v-if="!search_str || search_str.length == 0" />
-				<input hold-keyboard="true" class="search_input" confirm-type="search" type="text" placeholder="搜索商品"
-					bindinput="change_search_str" placeholder-class="input_placeholder_class" bindconfirm="to_search"
-					v-model="search_str" />
+				<input hold-keyboard="true" class="search_input" @click="toPage(searchPath)" confirm-type="search"
+					type="text" placeholder="搜索商品" bindinput="change_search_str"
+					placeholder-class="input_placeholder_class" bindconfirm="to_search" v-model="search_str" />
 			</view>
 			<!-- 小程序胶囊宽度 -->
 			<view class="search_box_lable flex_row_cen_cen" :style="{ opacity: 0, width: boundingWidth + 'px' }">
@@ -36,6 +36,7 @@
 <script setup>
 import { ref } from 'vue';
 import { getTitleBarHeight, getStatusBarHeight } from '@/utils';
+import { toPage } from '@/utils';
 
 const props = defineProps({
 	title: {
@@ -53,6 +54,10 @@ const props = defineProps({
 	showSearch: {
 		type: Boolean,
 		default: false
+	},
+	searchPath: {
+		type: String,
+		default: ''
 	},
 	bgc: {
 		type: String

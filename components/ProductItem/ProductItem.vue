@@ -25,7 +25,7 @@
 			</view>
 
 			<view class="product_list" style="display: flex;flex-wrap: wrap;padding: 0 25rpx;">
-				<block v-for="item in productList" :key="item.id">
+				<template v-for="item in productList" :key="item.id">
 					<view class="product_item">
 						<view class="product_radius">
 							<navigator hover-class="none" :url="`/pages/product/detail?id=${item.id}`">
@@ -39,7 +39,7 @@
 						</view>
 
 					</view>
-				</block>
+				</template>
 			</view>
 
 		</view>

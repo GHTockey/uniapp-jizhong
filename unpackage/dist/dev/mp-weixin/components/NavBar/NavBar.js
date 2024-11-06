@@ -20,6 +20,10 @@ const _sfc_main = {
       type: Boolean,
       default: false
     },
+    searchPath: {
+      type: String,
+      default: ""
+    },
     bgc: {
       type: String
     }
@@ -48,12 +52,13 @@ const _sfc_main = {
       }, __props.showSearch ? common_vendor.e({
         g: !search_str.value || search_str.value.length == 0
       }, !search_str.value || search_str.value.length == 0 ? {} : {}, {
-        h: search_str.value,
-        i: common_vendor.o(($event) => search_str.value = $event.detail.value),
-        j: common_vendor.unref(boundingWidth) + "px"
+        h: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)(__props.searchPath)),
+        i: search_str.value,
+        j: common_vendor.o(($event) => search_str.value = $event.detail.value),
+        k: common_vendor.unref(boundingWidth) + "px"
       }) : {}, {
-        k: common_vendor.unref(utils_index.getStatusBarHeight)() + "px",
-        l: __props.bgc
+        l: common_vendor.unref(utils_index.getStatusBarHeight)() + "px",
+        m: __props.bgc
       });
     };
   }

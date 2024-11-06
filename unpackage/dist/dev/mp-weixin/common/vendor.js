@@ -9179,6 +9179,13 @@ const pages = [
       navigationBarTitleText: "积分明细",
       navigationStyle: "custom"
     }
+  },
+  {
+    path: "pages/product/search",
+    style: {
+      navigationBarTitleText: "商品搜索",
+      navigationStyle: "custom"
+    }
   }
 ];
 const globalStyle = {

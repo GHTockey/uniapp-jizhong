@@ -5,7 +5,7 @@
 		<!-- <HeightBar /> -->
 
 		<!-- 导航栏 -->
-		<NavBar title="" showSearch />
+		<NavBar title="" showSearch searchPath="/pages/product/search" />
 
 		<!-- 顶部菜单 -->
 		<scroll-view v-if="business.is_open_product_menu == 1" scroll-x="true" class="nav"

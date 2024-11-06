@@ -63,6 +63,7 @@ if (!Math) {
   "./pages/product/seckill.js";
   "./pages/mine/integral.js";
   "./pages/mine/integral_detail.js";
+  "./pages/product/search.js";
 }
 const __default__ = {
   onLaunch: function() {

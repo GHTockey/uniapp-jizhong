@@ -137,7 +137,8 @@ const _sfc_main = {
       return common_vendor.e({
         a: common_vendor.p({
           title: "",
-          showSearch: true
+          showSearch: true,
+          searchPath: "/pages/product/search"
         }),
         b: business.value.is_open_product_menu == 1
       }, business.value.is_open_product_menu == 1 ? {
