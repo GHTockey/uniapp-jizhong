@@ -40,7 +40,7 @@
 
 			<!-- 积分明细/商城入口按钮 -->
 			<view class="integral_detail_shop_btn">
-				<view class="flex items-center gap-5">
+				<view class="flex items-center gap-5" @click="toPage('/pages/mine/integral_detail')">
 					<image src="../../static/Integral_detail.svg" mode="widthFix" class="w-[60rpx]"></image>
 					<text class="">积分明细</text>
 				</view>

@@ -144,11 +144,17 @@ view,text,::before,::after {
 .left-_40rpx_ {
     left: 40rpx
 }
+.left-_50p_ {
+    left: 50%
+}
 .right-0 {
     right: 0px
 }
 .right-_-20rpx_ {
     right: -20rpx
+}
+.right-_100rpx_ {
+    right: 100rpx
 }
 .right-_30rpx_ {
     right: 30rpx
@@ -165,8 +171,14 @@ view,text,::before,::after {
 .top-_40rpx_ {
     top: 40rpx
 }
+.top-_80rpx_ {
+    top: 80rpx
+}
 .iz-_100_ {
     z-index: 100 !important
+}
+.z-10 {
+    z-index: 10
 }
 .z-_100_ {
     z-index: 100
@@ -294,6 +306,9 @@ view,text,::before,::after {
 .h-_120rpx_ {
     height: 120rpx
 }
+.h-_128rpx_ {
+    height: 128rpx
+}
 .h-_15rpx_ {
     height: 15rpx
 }
@@ -306,6 +321,9 @@ view,text,::before,::after {
 .h-_16rpx_ {
     height: 16rpx
 }
+.h-_182rpx_ {
+    height: 182rpx
+}
 .h-_195rpx_ {
     height: 195rpx
 }
@@ -314,6 +332,9 @@ view,text,::before,::after {
 }
 .h-_20rpx_ {
     height: 20rpx
+}
+.h-_222rpx_ {
+    height: 222rpx
 }
 .h-_26d39rpx_ {
     height: 26.39rpx
@@ -347,6 +368,9 @@ view,text,::before,::after {
 }
 .h-_42rpx_ {
     height: 42rpx
+}
+.h-_45rpx_ {
+    height: 45rpx
 }
 .h-_50rpx_ {
     height: 50rpx
@@ -399,6 +423,9 @@ view,text,::before,::after {
 .w-_16rpx_ {
     width: 16rpx
 }
+.w-_175rpx_ {
+    width: 175rpx
+}
 .w-_18rpx_ {
     width: 18rpx
 }
@@ -408,11 +435,17 @@ view,text,::before,::after {
 .w-_1rpx_ {
     width: 1rpx
 }
+.w-_20rpx_ {
+    width: 20rpx
+}
 .w-_222rpx_ {
     width: 222rpx
 }
 .w-_237d5rpx_ {
     width: 237.5rpx
+}
+.w-_239rpx_ {
+    width: 239rpx
 }
 .w-_28rpx_ {
     width: 28rpx
@@ -447,17 +480,29 @@ view,text,::before,::after {
 .w-_389rpx_ {
     width: 389rpx
 }
+.w-_400rpx_ {
+    width: 400rpx
+}
 .w-_40rpx_ {
     width: 40rpx
 }
 .w-_42rpx_ {
     width: 42rpx
 }
+.w-_45rpx_ {
+    width: 45rpx
+}
 .w-_486rpx_ {
     width: 486rpx
 }
+.w-_50p_ {
+    width: 50%
+}
 .w-_550rpx_ {
     width: 550rpx
+}
+.w-_60rpx_ {
+    width: 60rpx
 }
 .w-_61rpx_ {
     width: 61rpx
@@ -527,11 +572,17 @@ view,text,::before,::after {
 .justify-evenly {
     justify-content: space-evenly
 }
+.gap-1 {
+    gap: 0.25rem
+}
 .gap-2 {
     gap: 0.5rem
 }
 .gap-3 {
     gap: 0.75rem
+}
+.gap-5 {
+    gap: 1.25rem
 }
 .gap-_10rpx_ {
     gap: 10rpx
@@ -647,6 +698,10 @@ view,text,::before,::after {
     padding-top: 5rpx !important;
     padding-bottom: 5rpx !important
 }
+.px-1 {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem
+}
 .px-2 {
     padding-left: 0.5rem;
     padding-right: 0.5rem
@@ -675,6 +730,9 @@ view,text,::before,::after {
     padding-top: 5rpx;
     padding-bottom: 5rpx
 }
+.pl-_80rpx_ {
+    padding-left: 80rpx
+}
 .pt-_20rpx_ {
     padding-top: 20rpx
 }
@@ -689,6 +747,9 @@ view,text,::before,::after {
 }
 .text-right {
     text-align: right
+}
+.text-_17rpx_ {
+    font-size: 17rpx
 }
 .text-_18rpx_ {
     font-size: 18rpx
@@ -744,11 +805,20 @@ view,text,::before,::after {
 .text-_31d25rpx_ {
     font-size: 31.25rpx
 }
+.text-_31d5rpx_ {
+    font-size: 31.5rpx
+}
+.text-_32rpx_ {
+    font-size: 32rpx
+}
 .text-_33rpx_ {
     font-size: 33rpx
 }
 .text-_37d5rpx_ {
     font-size: 37.5rpx
+}
+.text-_41d67rpx_ {
+    font-size: 41.67rpx
 }
 .text-_45d83rpx_ {
     font-size: 45.83rpx
@@ -839,6 +909,14 @@ view,text,::before,::after {
     --tw-text-opacity: 1;
     color: rgb(168 168 168 / var(--tw-text-opacity))
 }
+.text-_hA9A9A9_ {
+    --tw-text-opacity: 1;
+    color: rgb(169 169 169 / var(--tw-text-opacity))
+}
+.text-_hE62624_ {
+    --tw-text-opacity: 1;
+    color: rgb(230 38 36 / var(--tw-text-opacity))
+}
 .text-_hEB2C2A_ {
     --tw-text-opacity: 1;
     color: rgb(235 44 42 / var(--tw-text-opacity))
@@ -850,6 +928,10 @@ view,text,::before,::after {
 .text-_hFC4740_ {
     --tw-text-opacity: 1;
     color: rgb(252 71 64 / var(--tw-text-opacity))
+}
+.text-_hFD463E_ {
+    --tw-text-opacity: 1;
+    color: rgb(253 70 62 / var(--tw-text-opacity))
 }
 .text-_hFF0000_ {
     --tw-text-opacity: 1;
@@ -866,6 +948,10 @@ view,text,::before,::after {
 .text-_hFF4F26_ {
     --tw-text-opacity: 1;
     color: rgb(255 79 38 / var(--tw-text-opacity))
+}
+.text-_hFF5722_ {
+    --tw-text-opacity: 1;
+    color: rgb(255 87 34 / var(--tw-text-opacity))
 }
 .text-_hFFFFFF_ {
     --tw-text-opacity: 1;
@@ -978,6 +1064,10 @@ view,text,::before,::after {
 /*每个页面公共css */
 view,text {
   box-sizing: border-box;
+}
+text,p {
+  word-break: break-all;
+  word-wrap: break-word;
 }
 ::-webkit-scrollbar {
   display: none !important;

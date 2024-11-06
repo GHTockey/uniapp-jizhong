@@ -82,6 +82,7 @@
 import { ref } from 'vue';
 import { onLoad, onShow, onShareAppMessage, onPageScroll, onShareTimeline } from '@dcloudio/uni-app';
 import { request } from '@/utils/request.js';
+import { replaceRichTextImage } from '@/utils';
 
 // 头部标题是否有白色背景
 const has_bar_title_color = ref(false)
@@ -159,6 +160,8 @@ async function goods_detail_v2() {
 	let res = await request('/WxAppCustomer/introproduct_detail', 'post', { id: product_id.value })
 	if (res.code != 0) return uni.showToast({ title: res.msg, icon: 'none' })
 	product.value = res.data.detail
+	// console.log(product.value.detail);
+	product.value.detail = replaceRichTextImage(res.data.detail.detail)
 	goods_list.value = res.data.goods_list
 	is_loading.value = true
 }

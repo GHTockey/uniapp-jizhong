@@ -45,6 +45,13 @@ text {
 	box-sizing: border-box;
 }
 
+// 数字/单词换行
+text,
+p {
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
 ::-webkit-scrollbar {
 	display: none !important;
 }

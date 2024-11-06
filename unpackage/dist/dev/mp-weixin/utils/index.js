@@ -51,6 +51,8 @@ function formatNumber(n) {
   return n[1] ? n : "0" + n;
 }
 function replaceRichTextImage(text) {
+  text = text.replace(/\s+/g, "");
+  text = text.replace(/(\r\n|\n|\r)/g, "");
   let reg = new RegExp("<img", "gi");
   return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
 }

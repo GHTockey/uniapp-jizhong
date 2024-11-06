@@ -69,6 +69,10 @@ export function formatNumber(n) {
 // let reg = new RegExp('<img','gi');
 // this.info = this.info.replace(reg,'<img style="max-width:100%;vertical-align: top;"');
 export function replaceRichTextImage(text) {
+  //去除空格
+  text = text.replace(/\s+/g, '');
+  // 去除换行
+  text = text.replace(/(\r\n|\n|\r)/g, '');
   let reg = new RegExp('<img', 'gi');
   return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
 }

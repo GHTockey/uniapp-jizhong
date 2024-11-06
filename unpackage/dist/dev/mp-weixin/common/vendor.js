@@ -9158,6 +9158,27 @@ const pages = [
       navigationBarTitleText: "下单结果",
       navigationStyle: "custom"
     }
+  },
+  {
+    path: "pages/product/seckill",
+    style: {
+      navigationBarTitleText: "限时秒杀",
+      navigationStyle: "custom"
+    }
+  },
+  {
+    path: "pages/mine/integral",
+    style: {
+      navigationBarTitleText: "我的积分",
+      navigationStyle: "custom"
+    }
+  },
+  {
+    path: "pages/mine/integral_detail",
+    style: {
+      navigationBarTitleText: "积分明细",
+      navigationStyle: "custom"
+    }
   }
 ];
 const globalStyle = {
@@ -11952,6 +11973,7 @@ exports.onShareAppMessage = onShareAppMessage;
 exports.onShareTimeline = onShareTimeline;
 exports.onShow = onShow;
 exports.onUnload = onUnload;
+exports.onUnmounted = onUnmounted;
 exports.p = p$1;
 exports.r = r$1;
 exports.ref = ref;

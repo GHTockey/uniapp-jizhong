@@ -55,7 +55,10 @@
     "pages/mine/distribute_goods",
     "pages/mine/scan_order",
     "pages/index/auding_order",
-    "pages/mine/order_success"
+    "pages/mine/order_success",
+    "pages/product/seckill",
+    "pages/mine/integral",
+    "pages/mine/integral_detail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

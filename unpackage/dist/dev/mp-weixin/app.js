@@ -60,6 +60,9 @@ if (!Math) {
   "./pages/mine/scan_order.js";
   "./pages/index/auding_order.js";
   "./pages/mine/order_success.js";
+  "./pages/product/seckill.js";
+  "./pages/mine/integral.js";
+  "./pages/mine/integral_detail.js";
 }
 const __default__ = {
   onLaunch: function() {

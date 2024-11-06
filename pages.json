@@ -389,6 +389,14 @@
 				"navigationBarTitleText" : "我的积分",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/mine/integral_detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "积分明细",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
