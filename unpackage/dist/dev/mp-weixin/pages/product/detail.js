@@ -545,14 +545,14 @@ const _sfc_main = {
         g: common_vendor.t(((_b = (_a = swiper.value) == null ? void 0 : _a.swiperImgUrls) == null ? void 0 : _b.length) + video_list.value.length),
         h: common_vendor.t(product.value.price || 0),
         i: common_vendor.t(price_show.value || "???"),
-        j: common_assets._imports_0$1,
+        j: common_assets._imports_0,
         k: common_vendor.o(($event) => show_buy_pop_handler("buy")),
         l: common_vendor.t(product.value.name),
         m: common_vendor.o(($event) => showActionSheet.value = true),
         n: common_vendor.o(($event) => showActionSheet.value = true),
         o: common_vendor.o(($event) => showActionSheet.value = true),
-        p: common_assets._imports_0$1,
-        q: common_assets._imports_0$1,
+        p: common_assets._imports_0,
+        q: common_assets._imports_0,
         r: product.value.detail,
         s: common_vendor.f(detail_image_uri.value, (item, index, i0) => {
           return {

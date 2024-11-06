@@ -76,3 +76,22 @@ export function replaceRichTextImage(text) {
   let reg = new RegExp('<img', 'gi');
   return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
 }
+
+
+// 节流函数
+/**
+ * 使用：
+ * const handleSearch = throttle(() => {
+    console.log('搜索');
+  }, 300); // 300 毫秒的节流时间
+ */
+function throttle(func, delay) {
+	let lastTime = 0;
+	return function (...args) {
+		const now = Date.now();
+		if (now - lastTime >= delay) {
+			lastTime = now;
+			func.apply(this, args);
+		}
+	};
+}

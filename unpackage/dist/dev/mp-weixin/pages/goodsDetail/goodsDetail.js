@@ -35,7 +35,7 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return {
         a: common_vendor.o(goBack),
-        b: common_assets._imports_0$1,
+        b: common_assets._imports_0,
         c: common_vendor.o(($event) => showActionSheetSlot.value = true),
         d: common_vendor.o(($event) => showActionSheet.value = true),
         e: common_vendor.o(($event) => showActionSheet.value = true),

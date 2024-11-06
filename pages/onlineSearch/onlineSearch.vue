@@ -3,8 +3,9 @@
 		<!-- 搜索栏 -->
 		<view class="online-search-bar">
 			<view class="online-search-bar-input">
-				<image class="online-search-bar-input-icon" src="/static/icon/search-icon-g.svg" mode="widthFix" />
-				<input type="text" placeholder="输入关键词进行搜索" />
+				<image class="online-search-bar-input-icon"
+					src="https://saas.jizhongkeji.com/static/jzkj/static/icon/search-icon-g.svg" mode="widthFix" />
+				<input type="text" @input="handleSearch" v-model="searchKeyword" placeholder="输入关键词进行搜索" />
 			</view>
 			<view class="online-search-bar-button">
 				<text>搜索</text>
@@ -12,10 +13,11 @@
 		</view>
 		<!-- 搜索历史 -->
 		<!-- <view v-if="searchHistory.length > 0" class="online-search-history"> -->
-		<view v-if="1" class="online-search-history">
+		<view v-if="!searchKeyword" class="online-search-history">
 			<view class="online-search-history-title">
 				<text class="online-search-history-title-text">搜索历史</text>
-				<image @click="handleClearSearchHistory" class="online-search-history-clear" src="/static/icon/del-icon.svg" />
+				<image @click="handleClearSearchHistory" class="online-search-history-clear"
+					src="https://saas.jizhongkeji.com/static/jzkj/static/icon/del-icon.svg" />
 			</view>
 			<view class="online-search-history-list">
 				<view class="online-search-history-item" v-for="item in searchHistory" :key="item.id">
@@ -24,7 +26,7 @@
 			</view>
 		</view>
 		<!-- 热门搜索 -->
-		<view v-if="false" class="online-search-hot">
+		<view v-if="!searchKeyword" class="online-search-hot">
 			<text class="online-search-hot-title">热门搜索</text>
 			<view class="online-search-hot-list">
 				<view class="online-search-hot-item" v-for="item in hotSearch" :key="item.id">
@@ -33,10 +35,11 @@
 			</view>
 		</view>
 		<!-- 搜索结果 -->
-		<view v-if="false" class="online-search-result">
+		<view v-if="searchKeyword" class="online-search-result">
 			<!-- 空状态 -->
 			<view class="online-search-result-empty">
-				<image class="online-search-result-empty-icon" src="https://saas.jizhongkeji.com/static/jzkj/fangdajing.svg" />
+				<image class="online-search-result-empty-icon"
+					src="https://saas.jizhongkeji.com/static/jzkj/static/images/fangdajing.svg" />
 				<text class="online-search-result-empty-text">没有搜到相关内容，换个关键词试试吧</text>
 			</view>
 		</view>
@@ -44,8 +47,11 @@
 </template>
 
 <script setup>
-import { ref,h } from "vue"
+import { ref } from "vue";
 
+
+// 搜索关键词
+const searchKeyword = ref('');
 // 搜索历史
 const searchHistory = ref([
 	{
@@ -90,6 +96,21 @@ const hotSearch = ref([
 ]);
 
 
+// 搜索
+let debounceTimeout; // 防抖计时器
+function handleSearch(event) {
+	clearTimeout(debounceTimeout);
+	debounceTimeout = setTimeout(() => {
+		uni.showLoading({
+			title: '搜索中'
+		});
+		setTimeout(() => {
+			uni.hideLoading();
+		}, 300);
+		// console.log('搜索', event.detail.value);
+		// console.log(searchKeyword.value);
+	}, 500); // 防抖时间
+}
 
 // 搜索历史清除按钮点击事件
 function handleClearSearchHistory() {
@@ -103,6 +124,7 @@ function handleClearSearchHistory() {
 		}
 	});
 }
+
 
 </script>
 
