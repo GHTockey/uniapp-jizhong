@@ -184,39 +184,40 @@ const _sfc_main = {
         c: common_vendor.s(`height: ${common_vendor.unref(utils_index.getStatusBarHeight)()}px;`)
       } : {}, {
         d: common_vendor.s(`height: ${common_vendor.unref(utils_index.getTitleBarHeight)()}px;`),
-        e: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/onlineSearch/onlineSearch")),
-        f: isFixedHeadeContent.value ? 1 : "",
-        g: common_vendor.s(isFixedHeadeContent.value ? `top: ${common_vendor.unref(utils_index.getStatusBarHeight)()}px` : ""),
-        h: common_vendor.f((_a = banner_swiper.value) == null ? void 0 : _a.images, (image, index, i0) => {
+        e: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/notify/notify")),
+        f: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/onlineSearch/onlineSearch")),
+        g: isFixedHeadeContent.value ? 1 : "",
+        h: common_vendor.s(isFixedHeadeContent.value ? `top: ${common_vendor.unref(utils_index.getStatusBarHeight)()}px` : ""),
+        i: common_vendor.f((_a = banner_swiper.value) == null ? void 0 : _a.images, (image, index, i0) => {
           return {
             a: image,
             b: index
           };
         }),
-        i: !!banner_swiper.value.autoplay,
-        j: banner_swiper.value.interval,
-        k: banner_swiper.value.duration,
-        l: banner_swiper.value.indicatorDots,
-        m: banner_swiper.value.is_radius,
-        n: common_vendor.f(iconlist.value, (item, index, i0) => {
+        j: !!banner_swiper.value.autoplay,
+        k: banner_swiper.value.interval,
+        l: banner_swiper.value.duration,
+        m: banner_swiper.value.indicatorDots,
+        n: banner_swiper.value.is_radius,
+        o: common_vendor.f(iconlist.value, (item, index, i0) => {
           return {
             a: item.image_uri,
             b: common_vendor.t(item.name),
             c: common_vendor.o(($event) => to_detail(item))
           };
         }),
-        o: common_vendor.f(10, (item, index, i0) => {
+        p: common_vendor.f(10, (item, index, i0) => {
           return {
             a: index,
             b: index == 9 ? "0" : "22rpx"
           };
         }),
-        p: `url('https://saas.jizhongkeji.com/static/jzkj/static/images/new-p-bg.png')`,
-        q: common_vendor.p({
+        q: `url('https://saas.jizhongkeji.com/static/jzkj/static/images/new-p-bg.png')`,
+        r: common_vendor.p({
           goods: goodsList.value
         }),
-        r: common_vendor.s(isFixedHeadeContent.value ? `padding-top: ${containerMarTop.value}px; background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/icon/thumb.png');` : `background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/icon/thumb.png');`),
-        s: common_vendor.p({
+        s: common_vendor.s(isFixedHeadeContent.value ? `padding-top: ${containerMarTop.value}px; background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/icon/thumb.png');` : `background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/icon/thumb.png');`),
+        t: common_vendor.p({
           isAppMode: true
         })
       });

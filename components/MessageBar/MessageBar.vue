@@ -4,7 +4,8 @@
     <view class="message-bar-header">
       <view class="icon-title-box">
         <!-- 图标 -->
-        <image class="icon-img" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/wuliu.png" />
+        <image class="icon-img"
+          :src="`https://saas.jizhongkeji.com/static/jzkj/static/icon/${getNotifyInonName(notifyType)}.png`" />
         <!-- 标题 -->
         <text class="message-bar-title">物流消息</text>
       </view>
@@ -28,7 +29,30 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { onLoad } from '@dcloudio/uni-app';
 
+const notifyType = ref(-1);
+
+onLoad(options => {
+  // console.log(options);
+  notifyType.value = options.notifyType
+})
+
+// 获取图标名称
+function getNotifyInonName() {
+  if (notifyType.value == 1) {
+    return 'yue'
+  } else if (notifyType.value == 2) {
+    return 'wuliu'
+  } else if (notifyType.value == 3) {
+    return 'fangke'
+  } else if (notifyType.value == 4) {
+    return 'jifen'
+  } else if (notifyType.value == 5) {
+    return 'yingxiao'
+  }
+}
 </script>
 
 <style lang="less">

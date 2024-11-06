@@ -153,13 +153,13 @@
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">消息通知</text>
 				</view>
-				<view class="common_tool_item" @click="toPage('/pages/notify/notifyList')">
+				<!-- <view class="common_tool_item" @click="toPage('/pages/notify/notifyList')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<image class=" h-full w-full"
 							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">物流消息</text>
-				</view>
+				</view> -->
 				<view class="common_tool_item" @click="toPage('/pages/mine/present')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<image class=" h-full w-full"

@@ -17,9 +17,11 @@
         <text>集中科技</text>
       </view>
       <!-- 搜索栏 -->
-      <view class="searchBar" @click="toPage('/pages/onlineSearch/onlineSearch')">
-        <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/组 9954@2x.png" />
-        <input type="text" placeholder="请输入关键词进行搜索" placeholder-class="searchPlace" />
+      <view class="searchBar">
+        <image @click="toPage('/pages/notify/notify')"
+          src="https://saas.jizhongkeji.com/static/jzkj/static/icon/组 9954@2x.png" />
+        <input @click="toPage('/pages/onlineSearch/onlineSearch')" type="text" placeholder="请输入关键词进行搜索"
+          placeholder-class="searchPlace" />
       </view>
 
       <!-- 背景图片 -->
@@ -97,7 +99,7 @@ import {
   getStatusBarHeight,
   getTitleBarHeight,
   toPage
-} from "@/utils/index.js";
+} from "@/utils";
 
 
 

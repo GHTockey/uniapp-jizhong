@@ -238,7 +238,7 @@ function to_upage() {
 	width: 100%;
 	font-size: 25rpx;
 	color: #999999;
-	border-bottom: 1rpx solid #EDEDED;
+	/* border-bottom: 1rpx solid #EDEDED; */
 	padding-top: 30rpx;
 	padding-bottom: 25rpx;
 	margin-bottom: 15rpx;

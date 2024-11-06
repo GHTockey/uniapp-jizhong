@@ -18,11 +18,15 @@
 
 <script setup>
 import { useSystemStore } from '@/stores/system.js';
+import { onLoad } from '@dcloudio/uni-app';
 
 const systemStore = useSystemStore()
 
-uni.setNavigationBarTitle({
-	title: "物流消息"
+onLoad((options) => {
+  // console.log(options);
+  uni.setNavigationBarTitle({
+    title: `${options.notifyType == 1 ? '余额通知' : options.notifyType == 2 ? '物流信息' : options.notifyType == 3 ? '访客通知' : options.notifyType == 4 ? '积分通知' : '营销通知'}`
+  })
 })
 </script>
 

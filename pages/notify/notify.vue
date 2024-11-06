@@ -10,7 +10,7 @@
 
     <!-- 通知列表 -->
     <view class="notify-item-box">
-      <view class="notify-item">
+      <view class="notify-item" @click="toPage('/pages/notify/notifyList?notifyType=1')">
         <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/yue.png" />
         <view>
           <text>余额通知</text>
@@ -22,7 +22,7 @@
           <text class="item-num">12</text>
         </view>
       </view>
-      <view class="notify-item">
+      <view class="notify-item" @click="toPage('/pages/notify/notifyList?notifyType=2')">
         <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/wuliu.png" />
         <view>
           <text>物流信息</text>
@@ -34,7 +34,7 @@
           <text class="item-num">12</text>
         </view>
       </view>
-      <view class="notify-item">
+      <view class="notify-item" @click="toPage('/pages/notify/notifyList?notifyType=3')">
         <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/fangke.png" />
         <view>
           <text>访客通知</text>
@@ -46,7 +46,7 @@
           <text class="item-num">12</text>
         </view>
       </view>
-      <view class="notify-item">
+      <view class="notify-item" @click="toPage('/pages/notify/notifyList?notifyType=4')">
         <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/jifen.png" />
         <view>
           <text>积分通知</text>
@@ -58,7 +58,7 @@
           <text class="item-num">122</text>
         </view>
       </view>
-      <view class="notify-item">
+      <view class="notify-item" @click="toPage('/pages/notify/notifyList?notifyType=5')">
         <image src="https://saas.jizhongkeji.com/static/jzkj/static/icon/yingxiao.png" />
         <view>
           <text>营销通知</text>
@@ -75,6 +75,11 @@
 </template>
 
 <script setup>
+import { toPage } from '@/utils';
+import { ref } from 'vue';
+
+// 用一个变量来记录当前点击的通知类型， 1余额/2物流/3访客/4积分/5营销
+const notifyType = ref(1)
 
 </script>
 
