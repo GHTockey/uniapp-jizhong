@@ -1,7 +1,7 @@
 <template>
 	<view class="present_activate_container" style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/present-activate-bg.svg');">
 		<!-- 标题栏 -->
-		<NavBar showBack>
+		<NavBar showBack  bgc="transparent">
 			<template #title>
 				<text>卡片激活</text>
 			</template>

@@ -30,10 +30,7 @@ const _sfc_main = {
   },
   setup(__props) {
     const search_str = common_vendor.ref("");
-    let boundingWidth = 0;
-    {
-      boundingWidth = (common_vendor.index.getSystemInfoSync()["windowWidth"] - common_vendor.index.getMenuButtonBoundingClientRect().right) * 2 + common_vendor.index.getMenuButtonBoundingClientRect().width;
-    }
+    const boundingWidth = utils_index.getTitleBarWidth();
     const goBack = () => {
       common_vendor.index.navigateBack();
     };
@@ -58,7 +55,7 @@ const _sfc_main = {
         k: common_vendor.unref(boundingWidth) + "px"
       }) : {}, {
         l: common_vendor.unref(utils_index.getStatusBarHeight)() + "px",
-        m: __props.bgc
+        m: __props.bgc || "#FFFFFF"
       });
     };
   }

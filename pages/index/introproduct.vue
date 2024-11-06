@@ -15,7 +15,7 @@
 			class="bar_title {{has_bar_title_color?'bar_title_color':''}} {{is_show_bar_title? '':'bar_title_none'}}">
 			<text style="margin-left: 24rpx;">资讯</text>
 		</customNavigation> -->
-		<NavBar v-if="!is_show_bar_title">
+		<NavBar v-if="!is_show_bar_title" bgc="transparent">
 			<template v-slot:title>
 				<view class="w-full text-left">资讯</view>
 			</template>

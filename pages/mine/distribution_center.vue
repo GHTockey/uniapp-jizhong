@@ -4,7 +4,7 @@
 		<!-- 高度占位 -->
 		<HeightBar appendNavBar />
 		<!-- 标题栏 -->
-		<NavBar showBack isWhite>
+		<NavBar showBack isWhite bgc="transparent">
 			<template #title>
 				<text class="text-white">分销中心</text>
 			</template>

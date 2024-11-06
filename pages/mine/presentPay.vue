@@ -2,11 +2,11 @@
 	<view class="present_pay_container"
 		style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/goods-pay-bg.svg');">
 
-		
+
 		<HeightBar />
 
 		<!-- 标题栏 -->
-		<NavBar showBack isWhite>
+		<NavBar showBack isWhite bgc="transparent">
 			<template #title>
 				<text class=" text-white">待付款订单</text>
 			</template>

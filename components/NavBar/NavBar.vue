@@ -1,5 +1,5 @@
 <template>
-	<view class="nav-bar-container" :style="{ marginTop: getStatusBarHeight() + 'px', backgroundColor: bgc }">
+	<view class="nav-bar-container" :style="{ paddingTop: getStatusBarHeight() + 'px', backgroundColor: bgc || '#FFFFFF' }">
 		<!-- 返回按钮 -->
 		<view class="nav-bar-back" v-if="showBack" @click="goBack">
 			<image
@@ -23,8 +23,7 @@
 				<image lazy-load class="search_icon" src="https://saas.jizhongkeji.com/static/jzkj/images/search.png"
 					mode="aspectFit" v-if="!search_str || search_str.length == 0" />
 				<input hold-keyboard="true" class="search_input" @click="toPage(searchPath)" confirm-type="search"
-					type="text" placeholder="搜索商品" bindinput="change_search_str"
-					placeholder-class="input_placeholder_class" bindconfirm="to_search" v-model="search_str" />
+					type="text" placeholder="搜索商品" placeholder-class="input_placeholder_class" v-model="search_str" />
 			</view>
 			<!-- 小程序胶囊宽度 -->
 			<view class="search_box_lable flex_row_cen_cen" :style="{ opacity: 0, width: boundingWidth + 'px' }">
@@ -35,8 +34,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { getTitleBarHeight, getStatusBarHeight } from '@/utils';
-import { toPage } from '@/utils';
+import { getTitleBarHeight, getStatusBarHeight, toPage, getTitleBarWidth } from '@/utils';
 
 const props = defineProps({
 	title: {
@@ -66,10 +64,7 @@ const props = defineProps({
 
 // console.log(process.env);
 const search_str = ref('');
-let boundingWidth = 0;
-if (process.env.UNI_PLATFORM !== 'h5') {
-	boundingWidth = (uni.getSystemInfoSync()['windowWidth'] - uni.getMenuButtonBoundingClientRect().right) * 2 + uni.getMenuButtonBoundingClientRect().width;
-}
+const boundingWidth = getTitleBarWidth();
 
 // 返回
 const goBack = () => {
@@ -81,8 +76,9 @@ const goBack = () => {
 
 <style scoped lang="scss">
 .nav-bar-container {
+	box-sizing: content-box;
 	width: 100%;
-	height: $nav-height;
+	min-height: $nav-height;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -134,7 +130,7 @@ const goBack = () => {
 	box-sizing: border-box;
 	/* width: max-content; */
 	width: 100%;
-	padding-right: 90rpx;
+	// padding-right: 90rpx;
 }
 
 .search_icon {
@@ -153,7 +149,8 @@ const goBack = () => {
 	padding: 0rpx 10rpx;
 	font-size: 28rpx;
 	text-align: center;
-	width: 400rpx;
+	// width: 400rpx;
+	width: calc(100% - 40rpx);
 }
 
 .search_box_lable {

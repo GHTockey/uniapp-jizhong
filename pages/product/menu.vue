@@ -335,7 +335,7 @@ function navbarSelectvideo_category_id(id) {
 	box-sizing: border-box;
 	/* width: max-content; */
 	width: 100%;
-	padding-right: 90rpx;
+	/* padding-right: 90rpx; */
 }
 
 .search_input {

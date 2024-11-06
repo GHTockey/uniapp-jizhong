@@ -4,7 +4,7 @@
 		<HeightBar appendTitleBar />
 
 		<!-- 标题栏 -->
-		<NavBar showBack>
+		<NavBar showBack  bgc="transparent">
 			<template #title>
 				<text>礼品卡</text>
 			</template>

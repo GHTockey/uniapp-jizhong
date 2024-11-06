@@ -13,7 +13,7 @@
 
 		<view class=" p-[30rpx] bg-white rounded-[14rpx]">
 			<!-- 图片 -->
-			<image class="w-full rounded-md" src="https://saas.jizhongkeji.com/static/jzkj/present_item.png" mode="widthFix"></image>
+			<image class="w-full rounded-md" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png" mode="widthFix"></image>
 			<!-- 文字 -->
 			<view class="flex flex-col gap-[10rpx] mt-[20rpx]">
 				<text class="text-[29rpx] line-clamp-1">{{ currentItem.title }}</text>
@@ -39,7 +39,7 @@
 import { ref } from 'vue';
 
 const currentItem = ref({
-	img: 'https://saas.jizhongkeji.com/static/jzkj/present_item.png',
+	img: 'https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png',
 	card_text: '储值卡',
 	title: '2025新春礼品卡2025新春礼品卡2025新春礼2025新春礼品卡2025新春礼品卡2025新春礼',
 	time: '2024-08-09 14:56:45 至 2024-08-09 14:56:45'

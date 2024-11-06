@@ -1,8 +1,8 @@
 <template>
 	<view v-if="is_loading">
-		
+
 		<view>
-			<view class="nav_area">
+			<view class="nav_area" style="z-index: 10;">
 				<view :data-status="item.status" :data-nav_index="index" @click="change_nav"
 					:class="`${nav_index == index ? 'active' : ''}`" v-for="(item, index) in nav_list" :key="index">
 					<text>{{ item.name }}</text>
@@ -182,7 +182,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-									}}</text>申请退款，原因：{{ drawback.userback.reason }}
+											}}</text>申请退款，原因：{{ drawback.userback.reason }}
 									</view>
 								</view>
 
@@ -190,7 +190,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-									}}</text>商家主动退款，原因：{{ drawback.shopback.reason }}
+											}}</text>商家主动退款，原因：{{ drawback.shopback.reason }}
 									</view>
 								</view>
 
@@ -198,7 +198,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-									}}</text>
+											}}</text>
 										商家同意退款</view>
 								</view>
 
@@ -206,7 +206,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-									}}</text>
+											}}</text>
 										商家拒绝退款</view>
 								</view>
 							</view>

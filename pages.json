@@ -405,6 +405,14 @@
 				"navigationBarTitleText" : "商品搜索",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/index/order_detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "订单详情",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

@@ -4,18 +4,31 @@
 		<image v-if="!is_show_bar_title" class="img_home_bg"
 			src="https://saas.jizhongkeji.com/static/jzkj/images/img_home_bg.png"></image>
 
-		<view v-if="!is_show_bar_title"
+		<!-- <view v-if="!is_show_bar_title"
 			:style="`padding-top:${statusBarHeight}px;height:${navHeight}px;display: flex;align-items: center;color: #000;z-index: 109;position: fixed;`">
 			<text style="margin-left: 24rpx;z-index: 99;">活动</text>
-		</view>
+		</view> -->
 
 		<!-- <customNavigation wx:if="{{is_show_bar_title}}"
 			class="bar_title {{has_bar_title_color?'bar_title_color':''}} {{is_show_bar_title? '':'bar_title_none'}}">
 			<text style="margin-left: 24rpx;">活动</text></customNavigation> -->
 
-		<NavBar class="!justify-start" title="活动"
+		<!-- <NavBar class="!justify-start" title="活动"
 			:class="`bar_title ${has_bar_title_color ? 'bar_title_color' : ''} ${is_show_bar_title ? '' : 'bar_title_none'}`"
 			v-if="is_show_bar_title">
+		</NavBar> -->
+
+		<NavBar v-if="!is_show_bar_title" bgc="transparent">
+			<template v-slot:title>
+				<view class="w-full text-left">活动</view>
+			</template>
+		</NavBar>
+		<NavBar
+			:class="`bar_title ${has_bar_title_color ? 'bar_title_color' : ''} ${is_show_bar_title ? '' : 'bar_title_none'}`"
+			v-if="is_show_bar_title">
+			<template v-slot:title>
+				<view class="w-full text-left">活动</view>
+			</template>
 		</NavBar>
 
 		<view :style="`height:${statusBarHeight + navHeight + 50}rpx;`"></view>

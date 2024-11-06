@@ -11,6 +11,10 @@ function getTitleBarHeight() {
     return 40;
   }
 }
+function getTitleBarWidth() {
+  var _a, _b, _c, _d, _e, _f, _g, _h;
+  return (((_b = (_a = common_vendor.index).getSystemInfoSync) == null ? void 0 : _b.call(_a)["windowWidth"]) - ((_e = (_d = (_c = common_vendor.index).getMenuButtonBoundingClientRect) == null ? void 0 : _d.call(_c)) == null ? void 0 : _e.right)) * 2 + ((_h = (_g = (_f = common_vendor.index).getMenuButtonBoundingClientRect) == null ? void 0 : _g.call(_f)) == null ? void 0 : _h.width) || 0;
+}
 function toPage(url) {
   common_vendor.index.navigateTo({
     url
@@ -60,5 +64,6 @@ exports.formatSecond = formatSecond;
 exports.formatTime = formatTime;
 exports.getStatusBarHeight = getStatusBarHeight;
 exports.getTitleBarHeight = getTitleBarHeight;
+exports.getTitleBarWidth = getTitleBarWidth;
 exports.replaceRichTextImage = replaceRichTextImage;
 exports.toPage = toPage;
