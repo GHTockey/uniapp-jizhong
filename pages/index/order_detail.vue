@@ -1,5 +1,10 @@
 <template>
 	<view class="order_detail_container" v-if="is_loading">
+
+		<!-- <NavBar showBack title="" /> -->
+		<!-- <HeightBar appendNavBar /> -->
+
+		<!-- 商品信息 -->
 		<view class="order_list">
 			<view class="order_item">
 
@@ -269,8 +274,8 @@
 
 			<view class="state_btn"
 				v-if="order.status == 2 && (order.refund_res == 1 || order.refund_res == 2 || order.refund_res == 4 || order.refund_res == 5)">
-				<text v-if="order.drawback_list.length > 0" @click="change(order.id)">折叠退款商品</text>
-				<text @click="to_drawback(order.id)"
+				<!-- <text v-if="order.drawback_list.length > 0" @click.stop.prevent="change(order.id)">折叠退款商品</text> -->
+				<text @click.stop.prevent="to_drawback(order.id)"
 					v-if="order.refund_res == 2 && order.price_all > order.drawback_money">申请退款</text>
 				<text v-if="order.refund_res == 1">退款中</text>
 				<text v-if="order.refund_res == 2 && order.price_all == order.drawback_money">退款成功</text>
@@ -301,6 +306,7 @@
 <script setup>
 import { ref } from 'vue';
 import { request } from '@/utils/request.js';
+import { formatSecond } from '@/utils';
 import { useTempStore } from '@/stores/temp.js';
 import { storeToRefs } from 'pinia';
 import { onLoad, onShow } from '@dcloudio/uni-app';
@@ -348,6 +354,18 @@ onShow(() => {
 
 
 
+// 折叠退款商品
+function change(changeid) {
+	var id = changeid
+	console.log('changechangechange', id);
+	return
+
+	order_list.value.find(item => {
+		return item.id == id
+	}).is_open = !order_list.value.find(item => {
+		return item.id == id
+	}).is_open;
+}
 // 点击申请退款
 function to_drawback(drawbackid) {
 	// var drawbackid = e.currentTarget.dataset.drawbackid
@@ -464,34 +482,35 @@ async function apply_detail() {
 
 			// var order = res.data.order;
 			var title = '';
-			if (!order) {
+			// console.log(order.value);
+			if (!order.value) {
 				return;
 			}
-			if (order.refund_res == 0) {
-				if (order.status == 1 && order.countdown > 0) {
+			if (order.value.refund_res == 0) {
+				if (order.value.status == 1 && order.value.countdown > 0) {
 					title = '待付款';
 				}
-				if (order.status == 1 && order.countdown <= 0) {
+				if (order.value.status == 1 && order.value.countdown <= 0) {
 					title = '交易关闭';
 				}
-				if (order.status != 1 && order.close_order_type == 1) {
+				if (order.value.status != 1 && order.value.close_order_type == 1) {
 					title = '付款超时,自动关闭订单';
 				}
-				if (order.status != 1 && order.close_order_type == 2) {
+				if (order.value.status != 1 && order.value.close_order_type == 2) {
 					title = '客户关闭订单';
 				}
-				if (order.status != 1 && order.close_order_type == 0) {
-					title = order.buy_type == 1 && order.status == 4 ? '待使用' : res.data.order.status_name;
+				if (order.value.status != 1 && order.value.close_order_type == 0) {
+					title = order.value.buy_type == 1 && order.value.status == 4 ? '待使用' : res.data.order.status_name;
 				}
 
 			} else {
-				if (order.status == 6 && order.close_order_type == 4 && order.refund_res == 2) {
+				if (order.value.status == 6 && order.value.close_order_type == 4 && order.value.refund_res == 2) {
 					title = '商家退款成功, 关闭订单';
 				}
-				if (order.status == 2 && order.refund_res == 2 && order.price_all > order.drawback_money) {
+				if (order.value.status == 2 && order.value.refund_res == 2 && order.value.price_all > order.value.drawback_money) {
 					title = res.data.order.status_name + '(部分商品退款)';
 				}
-				if (order.refund_res == 2 && order.price_all == order.drawback_money) {
+				if (order.value.refund_res == 2 && order.value.price_all == order.value.drawback_money) {
 					title = '退款成功';
 				}
 			}
@@ -532,8 +551,8 @@ function copyText(text) {
 }
 // 导航
 function to_address(address) {
-
-	var address = address.split(",")
+	// console.log('address', address);
+	var address = address.address.split(",")
 	var latitude = address[0];
 	var longitude = address[1];
 	var name = shop.value.shop_name;
@@ -583,7 +602,7 @@ function suan_countdown() {
 			const remainingTime = order.value.countdown - ((currentTime - show_page_time.value) / 1000);
 
 			// 如果剩余时间小于 0，设置为 0 表示时间已过
-			order.value.countdown_time2 = remainingTime < 0 ? '0' : '00' + ':' + util.formatSecond(remainingTime);
+			order.value.countdown_time2 = remainingTime < 0 ? '0' : '00' + ':' + formatSecond(remainingTime);
 
 			if (order.value.countdown_time2 <= 0) {
 				order.value.countdown = 0;

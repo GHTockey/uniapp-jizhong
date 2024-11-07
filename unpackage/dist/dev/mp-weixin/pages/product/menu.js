@@ -150,7 +150,7 @@ const _sfc_main = {
             d: common_vendor.o(($event) => switchNav(navItem.id))
           };
         }),
-        d: common_vendor.unref(statusBarHeight) + 44 + "px"
+        d: common_vendor.unref(statusBarHeight) + 40 + "px"
       } : {}, {
         e: ((_a = cuisine_list.value) == null ? void 0 : _a.length) > 5 && business.value.is_open_product_menu == 1
       }, ((_b = cuisine_list.value) == null ? void 0 : _b.length) > 5 && business.value.is_open_product_menu == 1 ? {

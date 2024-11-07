@@ -25,7 +25,8 @@
 		{
 			"path": "pages/coupon/couponCenter",
 			"style": {
-				"navigationBarTitleText": "领券中心"
+				"navigationBarTitleText": "领券中心",
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -410,8 +411,7 @@
 			"path" : "pages/index/order_detail",
 			"style" : 
 			{
-				"navigationBarTitleText" : "订单详情",
-				"navigationStyle": "custom"
+				"navigationBarTitleText" : "订单详情"
 			}
 		}
 	],

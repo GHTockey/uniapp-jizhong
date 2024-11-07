@@ -242,12 +242,11 @@ p {
 
 /* 横向展示的产品列表 [end] */
 
-
 .product_item_navigator {
-	a {
+	// a {
 		width: 100%;
 		display: flex;
-	}
+	// }
 }
 
 .kong {

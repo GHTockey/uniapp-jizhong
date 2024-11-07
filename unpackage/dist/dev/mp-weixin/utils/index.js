@@ -55,10 +55,29 @@ function formatNumber(n) {
   return n[1] ? n : "0" + n;
 }
 function replaceRichTextImage(text) {
-  text = text.replace(/\s+/g, "");
-  text = text.replace(/(\r\n|\n|\r)/g, "");
-  let reg = new RegExp("<img", "gi");
-  return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
+  if (Array.isArray(text)) {
+    return text.map((item) => {
+      if (item.content_type === "rich_text" && Array.isArray(item.content)) {
+        item.content = item.content.map(processRichTextNode);
+      }
+      return item;
+    });
+  } else if (typeof text === "string") {
+    text = text.replace(/\s+/g, "");
+    text = text.replace(/(\r\n|\n|\r)/g, "");
+    let reg = new RegExp("<img", "gi");
+    return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
+  }
+  return text;
+}
+function processRichTextNode(node) {
+  if (node.name === "img") {
+    node.attrs.style = "max-width:100%;vertical-align: top;";
+  }
+  if (node.children && Array.isArray(node.children)) {
+    node.children = node.children.map(processRichTextNode);
+  }
+  return node;
 }
 exports.formatSecond = formatSecond;
 exports.formatTime = formatTime;

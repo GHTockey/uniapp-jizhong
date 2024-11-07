@@ -5,7 +5,7 @@
 		<HeightBar />
 
 		<!-- 标题栏 -->
-		<NavBar showBack title="我的钱包" isWhite>
+		<NavBar showBack title="我的钱包" isWhite bgc="transparent">
 			<template #title>
 				<text class="text-[30rpx] text-white">我的钱包</text>
 			</template>
@@ -14,7 +14,7 @@
 		<!-- 卡片 -->
 		<view class="card_box" style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/Mask.svg');">
 			<!-- 金币图案 -->
-			<image class="coin_icon" src="https://saas.jizhongkeji.com/static/jzkj/jinbi.svg" mode="widthFix"></image>
+			<image class="coin_icon" src="https://saas.jizhongkeji.com/static/jzkj/static/images/jinbi.svg" mode="widthFix"></image>
 
 			<!-- 账户余额 -->
 			<view class="absolute top-[40rpx] left-[40rpx] flex flex-col justify-center">
@@ -75,7 +75,7 @@
 				</picker> -->
 				<picker :range="years" :value="echoVal" @change="yearChange" mode="multiSelector">
 					<view class="text-[23.61rpx] text-[#6A6A6A] flex items-center">
-						{{ years[0][yearsIndex1] }}年{{ years[1][yearsIndex2] }}月
+						{{ years[0]?.[yearsIndex1] ?? '' }}年{{ years[1]?.[yearsIndex2] ?? '' }}月
 						<image class="w-[18rpx] h-[9rpx] ml-[10rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/icon/ondown.svg"></image>
 					</view>
 				</picker>

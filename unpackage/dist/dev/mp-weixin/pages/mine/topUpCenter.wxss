@@ -24,7 +24,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 .top_up_center_container.data-v-ad8f55dc {
-  height: calc(100vh - 44px);
+  height: calc(100vh - 40px);
   padding: 0 29rpx;
 }
 .top_up_center_container .top_up_center_header.data-v-ad8f55dc {
@@ -128,7 +128,7 @@
   border-radius: 13.89rpx;
 }
 .top_up_center_status_box.data-v-ad8f55dc {
-  height: calc(100vh - 44px);
+  height: calc(100vh - 40px);
   display: flex;
   flex-direction: column;
   align-items: center;

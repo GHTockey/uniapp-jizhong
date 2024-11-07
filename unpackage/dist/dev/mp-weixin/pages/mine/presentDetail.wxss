@@ -26,7 +26,7 @@
 .present_detail_container.data-v-4f8f3f68 {
   padding: 30rpx;
   padding-bottom: 96rpx;
-  min-height: calc(100vh - 44px);
+  min-height: calc(100vh - 40px);
   background-color: #f6f8fe;
 }
 .present_detail_container .present_detail_header.data-v-4f8f3f68 {

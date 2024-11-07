@@ -72,13 +72,40 @@ export function formatNumber(n) {
 // 替换富文本中的图片
 // let reg = new RegExp('<img','gi');
 // this.info = this.info.replace(reg,'<img style="max-width:100%;vertical-align: top;"');
+// export function replaceRichTextImage(text) {
+//   //去除空格
+//   text = text.replace(/\s+/g, '');
+//   // 去除换行
+//   text = text.replace(/(\r\n|\n|\r)/g, '');
+//   let reg = new RegExp('<img', 'gi');
+//   return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
+// }
 export function replaceRichTextImage(text) {
-  //去除空格
-  text = text.replace(/\s+/g, '');
-  // 去除换行
-  text = text.replace(/(\r\n|\n|\r)/g, '');
-  let reg = new RegExp('<img', 'gi');
-  return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
+  if (Array.isArray(text)) {
+    return text.map(item => {
+      if (item.content_type === "rich_text" && Array.isArray(item.content)) {
+        item.content = item.content.map(processRichTextNode);
+      }
+      return item;
+    });
+  } else if (typeof text === 'string') {
+    // 处理字符串类型的富文本
+    text = text.replace(/\s+/g, '');
+    text = text.replace(/(\r\n|\n|\r)/g, '');
+    let reg = new RegExp('<img', 'gi');
+    return text.replace(reg, '<img style="max-width:100%;vertical-align: top;"');
+  }
+  return text;
+}
+
+function processRichTextNode(node) {
+  if (node.name === 'img') {
+    node.attrs.style = "max-width:100%;vertical-align: top;";
+  }
+  if (node.children && Array.isArray(node.children)) {
+    node.children = node.children.map(processRichTextNode);
+  }
+  return node;
 }
 
 

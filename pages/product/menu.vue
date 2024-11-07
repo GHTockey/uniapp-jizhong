@@ -9,7 +9,7 @@
 
 		<!-- 顶部菜单 -->
 		<scroll-view v-if="business.is_open_product_menu == 1" scroll-x="true" class="nav"
-			:style="{ top: statusBarHeight + 44 + 'px', overflow: 'scroll', '-webkit-overflow-scrolling': 'touch' }"
+			:style="{ top: statusBarHeight + 40 + 'px', overflow: 'scroll', '-webkit-overflow-scrolling': 'touch' }"
 			scroll-left scroll-with-animation>
 			<template style="display: flex;align-items: center;" v-for="navItem in cuisine_list">
 				<view :class="['nav-item', currentTab == navItem.id ? 'active' : '']" @click="switchNav(navItem.id)">
@@ -87,19 +87,19 @@
 
 			<view :style="`height:${navHeight}px;padding-top:${statusBarHeight + 20}px;`"></view>
 
-			<block v-if="productList && productList.length">
+			<template v-if="productList && productList.length">
 				<!-- <import src="/pages/template/item.wxml" /> -->
 				<!-- <template is="productListShowByRow"
 					data="{{productListShowByRow: productList, productListName: productListShowByRow,functionName:'buy_now'}}" /> -->
 				<ProductItem :name="'productListShowByRow'" :productListShowByRow="productList" />
-			</block>
-			<block v-else>
+			</template>
+			<template v-else>
 				<view class="flex_col_cen_cen no_data_tip_box">
 					<image lazy-load class="no_data_img" src="https://saas.jizhongkeji.com/static/jzkj/images/kong.png"
 						mode="aspectFit"></image>
 					<view class="no_data_tip">暂无数据</view>
 				</view>
-			</block>
+			</template>
 
 			<view class="ying"></view>
 		</view>
@@ -116,7 +116,6 @@ import { computed, ref } from 'vue';
 import { getTitleBarHeight, getStatusBarHeight } from '@/utils/index.js';
 import { request } from '@/utils/request.js';
 import { onLoad, onShow } from "@dcloudio/uni-app";
-import Tarbar from "@/components/Tarbar.vue";
 
 
 // 往下挤的高度 

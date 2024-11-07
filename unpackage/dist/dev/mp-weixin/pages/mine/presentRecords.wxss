@@ -24,7 +24,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 .present_records_container.data-v-58f5f503 {
-  height: calc(100vh - 44px);
+  height: calc(100vh - 40px);
   background-color: #f6f8fe;
 }
 .present_records_container .present_records_tabs.data-v-58f5f503 {

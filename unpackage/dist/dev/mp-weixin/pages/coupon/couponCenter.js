@@ -1,8 +1,13 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const utils_index = require("../../utils/index.js");
+if (!Array) {
+  const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
+  _easycom_NavBar2();
+}
+const _easycom_NavBar = () => "../../components/NavBar/NavBar.js";
 if (!Math) {
-  CouponList();
+  (_easycom_NavBar + CouponList)();
 }
 const CouponList = () => "../../components/CouponsList.js";
 const _sfc_main = {
@@ -55,9 +60,14 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
+          showBack: true,
+          title: "领券中心",
+          bgc: "transparent"
+        }),
+        b: common_vendor.p({
           coupons: coupons.value
         }),
-        b: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/coupon/myCoupon"))
+        c: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/coupon/myCoupon"))
       };
     };
   }

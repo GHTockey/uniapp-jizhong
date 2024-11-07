@@ -8827,7 +8827,8 @@ const pages = [
   {
     path: "pages/coupon/couponCenter",
     style: {
-      navigationBarTitleText: "领券中心"
+      navigationBarTitleText: "领券中心",
+      navigationStyle: "custom"
     }
   },
   {
@@ -9185,6 +9186,12 @@ const pages = [
     style: {
       navigationBarTitleText: "商品搜索",
       navigationStyle: "custom"
+    }
+  },
+  {
+    path: "pages/index/order_detail",
+    style: {
+      navigationBarTitleText: "订单详情"
     }
   }
 ];

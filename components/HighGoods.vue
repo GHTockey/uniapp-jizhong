@@ -8,34 +8,35 @@
 		</view>
 
 		<view class="product_list" style="display: flex;flex-wrap: wrap;">
-			<block v-for="(product, index) in goods" :key="index">
-				<navigator class="product_item" :url="`/pages/product/detail?id=${product.id}`">
+			<template v-for="(product, index) in goods" :key="index">
+				<view class="product_item">
+					<navigator :url="`/pages/product/detail?id=${product.id}`">
+						<view class="product_radius">
+							<!-- 商品图片 -->
+							<image :lazy-load="true" class="image" mode="aspectFill" :src="product.image_uri"></image>
+							<view class="txt-box">
+								<!-- 商品名字 -->
+								<text class="name" style="font-weight: 500;
+											display: -webkit-box;
+											-webkit-box-orient: vertical;
+											-webkit-line-clamp: 2;
+											overflow: hidden;
+											text-overflow: ellipsis;
+											word-break: break-all;">{{ product.name }}</text>
+								<view class="price-box">
+									<text class="price">
+										<text v-if="product.price > 0" style="font-size:24rpx">￥</text>{{ product.price
+										}}
+									</text>
 
-					<view class="product_radius">
-						<!-- 商品图片 -->
-						<image :lazy-load="true" class="image" mode="aspectFill" :src="product.image_uri"></image>
-						<view class="txt-box">
-							<!-- 商品名字 -->
-							<text class="name" style="font-weight: 500;
-										display: -webkit-box;
-										-webkit-box-orient: vertical;
-										-webkit-line-clamp: 2;
-										overflow: hidden;
-										text-overflow: ellipsis;
-										word-break: break-all;">{{ product.name }}</text>
-							<view class="price-box">
-								<text class="price">
-									<text v-if="product.price > 0" style="font-size:24rpx">￥</text>{{ product.price
-									}}
-								</text>
-
-								<text>已售88</text>
+									<text>已售88</text>
+								</view>
 							</view>
 						</view>
-					</view>
 
-				</navigator>
-			</block>
+					</navigator>
+				</view>
+			</template>
 		</view>
 
 	</view>
@@ -104,11 +105,11 @@ const props = defineProps({
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin: 47px 0;
+		margin: 94rpx 0;
 
 		.icon {
-			width: 37.5px;
-			height: 37.5px;
+			width: 70rpx;
+			height: 70rpx;
 			margin-left: 30rpx;
 		}
 
@@ -132,16 +133,23 @@ const props = defineProps({
 	.product_list {
 		display: flex;
 		flex-wrap: wrap;
+		// justify-content: space-evenly;
+		justify-content: space-between;
+		// gap: 20rpx;
+		row-gap: 30rpx;
+		// border: 1px solid red;
 		// padding: 0 25rpx;
 	}
 
 	.product_item {
+		// flex: 0.5;
 		overflow: hidden;
 		border-radius: 12rpx;
 		background-color: white;
 		// border: 1px solid red;
-		width: 48%; // 每行两个商品
-		margin: 1%; // 间距
+		// width: 48%; // 每行两个商品
+		// margin-left: 1%; // 间距
+		margin: 0 !important;
 		box-sizing: border-box;
 		box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.05);
 

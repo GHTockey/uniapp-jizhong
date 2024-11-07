@@ -107,11 +107,11 @@
 .content .menueview.data-v-1cf27b2a {
   margin-top: 20rpx;
   border-radius: 14rpx;
-  padding: 10px;
+  padding: 20rpx;
   background-color: white;
   display: flex;
-  column-gap: 30px;
-  row-gap: 15px;
+  column-gap: 60rpx;
+  row-gap: 30rpx;
   flex-wrap: wrap;
   justify-content: space-around;
 }

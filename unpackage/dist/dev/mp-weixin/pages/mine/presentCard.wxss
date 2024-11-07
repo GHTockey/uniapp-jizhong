@@ -25,7 +25,7 @@
 /* 文章场景相关 */
 .present_card_container.data-v-5cbe5b80 {
   background-color: #f6f8fe;
-  min-height: calc(100vh - 44px);
+  min-height: calc(100vh - 40px);
   padding-top: 85rpx;
   padding-bottom: 95.83rpx;
   position: relative;
@@ -37,7 +37,7 @@
   align-items: center;
   justify-content: space-around;
   position: fixed;
-  top: 44px;
+  top: 40px;
   left: 0;
   right: 0;
   z-index: 100;

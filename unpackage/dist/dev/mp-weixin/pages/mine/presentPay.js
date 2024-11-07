@@ -24,7 +24,8 @@ const _sfc_main = {
       return {
         a: common_vendor.p({
           showBack: true,
-          isWhite: true
+          isWhite: true,
+          bgc: "transparent"
         }),
         b: common_vendor.t(buyerMsg.value || "无留言"),
         c: common_vendor.o(($event) => showActionSheet.value = true),

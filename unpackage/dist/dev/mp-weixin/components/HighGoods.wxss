@@ -2,11 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 47px 0;
+  margin: 94rpx 0;
 }
 .container .header .icon {
-  width: 37.5px;
-  height: 37.5px;
+  width: 70rpx;
+  height: 70rpx;
   margin-left: 30rpx;
 }
 .container .header .title {
@@ -24,13 +24,14 @@
 .container .product_list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 30rpx;
 }
 .container .product_item {
   overflow: hidden;
   border-radius: 12rpx;
   background-color: white;
-  width: 48%;
-  margin: 1%;
+  margin: 0 !important;
   box-sizing: border-box;
   box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.05);
 }

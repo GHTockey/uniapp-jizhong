@@ -2,6 +2,10 @@
 	<view class="coupon-container" style="
 		height: calc(100vh - 44px); 
 		background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/coupons.png');">
+
+		<NavBar showBack title="领券中心" bgc="transparent" />
+
+
 		<!-- 空状态 -->
 <!-- 		<view class="empty-box">
 			<image src="https://saas.jizhongkeji.com/static/jzkj/static/images/kong.png" mode="aspectFill"></image>

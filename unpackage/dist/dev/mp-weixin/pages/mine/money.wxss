@@ -29,7 +29,7 @@
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 0 29rpx;
-  padding-top: 44px;
+  padding-top: 40px;
 }
 .mine_money_container .card_box.data-v-243929c5 {
   margin-top: 30rpx;
@@ -115,7 +115,7 @@
 }
 .mine_money_container .data_list_box.data-v-243929c5 {
   margin-top: 30rpx;
-  height: calc(100vh - 44px - 408.33rpx - 41.67rpx - 150rpx - 41.67rpx);
+  height: calc(100vh - 40px - 408.33rpx - 41.67rpx - 150rpx - 41.67rpx);
   background-color: #fff;
   border-radius: 13.89rpx;
   padding: 29rpx;

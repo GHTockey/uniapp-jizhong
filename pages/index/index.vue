@@ -71,13 +71,19 @@
     </scroll-view>
 
     <!-- 秒杀列表 -->
-    <SeckillingList style="margin-top: 20rpx;" />
+    <view style="margin-top: 20rpx;">
+      <SeckillingList />
+    </view>
 
     <!-- 公司信息 -->
-    <CompanyInfo style="margin-top: 20rpx;" />
+    <view style="margin-top: 20rpx;">
+      <CompanyInfo />
+    </view>
 
     <!-- 好物优选 -->
-    <HighGoods style="margin-top: 20rpx;" :goods="goodsList" />
+    <view style="margin-top: 20rpx;">
+      <HighGoods :goods="goodsList" />
+    </view>
   </view>
 
   <!-- <button style="position: fixed; top: 100rpx; left: 50%; transform: translateX(-50%);" @click="addBubbleTipsData">添加数据</button> -->
@@ -93,7 +99,6 @@ import { ref, onMounted, computed } from "vue";
 import SeckillingList from "@/components/SeckillingList.vue";
 import CompanyInfo from "@/components/CompanyInfo.vue";
 import HighGoods from "@/components/HighGoods.vue";
-import Tarbar from "@/components/Tarbar.vue";
 import NewsRoll from "@/components/NewsRoll.vue";
 import {
   getStatusBarHeight,
@@ -420,11 +425,11 @@ async function getData() {
   .menueview {
     margin-top: 20rpx;
     border-radius: 14rpx;
-    padding: 10px;
+    padding: 20rpx;
     background-color: white;
     display: flex;
-    column-gap: 30px;
-    row-gap: 15px;
+    column-gap: 60rpx;
+    row-gap: 30rpx;
     flex-wrap: wrap;
     justify-content: space-around;
     // justify-content: space-between;

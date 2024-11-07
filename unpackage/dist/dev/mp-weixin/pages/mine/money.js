@@ -58,11 +58,13 @@ const _sfc_main = {
       yearsIndex2.value = e.detail.value[1];
     }
     return (_ctx, _cache) => {
+      var _a, _b;
       return common_vendor.e({
         a: common_vendor.p({
           showBack: true,
           title: "我的钱包",
-          isWhite: true
+          isWhite: true,
+          bgc: "transparent"
         }),
         b: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/topUpCenter")),
         c: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/withdraw")),
@@ -75,8 +77,8 @@ const _sfc_main = {
         h: selectTab.value == 2
       }, selectTab.value == 2 ? {} : {}, {
         i: common_vendor.o(($event) => selectTab.value = 2),
-        j: common_vendor.t(years.value[0][yearsIndex1.value]),
-        k: common_vendor.t(years.value[1][yearsIndex2.value]),
+        j: common_vendor.t(((_a = years.value[0]) == null ? void 0 : _a[yearsIndex1.value]) ?? ""),
+        k: common_vendor.t(((_b = years.value[1]) == null ? void 0 : _b[yearsIndex2.value]) ?? ""),
         l: years.value,
         m: echoVal.value,
         n: common_vendor.o(yearChange),

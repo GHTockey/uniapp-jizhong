@@ -353,7 +353,7 @@
 .pay_container.data-v-87306594 {
   min-height: 100vh;
   position: relative;
-  padding-top: 44px;
+  padding-top: 40px;
   background-size: 100%;
   background-repeat: no-repeat;
   background-color: #F8F9FA;

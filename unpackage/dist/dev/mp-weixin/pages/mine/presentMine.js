@@ -23,7 +23,8 @@ const _sfc_main = {
           appendTitleBar: true
         }),
         b: common_vendor.p({
-          showBack: true
+          showBack: true,
+          bgc: "transparent"
         }),
         c: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentRecords")),
         d: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentActivate")),

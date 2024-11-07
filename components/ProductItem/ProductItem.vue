@@ -53,21 +53,22 @@
 			<view class="product_list_row" style="display: flex;flex-wrap: wrap;padding: 0 25rpx;">
 				<block v-for="item in productListShowByRow" :key="item.id">
 					<view class="product_item">
-						<navigator hover-class="none" class="product_item_navigator"
-							:url="`/pages/product/detail?id=${item.id}`">
-							<image lazy-load class="image" mode="aspectFill" :src="item.image_uri" />
-							<view class="flex_col_space_bt product_info">
-								<text class="name"
-									style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;text-overflow: ellipsis;word-break: break-all;">
-									{{ item.name }}</text>
-								<view class="flex_row_space_bt" v-if="item.price > 0">
-									<text class="price font_bold" :style="{ opacity: item.price ? 1 : 0 }"><text
-											style="font-size: 28rpx;">￥</text>{{ item.price }}</text>
-									<view class="product_list_row_btn">购买</view>
-									<!-- <view class="product_list_row_btn">仅剩{{item.stock}}件</view> -->
+						<view class="product_item_navigator" @click="toPage(`/pages/product/detail?id=${item.id}`)">
+							<!-- <navigator hover-class="none" :url=""> -->
+								<image lazy-load class="image" mode="aspectFill" :src="item.image_uri" />
+								<view class="flex_col_space_bt product_info">
+									<text class="name"
+										style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;text-overflow: ellipsis;word-break: break-all;">
+										{{ item.name }}</text>
+									<view class="flex_row_space_bt" v-if="item.price > 0">
+										<text class="price font_bold" :style="{ opacity: item.price ? 1 : 0 }"><text
+												style="font-size: 28rpx;">￥</text>{{ item.price }}</text>
+										<view class="product_list_row_btn">购买</view>
+										<!-- <view class="product_list_row_btn">仅剩{{item.stock}}件</view> -->
+									</view>
 								</view>
-							</view>
-						</navigator>
+							<!-- </navigator> -->
+						</view>
 					</view>
 				</block>
 			</view>
@@ -76,7 +77,7 @@
 </template>
 
 <script setup>
-
+import { toPage } from '@/utils';
 
 const props = defineProps({
 	name: {

@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const utils_index = require("../../utils/index.js");
 const _sfc_main = {
   __name: "ProductItem",
   props: {
@@ -91,7 +92,7 @@ const _sfc_main = {
             d: common_vendor.t(item.price),
             e: item.price ? 1 : 0
           } : {}, {
-            f: `/pages/product/detail?id=${item.id}`,
+            f: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)(`/pages/product/detail?id=${item.id}`), item.id),
             g: item.id
           });
         })

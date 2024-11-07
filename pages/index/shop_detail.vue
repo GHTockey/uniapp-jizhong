@@ -109,7 +109,8 @@
 							<view class="input">
 								<PickerSelector :start="currentDate" style="width: 100%;" mode="date" name="shop_time"
 									:value="picker_selector_data.shop_time" placeholder="请选择用餐时间"
-									placeholder-class="placeholder-style" @change="picker_selector_change($event, 'shop_time')" />
+									placeholder-class="placeholder-style"
+									@change="picker_selector_change($event, 'shop_time')" />
 
 							</view>
 						</view>
@@ -141,7 +142,7 @@ import { request } from '@/utils/request.js';
 import { onLoad } from '@dcloudio/uni-app';
 import { useTempStore } from "@/stores/temp.js";
 import { storeToRefs } from 'pinia';
-
+import { replaceRichTextImage } from '@/utils';
 const tempStore = useTempStore();
 const { user } = storeToRefs(tempStore);
 
@@ -195,7 +196,7 @@ function open_show_tc() {
 async function shop_detail_data(shop_id) {
 
 	let res = await request('/WxAppCustomer/shop_detail', 'post', { shop_id });
-	console.log(res);
+	console.log('shop_detail_data', res);
 	if (res.code != 0) {
 		uni.showToast({
 			title: '加载数据失败',
@@ -222,6 +223,10 @@ async function shop_detail_data(shop_id) {
 		// swiper.value = swiper.value;
 		targte_apply.value = res.data.targte_apply;
 		is_loading.value = true;
+		// 初始化富文本样式
+		console.log(shop.value.introduce);
+		shop.value.introduce = replaceRichTextImage(shop.value.introduce);
+		console.log('shop.value.introduce', shop.value.introduce);
 
 		if (res.data.shop && res.data.shop.shop_name) {
 			uni.setNavigationBarTitle({
@@ -256,10 +261,10 @@ function to_address(shop) {
 	})
 }
 
-function preview_swiper_image(e) {
+function preview_swiper_image(index) {
 	uni.previewImage({
 		urls: swiper.value.swiperImgUrls,
-		current: [e.currentTarget.dataset.index]
+		current: index
 	})
 }
 

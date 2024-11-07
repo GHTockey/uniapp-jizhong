@@ -12,7 +12,7 @@ const _sfc_main = {
   __name: "presentActivateRes",
   setup(__props) {
     const currentItem = common_vendor.ref({
-      img: "https://saas.jizhongkeji.com/static/jzkj/present_item.png",
+      img: "https://saas.jizhongkeji.com/static/jzkj/static/images/present_item.png",
       card_text: "储值卡",
       title: "2025新春礼品卡2025新春礼品卡2025新春礼2025新春礼品卡2025新春礼品卡2025新春礼",
       time: "2024-08-09 14:56:45 至 2024-08-09 14:56:45"

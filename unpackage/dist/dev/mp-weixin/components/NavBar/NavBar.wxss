@@ -26,7 +26,7 @@
 .nav-bar-container.data-v-9367190c {
   box-sizing: content-box;
   width: 100%;
-  min-height: 44px;
+  min-height: 40px;
   position: fixed;
   top: 0;
   left: 0;

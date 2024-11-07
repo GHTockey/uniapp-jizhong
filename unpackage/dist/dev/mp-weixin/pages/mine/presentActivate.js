@@ -36,7 +36,8 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
-          showBack: true
+          showBack: true,
+          bgc: "transparent"
         }),
         b: formData.value.cardNum,
         c: common_vendor.o(($event) => formData.value.cardNum = $event.detail.value),
