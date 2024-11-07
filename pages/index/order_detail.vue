@@ -1,6 +1,300 @@
 <template>
-	<view v-if="is_loading">
+	<view class="order_detail_container" v-if="is_loading">
+		<view class="order_list">
+			<view class="order_item">
 
+				<view class="date_state">
+					<text style="color: #333333;font-weight: 700;font-size: 28rpx;" v-if="order.buy_type == 1">{{
+						shop.shop_name }}</text>
+					<text style="color: #333333;font-weight: 700;font-size: 28rpx;" v-else>{{ business.name }}总店</text>
+
+					<view v-if="order.refund_res == 0">
+						<text class="state" style="color: #FF0000;"
+							v-if="order.status == 1 && order.countdown > 0">待付款</text>
+						<text class="state" v-if="order.status == 1 && order.countdown <= 0">交易关闭</text>
+
+						<text class="state" v-if="order.status != 1 && order.close_order_type == 1">付款超时,自动关闭订单</text>
+						<text class="state" v-if="order.status != 1 && order.close_order_type == 2">客户关闭订单</text>
+						<text class="state" v-if="order.status != 1 && order.close_order_type == 0">{{ order.buy_type
+							== 1
+							&& order.status == 4 ? '待使用' : order.status_name }}</text>
+					</view>
+					<view v-if="order.refund_res != 0">
+						<text class="state"
+							v-if="order.status == 6 && order.close_order_type == 4 && order.refund_res == 2">商家退款成功,
+							关闭订单</text>
+
+						<text class="state"
+							v-if="order.status == 2 && order.refund_res == 2 && order.price_all > order.drawback_money">{{
+								order.status_name }}(部分商品退款)</text>
+						<text class="state"
+							v-if="order.refund_res == 2 && order.price_all == order.drawback_money">退款成功</text>
+					</view>
+				</view>
+
+
+				<view class="product_info" v-if="order.json_info" v-for="(json_item, json_index) in order.json_info"
+					:key="json_index">
+					<!-- good_imgs -->
+					<image lazy-load :src="json_item.img_uri" mode="aspectFill" />
+					<view class="detail_info">
+						<view class="name_price">
+							<text class="name">{{ json_item.name }}</text>
+							<text class="price">￥<text>{{ json_item.unit_price }}</text></text>
+						</view>
+						<view class="guige_number">
+							<view class="guige_list">
+								<text v-if="json_item.spec_totall">{{ json_item.spec_totall }}</text>
+							</view>
+							<text class="number">x{{ json_item.count }}</text>
+						</view>
+						<view class="detail_desc"><text>{{ json_item.count }}</text>件
+							实收:￥<text>{{ json_item.price_all }}</text></view>
+					</view>
+				</view>
+				<view class="state_tips" v-if="order.status == 1">
+					<span style="font-weight: 700;margin-right: 10rpx;">温馨提示</span>请尽快完成支付，商品火爆可能会卖光
+				</view>
+
+				<!-- 已退款商品 -->
+				<view style="margin-top:30rpx" v-if="order.drawback_list.length > 0 && order.is_open"
+					v-for=" drawback in order.drawback_list" :key="id">
+					<view class="product_info" v-if="drawback.json_info"
+						v-for="(json_item, json_index) in drawback.json_info" :key="json_index">
+						<image lazy-load :src="json_item.img_uri" mode="aspectFill" />
+						<view class="detail_info">
+							<view class="name_price">
+								<text class="name">{{ json_item.name }}</text>
+								<text class="price">￥<text>{{ json_item.unit_price }}</text></text>
+							</view>
+							<view class="guige_number">
+								<view class="guige_list">
+									<text v-if="json_item.spec_totall">{{ json_item.spec_totall }}</text>
+								</view>
+								<text class="number" v-if="json_item.drawback_count > 0">x{{
+									json_item.drawback_count }}</text>
+								<text class="number" v-if="json_item.drawback_count_ing > 0">退款中x{{
+									json_item.drawback_count_ing }}</text>
+							</view>
+							<view class="detail_desc"><text>{{ json_item.count }}</text>件
+								实收:￥<text>{{ json_item.price_all }}(已退款{{ json_item.unit_price *
+									json_item.drawback_count }})</text>
+							</view>
+						</view>
+					</view>
+
+
+					<view class="order_info_v">
+						<view v-if="drawback.userback.reason"
+							style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
+							<view><text style="margin-right: 10rpx;flex: none;">·{{ drawback.drawback_time_detail
+									}}</text>申请退款，原因：{{ drawback.userback.reason }}
+							</view>
+						</view>
+
+						<view v-if="drawback.shopback.reason"
+							style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
+							<view><text style="margin-right: 10rpx;flex: none;">·{{ drawback.drawback_time_detail
+									}}</text>商家主动退款，原因：{{ drawback.shopback.reason }}
+							</view>
+						</view>
+
+						<view v-if="drawback.shop_agree_drawback == 1"
+							style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
+							<view><text style="margin-right: 10rpx;flex: none;">·{{ drawback.drawback_time_detail
+									}}</text>
+								商家同意退款</view>
+						</view>
+
+						<view v-if="drawback.shop_agree_drawback == 2"
+							style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
+							<view><text style="margin-right: 10rpx;flex: none;">·{{ drawback.drawback_time_detail
+									}}</text>
+								商家拒绝退款</view>
+						</view>
+					</view>
+				</view>
+
+			</view>
+		</view>
+
+		<!-- 核销码 -->
+		<view class="content_list" v-if="order.buy_type == 1 && order.status == 4">
+			<view class="context_box">
+				<view class="container_box">
+					<view class="container_box_title">核销码</view>
+
+					<view class="shop_info_box">
+						<image @click="open_img(order.qrcode_uri)" :data-qrcodetrial="order.qrcode_uri"
+							class="shop_info_img" mode="aspectFill" :src="order.qrcode_uri"></image>
+
+						<view class="shop_info_right">
+							<view class="shop_info_right_hang1">
+								<view class="shop_info_right">
+									<view style="font-size: 28rpx;font-weight: 700;">{{ order.qrcode_number }}</view>
+								</view>
+
+								<view @click="copyText(order.qrcode_number)" class="daohang_box">复制
+								</view>
+							</view>
+
+							<view style="width: 80%;text-align: justify;font-size: 23rpx;color: #989898;">
+								风险提示：二维码及券码是您在门店消费的有效凭证，仅限门店工作人员核销。切勿泄露给他人，谨防上当受骗造成损失！</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
+
+		<!-- 门店信息 -->
+		<view class="content_list">
+			<view class="context_box" v-if="order.buy_type == 1">
+				<view class="container_box">
+					<view class="container_box_title">门店信息</view>
+					<view class="shop_info_box">
+						<image class="shop_info_img" mode="aspectFill" :src="shop.image_uri"></image>
+
+						<view class="shop_info_right">
+							<view class="shop_info_right_hang1">
+								<view class="shop_info_right">
+									<view style="font-size: 28rpx;font-weight: 700;">{{ shop.shop_name }}</view>
+									<view style="margin-top: 10rpx;">{{ shop.start_time }}-{{ shop.end_time }}</view>
+								</view>
+
+								<view class="daohang_box">
+									<image @click="to_address(shop)" class="daohang"
+										src="https://saas.jizhongkeji.com/static/jzkj/images/daohang.png"></image>
+									<image @click="makePhoneCall(shop.phone)" class="daohang"
+										src="https://saas.jizhongkeji.com/static/jzkj/images/phone_img.png"></image>
+								</view>
+							</view>
+
+							<view>{{ shop.city }}{{ shop.address_name }}{{ shop.address_detail }}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 订单信息 -->
+		<view class="content_list">
+			<view class="context_box">
+				<view class="container_box">
+					<view class="bottom_list">
+						<view class="item">
+							<view>商品总价</view>
+							<view class="right">￥{{ order.price_all }}</view>
+						</view>
+						<view class="item">
+							<view>订单编号</view>
+							<view class="right">{{ order.order_id }}</view>
+						</view>
+						<view class="item" v-if="order.status != 1 && order.pay_success_time">
+							<view>付款时间</view>
+							<view class="right">{{ order.pay_success_time }}</view>
+						</view>
+						<view class="item" style="border-bottom: 0;">
+							<view>下单时间</view>
+							<view class="right">{{ order.order_time }}</view>
+						</view>
+
+						<!-- 核销信息 -->
+						<view v-if="order.status == 8 && order.buy_type == 1">
+							<view class="item" style="border-bottom: 0;">
+								<view>提货时间</view>
+								<view class="right">{{ order.pick_time }}</view>
+							</view>
+							<view v-if="order.pick_name" class="item" style="border-bottom: 0;">
+								<view>核销人员</view>
+								<view class="right">{{ order.pick_name }}</view>
+							</view>
+							<view v-else class="item" style="border-bottom: 0;">
+								<view>核销人员</view>
+								<view class="right"> {{ pick_name.user_name ? pick_name.user_name : (pick_name.nickname
+									?
+									pick_name.nickname : '匿名用户') }}</view>
+							</view>
+						</view>
+
+
+						<!-- 发货信息 -->
+						<view v-if="order.buy_type != 1 && order.status > 2">
+							<view class="item" style="border-bottom: 0;">
+								<view>发货时间</view>
+								<view class="right">{{ order.delivery_time }}</view>
+							</view>
+							<view class="item" style="border-bottom: 0;">
+								<view>物流公司</view>
+								<view class="right">{{ company.name }}</view>
+							</view>
+							<view class="item" style="border-bottom: 0;">
+								<view>物流单号</view>
+								<view class="right">{{ order.delivery_notes }}</view>
+							</view>
+						</view>
+
+					</view>
+
+				</view>
+
+
+			</view>
+		</view>
+
+		<view style="height: 150rpx;width: 100%;"></view>
+		<!-- 底部按钮 -->
+		<view class="order_btn" v-if="!(order.status == 4 && order.buy_type == 1)">
+
+			<view class="state_btn" v-if="order.status == 1">
+				<text @click="close_business(order.id)" v-if="order.status == 1 && order.countdown > 0">取消订单</text>
+				<!-- <text>分享商品</text> -->
+				<text @click="delte_business(order.id)" v-if="order.status == 1 && order.countdown <= 0">删除订单</text>
+				<text v-if="order.status == 1 && order.countdown > 0" class="active topayorder"
+					@click="re_pay(order.id)">立即付款{{ order.countdown_time2 }}</text>
+				<text v-if="order.status == 1 && order.countdown <= 0 && is_show_btn" class="active">再买一单</text>
+			</view>
+			<view class="state_btn" v-if="order.status == 6">
+				<text @click="delte_business(order.id)">删除订单</text>
+				<text v-if="is_show_btn" class="active">再买一单</text>
+			</view>
+
+			<view class="state_btn" @click="to_drawback(order.id)"
+				v-if="order.status == 2 && (order.refund_res == '' || order.refund_res == 3 || order.refund_res == 6)">
+				<!-- // 1:退款中;2:退款成功;3:退款失败;4:退款处理中;5:退款关闭;6:退款异常 -->
+				<text v-if="order.refund_res == ''">申请退款</text>
+				<text v-if="order.refund_res == 3">退款失败</text>
+				<text v-if="order.refund_res == 6">退款异常</text>
+			</view>
+
+			<view class="state_btn"
+				v-if="order.status == 2 && (order.refund_res == 1 || order.refund_res == 2 || order.refund_res == 4 || order.refund_res == 5)">
+				<text v-if="order.drawback_list.length > 0" @click="change(order.id)">折叠退款商品</text>
+				<text @click="to_drawback(order.id)"
+					v-if="order.refund_res == 2 && order.price_all > order.drawback_money">申请退款</text>
+				<text v-if="order.refund_res == 1">退款中</text>
+				<text v-if="order.refund_res == 2 && order.price_all == order.drawback_money">退款成功</text>
+
+				<text v-if="order.refund_res == 4">退款处理中</text>
+				<text v-if="order.refund_res == 5">退款关闭</text>
+			</view>
+
+
+			<view class="state_btn" v-if="order.status == 4">
+				<!-- bindtap="to_drawback" data-drawbackid="{{order.id}}" -->
+				<text v-if="is_show_btn">申请售后</text>
+				<text>查看物流</text>
+				<!-- <text class="active topayorder" bind:tap="comfire_order" data-comfireorderid="{{order.id}}">确认收货</text> -->
+			</view>
+			<view class="state_btn" v-if="order.status == 5">
+				<text v-if="is_show_btn">再次购买</text>
+				<text v-if="is_show_btn" class="active">去评价</text>
+			</view>
+			<view class="state_btn" v-if="order.status == 8">
+				<text v-if="is_show_btn">再次购买</text>
+				<text v-if="is_show_btn" class="active">去评价</text>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -13,19 +307,19 @@ import { onLoad, onShow } from '@dcloudio/uni-app';
 
 const { user, business } = storeToRefs(useTempStore())
 
-const order_id = ref(0)
-const show_page_time = ref(null)
-const countdown_Interval = ref(null)
-const countdown = ref(null)
-const is_show_btn = ref(false) //隐藏掉没有做的按钮
+const order_id = ref(0);
+const show_page_time = ref(null);
+const countdown_Interval = ref(null);
+const countdown = ref(null);
+const is_show_btn = ref(false); //隐藏掉没有做的按钮
 
-const pick_name = ref(null)
-const company = ref(null)
+const pick_name = ref(null);
+const company = ref(null);
 
-const status = ref()
-const shop = ref(null)
-const order = ref(null)
-const is_loading = ref(false)
+const status = ref();
+const shop = ref(null);
+const order = ref(null);
+const is_loading = ref(false);
 
 
 onLoad(options => {
@@ -224,9 +518,10 @@ async function apply_detail() {
 		})
 	}
 }
-function copyText(e) {
+function copyText(text) {
 	uni.setClipboardData({
-		data: e.currentTarget.dataset.text,
+		// data: e.currentTarget.dataset.text,
+		data: text,
 		success: function (res) {
 			uni.showToast({
 				title: '已复制',
