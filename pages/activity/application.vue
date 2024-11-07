@@ -364,7 +364,7 @@ async function formSubmit(e) {
 
 	let form_data = { ...e.detail.value, ...picker_select.value }
 	console.log('formSubmit e', form_data);
-	return;
+	// return;
 
 	let res = await request('/WxAppCustomer/activity_form_submit', 'post', { ...form_data, product_id: (product.value && product.value.id > 0) ? product.value.id : 0 })
 	console.log('res', res);

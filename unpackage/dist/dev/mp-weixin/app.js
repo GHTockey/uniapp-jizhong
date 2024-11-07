@@ -65,6 +65,7 @@ if (!Math) {
   "./pages/mine/integral_detail.js";
   "./pages/product/search.js";
   "./pages/index/order_detail.js";
+  "./pages/activity/application_record.js";
 }
 const __default__ = {
   onLaunch: function() {

@@ -9194,6 +9194,12 @@ const pages = [
     style: {
       navigationBarTitleText: "订单详情"
     }
+  },
+  {
+    path: "pages/activity/application_record",
+    style: {
+      navigationBarTitleText: "报名记录"
+    }
   }
 ];
 const globalStyle = {

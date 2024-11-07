@@ -44,7 +44,7 @@
 						</view>
 
 						<view>
-							<view class="section detail_content">
+							<view class="section detail_content" style="padding: 30rpx;">
 								<view class="title">
 									<text>企业简介</text>
 									<view class="text_decoration_border"></view>
@@ -56,15 +56,19 @@
 									</image>
 								</view>
 
-								<view v-if="extend_active.desc" class="wxParse" style="color: unset;">
-									<!-- <template is="wxParse" :data="{wxParseData:desc.nodes}" /> -->
-									<text>wxParse 组件: wxParseData:desc.nodes</text>
+								<view>
+									<rich-text class="xiangqing_rich_text" :nodes="extend_active.detail_context" />
 								</view>
+
+								<!-- <view v-if="extend_active.desc" class="wxParse" style="color: unset;">
+									<text>wxParse 组件: wxParseData:desc.nodes</text>
+									<template is="wxParse" :data="{wxParseData:desc.nodes}" />
+								</view> -->
 							</view>
 						</view>
 
 						<view>
-							<view class="section detail_content" style="margin-top:18rpx">
+							<view class="section detail_content" style="margin-top:18rpx; padding: 30rpx;">
 								<view class="title">
 									<text>产品详情</text>
 									<view class="text_decoration_border"></view>
@@ -79,13 +83,15 @@
 
 								<view v-if="extend_active.detail_content" class="wxParse" style="color: unset;">
 									<!-- <template is="wxParse" data="{{wxParseData:detail_content.nodes}}" /> -->
-									<text>wxParse 组件: wxParseData:detail_content.nodes</text>
+									<!-- <text>wxParse 组件: wxParseData:detail_content.nodes</text> -->
+
+									<rich-text :nodes="extend_active.detail_content" />
 								</view>
 							</view>
 						</view>
 
 						<view>
-							<view class="section detail_content" style="margin-top:18rpx">
+							<view class="section detail_content" style="margin-top:18rpx; padding: 30rpx;">
 								<view class="title">
 									<text>产品卖点</text>
 									<view class="text_decoration_border"></view>
@@ -99,8 +105,9 @@
 								</view>
 
 								<view v-if="extend_active.product_hot" class="wxParse" style="color: unset;">
+									<!-- <text>wxParse 组件: wxParseData:product_hot.nodes</text> -->
 									<!-- <template is="wxParse" data="{{wxParseData:product_hot.nodes}}" /> -->
-									<text>wxParse 组件: wxParseData:product_hot.nodes</text>
+									<rich-text :nodes="extend_active.product_hot" />
 								</view>
 							</view>
 						</view>
@@ -149,7 +156,7 @@
 						</view>
 
 						<view>
-							<view class="section detail_content" style="margin-top:18rpx">
+							<view class="section detail_content" style="margin-top:18rpx; padding: 30rpx;">
 								<view class="title">
 									<text>市场扶持</text>
 									<view class="text_decoration_border"></view>
@@ -163,8 +170,9 @@
 								</view>
 
 								<view class="wxParse" style="color: unset;">
+									<!-- <text>wxParse 组件: wxParseData:market.nodes</text> -->
 									<!-- <template is="wxParse" data="{{wxParseData:market.nodes}}" /> -->
-									<text>wxParse 组件: wxParseData:market.nodes</text>
+									<rich-text :nodes="extend_active.market" />
 								</view>
 							</view>
 						</view>
@@ -798,7 +806,7 @@ function go_applications_v(activity) {
 </style>
 
 <style>
-@import '../../static/styles/detailOld.css'; 
+@import '../../static/styles/detailOld.css';
 
 .biaoti {
 	padding-top: 25rpx;
