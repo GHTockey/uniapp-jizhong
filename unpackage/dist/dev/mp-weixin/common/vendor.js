@@ -8983,7 +8983,8 @@ const pages = [
   {
     path: "pages/mine/presentCard",
     style: {
-      navigationBarTitleText: "礼品卡"
+      navigationBarTitleText: "礼品卡",
+      navigationStyle: "custom"
     }
   },
   {

@@ -357,6 +357,7 @@
   background-size: 100%;
   background-repeat: no-repeat;
   background-color: #F8F9FA;
+  padding-bottom: 98rpx;
 }
 .pay_container .bg_gradient.data-v-87306594 {
   position: absolute;

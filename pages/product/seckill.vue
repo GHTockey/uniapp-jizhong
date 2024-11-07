@@ -1,8 +1,9 @@
 <template>
-	<view class="seckill_container">
+	<!-- 背景图片设在此处 -->
+	<view class="seckill_container" style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/money-bg.svg');">
 
 		<HeightBar />
-		<NavBar showBack isWhite title="" />
+		<NavBar showBack isWhite bgc="transparent" title="" />
 
 		<view class="seckill_header">
 			<image mode="aspectFill" class="w-[400rpx] h-[100rpx]" src="../../static/seckill_title.svg"></image>
@@ -60,12 +61,8 @@
 							<text class="text-[17rpx] text-[#FFFFFF] z-10">剩余100件</text>
 							<!-- 相对定位指示器 -->
 							<view class="seckill_goods_list_item_progress_indicator z-10 absolute left-[50%]">
-								<svg t="1730863498716" class="icon" viewBox="0 0 1027 1024" version="1.1"
-									xmlns="http://www.w3.org/2000/svg" p-id="2802" width="16" height="16">
-									<path
-										d="M689.73605925 470.11764148c-55.66919111 0-97.92777482-45.72956445-87.97601184-94.95438223l72.0774637-356.91633777-410.10972444 409.11454815c-49.21268148 52.69579852-7.96141037 132.73467259 68.09675851 132.73467259 55.68132741 0 123.79022222 45.72956445 113.83845927 94.94224593l-71.60414815 357.41392593 383.76182518-409.11454816c49.21268148-52.69579852 7.94927408-133.22012445-68.10889481-133.22012444z m0 0"
-										fill="#ff065e" p-id="2803"></path>
-								</svg>
+								<image mode="aspectFill" class="w-[25rpx] h-[25rpx]" src="../../static/ms_sd.svg">
+								</image>
 							</view>
 						</view>
 						<!-- 原价 -->
@@ -85,8 +82,6 @@
 				</view>
 			</view>
 		</view>
-
-
 
 		<!-- temp 切换状态 -->
 		<button @click="isEmpty = !isEmpty">[temp]切换状态</button>
@@ -146,11 +141,12 @@ const randomNum = () => {
 .seckill_container {
 	min-height: 100vh;
 	background-color: #f4f6fa;
+	background-size: 100%;
+	background-repeat: no-repeat;
 
 
 	.seckill_header {
 		min-height: 508rpx;
-		background-color: #ff346d;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

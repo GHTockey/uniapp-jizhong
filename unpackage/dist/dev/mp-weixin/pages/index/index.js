@@ -21,7 +21,7 @@ const _sfc_main = {
   setup(__props) {
     const isFixedHeadeContent = common_vendor.ref(false);
     const containerMarTop = common_vendor.computed(() => {
-      return 47.22 + utils_index.getTitleBarHeight() + utils_index.getStatusBarHeight();
+      return 47.22 + (utils_index.getTitleBarHeight() || 40) + utils_index.getStatusBarHeight();
     });
     const banner_swiper = common_vendor.ref({
       images: [],
@@ -183,7 +183,7 @@ const _sfc_main = {
       }, !isFixedHeadeContent.value ? {
         c: common_vendor.s(`height: ${common_vendor.unref(utils_index.getStatusBarHeight)()}px;`)
       } : {}, {
-        d: common_vendor.s(`height: ${common_vendor.unref(utils_index.getTitleBarHeight)()}px;`),
+        d: common_vendor.s(`height: ${common_vendor.unref(utils_index.getTitleBarHeight)() || 40}px;`),
         e: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/notify/notify")),
         f: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/onlineSearch/onlineSearch")),
         g: isFixedHeadeContent.value ? 1 : "",

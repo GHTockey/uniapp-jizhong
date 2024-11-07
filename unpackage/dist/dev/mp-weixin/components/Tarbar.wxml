@@ -1,1 +1,0 @@
-<view class="{{['tabbar', b && 'ios-bottom']}}"><view wx:for="{{a}}" wx:for-item="item" wx:key="d" class="tabbar-item" bindtap="{{item.e}}"><image src="{{item.a}}" class="tabbar-icon"/><text class="{{['tabbar-text', item.c]}}">{{item.b}}</text></view></view>

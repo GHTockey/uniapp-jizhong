@@ -12,7 +12,7 @@
       :style="isFixedHeadeContent ? `top: ${getStatusBarHeight()}px` : ''">
       <!-- logo 标题: 高度为小程序胶囊按钮栏高度 -->
       <!-- <view class="logo-box" :style="isFixedHeadeContent ? `height: ${getTitleBarHeight()}px;` : ''"> -->
-      <view class="logo-box" :style="`height: ${getTitleBarHeight()}px;`">
+      <view class="logo-box" :style="`height: ${getTitleBarHeight() || 40}px;`">
         <image src="https://wx.qlogo.cn/mmhead/Q3auHgzwzM4icHOjU9t841JOtBmdETgHf8hMGMoRaW0BMH1n3B6SicFQ/0" />
         <text>集中科技</text>
       </view>
@@ -113,7 +113,7 @@ const isFixedHeadeContent = ref(false);
 // 往下挤的高度 
 const containerMarTop = computed(() => {
   // 47.22 是标题栏的高度, 有的时候标题栏是固定在顶部的
-  return 47.22 + getTitleBarHeight() + getStatusBarHeight()
+  return 47.22 + (getTitleBarHeight() || 40) + getStatusBarHeight()
 });
 
 // 轮播图数据

@@ -336,6 +336,9 @@ view,text,::before,::after {
 .h-_222rpx_ {
     height: 222rpx
 }
+.h-_25rpx_ {
+    height: 25rpx
+}
 .h-_26d39rpx_ {
     height: 26.39rpx
 }
@@ -446,6 +449,9 @@ view,text,::before,::after {
 }
 .w-_239rpx_ {
     width: 239rpx
+}
+.w-_25rpx_ {
+    width: 25rpx
 }
 .w-_28rpx_ {
     width: 28rpx

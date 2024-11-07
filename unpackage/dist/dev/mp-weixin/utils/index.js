@@ -8,7 +8,7 @@ function getTitleBarHeight() {
     let { top, height } = common_vendor.index.getMenuButtonBoundingClientRect();
     return height + (top - getStatusBarHeight()) * 2;
   } else {
-    return 40;
+    return 0;
   }
 }
 function getTitleBarWidth() {

@@ -351,6 +351,12 @@ const _sfc_main = {
         fail: (res) => {
           is_saving.value = 0;
           console.log("wx_pay 失败", res);
+          common_vendor.index.hideLoading();
+          common_vendor.index.showToast({
+            title: "用户取消支付",
+            icon: "none",
+            duration: 2e3
+          });
         },
         success: (res) => {
           let pay_status = 0;
@@ -379,6 +385,7 @@ const _sfc_main = {
           return;
         },
         complete: () => {
+          is_saving.value = 0;
           console.log("wx_pay 结束");
         }
       });
@@ -401,7 +408,8 @@ const _sfc_main = {
         a: common_vendor.p({
           title: "待付款订单",
           showBack: true,
-          isWhite: true
+          isWhite: true,
+          bgc: "transparent"
         }),
         b: is_loading.value
       }, is_loading.value ? common_vendor.e({

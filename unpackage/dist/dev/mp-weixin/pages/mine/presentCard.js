@@ -2,12 +2,16 @@
 const common_vendor = require("../../common/vendor.js");
 const utils_index = require("../../utils/index.js");
 if (!Array) {
+  const _easycom_HeightBar2 = common_vendor.resolveComponent("HeightBar");
+  const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
   const _easycom_TabBar2 = common_vendor.resolveComponent("TabBar");
-  _easycom_TabBar2();
+  (_easycom_HeightBar2 + _easycom_NavBar2 + _easycom_TabBar2)();
 }
+const _easycom_HeightBar = () => "../../components/HeightBar/HeightBar.js";
+const _easycom_NavBar = () => "../../components/NavBar/NavBar.js";
 const _easycom_TabBar = () => "../../components/TabBar/TabBar.js";
 if (!Math) {
-  _easycom_TabBar();
+  (_easycom_HeightBar + _easycom_NavBar + _easycom_TabBar)();
 }
 const _sfc_main = {
   __name: "presentCard",
@@ -57,7 +61,15 @@ const _sfc_main = {
     });
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.f(tabsList.value, (item, index, i0) => {
+        a: common_vendor.p({
+          appendNavBar: true
+        }),
+        b: common_vendor.p({
+          showBack: true,
+          bgc: "white",
+          title: "礼品卡"
+        }),
+        c: common_vendor.f(tabsList.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item),
             b: tabsIndex.value == index ? 1 : "",
@@ -65,7 +77,8 @@ const _sfc_main = {
             d: index
           };
         }),
-        b: common_vendor.f(currentItemList.value, (item, index, i0) => {
+        d: common_vendor.unref(utils_index.getTitleBarHeight)() + "px",
+        e: common_vendor.f(currentItemList.value, (item, index, i0) => {
           return common_vendor.e({
             a: common_vendor.t(item.title),
             b: common_vendor.t(item.time),
@@ -80,8 +93,8 @@ const _sfc_main = {
             i: index
           });
         }),
-        c: common_vendor.o(($event) => selectedIndex.value = $event),
-        d: common_vendor.p({
+        f: common_vendor.o(($event) => selectedIndex.value = $event),
+        g: common_vendor.p({
           selectedIndex: selectedIndex.value
         })
       };

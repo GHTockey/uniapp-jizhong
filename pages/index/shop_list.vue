@@ -1,6 +1,6 @@
 <template>
-	<HeightBar appendTitleBar />
 	<view class="shop_list_container">
+		<HeightBar appendNavBar />
 		<!-- 分类 -->
 		<view class="menu flex_col_cen_cen shop_list_container_menu" :style="{ top: menu_top + 'px' }">
 			<template v-for="(item, i) in category_list" :key="item.id">
@@ -16,7 +16,7 @@
 
 
 		<!-- 右侧内容 -->
-		<view class="right_content flex_col_str_str">
+		<view class="right_content flex_col_str_str" >
 			<view class="product_list" v-if="store_list.length > 0">
 				<navigator hover-class="none" :url="`/pages/index/shop_detail?id=${item.id}`"
 					class="product_item_v company_box" v-for="(item, index) in store_list" :key="index">
@@ -81,7 +81,7 @@ const store_list = ref([]);
 const yuanshi = ref([]);
 
 // 左侧分类菜单top值
-const menu_top = ref(getStatusBarHeight() + getTitleBarHeight());
+const menu_top = ref(getStatusBarHeight() + (getTitleBarHeight() || 40));
 
 
 

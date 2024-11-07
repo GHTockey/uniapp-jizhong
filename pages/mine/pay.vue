@@ -4,7 +4,7 @@
 		<HeightBar />
 
 		<!-- 标题栏 -->
-		<NavBar title="待付款订单" showBack isWhite>
+		<NavBar title="待付款订单" showBack isWhite bgc="transparent">
 			<template #title>
 				<view style="color: #fff;">待付款订单</view>
 			</template>
@@ -879,6 +879,12 @@ async function wx_pay(wxAppJsSign) {
 			// TODO 记录微信支付取消
 			is_saving.value = 0
 			console.log('wx_pay 失败', res);
+			uni.hideLoading();
+			uni.showToast({
+				title: '用户取消支付',
+				icon: 'none',
+				duration: 2000
+			});
 		},
 		success: (res) => {
 			let pay_status = 0;
@@ -914,6 +920,7 @@ async function wx_pay(wxAppJsSign) {
 			return;
 		},
 		complete: () => {
+			is_saving.value = 0
 			console.log('wx_pay 结束');
 		}
 	})
@@ -1230,6 +1237,7 @@ async function get_select_shop() {
 	background-size: 100%;
 	background-repeat: no-repeat;
 	background-color: #F8F9FA;
+	padding-bottom: 98rpx;
 
 	// 渐变背景
 	.bg_gradient {

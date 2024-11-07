@@ -1,7 +1,11 @@
 <template>
 	<view class="present_card_container">
+
+		<HeightBar appendNavBar />
+		<NavBar showBack bgc="white" title="礼品卡" />
+
 		<!-- tabs -->
-		<view class="present_card_tabs">
+		<view class="present_card_tabs" :style="{ marginTop: getTitleBarHeight() + 'px' }">
 			<view class="present_card_tabs_item" :class="{ active: tabsIndex == index }" @click="tabsIndex = index"
 				v-for="(item, index) in tabsList" :key="index">
 				<text>{{ item }}</text>
@@ -50,6 +54,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { toPage } from '@/utils';
+import { getTitleBarHeight } from '@/utils';
 
 const selectedIndex = ref(1) // 底部TabBar的选中项
 const tabsList = ref(['全部', '待使用', '已使用', '已过期']) // 顶部tabs的列表

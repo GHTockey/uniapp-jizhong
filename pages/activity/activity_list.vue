@@ -34,7 +34,7 @@
 		<view :style="`height:${statusBarHeight + navHeight + 50}rpx;`"></view>
 
 
-		<view class="product_area">
+		<view class="product_area" style="padding-bottom: 0;">
 			<view :class="`${is_show_bar_title ? 'has_backgord' : ''}`"
 				:style="`position: sticky;top:${statusBarHeight + navHeight + 50}rpx;`">
 			</view>

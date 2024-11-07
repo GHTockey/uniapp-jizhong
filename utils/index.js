@@ -8,7 +8,8 @@ export function getTitleBarHeight() {
     let { top, height } = uni.getMenuButtonBoundingClientRect()
     return height + (top - getStatusBarHeight()) * 2
   } else {
-    return 40 // 默认高度
+    // return 40 // 默认高度
+    return 0;
   }
 };
 // 小程序胶囊按钮宽度

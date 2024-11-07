@@ -224,9 +224,9 @@ async function shop_detail_data(shop_id) {
 		targte_apply.value = res.data.targte_apply;
 		is_loading.value = true;
 		// 初始化富文本样式
-		console.log(shop.value.introduce);
+		// console.log(shop.value.introduce);
 		shop.value.introduce = replaceRichTextImage(shop.value.introduce);
-		console.log('shop.value.introduce', shop.value.introduce);
+		// console.log('shop.value.introduce', shop.value.introduce);
 
 		if (res.data.shop && res.data.shop.shop_name) {
 			uni.setNavigationBarTitle({

@@ -34,9 +34,23 @@
 							<view class="fonr_item">
 								<view class="text_clo">选择尺码：</view>
 								<view class="fonr_item_v">
-									<PickerSelector class="form_input" name="size" value="" :range="sex_list"
+									<!-- <PickerSelector class="form_input" name="size" value="" :range="sex_list"
 										rangeKey="name" rangeValue="id" placeholder-class="nickname_placeholder"
-										placeholder="请选择尺码" @change="bindPickerChange($event, 'size')" />
+										placeholder="请选择尺码" @change="bindPickerChange($event, 'size')" /> -->
+									<picker @change="bindPickerChange($event, 'size')"
+										:range="sex_list.map(item => item.name)">
+										<view class="fonr_item_v">
+											<!--  <input class="form_input" @click.prevent type="text" confirm-type="done" name="size"
+												placeholder-class="nickname_placeholder"
+												:placeholder="picker_select['size'] != undefined ? sex_list.find(item => item.id == picker_select['size'] + 1).name : '请选择尺码'" /> -->
+											<view class="form_input" style="line-height: 39rpx;">
+												<text v-if="picker_select['size'] != undefined">
+													{{ sex_list.find(item => item.id == (+picker_select['size'] + 1))?.name }}
+												</text>
+												<text v-else style="color: #bfb9b9;">请选择尺码</text>
+											</view>
+										</view>
+									</picker>
 									<view class="text_clo">码</view>
 								</view>
 							</view>
@@ -44,7 +58,7 @@
 							<view class="fonr_item">
 								<view class="text_clo">订购数量：</view>
 								<view class="fonr_item_v">
-									 <input class="form_input" type="text" confirm-type="done" name="buy_count" value=""
+									 <input class="form_input" type="number" confirm-type="done" name="buy_count" value=""
 										placeholder-class="nickname_placeholder" placeholder="请输入数量" />
 									<view class="text_clo">件</view>
 								</view>
@@ -53,7 +67,7 @@
 					</view>
 
 
-					<view v-for="item in fields"
+					<view v-for="(item, index) in fields"
 						:style="`border-bottom:  ${item.my_input_type == 'textarea' ? '' : '1rpx solid #DFDFDF'};`">
 						<view class="message_list_box" v-if="item.my_input_type != 'address'">
 							<view style="display: flex;align-items: center;">
@@ -68,11 +82,28 @@
 							<view
 								v-if="item.my_input_type == 'select' && item.relative_list && item.relative_list.length > 0"
 								style="border: 1rpx solid #DFDFDF; border-radius: 8rpx ;display: flex;padding: 4rpx 17rpx;justify-content: center;align-items: center;">
-								<PickerSelector v-if="item.relative_list && item.relative_list.length > 0"
+								<!-- <PickerSelector v-if="item.relative_list && item.relative_list.length > 0"
 									class="input pickerSelector" :name="item.my_column_name"
 									@change="bindPickerChange($event, item.my_column_name)"
 									placeholder-class="placeholderStyle" :range="item.relative_list"
-									:placeholder="`请选择${item.vi_name}`" rangeValue="id" rangeKey="name" />
+									:placeholder="`请选择${item.vi_name}`" rangeValue="id" rangeKey="name" /> -->
+								<picker v-if="item.relative_list && item.relative_list.length > 0"
+									class="input pickerSelector" :name="item.my_column_name"
+									@change="bindPickerChange($event, item.my_column_name)"
+									placeholder-class="placeholderStyle" :range="item.relative_list"
+									:placeholder="`请选择${item.vi_name}`" rangeValue="id" rangeKey="name">
+									<view>
+										<text style="color: #bfb9b9;"
+											v-if="picker_select[item.my_column_name] === undefined || picker_select[item.my_column_name] === ''">
+											{{ `请${item.vi_name}` }}
+										</text>
+										<text v-else>
+											{{ fields[index].relative_list[picker_select[item.my_column_name]].name }}
+										</text>
+										<!-- <text>{{ fields[index].relative_list[picker_select[item.my_column_name]].name }}</text> -->
+										<!-- <text>{{ picker_select[item.my_column_name] }}</text> -->
+									</view>
+								</picker>
 								<image src="https://saas.jizhongkeji.com/static/jzkj/images/class_select.png"
 									style="width: 23rpx;margin-left: 15rpx;height: 14rpx; " mode="widthFix" />
 							</view>
@@ -93,27 +124,17 @@
 
 							<view
 								style="border: 1rpx solid #DFDFDF; border-radius: 8rpx ;display: flex;padding: 4rpx 17rpx; justify-content: center;align-items: center;">
-								<!-- TODO: app/h5 不支持picker mode="region" -->
-								<!-- <picker style="display: flex;" mode="region" @change="bindRegionChange"
-									:name="item.my_column_name" :value="region" :custom-item="customItem">
-									<view class="picker" style="font-size: 32rpx;display: flex;align-items: center;">
-										<view v-if="region">{{ region[0] }}，{{ region[1] }}，{{ region[2] }}</view>
-										<view style="color: #bfb9b9;" v-else>请选择{{ item.vi_name }}</view>
-
-										<image src="https://saas.jizhongkeji.com/static/jzkj/images/class_select.png"
-											style="width: 23rpx;margin-left: 15rpx;height: 14rpx; " mode="widthFix" />
-									</view>
-								</picker> -->
-								<!-- 通用picker -->
-								<uni-data-picker :name="item.my_column_name" :localdata="customItem"
-									 @change="bindRegionChange($event, item.my_column_name)">
-									<view class="picker" style="font-size: 32rpx;display: flex;align-items: center;">
-										<view v-if="region">{{ region[0] }}，{{ region[1] }}，{{ region[2] }}</view>
-										<view style="color: #bfb9b9;" v-else>请选择{{ item.vi_name }}</view>
-										<image src="https://saas.jizhongkeji.com/static/jzkj/images/class_select.png"
-											style="width: 23rpx;margin-left: 15rpx;height: 14rpx; " mode="widthFix" />
-									</view>
-								</uni-data-picker>
+								<!-- 省市区 -->
+								<view @click="cityPickerVisible = true" class="picker"
+									style="font-size: 32rpx;display: flex;align-items: center;">
+									<view v-if="region">{{ region[0] }}，{{ region[1] }}，{{ region[2] }}</view>
+									<view style="color: #bfb9b9;" v-else>请选择{{ item.vi_name }}</view>
+									<image src="https://saas.jizhongkeji.com/static/jzkj/images/class_select.png"
+										style="width: 23rpx;margin-left: 15rpx;height: 14rpx; " mode="widthFix" />
+								</view>
+								<cityPicker :column="3" :mask-close-able="true" @cancel="cityPickerVisible = false"
+									@confirm="cityPickerConfirm($event, item.my_column_name)"
+									:visible="cityPickerVisible" />
 							</view>
 						</view>
 
@@ -137,10 +158,15 @@
 import { ref } from "vue";
 import { request } from "@/utils/request.js";
 import { onLoad, onUnload } from '@dcloudio/uni-app';
+import { replaceRichTextImage } from '@/utils';
+import cityPicker from '@/uni_modules/piaoyi-cityPicker/components/piaoyi-cityPicker/piaoyi-cityPicker'
+
 
 const class_select = ref(false);
 const activity_id = ref(1);
 const input_array = ref([]);
+
+const cityPickerVisible = ref(false); // 是否显示
 
 const end_date = ref('');
 
@@ -229,6 +255,9 @@ onLoad(async (options) => {
 		product.value = res.data.product
 		fields.value = res.data.fields
 
+		// 处理富文本格式
+		activity.value.detail_content = replaceRichTextImage(activity.value.detail_content)
+
 		is_loading.value = true
 	}
 })
@@ -241,9 +270,9 @@ function bindRegionChange(e, colName) {
 
 	let temp = e.detail.value.map(item => item.text)
 	picker_select.value[colName] = temp
-	// console.log('temp', temp)
+	console.log('temp', temp)
 	region.value = temp
-	
+
 }
 
 function wx_pay(wxAppJsSign) {
@@ -292,6 +321,18 @@ function wx_pay(wxAppJsSign) {
 	})
 }
 
+
+function cityPickerConfirm(e, colName) {
+	console.log('cityPickerConfirm', e, colName)
+	// picker_select.value[colName] = e.detail.value
+	// region.value = e.detail.value
+	region.value = [e.provinceName, e.cityName, e.areaName]
+	picker_select.value[colName] = region.value
+
+	cityPickerVisible.value = false
+}
+
+
 function bindPickerSale(e) {
 	console.log(e)
 	pickerListIdx.value = e.detail.value
@@ -314,8 +355,8 @@ function bind_ChangeTime(e) {
 }
 
 function bindPickerChange(e, colName) {
-	// console.log('bindPickerChange111', colName, e)
-	picker_select.value[colName] = e.value
+	console.log('bindPickerChange111', colName, e)
+	picker_select.value[colName] = e.detail.value
 }
 async function formSubmit(e) {
 	e.detail.value.activity_id = activity_id.value
@@ -323,7 +364,7 @@ async function formSubmit(e) {
 
 	let form_data = { ...e.detail.value, ...picker_select.value }
 	console.log('formSubmit e', form_data);
-	// return;
+	return;
 
 	let res = await request('/WxAppCustomer/activity_form_submit', 'post', { ...form_data, product_id: (product.value && product.value.id > 0) ? product.value.id : 0 })
 	console.log('res', res);

@@ -105,7 +105,7 @@ const items = ref([{
 
 const cityPickerVisible = ref(false); // 是否显示
 const maskCloseAble = ref(true); // 是否可以点击遮罩关闭
-const column = ref(3); // 列数
+const column = ref(3);
 
 
 function confirm(valObj, item) {
