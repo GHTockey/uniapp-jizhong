@@ -2,3 +2,9 @@
 .section {
 	width: 100%;
 }
+.product_list .product_item .price {
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #FE3E3D;
+	margin-left: 14rpx;
+}

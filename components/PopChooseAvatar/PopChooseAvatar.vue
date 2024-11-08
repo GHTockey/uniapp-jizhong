@@ -6,7 +6,9 @@
 			<form @submit="submit">
 				<view class="title">获取你的头像、昵称</view>
 				<view class="desc">获取用户头像、昵称，主要用于快速注册</view>
-				<view class="input_item" open-type="chooseAvatar" @click="chooseavatar">
+				<!-- <button class="input_item chooseAvatarBtn" open-type="chooseAvatar" @click="chooseavatar" > -->
+				<button class="input_item chooseAvatarBtn" open-type="chooseAvatar"
+					@chooseavatar="onChooseAvatarHandler">
 					<view class="label">头像</view>
 					<view class="input">
 						<image class="user_avatar"
@@ -15,16 +17,17 @@
 					</view>
 					<image class="right" src="https://saas.jizhongkeji.com/static/jzkj/images/right.png"
 						mode="widthFix" />
-				</view>
+				</button>
 
 				<view class="input_item">
 					<view class="label">昵称</view>
-					<input class="input" :disabled="!is_use_new_Profile" @change="nickname_change"
+					<!-- <input class="input" :disabled="!is_use_new_Profile" @change="nickname_change"
 						@input="nickname_input" name="nickname" :value="nickname || ''" type="nickname"
-						placeholder="请输入昵称" />
-					<button v-if="!is_use_new_Profile" class="nickname_button" open-type="chooseAvatar"
+						placeholder="请输入昵称" /> -->
+					<input class="input" name="nickname" v-model="nickname" type="nickname" placeholder="请输入昵称" />
+					<!-- <button v-if="!is_use_new_Profile" class="nickname_button" open-type="chooseAvatar"
 						@click="chooseavatar">
-					</button>
+					</button> -->
 					<image class="right" src="https://saas.jizhongkeji.com/static/jzkj/images/right.png"
 						mode="widthFix" />
 				</view>
@@ -41,54 +44,60 @@
 import { ref, watch, onMounted } from 'vue';
 import { request } from '@/utils/request';
 import { useTempStore } from '@/stores/temp';
+import { storeToRefs } from 'pinia';
+
+const { user: userInfo } = storeToRefs(useTempStore());
 
 const wx_image = ref('');
 const nickname = ref('');
 
-const tijiaozhong = ref(false);
+const tijiaozhong = ref(false); // 提交中
 const is_use_new_Profile = ref();
 
 const emit = defineEmits(['close']);
-const props = defineProps({
-	userInfo: {
-		type: Object,
-		value: {}
-	}
-})
+// const props = defineProps({
+// 	userInfo: {
+// 		type: Object,
+// 		value: {}
+// 	}
+// })
 
 onMounted(() => {
 	// console.log('props.userInfo', props.userInfo);
-	const tempStore = useTempStore();
-	wx_image.value = tempStore.user ? (tempStore.user.wx_image || '') : ''
-	nickname.value = tempStore.user ? (tempStore.user.nickname || '') : ''
+	// const tempStore = useTempStore();
+	// wx_image.value = tempStore.user ? (tempStore.user.wx_image || '') : ''
+	// nickname.value = tempStore.user ? (tempStore.user.nickname || '') : ''
+
+	wx_image.value = userInfo.value.wx_image || ''
+	nickname.value = userInfo.value.nickname || ''
 })
 
 function close(e) {
 	emit('close')
 }
-
 async function submit(e) {
 	if (tijiaozhong.value) {
 		console.log('正在提交');
-		return
+		return;
 	}
-	tijiaozhong.value = true
+	tijiaozhong.value = true;
 	console.log('表单提交', e.detail);
 
 	try {
 		let res = await request('/WxAppCustomer/edit_wx_image_nickname', 'post', {
-			wx_image: wx_image.value || '',
-			nickname: nickname.value || '',
+			wx_image: wx_image.value,
+			nickname: nickname.value,
 		})
-		tijiaozhong.value = false
+		console.log('提交结果[后端返回]', res);
+		tijiaozhong.value = false;
 
 		if (res.code == 0) {
-			getApp().globalData.user = res.data.user;
+			// getApp().globalData.user = res.data.user;
+			userInfo.value = res.data.user
 			uni.showToast({
 				title: '成功',
 				icon: 'none'
 			})
-
 			emit('submit')
 			return
 		} else {
@@ -128,12 +137,13 @@ function chooseavatar(e) {
 		title: 'app/h5 端不支持此方法',
 		duration: 2000
 	});
+	// TODO: 该API仅支持微信小程序端
 	uni.getUserProfile({
 		desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
 		success: (res) => {
 			console.log('头像授权的结果', res)
 			if (res.userInfo) {
-				console.log('当前用户', this.data.userInfo)
+				// console.log('当前用户', userInfo.value)
 				// this.setData({
 				// 	'wx_image': res.userInfo.avatarUrl,
 				// 	'nickname': res.userInfo.nickName,
@@ -146,6 +156,8 @@ function chooseavatar(e) {
 			console.log(res);
 		}
 	})
+
+	console.log('wx_image value', wx_image.value);
 }
 function onChooseAvatar(e) {
 	if (!is_use_new_Profile.value) {
@@ -155,10 +167,20 @@ function onChooseAvatar(e) {
 }
 
 
-watch(props.userInfo, (value) => {
-	wx_image.value = value ? value.wx_image : ''
-	nickname.value = value ? value.nickname : ''
-})
+// watch(props.userInfo, (value) => {
+// 	wx_image.value = value ? value.wx_image : ''
+// 	nickname.value = value ? value.nickname : ''
+// })
+
+// 新版获取头像
+function onChooseAvatarHandler(e) {
+	// console.log('onChooseAvatarTest', e);
+	wx_image.value = e.detail.avatarUrl
+}
+function onChooseNicknameHandler(e) {
+	console.log('onChooseNicknameHandler', e);
+	// nickname.value = e.detail.nickName
+}
 </script>
 
 <style lang="scss">
@@ -268,5 +290,19 @@ watch(props.userInfo, (value) => {
 	height: 28rpx;
 	top: 30rpx;
 	right: 30rpx;
+}
+
+.chooseAvatarBtn {
+	background-color: transparent;
+	border: unset;
+	padding: 0;
+	box-shadow: none;
+	margin: unset;
+	padding: unset;
+	font-size: unset;
+
+	&:after {
+		border: unset;
+	}
 }
 </style>

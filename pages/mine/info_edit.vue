@@ -39,8 +39,19 @@
 					<view class="label">生日</view>
 					<view class="input">
 
-						<PickerSelector mode="date" align="right" name="birthday" :value="user.birthday || ''"
-							placeholder="请选择生日" @change="picker_selector_change($event, 'birthday')" />
+						<!-- <PickerSelector mode="date" align="right" name="birthday" :value="user.birthday || ''"
+							placeholder="请选择生日" @change="picker_selector_change($event, 'birthday')" /> -->
+
+						<picker mode="date" :value="user?.birthday || ''" :start="startDate"
+							@change="picker_selector_change($event, 'birthday')">
+							<template v-if="user?.birthday">
+								{{ user?.birthday }}
+							</template>
+							<template v-else>
+								请选择生日
+							</template>
+						</picker>
+
 						<image class="right" src="https://saas.jizhongkeji.com/static/jzkj/images/right.png"
 							mode="widthFix" />
 
@@ -52,12 +63,21 @@
 					<view class="input">
 						<!-- <PickerSelector mode="region" align="right" name="city" :value="user.city || ''"
 							placeholder="请选择城市" @change="picker_selector_change($event, 'city')"  /> -->
-						<uni-data-picker :name="'city'" :localdata="items" @change="uniDataPickerChange($event, 'city')">
-							<view class="picker justify-end" style="font-size: 32rpx;display: flex;align-items: center;">
+						<!-- <uni-data-picker :name="'city'" :localdata="items"
+							@change="uniDataPickerChange($event, 'city')">
+							<view class="picker justify-end"
+								style="font-size: 32rpx;display: flex;align-items: center;">
 								<view v-if="picker_select_data['city']">{{ picker_select_data['city'] }}</view>
 								<view style="color: #bfb9b9;" v-else>请选择城市</view>
 							</view>
-						</uni-data-picker>
+						</uni-data-picker> -->
+
+						<view @click="cityPickerVisible = true">
+							{{ user['city'] || '请选择城市' }}
+						</view>
+						<cityPicker :column="column" :mask-close-able="true" @cancel="cityPickerVisible = false"
+							@confirm="confirm($event, 'city')" :visible="cityPickerVisible" />
+
 						<image class="right" src="https://saas.jizhongkeji.com/static/jzkj/images/right.png"
 							mode="widthFix" />
 
@@ -75,9 +95,16 @@
 					<view class="label">性别</view>
 					<view class="input">
 
-						<PickerSelector align="right" name="sex" :value="user.sex || ''" :range="sex_list"
+						<!-- <PickerSelector align="right" name="sex" :value="user.sex || ''" :range="sex_list"
 							rangeKey="name" rangeValue="id" placeholder="请选择性别"
-							@change="picker_selector_change($event, 'sex')" />
+							@change="picker_selector_change($event, 'sex')" /> -->
+
+						<picker @change="picker_selector_change($event, 'sex')" :value="user.sex || ''"
+							:range="sex_list.map(item => item.name)">
+							<view class="uni-input">{{ sex_list[user.sex]?.name || '请选择性别' }}</view>
+						</picker>
+
+
 						<image class="right" src="https://saas.jizhongkeji.com/static/jzkj/images/right.png"
 							mode="widthFix" />
 					</view>
@@ -100,9 +127,15 @@ import { useTempStore } from '@/stores/temp.js';
 import { storeToRefs } from 'pinia';
 import { request } from '@/utils/request.js';
 import { onLoad, onShow, onReachBottom, onPageScroll } from '@dcloudio/uni-app';
+import cityPicker from '@/uni_modules/piaoyi-cityPicker/components/piaoyi-cityPicker/piaoyi-cityPicker';
+
 
 // 响应式解构 business user
 const { business, user } = storeToRefs(useTempStore());
+
+
+const cityPickerVisible = ref(false); // 是否显示
+const column = ref(3);
 
 const items = ref([{
 	text: "河北省",
@@ -153,12 +186,25 @@ onLoad(async () => {
 
 
 
+function confirm(valObj, item) {
+	// console.log(valObj, item)
+
+	let str = valObj.provinceName + ',' + valObj.cityName + ',' + valObj.areaName
+	// console.log('str', str)
+	// form_info.value[item] = str
+
+	picker_select_data.value[item] = str
+	user.value[item] = str
+
+	cityPickerVisible.value = false
+}
+
 async function bindsubmit(e) {
-	console.log(e.detail.value);
 
 	let formData = { ...e.detail.value, ...picker_select_data.value };
 	// console.log(formData);
 	// return
+
 	let res = await request('/WxAppCustomer/info_edit', 'post', formData);
 
 	if (res.code == 0) {
@@ -178,7 +224,9 @@ async function bindsubmit(e) {
 }
 
 function picker_selector_change(e, colName) {
-	picker_select_data.value[colName] = e.value;
+	console.log(e, colName);
+	picker_select_data.value[colName] = e.detail.value;
+	user.value[colName] = e.detail.value;
 }
 function uniDataPickerChange(e, colName) {
 	// console.log(e, colName);

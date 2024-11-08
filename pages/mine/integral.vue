@@ -4,7 +4,7 @@
 		<view class="integral_header_box">
 
 			<HeightBar appendNavBar />
-			<NavBar showBack isWhite>
+			<NavBar showBack isWhite bgc="transparent">
 				<template #title>
 					<view class="text-white text-[32rpx] text-left w-full pl-[80rpx]">我的积分</view>
 				</template>

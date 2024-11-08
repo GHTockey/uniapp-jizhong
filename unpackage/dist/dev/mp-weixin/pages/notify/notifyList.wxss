@@ -1,6 +1,3 @@
-.message-bar.data-v-51974676 {
-  margin-bottom: 30rpx;
-}
 .logistics-notify-container.data-v-51974676 {
   min-height: calc(100vh - 44px);
   background-color: #f8f9fa;

@@ -10,7 +10,9 @@
 							<view class="form_lable">{{ item.vi_name }}</view>
 							<view @click="cityPickerVisible = true"
 								:class="`form_picker flex_row_str_str ${!form_info[item.my_column_name] ? 'placeholder_text' : ''}`">
-								{{ !form_info[item.my_column_name] ? '请选择' : Array.isArray(form_info[item.my_column_name]) ? form_info[item.my_column_name].join(',') : form_info[item.my_column_name] }}
+								{{ !form_info[item.my_column_name] ? '请选择' :
+									Array.isArray(form_info[item.my_column_name]) ? form_info[item.my_column_name].join(',')
+										: form_info[item.my_column_name] }}
 							</view>
 							<cityPicker :column="column" :mask-close-able="maskCloseAble"
 								@cancel="cityPickerVisible = false" @confirm="confirm($event, item.my_column_name)"

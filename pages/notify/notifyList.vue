@@ -9,8 +9,9 @@
     </view>
 
     <!-- 消息列表 -->
-    <view style="height: 30rpx;"></view>
-    <MessageBar class="message-bar" v-for="item in 3" :key="item" />
+    <view class="flex flex-col gap-3 pt-3">
+      <MessageBar class="message-bar" v-for="item in 3" :key="item" />
+    </view>
 
     <view class="no-more">我是有底线的~</view>
   </view>
@@ -32,7 +33,7 @@ onLoad((options) => {
 
 <style scoped lang="less">
 .message-bar {
-  margin-bottom: 30rpx;
+  // margin-bottom: 30rpx;
 }
 
 .logistics-notify-container {

@@ -55,18 +55,18 @@
 					<view class="product_item">
 						<view class="product_item_navigator" @click="toPage(`/pages/product/detail?id=${item.id}`)">
 							<!-- <navigator hover-class="none" :url=""> -->
-								<image lazy-load class="image" mode="aspectFill" :src="item.image_uri" />
-								<view class="flex_col_space_bt product_info">
-									<text class="name"
-										style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;text-overflow: ellipsis;word-break: break-all;">
-										{{ item.name }}</text>
-									<view class="flex_row_space_bt" v-if="item.price > 0">
-										<text class="price font_bold" :style="{ opacity: item.price ? 1 : 0 }"><text
-												style="font-size: 28rpx;">￥</text>{{ item.price }}</text>
-										<view class="product_list_row_btn">购买</view>
-										<!-- <view class="product_list_row_btn">仅剩{{item.stock}}件</view> -->
-									</view>
+							<image lazy-load class="image" mode="aspectFill" :src="item.image_uri" />
+							<view class="flex_col_space_bt product_info">
+								<text class="name"
+									style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;text-overflow: ellipsis;word-break: break-all;">
+									{{ item.name }}</text>
+								<view class="flex_row_space_bt" v-if="item.price > 0">
+									<text class="price font_bold" :style="{ opacity: item.price ? 1 : 0 }"><text
+											style="font-size: 28rpx;">￥</text>{{ item.price }}</text>
+									<view class="product_list_row_btn">购买</view>
+									<!-- <view class="product_list_row_btn">仅剩{{item.stock}}件</view> -->
 								</view>
+							</view>
 							<!-- </navigator> -->
 						</view>
 					</view>
@@ -116,5 +116,12 @@ function currentPage(e) {
 <style>
 .section {
 	width: 100%;
+}
+
+.product_list .product_item .price {
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #FE3E3D;
+	margin-left: 14rpx;
 }
 </style>

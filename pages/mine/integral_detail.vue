@@ -31,7 +31,13 @@
 			<view v-for="(item, index) in integralDetails" :key="index" class="integral_detail_list_item">
 				<view class="flex justify-between text-[27.78rpx]">
 					<text class="text-[#181818]">{{ item.description }}</text>
-					<text :class="{ 'text-[#FF5722]': item.amount > 0 }">{{ item.amount }}</text>
+					<!-- <text :class="{ 'text-[#FF5722]': item.amount > 0 }">{{ item.amount }}</text> -->
+					<template v-if="item.amount > 0">
+						<text class="text-[#FF5722]">{{ item.amount }}</text>
+					</template>
+					<template v-else>
+						<text class="text-[#6A6A6A]">{{ item.amount }}</text>
+					</template>
 				</view>
 				<view class="text-[#6A6A6A] text-[23.61rpx] mt-[10rpx]">
 					<text>{{ item.date }}</text>
