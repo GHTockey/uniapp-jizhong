@@ -457,6 +457,7 @@ async function onShowHandler() {
 			swiper.value.indicatorDots = false
 		}
 
+		// pages/activity/application_index
 		return console.log('[[wxParse]] 待处理 res.data.extend_active', res.data.extend_active)
 
 		if (res.data.data.extend_active.detail_context) {

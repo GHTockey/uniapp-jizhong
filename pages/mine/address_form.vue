@@ -8,13 +8,13 @@
 					<template v-if="item.my_column_name == 'address'">
 						<view class="form_item flex_row_space_bt">
 							<view class="form_lable">{{ item.vi_name }}</view>
-							<view @click="cityPickerVisible = true" 
+							<view @click="cityPickerVisible = true"
 								:class="`form_picker flex_row_str_str ${!form_info[item.my_column_name] ? 'placeholder_text' : ''}`">
-								{{ !form_info[item.my_column_name] ? '请选择' : form_info[item.my_column_name] }}
+								{{ !form_info[item.my_column_name] ? '请选择' : Array.isArray(form_info[item.my_column_name]) ? form_info[item.my_column_name].join(',') : form_info[item.my_column_name] }}
 							</view>
 							<cityPicker :column="column" :mask-close-able="maskCloseAble"
-								@confirm="confirm($event, item.my_column_name)" :visible="cityPickerVisible" />
-
+								@cancel="cityPickerVisible = false" @confirm="confirm($event, item.my_column_name)"
+								:visible="cityPickerVisible" />
 						</view>
 					</template>
 					<template v-else-if="item.my_column_name == 'address_detail'">
@@ -206,18 +206,10 @@ async function get_info(id) {
 
 };
 async function submit_address(e) {
-	let value = e.detail.value
-	if (value.address && value.address.length > 0) {
-		value.address = value.address.join(',')
-	} else if (form_info.value['address'] && form_info.value['address'].length > 0) {
-		// console.log('form_info.value[address]', form_info.value['address']);
-		// form_info.value['address'] => {text: '河北省', value: '1-0'}
-		// 取出 text 按逗号拼接
-		// value.address = form_info.value['address'].map(item => item.text).join(',')
-		value.address = form_info.value['address'].join(',')
-	} else {
-		value.address = '临时省,临时市,临时区' // TODO: 临时设置
-	}
+	let value = { ...e.detail.value, ...form_info.value }
+	// console.log('submit_address value', value);
+	// console.log('form_info.value', form_info.value);
+	// return
 
 	if (id.value) {
 		value.id = id.value

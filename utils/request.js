@@ -1,6 +1,7 @@
 import { ref } from 'vue';
 
 const baseURL = 'https://saas.jizhongkeji.com/jzkj';
+// const baseURL = 'https://a.plant360.cn/asaas';
 
 // 请求拦截器数组
 const requestInterceptors = [];

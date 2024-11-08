@@ -37,15 +37,20 @@
 									<!-- <PickerSelector class="form_input" name="size" value="" :range="sex_list"
 										rangeKey="name" rangeValue="id" placeholder-class="nickname_placeholder"
 										placeholder="请选择尺码" @change="bindPickerChange($event, 'size')" /> -->
-									<picker @change="bindPickerChange($event, 'size')"
+									<picker @change="bindPickerChange($event, 'size')" :data-relative_list="sex_list"
 										:range="sex_list.map(item => item.name)">
 										<view class="fonr_item_v">
 											<!--  <input class="form_input" @click.prevent type="text" confirm-type="done" name="size"
 												placeholder-class="nickname_placeholder"
 												:placeholder="picker_select['size'] != undefined ? sex_list.find(item => item.id == picker_select['size'] + 1).name : '请选择尺码'" /> -->
 											<view class="form_input" style="line-height: 39rpx;">
-												<text v-if="picker_select['size'] != undefined">
-													{{ sex_list.find(item => item.id == (+picker_select['size'] + 1))?.name }}
+												<!-- <text v-if="picker_select['size'] != undefined">
+													{{ sex_list.find(item => item.id == (+picker_select['size'] +
+														1))?.name }}
+												</text>
+												<text v-else style="color: #bfb9b9;">请选择尺码</text> -->
+												<text v-if="picker_select['size']">
+													{{ picker_select['size'].name }}
 												</text>
 												<text v-else style="color: #bfb9b9;">请选择尺码</text>
 											</view>
@@ -58,8 +63,8 @@
 							<view class="fonr_item">
 								<view class="text_clo">订购数量：</view>
 								<view class="fonr_item_v">
-									 <input class="form_input" type="number" confirm-type="done" name="buy_count" value=""
-										placeholder-class="nickname_placeholder" placeholder="请输入数量" />
+									 <input class="form_input" type="number" confirm-type="done" name="buy_count"
+										value="" placeholder-class="nickname_placeholder" placeholder="请输入数量" />
 									<view class="text_clo">件</view>
 								</view>
 							</view>
@@ -87,21 +92,26 @@
 									@change="bindPickerChange($event, item.my_column_name)"
 									placeholder-class="placeholderStyle" :range="item.relative_list"
 									:placeholder="`请选择${item.vi_name}`" rangeValue="id" rangeKey="name" /> -->
+
 								<picker v-if="item.relative_list && item.relative_list.length > 0"
 									class="input pickerSelector" :name="item.my_column_name"
+									:data-relative_list="item.relative_list"
 									@change="bindPickerChange($event, item.my_column_name)"
 									placeholder-class="placeholderStyle" :range="item.relative_list"
 									:placeholder="`请选择${item.vi_name}`" rangeValue="id" rangeKey="name">
 									<view>
-										<text style="color: #bfb9b9;"
+										<!-- <text style="color: #bfb9b9;"
 											v-if="picker_select[item.my_column_name] === undefined || picker_select[item.my_column_name] === ''">
 											{{ `请${item.vi_name}` }}
 										</text>
 										<text v-else>
 											{{ fields[index].relative_list[picker_select[item.my_column_name]].name }}
+										</text> -->
+
+										<text style="color: #bfb9b9;" v-if="!picker_select[item.my_column_name]">
+											{{ `请${item.vi_name}` }}
 										</text>
-										<!-- <text>{{ fields[index].relative_list[picker_select[item.my_column_name]].name }}</text> -->
-										<!-- <text>{{ picker_select[item.my_column_name] }}</text> -->
+										<text v-else>{{ picker_select[item.my_column_name].name }}</text>
 									</view>
 								</picker>
 								<image src="https://saas.jizhongkeji.com/static/jzkj/images/class_select.png"
@@ -294,8 +304,13 @@ function wx_pay(wxAppJsSign) {
 		fail: (res) => {
 			// TODO 记录微信支付取消
 			is_saving.value = 0
+			uni.hideLoading()
+			uni.showToast({
+				title: '支付取消',
+				icon: 'none',
+			})
 		},
-		success: (res) => {
+		success: () => {
 			let pay_status = 0;
 			is_checking.value = 1
 
@@ -304,8 +319,9 @@ function wx_pay(wxAppJsSign) {
 				mask: true
 			})
 			inter.value = setInterval(async () => {
-				// let res = await request('/WxAppCustomer/check_user_activity_order', 'post', { id: order_id.value })
-				// pay_status = res.data.info ? res.data.info.pay_status : 0;
+				// 轮询
+				let res = await request('/WxAppCustomer/check_user_activity_order', 'post', { id: order_id.value })
+				pay_status = res.data.info ? res.data.info.pay_status : 0;
 				console.log('pay_status', pay_status)
 				if (pay_status == 1) {
 					uni.hideLoading()
@@ -342,7 +358,7 @@ function to_application_record() {
 	var index = pages.findIndex(item => item.route == 'pages/activity/application_record')
 	if (index == -1) {
 		uni.redirectTo({
-			url: `/pages/activity/application_record?activity_id=${this.data.activity_id}`,
+			url: `/pages/activity/application_record?activity_id=${activity_id.value}`,
 		})
 	} else {
 		uni.navigateBack({
@@ -355,15 +371,27 @@ function bind_ChangeTime(e) {
 }
 
 function bindPickerChange(e, colName) {
-	console.log('bindPickerChange111', colName, e)
-	picker_select.value[colName] = e.detail.value
+	console.log('bindPickerChange：', colName, e)
+	// picker_select.value[colName] = e.detail.value
+	let index = e.detail.value;
+	let relative_list = e.currentTarget.dataset.relative_list;
+	picker_select.value[colName] = relative_list[index]
+
+	console.log('picker_select.value', picker_select.value);
 }
 async function formSubmit(e) {
 	e.detail.value.activity_id = activity_id.value
 	// Object.assign(picker_select.value, e.detail.value)
 
-	let form_data = { ...e.detail.value, ...picker_select.value }
-	console.log('formSubmit e', form_data);
+	// picker_select.value 是对象，只要id的值
+	let picker_select_temp = {};
+	for (let key in picker_select.value) {
+		picker_select_temp[key] = picker_select.value[key].id
+	}
+	// console.log('picker_select_temp', picker_select_temp);
+
+	let form_data = { ...e.detail.value, ...picker_select_temp }
+	console.log('formSubmitData', form_data);
 	// return;
 
 	let res = await request('/WxAppCustomer/activity_form_submit', 'post', { ...form_data, product_id: (product.value && product.value.id > 0) ? product.value.id : 0 })
