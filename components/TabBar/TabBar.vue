@@ -67,15 +67,15 @@ const props = defineProps({
 
 // 获取当前path
 // console.log(getCurrentPages()[getCurrentPages().length - 1].route);
-watch(() => tabbarList.value, (newVal) => {
-	// console.log('=======================================newVal', newVal);
-	newVal.forEach((item, index) => {
-		if (item.path == getCurrentPages()[getCurrentPages().length - 1].route) {
-			tabBarStore.selectedIndex = index
-			emit('update:selectedIndex', index)
-		}
-	})
-})
+// watch(() => tabbarList.value, (newVal) => {
+// 	// console.log('=======================================newVal', newVal);
+// 	newVal.forEach((item, index) => {
+// 		if (item.path == getCurrentPages()[getCurrentPages().length - 1].route) {
+// 			tabBarStore.selectedIndex = index
+// 			emit('update:selectedIndex', index)
+// 		}
+// 	})
+// })
 
 const updateSelectedIndex = (index) => {
 	emit('update:selectedIndex', index)
@@ -116,7 +116,8 @@ async function selectTab(index) {
 }
 
 .tabbar {
-	height: $tabbar-height;
+	// height: $tabbar-height;
+	height: 95.83rpx;
 	background: #ffffff;
 	display: flex;
 	justify-content: space-around;

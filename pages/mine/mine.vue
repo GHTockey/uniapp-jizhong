@@ -233,16 +233,26 @@
 <script setup>
 import { getTitleBarHeight } from '@/utils';
 import { toPage } from '@/utils';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useTempStore } from '@/stores/temp.js';
 import { storeToRefs } from 'pinia';
 import { request } from '@/utils/request.js';
 import { onLoad, onShow, onReachBottom, onPageScroll } from '@dcloudio/uni-app';
+import { useTabBarStore } from '@/stores/tabBar.js';
+
+
+// TODO: [待办] 页面控制tabbar索引
+// const tabBarStore = useTabBarStore();
+// const { selectedIndex, list } = storeToRefs(tabBarStore)
+// let currentPagePath = getCurrentPages()[getCurrentPages().length - 1].route;
+// watch(() => currentPagePath, (newVal) => {
+// 	tabBarStore.selectedIndex = list.value.findIndex(item => item.path == newVal)
+// })
+
 
 // 响应式解构 business user
 const { business, user } = storeToRefs(useTempStore());
 
-const titleBarHeight = getTitleBarHeight();
 
 const tool_list = ref([
 	{ id: 1, name: "收货地址", path: "/pages/mine/address?type=edit" },

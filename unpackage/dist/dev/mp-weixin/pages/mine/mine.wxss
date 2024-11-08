@@ -350,7 +350,7 @@ button::after {
   background-color: #f8f9fa;
   background-size: 100%;
   background-repeat: no-repeat;
-  padding-bottom: calc(95.83rpx + env(safe-area-inset-bottom));
+  padding-bottom: calc(95.83rpx + env(safe-area-inset-bottom) + env(safe-area-inset-bottom));
 }
 .mine_container .mine_data_box.data-v-7c2ebfa5 {
   height: 180.56rpx;

@@ -27,7 +27,7 @@
   background-color: #f6f8fe;
   min-height: calc(100vh - 40px);
   padding-top: 85rpx;
-  padding-bottom: 95.83rpx;
+  padding-bottom: calc(95.83rpx + env(safe-area-inset-bottom));
   position: relative;
 }
 .present_card_container .present_card_tabs.data-v-5cbe5b80 {

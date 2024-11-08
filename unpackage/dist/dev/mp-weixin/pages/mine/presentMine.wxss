@@ -29,6 +29,7 @@
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 0 30rpx;
+  overflow: hidden;
 }
 .present_mine_container .present_mine_card_box.data-v-c279e8aa {
   display: flex;

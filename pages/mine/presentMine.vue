@@ -1,7 +1,7 @@
 <template>
 	<view class="present_mine_container" style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/present-activate-bg.svg');">
 
-		<HeightBar appendTitleBar />
+		<HeightBar appendNavBar />
 
 		<!-- 标题栏 -->
 		<NavBar showBack  bgc="transparent">
@@ -96,6 +96,7 @@ const selectedIndex = ref(2)
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding: 0 30rpx;
+	overflow: hidden;
 	// padding-top: $nav-height;
 
 

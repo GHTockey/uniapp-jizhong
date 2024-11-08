@@ -3,6 +3,7 @@ const common_vendor = require("../../common/vendor.js");
 const utils_index = require("../../utils/index.js");
 const stores_temp = require("../../stores/temp.js");
 const utils_request = require("../../utils/request.js");
+require("../../stores/tabBar.js");
 if (!Array) {
   const _easycom_HeightBar2 = common_vendor.resolveComponent("HeightBar");
   const _easycom_TabBar2 = common_vendor.resolveComponent("TabBar");
@@ -19,7 +20,6 @@ const _sfc_main = {
   __name: "mine",
   setup(__props) {
     const { business, user } = common_vendor.storeToRefs(stores_temp.useTempStore());
-    utils_index.getTitleBarHeight();
     common_vendor.ref([
       { id: 1, name: "收货地址", path: "/pages/mine/address?type=edit" },
       { id: 2, name: "商品收藏", path: "/pages/mine/collect_list" },

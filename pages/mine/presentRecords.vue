@@ -273,7 +273,8 @@ function handleItemClick(item) {
 
 <style scoped lang="scss">
 .present_records_container {
-	height: calc(100vh - $nav-height);
+	// min-height: calc(100vh - $nav-height);
+	min-height: 100vh;
 	background-color: #f6f8fe;
 
 	.present_records_tabs {

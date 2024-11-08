@@ -52,7 +52,7 @@
 						<view class="address_text" style="width: unset;">
 							提货人员
 						</view>
-						<input style="font-size: 28rpx;" class="input_address" v-model="user.user_name"
+						<input style="font-size: 28rpx; text-align: right;" class="input_address" v-model="user.user_name"
 							placeholder-class="placeholder-style" type="text" name="user_name" placeholder="输入提货人员姓名" />
 					</view>
 
@@ -61,7 +61,7 @@
 						<view class="address_text" style="width: unset;">
 							手机号码
 						</view>
-						<input style="font-size: 28rpx;" class="input_address" v-model="user.phone"
+						<input style="font-size: 28rpx; text-align: right;" class="input_address" v-model="user.phone"
 							placeholder-class="placeholder-style" type="text" name="phone" placeholder="输入您的手机号码" />
 					</view>
 				</view>

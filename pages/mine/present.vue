@@ -2,15 +2,18 @@
 	<view class="present_container">
 		<view class="present_header">
 			<view class="present_header_item">
-				<image class="w-full h-full" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-img.png" mode="widthFix"></image>
+				<image class="w-full h-full"
+					src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-img.png" mode="widthFix">
+				</image>
 			</view>
 		</view>
 
 		<!-- card item list -->
 		<view class="present_card_list">
-			<view class="present_card_item" v-for="item in 3" @click="toPage('/pages/mine/presentDetail')">
-				<image class="w-[290rpx] h-[195rpx] mr-[20rpx]" src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-default.png"
-					mode="widthFix"></image>
+			<view class="present_card_item" v-for="item in 10" @click="toPage('/pages/mine/presentDetail')">
+				<image class="w-[290rpx] h-[195rpx] mr-[20rpx]"
+					src="https://saas.jizhongkeji.com/static/jzkj/static/images/present-default.png" mode="widthFix">
+				</image>
 				<view>
 					<view class="text-[27.78rpx] mb-[20rpx] mt-[5rpx]">2025新春礼品卡</view>
 					<view>
@@ -59,9 +62,11 @@ watch(selectedIndex, (newVal) => {
 
 <style scoped lang="scss">
 .present_container {
-	height: calc(100vh - $nav-height);
+	// height: calc(100vh - $nav-height);
+	min-height: 100vh;
 	background-color: #f6f8fe;
 	padding: 30rpx;
+	padding-bottom: calc($tabbar-height + 30rpx);
 
 	.present_header {
 

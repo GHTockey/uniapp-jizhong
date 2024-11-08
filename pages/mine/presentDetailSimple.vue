@@ -84,7 +84,8 @@ onLoad((options) => {
 <style scoped lang="scss">
 .present_pay_res_container {
 	// height: 100vh;
-	height: calc(100vh - $nav-height);
+	// height: calc(100vh - $nav-height);
+	min-height: 100vh;
 	background-color: #f6f8fe;
 	padding: 0 14rpx;
 	padding-bottom: 100rpx;

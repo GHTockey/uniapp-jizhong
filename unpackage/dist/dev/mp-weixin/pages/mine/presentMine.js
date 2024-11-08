@@ -20,7 +20,7 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
-          appendTitleBar: true
+          appendNavBar: true
         }),
         b: common_vendor.p({
           showBack: true,
