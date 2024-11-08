@@ -338,6 +338,29 @@ p {
 }
 
 
+/* 文字处理 */
+.word_break{
+    word-break: break-all;
+}
+.text_center{
+    text-align: center;
+}
+.color333{
+    color: #333333;
+}
+.font_bold{
+    font-weight: bold;
+}
+
+/* 常用间距 */
+.margin_top28{
+    margin-top: 28rpx;
+}
+.margin_top20{
+    margin-top: 20rpx;
+}
+
+
 /* 横向展示的产品列表 */
 .product_list_row{
     box-sizing: border-box;

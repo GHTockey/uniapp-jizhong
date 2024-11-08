@@ -109,6 +109,7 @@ import { request } from "@/utils/request.js";
 import { onLoad, onShow, onHide } from '@dcloudio/uni-app';
 import { useTempStore } from '@/stores/temp';
 import { storeToRefs } from 'pinia';
+import { throttle } from '@/utils';
 
 const { business, user } = storeToRefs(useTempStore())
 
@@ -120,7 +121,8 @@ const good_count = ref(0) // 商品数量
 const good_list = ref([]) // 商品列表
 const tarbarupdated = ref(0) // 更新tabbar
 
-const is_adding = ref(0) // 是否正在添加
+const is_adding = ref(false) // 是否正在添加
+const is_deleting = ref(false) // 是否正在删除
 const checkedAll = ref(false) // 是否全选
 const jumpPage = (url) => uni.navigateTo({ url })
 // 计算属性：计算选中商品总价
@@ -238,8 +240,13 @@ function checkboxAll(e) {
 	}
 }
 // 减少购物车数量
-async function reduce_count_car(item) {
+const reduce_count_car = throttle(async (item) => {
 	// let item = e.currentTarget.dataset.item;
+
+	console.log(item);
+	// if (is_deleting.value) return // 如果正在删除，则不执行
+	// is_deleting.value = true
+
 	console.log('reduce_count_car', item.count, item.limit[0]);
 	if (item.count == item.limit[0]) {
 		uni.showModal({
@@ -251,25 +258,30 @@ async function reduce_count_car(item) {
 					let res = await request('/WxAppCustomer/shop_car_count_reduce', 'post', { id: item.id || 0 })
 					if (res.code != 0) {
 						uni.showToast({ title: res.msg, icon: 'none' })
-						is_adding.value = 0
+						// is_deleting.value = false
 						return
 					}
-					is_adding.value = 0
+					// is_deleting.value = false
 					get_info_list()
 				}
+			},
+			fail: () => {
+				// is_deleting.value = false
 			}
 		})
 		return
 	}
 
+	// 
 	let res = await request('/WxAppCustomer/shop_car_count_reduce', 'post', { id: item.id || 0 })
 	if (res.code != 0) {
 		uni.showToast({ title: res.msg, icon: 'none' })
 		return
 	}
-	is_adding.value = 0
+	// is_deleting.value = false
 	get_info_list()
-}
+}, 300)
+
 
 // 增加购物车数量
 async function add_count_car(item) {

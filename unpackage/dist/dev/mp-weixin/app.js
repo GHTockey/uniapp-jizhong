@@ -66,6 +66,7 @@ if (!Math) {
   "./pages/product/search.js";
   "./pages/index/order_detail.js";
   "./pages/activity/application_record.js";
+  "./pages/mine/refund_result.js";
 }
 const __default__ = {
   onLaunch: function() {

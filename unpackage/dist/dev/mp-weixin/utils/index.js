@@ -79,10 +79,21 @@ function processRichTextNode(node) {
   }
   return node;
 }
+function throttle(func, delay) {
+  let lastTime = 0;
+  return function(...args) {
+    const now = Date.now();
+    if (now - lastTime >= delay) {
+      lastTime = now;
+      func.apply(this, args);
+    }
+  };
+}
 exports.formatSecond = formatSecond;
 exports.formatTime = formatTime;
 exports.getStatusBarHeight = getStatusBarHeight;
 exports.getTitleBarHeight = getTitleBarHeight;
 exports.getTitleBarWidth = getTitleBarWidth;
 exports.replaceRichTextImage = replaceRichTextImage;
+exports.throttle = throttle;
 exports.toPage = toPage;

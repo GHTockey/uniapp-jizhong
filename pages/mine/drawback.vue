@@ -54,9 +54,16 @@
 				<view style="font-size: 28rpx;font-weight: bold;color: #1D1D1D;">退款原因</view>
 
 				<view style="display: flex;width: 70%;align-items: center;">
-					<PickerSelector style="flex: none;width: 100%;font-size: 28rpx;line-height: 56rpx;height: 56rpx;"
+
+					<!-- <PickerSelector style="flex: none;width: 100%;font-size: 28rpx;line-height: 56rpx;height: 56rpx;"
 						class="input pickerSelector" name="dawback_id" :range="shop_dawback_list" rangeKey="reason"
-						rangeValue="id" @change="change_reason" placeholder="请选择退款原因" />
+						rangeValue="id" @change="change_reason" placeholder="请选择退款原因" /> -->
+
+
+					<picker @change="change_reason" :range="shop_dawback_list.map(m => m.reason)">
+						<view class="uni-input">{{ shop_dawback_list.find(m => m.id == reason_id).reason }}</view>
+					</picker>
+
 					<image style="width: 40rpx;height: 18rpx;position: absolute;right: 10rpx;"
 						src="https://saas.jizhongkeji.com/static/jzkj/images/down_btn.png"></image>
 				</view>
@@ -102,9 +109,7 @@ const draw_good_info = ref([]);
 const shop_dawback_list = ref([]);
 
 const reason_id = ref(0);
-
 const checkedAll = ref();
-
 const order_id = ref();
 
 
@@ -122,6 +127,7 @@ onLoad(options => {
 })
 
 
+// 获取订单信息
 async function business_order_info(id) {
 	let res = await request('/WxAppCustomer/draw_good_info', 'post', { id })
 	if (res.code == 1) {
@@ -231,8 +237,10 @@ function reduce_drawback(item) {
 }
 function change_reason(e) {
 	// console.log('00000000000000');
-	console.log(e);
-	reason_id.value = e.detail.value
+	// console.log(e);
+	// reason_id.value = e.detail.value
+	let index = e.detail.value
+	reason_id.value = shop_dawback_list.value[index].id
 }
 async function drawback() {
 	var backlist = draw_good_info.value.filter(m => {

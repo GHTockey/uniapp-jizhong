@@ -61,7 +61,8 @@
     "pages/mine/integral_detail",
     "pages/product/search",
     "pages/index/order_detail",
-    "pages/activity/application_record"
+    "pages/activity/application_record",
+    "pages/mine/refund_result"
   ],
   "window": {
     "navigationBarTextStyle": "black",

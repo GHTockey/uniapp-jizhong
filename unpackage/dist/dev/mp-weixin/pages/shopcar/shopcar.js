@@ -2,6 +2,7 @@
 const common_vendor = require("../../common/vendor.js");
 const utils_request = require("../../utils/request.js");
 const stores_temp = require("../../stores/temp.js");
+const utils_index = require("../../utils/index.js");
 if (!Array) {
   const _easycom_TabBar2 = common_vendor.resolveComponent("TabBar");
   _easycom_TabBar2();
@@ -21,7 +22,8 @@ const _sfc_main = {
     const good_count = common_vendor.ref(0);
     const good_list = common_vendor.ref([]);
     common_vendor.ref(0);
-    const is_adding = common_vendor.ref(0);
+    const is_adding = common_vendor.ref(false);
+    common_vendor.ref(false);
     const checkedAll = common_vendor.ref(false);
     const jumpPage = (url) => common_vendor.index.navigateTo({ url });
     common_vendor.computed(() => {
@@ -99,7 +101,8 @@ const _sfc_main = {
         selected_ids.value = [];
       }
     }
-    async function reduce_count_car(item) {
+    const reduce_count_car = utils_index.throttle(async (item) => {
+      console.log(item);
       console.log("reduce_count_car", item.count, item.limit[0]);
       if (item.count == item.limit[0]) {
         common_vendor.index.showModal({
@@ -110,12 +113,12 @@ const _sfc_main = {
               let res2 = await utils_request.request("/WxAppCustomer/shop_car_count_reduce", "post", { id: item.id || 0 });
               if (res2.code != 0) {
                 common_vendor.index.showToast({ title: res2.msg, icon: "none" });
-                is_adding.value = 0;
                 return;
               }
-              is_adding.value = 0;
               get_info_list();
             }
+          },
+          fail: () => {
           }
         });
         return;
@@ -125,9 +128,8 @@ const _sfc_main = {
         common_vendor.index.showToast({ title: res.msg, icon: "none" });
         return;
       }
-      is_adding.value = 0;
       get_info_list();
-    }
+    }, 300);
     async function add_count_car(item) {
       if (item.count == item.limit[1]) {
         return;
@@ -230,7 +232,7 @@ const _sfc_main = {
           } : {}, {
             g: common_vendor.t(item.unit_price),
             h: common_vendor.n(`de_btn count_btn flex_col_cen_cen ${item.count == 0 ? "no_active" : ""}`),
-            i: common_vendor.o(($event) => reduce_count_car(item), item.id),
+            i: common_vendor.o(($event) => common_vendor.unref(reduce_count_car)(item), item.id),
             j: common_vendor.t(item.count || 1),
             k: common_vendor.n(`reduce count_btn flex_col_cen_cen ${item.count == item.limit[1] ? "no_active" : ""}`),
             l: common_vendor.o(($event) => add_count_car(item), item.id),

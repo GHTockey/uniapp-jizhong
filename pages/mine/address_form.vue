@@ -14,10 +14,10 @@
 									Array.isArray(form_info[item.my_column_name]) ? form_info[item.my_column_name].join(',')
 										: form_info[item.my_column_name] }}
 							</view>
-							<cityPicker :column="column" :mask-close-able="maskCloseAble"
-								@cancel="cityPickerVisible = false" @confirm="confirm($event, item.my_column_name)"
-								:visible="cityPickerVisible" />
 						</view>
+						<cityPicker :column="column" :mask-close-able="maskCloseAble"
+							@cancel="cityPickerVisible = false" @confirm="confirm($event, item.my_column_name)"
+							:visible="cityPickerVisible" />
 					</template>
 					<template v-else-if="item.my_column_name == 'address_detail'">
 						<view class="form_item flex_row_space_bt align_start">
@@ -60,7 +60,6 @@
 				</template>
 			</form>
 		</view>
-
 	</view>
 </template>
 

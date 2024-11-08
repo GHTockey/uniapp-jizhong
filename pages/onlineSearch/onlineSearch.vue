@@ -175,12 +175,13 @@ function handleClearSearchHistory() {
 		// 搜索栏按钮
 		.online-search-bar-button {
 			// padding: 5px 10px;
-			color: #333;
 			font-size: 29.17rpx;
 			margin-left: 29.17rpx;
 			font-family: PingFang SC, PingFang SC-Bold;
 			font-weight: 700;
 			color: #3e3e3e;
+			// 禁止文字换行
+			white-space: nowrap;
 		}
 	}
 

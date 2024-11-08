@@ -117,7 +117,7 @@ function processRichTextNode(node) {
     console.log('搜索');
   }, 300); // 300 毫秒的节流时间
  */
-function throttle(func, delay) {
+export function throttle(func, delay) {
   let lastTime = 0;
   return function (...args) {
     const now = Date.now();

@@ -421,6 +421,13 @@
 			{
 				"navigationBarTitleText" : "报名记录"
 			}
+		},
+		{
+			"path" : "pages/mine/refund_result",
+			"style" : 
+			{
+				"navigationBarTitleText" : "退款结果"
+			}
 		}
 	],
 	"globalStyle": {

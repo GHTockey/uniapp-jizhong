@@ -153,7 +153,7 @@
 											<view class="count flex_col_cen_cen px-2 mx-2">{{ item.count || 1 }}</view>
 											<view
 												:class="`reduce count_btn flex_col_cen_cen ${item.count == item.limit[1] ? 'no_active' : ''}`"
-												@click="add_count">+</view>
+												@click="add_count(item)">+</view>
 										</view>
 									</view>
 								</view>
@@ -314,7 +314,7 @@
 			</view>
 			<!-- 待付款金额 -->
 			<view class="pay_popup_price">
-				<view>待付款金额：￥666.66元</view>
+				<view>待付款金额：￥{{ price_all }}元</view>
 			</view>
 			<!-- 支付方式列表 -->
 			<view class="pay_popup_pay_list">
@@ -363,7 +363,7 @@
 			</view>
 			<!-- 确认支付按钮 -->
 			<view class="pay_popup_confirm_btn_box">
-				<view class="pay_popup_confirm_btn">确认支付</view>
+				<view class="pay_popup_confirm_btn" @click="payPopupConfirmHandler">确认支付</view>
 			</view>
 			<!-- 关闭图标 -->
 			<image class="pay_popup_close_icon" mode="widthFix" style="width: 33.33rpx;height: 33.33rpx;"
@@ -402,6 +402,7 @@ import { useTempStore } from "@/stores/temp";
 import { storeToRefs } from "pinia";
 import { request } from "@/utils/request";
 import { onUnload, onLoad, onShow } from "@dcloudio/uni-app";
+import { toPage } from "../../utils";
 
 const { user, business } = storeToRefs(useTempStore());
 
@@ -527,7 +528,7 @@ onUnload(() => {
 })
 
 
-// 去付款
+// 去付款 [弃用]
 function to_pay() {
 	console.log('去付款');
 
@@ -599,6 +600,14 @@ async function to_sub(e) {
 		}
 	}
 
+
+	// 打开支付弹窗
+	payPopup.value.open('center');
+	return
+
+	// getWxPayData()
+}
+async function getWxPayData() {
 	var json_goods = null;
 	if (type.value == 'buy_now') {
 		let good_arr = []
@@ -609,8 +618,6 @@ async function to_sub(e) {
 		json_goods = JSON.stringify(good_list.value)
 	}
 	// console.log('下单', json_goods);
-
-
 	is_saving.value = 1
 	uni.showLoading({
 		title: '正在请求数据'
@@ -621,8 +628,8 @@ async function to_sub(e) {
 		price_all: price_all.value || 0,
 		type: type.value || '',
 		buy_type: buy_type.value,
-		mobile: e.detail.value.phone || '',
-		user_name: e.detail.value.user_name || '',
+		mobile: user.value.phone || '',
+		user_name: user.value.user_name || '',
 		shoper_id: targte_shop.value ? targte_shop.value.id : null,
 	})
 	uni.hideLoading();
@@ -641,6 +648,27 @@ async function to_sub(e) {
 			});
 			wx_pay(res.data.wxAppJsSign)
 		}
+	}
+}
+// 弹窗确认按钮事件
+function payPopupConfirmHandler() {
+	if (selectPayType.value == 1) {
+		// 微信支付
+		getWxPayData()
+	} else if (selectPayType.value == 2) {
+		// 佣金支付
+		uni.showToast({
+			title: '佣金支付[待开发]',
+			icon: 'none',
+			mask: true
+		})
+	} else if (selectPayType.value == 3) {
+		// 储值支付
+		uni.showToast({
+			title: '储值支付[待开发]',
+			icon: 'none',
+			mask: true
+		})
 	}
 }
 
@@ -718,7 +746,7 @@ async function clear_select_address() { // 清空选择地址
 	let res = await request('/WxAppCustomer/clear_select_address', 'post', {});
 	console.log('clear_select_address res', res);
 	if (res.code != 0) return uni.showToast({ title: res.msg, icon: 'error', duration: 2000 });
-	uni.navigateBack();
+	// uni.navigateBack();
 }
 
 // 选择地址弹窗按钮事件
@@ -910,10 +938,10 @@ async function wx_pay(wxAppJsSign) {
 					setTimeout(() => {
 						is_saving.value = 0
 						// TODO 下单成功页面
-						// console.log('/pages/mine/order_success?buy_type=' + buy_type.value);
-						uni.redirectTo({
-							url: `/pages/mine/order_success?buy_type=${buy_type.value}`,
-						})
+						let url = `/pages/mine/order_success?buy_type=${buy_type.value}`;
+						console.log('url', url);
+						uni.redirectTo({ url })
+						// toPage(`/pages/mine/order_success?buy_type=${buy_type.value}`)
 					}, 1000)
 				}
 			}, 1000);

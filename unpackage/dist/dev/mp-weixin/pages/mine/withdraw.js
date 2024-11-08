@@ -9,7 +9,7 @@ const _sfc_main = {
     const { user, business } = common_vendor.storeToRefs(stores_temp.useTempStore());
     common_vendor.ref(2);
     common_vendor.ref(null);
-    const total_amount = common_vendor.ref(0);
+    const total_amount = common_vendor.ref();
     const can_cash_money = common_vendor.ref();
     const target_bank = common_vendor.ref();
     const formData = common_vendor.ref({

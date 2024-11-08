@@ -1,7 +1,7 @@
 <template>
 	<view class="my_content">
 
-		<HeightBar />
+		<HeightBar appendTitleBar />
 
 		<view class="msg_box flex_col_cen_cen">
 			<image lazy-load class="correct_icon" mode="widthFix"
@@ -10,7 +10,7 @@
 			<view class="msg_text grey text_center margin_top28" v-if="buy_type == 1">请您及时到自提点</view>
 			<view class="msg_text grey text_center" v-if="buy_type == 1">向店长出示二维码，核销完成后即可提货</view>
 
-			<view class="msg_text grey text_center margin_top28" wx:else>请等待商家发货，可在“我的订单”中</view>
+			<view class="msg_text grey text_center margin_top28" v-else>请等待商家发货，可在“我的订单”中</view>
 			<view class="msg_text grey text_center">查看该订单详情</view>
 		</view>
 	</view>

@@ -142,6 +142,10 @@ const _sfc_main = {
           return;
         }
       }
+      payPopup.value.open("center");
+      return;
+    }
+    async function getWxPayData() {
       var json_goods = null;
       if (type.value == "buy_now") {
         let good_arr = [];
@@ -160,8 +164,8 @@ const _sfc_main = {
         price_all: price_all.value || 0,
         type: type.value || "",
         buy_type: buy_type.value,
-        mobile: e.detail.value.phone || "",
-        user_name: e.detail.value.user_name || "",
+        mobile: user.value.phone || "",
+        user_name: user.value.user_name || "",
         shoper_id: targte_shop.value ? targte_shop.value.id : null
       });
       common_vendor.index.hideLoading();
@@ -180,6 +184,23 @@ const _sfc_main = {
           });
           wx_pay(res.data.wxAppJsSign);
         }
+      }
+    }
+    function payPopupConfirmHandler() {
+      if (selectPayType.value == 1) {
+        getWxPayData();
+      } else if (selectPayType.value == 2) {
+        common_vendor.index.showToast({
+          title: "佣金支付[待开发]",
+          icon: "none",
+          mask: true
+        });
+      } else if (selectPayType.value == 3) {
+        common_vendor.index.showToast({
+          title: "储值支付[待开发]",
+          icon: "none",
+          mask: true
+        });
       }
     }
     async function get_address() {
@@ -231,7 +252,6 @@ const _sfc_main = {
       console.log("clear_select_address res", res);
       if (res.code != 0)
         return common_vendor.index.showToast({ title: res.msg, icon: "error", duration: 2e3 });
-      common_vendor.index.navigateBack();
     }
     function addressSheetBtnHandler() {
       var _a;
@@ -376,9 +396,9 @@ const _sfc_main = {
               is_checking.value = 0;
               setTimeout(() => {
                 is_saving.value = 0;
-                common_vendor.index.redirectTo({
-                  url: `/pages/mine/order_success?buy_type=${buy_type.value}`
-                });
+                let url = `/pages/mine/order_success?buy_type=${buy_type.value}`;
+                console.log("url", url);
+                common_vendor.index.redirectTo({ url });
               }, 1e3);
             }
           }, 1e3);
@@ -464,7 +484,7 @@ const _sfc_main = {
             g: common_vendor.o(($event) => reduce_count(item), item.id),
             h: common_vendor.t(item.count || 1),
             i: common_vendor.n(`reduce count_btn flex_col_cen_cen ${item.count == item.limit[1] ? "no_active" : ""}`),
-            j: common_vendor.o(add_count, item.id),
+            j: common_vendor.o(($event) => add_count(item), item.id),
             k: item.id,
             l: "87306594-2-" + i0
           });
@@ -503,27 +523,29 @@ const _sfc_main = {
           title: "买家留言",
           show: showActionSheet.value
         }),
-        ad: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 1 ? "a" : "n"}.svg`,
-        ae: common_vendor.o(($event) => change_pay_type(1)),
-        af: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
-        ag: common_vendor.o(($event) => change_pay_type(2)),
-        ah: common_vendor.t(save_money.value),
-        ai: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 3 ? "a" : "n"}.svg`,
-        aj: common_vendor.o(($event) => change_pay_type(3)),
-        ak: common_vendor.o(($event) => payPopup.value.close()),
-        al: common_vendor.sr(payPopup, "87306594-4", {
+        ad: common_vendor.t(price_all.value),
+        ae: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 1 ? "a" : "n"}.svg`,
+        af: common_vendor.o(($event) => change_pay_type(1)),
+        ag: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
+        ah: common_vendor.o(($event) => change_pay_type(2)),
+        ai: common_vendor.t(save_money.value),
+        aj: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 3 ? "a" : "n"}.svg`,
+        ak: common_vendor.o(($event) => change_pay_type(3)),
+        al: common_vendor.o(payPopupConfirmHandler),
+        am: common_vendor.o(($event) => payPopup.value.close()),
+        an: common_vendor.sr(payPopup, "87306594-4", {
           "k": "payPopup"
         }),
-        am: common_vendor.o(() => {
+        ao: common_vendor.o(() => {
         }),
-        an: common_vendor.p({
+        ap: common_vendor.p({
           ["background-color"]: "#fff",
           ["border-radius"]: "27.78rpx",
           ["mask-click"]: false
         }),
-        ao: (_c = address_list.value) == null ? void 0 : _c.length
+        aq: (_c = address_list.value) == null ? void 0 : _c.length
       }, ((_d = address_list.value) == null ? void 0 : _d.length) ? {
-        ap: common_vendor.f(address_list.value, (item, index, i0) => {
+        ar: common_vendor.f(address_list.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.user_name),
             b: common_vendor.t(item.mobile),
@@ -535,9 +557,9 @@ const _sfc_main = {
           };
         })
       } : {}, {
-        aq: common_vendor.o(addressSheetBtnHandler),
-        ar: common_vendor.o(($event) => showAddressSheet.value = $event),
-        as: common_vendor.p({
+        as: common_vendor.o(addressSheetBtnHandler),
+        at: common_vendor.o(($event) => showAddressSheet.value = $event),
+        av: common_vendor.p({
           title: "选择地址",
           footerBtnText: ((_e = address_list.value) == null ? void 0 : _e.length) ? "立即购买" : "添加收货地址",
           show: showAddressSheet.value

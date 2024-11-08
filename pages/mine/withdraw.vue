@@ -15,28 +15,28 @@
 				<view class="w-[150rpx]">
 					<text class="text-[29.17rpx]">姓名</text>
 				</view>
-				<input class="text-right" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
+				<input class="text-right flex-1" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
 					type="text" placeholder="请输入本人的真实姓名" v-model="formData.name" />
 			</view>
 			<view class="flex justify-between items-center px-[30rpx] mt-[1px] bg-white h-[80rpx]">
 				<view class="w-[150rpx]">
 					<text class="text-[29.17rpx]">手机号码</text>
 				</view>
-				<input class="text-right" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
+				<input class="text-right flex-1" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
 					type="number" placeholder="请输入本人的手机号码" v-model="formData.phone" />
 			</view>
 			<view class="flex justify-between items-center px-[30rpx] mt-[1px] bg-white h-[80rpx]">
 				<view class="w-[150rpx]">
 					<text class="text-[29.17rpx]">开户银行</text>
 				</view>
-				<input class="text-right" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
+				<input class="text-right flex-1" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
 					type="text" placeholder="请输入开户银行" v-model="formData.bank" />
 			</view>
 			<view class="flex justify-between items-center px-[30rpx] mt-[1px] bg-white h-[80rpx]">
 				<view class="w-[150rpx]">
 					<text class="text-[29.17rpx]">银行卡号</text>
 				</view>
-				<input class="text-right" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
+				<input class="text-right flex-1" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
 					type="number" placeholder="请输入本人的银行卡号" v-model="formData.bankCard" />
 			</view>
 		</view>
@@ -86,7 +86,7 @@ const withdrawType = ref(2) // 提现方式 [1微信  2银行卡]
 const bankCardInfo = ref(null) // 银行卡信息
 
 
-const total_amount = ref(0) // 可提现佣金
+const total_amount = ref() // 可提现佣金
 // user_name
 // phone: '',
 // bank: '',
