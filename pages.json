@@ -428,6 +428,21 @@
 			{
 				"navigationBarTitleText" : "退款结果"
 			}
+		},
+		{
+			"path" : "pages/agrent/agrent",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/agrent/rule",
+			"style" : 
+			{
+				"navigationBarTitleText" : "代理加盟",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

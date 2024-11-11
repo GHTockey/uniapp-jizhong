@@ -143,6 +143,14 @@
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">核销订单</text>
 				</view>
+				<view class="common_tool_item" @click="to_application_record">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/images/huodong_incon1.png">
+						</image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">预定记录</text>
+				</view>
 
 
 
@@ -153,13 +161,6 @@
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">消息通知</text>
 				</view>
-				<!-- <view class="common_tool_item" @click="toPage('/pages/notify/notifyList')">
-					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full"
-							src="https://saas.jizhongkeji.com/static/jzkj/static/icon/sm-logo.svg"></image>
-					</view>
-					<text class="text-[24rpx] mt-[13rpx]">物流消息</text>
-				</view> -->
 				<view class="common_tool_item" @click="toPage('/pages/mine/present')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<image class=" h-full w-full"
@@ -182,6 +183,33 @@
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">test</text>
 				</view>
+			</view>
+		</view>
+
+		<!-- 工作台 -->
+		<view class="common_tool_box">
+			<!-- 头部 -->
+			<view class="common_tool_header flex justify-between">
+				<text class="text-[28rpx]">工作台</text>
+			</view>
+			<!-- 按钮列表 -->
+			<view class="common_tool_list">
+				<view class="common_tool_item" @click="tool_nav(null)">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/images/promotion1.png"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">抽奖</text>
+				</view>
+				<view class="common_tool_item" @click="tool_nav('/pages/agrent/rule')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full"
+							src="https://saas.jizhongkeji.com/static/jzkj/images/agent1.png"></image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">代理加盟</text>
+				</view>
+
+
 			</view>
 		</view>
 

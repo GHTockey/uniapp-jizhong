@@ -1,5 +1,6 @@
 <template>
-	<view class="nav-bar-container" :style="{ paddingTop: getStatusBarHeight() + 'px', backgroundColor: bgc || '#FFFFFF' }">
+	<view class="nav-bar-container"
+		:style="{ paddingTop: getStatusBarHeight() + 'px', backgroundColor: bgc || '#FFFFFF' }">
 		<!-- 返回按钮 -->
 		<view class="nav-bar-back" v-if="showBack" @click="goBack">
 			<image
@@ -13,6 +14,7 @@
 				<view class="nav-bar-title">{{ title }}</view>
 			</slot>
 		</template>
+
 
 		<!-- 搜索栏 -->
 		<view class="search_box flex_row_space_ar" v-if="showSearch">
