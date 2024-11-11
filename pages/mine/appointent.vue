@@ -1,10 +1,11 @@
 <template>
 
 	<HeightBar appendNavBar />
-	<NavBar showBack>
+	<!-- TODO: 已知问题：显示搜索栏是不能同时显示标题[待适配] -->
+	<NavBar showBack :showSearch="type == 2" :searchPath="`/pages/mine/apply_search?type=${type}`">
 		<template #title>
 			<view style="width: 100%; margin-left: 60rpx; display: flex; align-items: center; margin-bottom: 3rpx;">
-				<text>我的预约</text>
+				<text>{{ type == 2 ? '预约管理' : '我的预约' }}</text>
 			</view>
 		</template>
 	</NavBar>
@@ -119,11 +120,11 @@
 		</view>
 
 		<!-- 填写报名信息 -->
-		<view class="tc_baoming" v-if="show_tc">
+		<view class="tc_baoming" style="z-index: 999;" v-if="show_tc">
 			<form @submit="apply_shop" style="position: relative;">
 				<view class="context">
 					<view class="tips">修改预约信息</view>
-					<view class="close" bindtap="close_show_tc">
+					<view class="close" @click="close_show_tc">
 						<image style="width: 40rpx;height: 40rpx;"
 							src="https://saas.jizhongkeji.com/static/jzkj/images/close_pop_icon.png"></image>
 					</view>
@@ -144,12 +145,12 @@
 					</view>
 					<view class="input_item">
 						<view class="left">用餐时间</view>
-
 						<view class="input">
-							<pickerSelector style="width: 100%;" mode="date" name="shop_time"
+							<PickerSelector style="width: 100%;" mode="date" name="shop_time"
+								:start="new Date().toISOString().split('T')[0]"
 								:value="shop_detail && shop_detail.shop_time_v ? shop_detail.shop_time_v : ''"
-								placeholder="请选择用餐时间" placeholder-class="placeholder-style" />
-
+								placeholder="请选择用餐时间" placeholder-class="placeholder-style"
+								@change="picker_selector_change($event, 'shop_time')" />
 						</view>
 					</view>
 					<view class="input_item">
@@ -179,10 +180,6 @@ import { request } from '@/utils/request';
 import { onLoad, onShow, onReachBottom } from '@dcloudio/uni-app';
 import { getStatusBarHeight, getTitleBarWidth } from '@/utils';
 
-
-// boundingWidth: (wx.getSystemInfoSync()['windowWidth'] - wx.getMenuButtonBoundingClientRect().right) * 2 + wx.getMenuButtonBoundingClientRect().width,
-// 	statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
-
 const boundingWidth = ref(getTitleBarWidth());
 const statusBarHeight = ref(getStatusBarHeight());
 
@@ -203,7 +200,7 @@ const appointent_count = ref();
 const is_loading = ref(false);
 
 const search_str = ref('');
-
+const picker_selector_data = ref({});
 
 onLoad(options => {
 	if (options && options.type) {
@@ -221,7 +218,10 @@ onReachBottom(() => {
 })
 
 
-
+function picker_selector_change(e, colName) {
+	// console.log(e, colName);
+	picker_selector_data.value[colName] = e.value;
+}
 
 function close_show_tc() {
 	// this.setData({
@@ -373,14 +373,19 @@ function change_nav(e) {
 
 async function apply_shop(e) {
 	// var that = this;
-
 	try {
+
+		// console.log('picker_selector_data', picker_selector_data.value);
+		// console.log('e.detail.value', e.detail.value);
+		// return
+
 		let res = await request('/WxAppCustomer/edit_apply', 'post', {
 			apply_id: shop_detail.value.id,
 			shop_id: shop_detail.value.shop_id,
 			user_name: e.detail.value.user_name || '',
 			phone: e.detail.value.phone || '',
-			shop_time: e.detail.value.shop_time || '',
+			// shop_time: e.detail.value.shop_time || '',
+			shop_time: picker_selector_data.value['shop_time'] || '',
 			shop_count: e.detail.value.shop_count || '',
 		})
 		// 更新数据

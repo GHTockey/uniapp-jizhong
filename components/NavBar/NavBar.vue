@@ -8,7 +8,6 @@
 				style="width: 30rpx; height: 30rpx;" />
 		</view>
 		<!-- 标题 -->
-		<!-- <view class="nav-bar-title" v-if="!showSearch"></view> -->
 		<template v-if="!showSearch">
 			<slot name="title">
 				<view class="nav-bar-title">{{ title }}</view>
@@ -18,9 +17,6 @@
 
 		<!-- 搜索栏 -->
 		<view class="search_box flex_row_space_ar" v-if="showSearch">
-
-			<!-- <view style="width: 50rpx;"></view> -->
-
 			<view class="search_input_box">
 				<image lazy-load class="search_icon" src="https://saas.jizhongkeji.com/static/jzkj/images/search.png"
 					mode="aspectFit" v-if="!search_str || search_str.length == 0" />

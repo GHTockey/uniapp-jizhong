@@ -232,6 +232,21 @@
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">我的预约</text>
 				</view>
+				<!-- user.shoper_id > 0 && business.is_open_shop == 1 -->
+				<view class="common_tool_item" @click="to_appoint(2)">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/images/agent5.png">
+						</image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">预约管理</text>
+				</view>
+				<view class="common_tool_item" @click="to_scan_appoint">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/images/agent5.png">
+						</image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">核销预约</text>
+				</view>
 
 			</view>
 		</view>
@@ -515,7 +530,8 @@ function to_appoint(type) {
 }
 function to_scan_appoint() {
 	uni.navigateTo({
-		url: '/pages/mine/scan',
+		// url: '/pages/mine/scan',
+		url: '/pages/mine/scan_order',
 	})
 }
 

@@ -41,10 +41,10 @@
 					<view style="position: relative;z-index: 10;">门店介绍</view>
 					<view class="line"></view>
 				</view>
-				<block v-for="item in shop.introduce" :key="item.id">
+				<template v-for="item in shop.introduce" :key="item.id">
 					<rich-text @click="on_tap_rich_text" @longpress="on_tap_rich_text"
 						:data-name="item.type == 1 ? 'introduce' : ''" :nodes="item.content"></rich-text>
-				</block>
+				</template>
 			</view>
 			<view style="height: 25rpx;background-color: #F7F8FA;width: 100%;"></view>
 			<view style="height: 150rpx;background-color: #F7F8FA;width: 100%;"></view>

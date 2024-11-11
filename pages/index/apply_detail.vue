@@ -1,5 +1,6 @@
 <template>
 	<view class="apply_detail_container">
+		<HeightBar />
 		<NavBar showBack>
 			<template #title>预定成功</template>
 		</NavBar>
@@ -367,7 +368,7 @@ function open_img(qrcode_trial) {
 <style scoped lang="scss">
 .apply_detail_container {
 	min-height: calc(100vh);
-	padding-top: $nav-height;
+	padding-top: calc($nav-height + 30rpx);
 	// background-color: #f7f8fa;
 	// position: relative;
 }
