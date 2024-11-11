@@ -224,6 +224,15 @@
 				</view>
 
 
+				<!-- business.is_open_shop == 1 -->
+				<view class="common_tool_item" @click="to_appoint(1)">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/images/agent4.png">
+						</image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">我的预约</text>
+				</view>
+
 			</view>
 		</view>
 

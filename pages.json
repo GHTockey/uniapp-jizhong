@@ -451,6 +451,14 @@
 				"navigationBarTitleText" : "有奖推荐",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/mine/appointent",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的预约",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
