@@ -443,6 +443,14 @@
 				"navigationBarTitleText" : "代理加盟",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/agrent/recommend",
+			"style" : 
+			{
+				"navigationBarTitleText" : "有奖推荐",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

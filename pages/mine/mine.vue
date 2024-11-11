@@ -203,10 +203,24 @@
 				</view>
 				<view class="common_tool_item" @click="tool_nav('/pages/agrent/rule')">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
-						<image class=" h-full w-full"
-							src="https://saas.jizhongkeji.com/static/jzkj/images/agent1.png"></image>
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/images/agent1.png">
+						</image>
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">代理加盟</text>
+				</view>
+				<view class="common_tool_item" @click="tool_nav(null)">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/images/agent2.png">
+						</image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">落地服务奖</text>
+				</view>
+				<view class="common_tool_item" @click="tool_nav('/pages/agrent/recommend')">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
+						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/images/agent3.png">
+						</image>
+					</view>
+					<text class="text-[24rpx] mt-[13rpx]">有奖推荐</text>
 				</view>
 
 
