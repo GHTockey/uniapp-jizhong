@@ -131,7 +131,8 @@ import cityPicker from '@/uni_modules/piaoyi-cityPicker/components/piaoyi-cityPi
 
 
 // 响应式解构 business user
-const { business, user } = storeToRefs(useTempStore());
+const tempStore = useTempStore()
+const { business, user } = storeToRefs(tempStore);
 
 
 const cityPickerVisible = ref(false); // 是否显示
@@ -212,12 +213,17 @@ async function bindsubmit(e) {
 			title: '提交成功',
 			icon: 'none'
 		})
+		// console.log(res);
+		// user.value = res.data.user;
+		tempStore.setBusiness(res.data.user.business);
+		tempStore.setUser(res.data.user);
+
 		setTimeout(() => {
 			uni.navigateBack()
 		}, 2000)
 	} else {
 		uni.showToast({
-			title: res.data.msg,
+			title: res.msg,
 			icon: 'none'
 		})
 	}

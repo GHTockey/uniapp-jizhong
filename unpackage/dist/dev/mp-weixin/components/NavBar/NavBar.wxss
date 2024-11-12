@@ -87,7 +87,7 @@
   padding: 0rpx 10rpx;
   font-size: 28rpx;
   text-align: center;
-  width: calc(100% - 40rpx);
+  width: 100%;
 }
 .search_box_lable.data-v-9367190c {
   flex: none;

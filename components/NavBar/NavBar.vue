@@ -157,7 +157,8 @@ const goBack = () => {
 	font-size: 28rpx;
 	text-align: center;
 	// width: 400rpx;
-	width: calc(100% - 40rpx);
+	// width: calc(100% - 40rpx);
+	width: 100%;
 }
 
 .search_box_lable {

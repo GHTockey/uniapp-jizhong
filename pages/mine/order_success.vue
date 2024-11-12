@@ -1,7 +1,8 @@
 <template>
 	<view class="my_content">
 
-		<HeightBar appendTitleBar />
+		<HeightBar appendTitleBar appendNavBar />
+		<NavBar title="" showBack />
 
 		<view class="msg_box flex_col_cen_cen">
 			<image lazy-load class="correct_icon" mode="widthFix"

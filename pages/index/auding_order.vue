@@ -97,7 +97,7 @@
 
 		<view @click="to_home" style="display: flex;justify-content: center;width:100%;margin-top:50rpx">
 			<view class="form_buttom"
-				style="width: 100%;background: #fff;border:1rpx solid #FF0000;color: #FF0000;box-sizing: border-box;">
+				style="width: 100%;background: #fff;border:1rpx solid #FF0000;color: #FF0000;box-sizing: border-box; margin: 0 30rpx;">
 				返回个人中心</view>
 		</view>
 
@@ -623,6 +623,8 @@ page {
 
 <style lang="scss" scoped>
 .auding_order_container {
-	// background-color: aquamarine;
+	background-color: #f0f0f0;
+	min-height: 100vh;
+	overflow: hidden;
 }
 </style>
