@@ -101,6 +101,10 @@
 				返回个人中心</view>
 		</view>
 
+		<!-- <view class="tce_theme_btn">
+			<text>解耦的回复</text>
+		</view> -->
+
 		<view style="height: 100rpx;"></view>
 	</view>
 </template>

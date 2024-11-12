@@ -1,7 +1,6 @@
 <template>
 
 	<HeightBar appendNavBar />
-	<!-- TODO: 已知问题：显示搜索栏是不能同时显示标题[待适配] -->
 	<NavBar showBack :showSearch="type == 2" searchPlaceholder="输入关键词"
 		:searchPath="`/pages/mine/apply_search?type=${type}`">
 		<template #title>
@@ -93,19 +92,45 @@
 					</view>
 
 					<view class="hang3" style="border-bottom: 0;" v-if="type == 2">
-						<image @click="makePhoneCall(item.phone)" class="lianxi6" mode="widthFix"
-							src="https://saas.jizhongkeji.com/static/jzkj/images/lianxi1.png"></image>
+						<!-- 联系客户 -->
+						<!-- <image @click="makePhoneCall(item.phone)" class="lianxi6" mode="widthFix"
+							src="https://saas.jizhongkeji.com/static/jzkj/images/lianxi1.png"></image> -->
+						<view @click="makePhoneCall(item.phone)" style="border: 3rpx solid #08c160;"
+							class="rounded-[50rpx] px-3 text-[#08c160] text-[30rpx] flex items-center">
+							<text>联系客户</text>
+						</view>
 
-						<image @click="open_show_tc" :data-itemdetail="item" mode="widthFix"
-							src="https://saas.jizhongkeji.com/static/jzkj/images/lianxi2.png"></image>
-						<image class="lianxi6" style="opacity: 0;" v-if="item.stat != 1" mode="widthFix"
-							src="https://saas.jizhongkeji.com/static/jzkj/images/lianxi2.png"></image>
+						<!-- 修改预约 -->
+						<view @click="open_show_tc" v-if="item.stat == 1" :data-itemdetail="item"
+							style="border: 3rpx solid #08c160;"
+							class="rounded-[50rpx] px-3 text-[#08c160] text-[30rpx] flex items-center">
+							<text>修改预约1</text>
+						</view>
+						<view v-if="item.stat != 1" style="border: 3rpx solid gainsboro;"
+							class="rounded-[50rpx] px-3 text-[#999999] text-[30rpx] flex items-center">
+							<text>修改预约</text>
+						</view>
+						<!-- <image @click="open_show_tc" :data-itemdetail="item" mode="widthFix"
+							src="https://saas.jizhongkeji.com/static/jzkj/images/lianxi2.png"></image> -->
+						<!-- <image class="lianxi6" style="opacity: 0;" v-if="item.stat != 1" mode="widthFix"
+							src="https://saas.jizhongkeji.com/static/jzkj/images/lianxi2.png"></image> -->
 
-						<image class="lianxi6" v-if="item.stat == 1" @click="cancel_target" :data-targetid="item.id"
+						<!-- 取消预约 -->
+						<view @click="cancel_target" v-if="item.stat == 1" :data-targetid="item.id"
+							style="border: 3rpx solid #08c160;"
+							class="rounded-[50rpx] px-3 text-[#08c160] text-[30rpx] flex items-center">
+							<text>取消预约</text>
+						</view>
+						<view v-if="item.stat != 1" style="border: 3rpx solid gainsboro;"
+							class="rounded-[50rpx] px-3 text-[#999999] text-[30rpx] flex items-center">
+							<text>取消预约</text>
+						</view>
+						<!-- <image class="lianxi6" v-if="item.stat == 1" @click="cancel_target" :data-targetid="item.id"
 							mode="widthFix" src="https://saas.jizhongkeji.com/static/jzkj/images/lianxi3.png"></image>
 						<image class="lianxi6" style="opacity: 0;" v-if="item.stat != 1" mode="widthFix"
-							src="https://saas.jizhongkeji.com/static/jzkj/images/lianxi3.png"></image>
+							src="https://saas.jizhongkeji.com/static/jzkj/images/lianxi3.png"></image> -->
 					</view>
+
 
 				</view>
 			</view>

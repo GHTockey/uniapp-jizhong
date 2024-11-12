@@ -1,7 +1,7 @@
 <template>
 	<view class="goods-detail-container">
 		<!-- 商品图片和视频区域 -->
-		<swiper class="goods-detail-swiper" @change="swiperChange">
+		<swiper class="goods-detail-swiper" @change="swiperChange" v-model:current="swiperCurrentIndex">
 			<swiper-item class="goods-detail-swiper-item" v-if="video_list.length > 0"
 				v-for="(item, index) in video_list" :key="index">
 				<video id="video" :src="item.url" :controls="false" object-fit="cover"></video>
@@ -30,9 +30,13 @@
 					video_list.length }}</text>
 			</view>
 			<!-- 右下角视频/图集按钮 -->
-			<view class="goods-detail-swiper-button">
-				<text class="goods-detail-swiper-button-text">视频</text>
-				<text class="goods-detail-swiper-button-text">图集</text>
+			<view class="goods-detail-swiper-button" v-if="video_list.length > 0">
+				<text class="goods-detail-swiper-button-text"
+					:style="`color: ${swiperCurrentIndex > 0 ? '#fff' : '#a7a7a7'} ;`"
+					@click="taggleWindow('video')">视频</text>
+				<text class="goods-detail-swiper-button-text"
+					:style="`color: ${swiperCurrentIndex == 0 ? '#fff' : '#a7a7a7'} ;`"
+					@click="taggleWindow('image')">图集</text>
 			</view>
 		</view>
 
@@ -129,7 +133,7 @@
 			</view>
 		</view>
 
-		<!-- 客户评价 ⟩ -->
+		<!-- 客户评价 -->
 		<view class="goods-detail-info-comment">
 			<!-- 评价头部 -->
 			<view class="comment-header">
@@ -421,6 +425,8 @@ const swiperIndex = ref(0); // 轮播图当前索引
 const act_info = ref(0); // 活动价格 ???
 const limit = ref([1, 999]); // 购买数量限制
 
+const swiperCurrentIndex = ref(0); // 轮播图当前索引
+
 const show_pop = ref('')
 const have_chosed = ref()
 const height = ref(1200)
@@ -489,6 +495,19 @@ onLoad((options) => {
 
 	goods_detail_v2()
 })
+
+
+
+
+// 切换图片和视频
+function taggleWindow(type) {
+	// console.log(type);
+	if (type == 'video') {
+		swiperCurrentIndex.value = 0
+	} else {
+		swiperCurrentIndex.value = 1
+	}
+}
 
 
 async function goods_detail_v2() {
@@ -856,6 +875,7 @@ function to_buy(e) {
 function swiperChange(e) {
 	// console.log(e, '轮播图改变');
 	swiperIndex.value = e.detail.current
+	console.log('swiperCurrentIndex.value', swiperCurrentIndex.value)
 }
 
 function startVideoPlay(e) {

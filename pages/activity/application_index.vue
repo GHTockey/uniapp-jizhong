@@ -4,11 +4,25 @@
 
 			<view class="content_box" v-if="!(extend_active && extend_active.name)">
 				<view class="content" style="padding-bottom: 200rpx;">
-					<view>
+					<!-- <view>
 						<template v-if="activity.detail_content.length > 0"
 							v-for="(item, index) in activity.detail_content" :key="index">
 							<rich-text class="xiangqing_rich_text" :nodes="item.content"
 								v-if="item.content_type == 'rich_text'"></rich-text>
+							<view>{{ item.content }}</view>
+						</template>
+</view> -->
+
+					<view class="context">
+						<template v-for="(item, index) in activity.detail_content" :key="index">
+							<rich-text @click="on_tap_rich_text" @longpress="on_tap_rich_text"
+								data-name="detail_content" v-if="item.content_type == 'rich_text'"
+								:nodes="item.content"></rich-text>
+							<video :loop="item.loop == 1" :autoplay="item.autostart == 1" :id="`video_${index}`"
+								:data-videoindex="index" @play="bindplay" object-fit="contain"
+								v-if="item.content_type == 'video'" :src="item.video_url" :poster="item.poster_url"
+								:style="`width:100%;height:${690 * item.height / item.width}rpx;`"
+								enable-play-gesture></video>
 						</template>
 					</view>
 				</view>
@@ -181,7 +195,6 @@
 
 				</view>
 			</view>
-
 		</view>
 
 		<view class="bottom_baocun_box">
@@ -258,7 +271,7 @@ onShow(() => {
 })
 
 async function onShowHandler() {
-	let res = await request('/WxAppCustomer/activity_detail/', 'post', { activity_id: activity_id.value })
+	let res = await request('/WxAppCustomer/activity_detail', 'post', { activity_id: activity_id.value })
 	console.log('res', res)
 	if (res.code != 0) return uni.showModal({
 		title: '活动结束',
@@ -477,6 +490,44 @@ async function onShowHandler() {
 		})
 	}
 }
+
+
+//点击预览图片,放大预览
+function on_tap_rich_text(e) {
+	// console.log(e);
+	var imgs = [] //把详情页面所有图片放在一个数组中
+	var name = e.currentTarget.dataset.name;
+	activity.value[name].forEach((m) => {
+		// console.log("mmmmm", m);
+		if (m.content_type == "rich_text") { //如果详情内容是富文本，则遍历富文本中content中的每一个元素
+			m.content.forEach((m2) => {
+				// console.log("mmmm2", m2);
+				find_imgs(m2, imgs) //调用函数，把查找到的图片添加到imgs数组中
+			})
+		}
+	})
+	// console.log("imgs", imgs);
+	// let currentUrl = e.currentTarget.dataset.src
+	if (imgs.length > 0) { //如果图片多余1张，则可以左右滑动查看(一张的时候左右滑不动)
+		uni.previewImage({
+			current: imgs[0], // 当前显示图片的为数组的第一张
+			urls: imgs // 需要预览的图片http链接列表
+		})
+	}
+}
+// 查找图片
+function find_imgs(node, imgs) { //node是自定义节点，表示node下面的imgs
+	if (node.name == "img") {
+		imgs.push(node.attrs.src) //把查找到的图片放进imgs数组中
+	}
+	if (node.children) { //判断node下面有没有children，有的话接着遍历children里面的children去找img
+		node.children.forEach((m) => {
+			find_imgs(m, imgs) //调用查找函数，把得到的图片放进数组中
+		})
+	}
+}
+
+
 
 
 // 去报名

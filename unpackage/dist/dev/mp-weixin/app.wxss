@@ -718,6 +718,10 @@ view,text,::before,::after {
     padding-left: 0.5rem;
     padding-right: 0.5rem
 }
+.px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem
+}
 .px-4 {
     padding-left: 1rem;
     padding-right: 1rem
@@ -848,6 +852,10 @@ view,text,::before,::after {
     --tw-text-opacity: 1;
     color: rgb(0 0 0 / var(--tw-text-opacity))
 }
+.text-_h08c160_ {
+    --tw-text-opacity: 1;
+    color: rgb(8 193 96 / var(--tw-text-opacity))
+}
 .text-_h12AB2C_ {
     --tw-text-opacity: 1;
     color: rgb(18 171 44 / var(--tw-text-opacity))
@@ -911,6 +919,10 @@ view,text,::before,::after {
 .text-_h989898_ {
     --tw-text-opacity: 1;
     color: rgb(152 152 152 / var(--tw-text-opacity))
+}
+.text-_h999999_ {
+    --tw-text-opacity: 1;
+    color: rgb(153 153 153 / var(--tw-text-opacity))
 }
 .text-_h9A9A9A_ {
     --tw-text-opacity: 1;
