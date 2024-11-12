@@ -1,47 +1,59 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-if (!Array) {
-  const _component_TransitionGroup = common_vendor.resolveComponent("TransitionGroup");
-  _component_TransitionGroup();
-}
 const _sfc_main = {
   __name: "BubbleTips",
   props: {
     // 传进来的数据
     itemData: {
-      type: Object,
-      default: () => {
-      }
+      type: Object
+    },
+    // 动画时间
+    duration: {
+      type: Number,
+      default: 300
+    },
+    // 停留时间
+    stayTime: {
+      type: Number,
+      default: 1e3
     }
   },
   setup(__props) {
     const props = __props;
-    const showItemList = common_vendor.ref([]);
-    let timer = null;
-    common_vendor.watch(() => props.itemData, (newData) => {
-      if (timer) {
-        clearTimeout(timer);
-        showItemList.value = [];
-      }
-      setTimeout(() => {
-        showItemList.value = [newData];
-      }, 500);
-      timer = setTimeout(() => {
-        showItemList.value = [];
-      }, 3e3);
+    common_vendor.ref(null);
+    const isAnimating = common_vendor.ref(false);
+    const bubbleTipsItemStyle = common_vendor.ref({
+      transition: `all ${props.duration}ms`
     });
+    const itemDataShow = common_vendor.ref();
+    common_vendor.watch(() => props.itemData, () => {
+      nextItem(props.itemData);
+    }, { deep: true });
+    function nextItem(itemData) {
+      if (isAnimating.value)
+        return;
+      isAnimating.value = true;
+      bubbleTipsItemStyle.value.transform = `translateY(-${100}%)`;
+      bubbleTipsItemStyle.value.opacity = 0;
+      setTimeout(() => {
+        bubbleTipsItemStyle.value.transition = "none";
+        bubbleTipsItemStyle.value.transform = `translateY(100%)`;
+        itemDataShow.value = itemData;
+      }, props.duration);
+      setTimeout(() => {
+        bubbleTipsItemStyle.value.transition = `all ${props.duration}ms`;
+        bubbleTipsItemStyle.value.transform = `translateY(0)`;
+        bubbleTipsItemStyle.value.opacity = 1;
+        isAnimating.value = false;
+      }, props.duration * 2);
+    }
     return (_ctx, _cache) => {
+      var _a, _b;
       return {
-        a: common_vendor.f(showItemList.value, (item, index, i0) => {
-          return {
-            a: item.img,
-            b: common_vendor.t(item.text),
-            c: item.id
-          };
-        }),
-        b: common_vendor.p({
-          name: "fade"
-        })
+        a: (_a = itemDataShow.value) == null ? void 0 : _a.img,
+        b: common_vendor.t((_b = itemDataShow.value) == null ? void 0 : _b.text),
+        c: common_vendor.s(bubbleTipsItemStyle.value),
+        d: !itemDataShow.value ? 1 : ""
       };
     };
   }

@@ -53,9 +53,8 @@ const _sfc_main = {
     });
     function to_detail(detail) {
       if (detail.category_id > 0) {
-        console.log("跳转至分类页面");
         common_vendor.index.navigateTo({
-          url: "/pages/goods/category?id=" + detail.category_id
+          url: "/pages/product/category?id=" + detail.category_id
         });
         return;
       }

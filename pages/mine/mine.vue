@@ -14,7 +14,7 @@
 				</image>
 				<view class="flex flex-col justify-center">
 					<text class="text-[30rpx] mb-2">{{ user.user_name }}</text>
-					<text class=" text-[25rpx] bg-black/30 px-[20rpx] py-[3rpx] rounded-[50rpx] opacity-65">ID:
+					<text class="text-[25rpx] bg-black/30 px-[20rpx] py-[3rpx] rounded-[50rpx] opacity-65">ID:
 						{{ user.id }}</text>
 					<text v-if="!user.user_name" @click="edit_user_info">设置个人资料</text>
 				</view>
@@ -108,7 +108,7 @@
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<!-- <image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/images/wx.svg"></image> -->
 						<image lazy-load style="width: 71.5rpx;"
-							src="https://saas.jizhongkeji.com/static/jzkj/images/kefu_wei.png" mode="widthFix" />
+							src="https://saas.jizhongkeji.com/static/jzkj/images/kefu_wei.png" mode="aspectFit" />
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">微信客服</text>
 				</view>

@@ -7,15 +7,18 @@
 		<CouponPopup v-model:visible="showPopup" @close="handleCloseCoupon" @claim="handleClaimCoupon" title="aaa"
 			:amount=100 condition="满100可用" expiryDate="2024.08.88" />
 
+		<!-- 气泡提示 -->
+		<BubbleTips :itemData="bubbleTipsData" :duration="200" />
+
 		<!-- test btn -->
 		<view>
 			<button @click="showPopup = true" size="mini">优惠券弹窗</button>
 			<button @click="testApi" size="mini">test api</button>
-			<button @click="goToPage('/pages/shopcar/shopcar')" size="mini">跳转至购物车页</button>
+			<!-- <button @click="goToPage('/pages/shopcar/shopcar')" size="mini">跳转至购物车页</button> -->
 			<button @click="goToPage('/pages/onlineSearch/onlineSearch')" size="mini">跳转至在线搜索页</button>
-			<button @click="goToPage('/pages/goodsDetail/goodsDetail')" size="mini">跳转商品详情页</button>
+			<!-- <button @click="goToPage('/pages/goodsDetail/goodsDetail')" size="mini">跳转商品详情页</button>
 			<button @click="showActionSheet = true" size="mini">使用ActionSheet组件</button>
-			<button @click="showActionSheetSlot = true" size="mini">选择商品弹窗 ActionSheetSlot组件</button>
+			<button @click="showActionSheetSlot = true" size="mini">选择商品弹窗 ActionSheetSlot组件</button> -->
 
 			<!-- test tailwindcss -->
 			<!-- <view class="bg-red-600 w-64 h-[100rpx] flex">123</view> -->
@@ -126,6 +129,25 @@ const actionSheetData = ref({
 	]
 })
 
+// 气泡提示数据
+const bubbleTipsData = ref();
+
+
+
+// test 添加气泡提示数据
+function addBubbleTipsData() {
+	bubbleTipsData.value = {
+		id: Date.now(),
+		img: 'https://img0.baidu.com/it/u=4294353355,1624915568&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500',
+		text: `张${Math.floor(Math.random() * 10)}一分钟前购买了商品`
+	}
+};
+setInterval(() => {
+	addBubbleTipsData()
+}, 1000);
+
+
+
 const handleCloseCoupon = () => {
 	console.log('优惠券弹窗关闭');
 };
@@ -134,7 +156,7 @@ const handleClaimCoupon = () => {
 	uni.showToast({
 		title: '领取'
 	});
-}
+};
 
 // actionSheet 确定
 const handleConfirmActionSheet = () => {
@@ -147,11 +169,6 @@ async function testApi() {
 	// 	url: '/pages/test/test'
 	// })
 	// return;
-
-	let data = {
-		wx_open_id: 'oPyg85Y9gzaTO9wgTmeApQMqmhRY',
-		wx_appid: 'wx184d389f8e1603d4'
-	};
 
 	let res = await request(
 		'/home_all_data_v',

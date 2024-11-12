@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+require("../../utils/request.js");
 const stores_system = require("../../stores/system.js");
 const stores_tabBar = require("../../stores/tabBar.js");
 const _sfc_main = {

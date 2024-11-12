@@ -25,7 +25,7 @@
 /* 文章场景相关 */
 .nav-bar-container.data-v-9367190c {
   box-sizing: content-box;
-  width: 100%;
+  width: calc(100% - 40rpx);
   min-height: 40px;
   position: fixed;
   top: 0;
@@ -74,8 +74,8 @@
 }
 .search_icon.data-v-9367190c {
   position: absolute;
-  top: calc(50% - 14rpx);
-  left: 40rpx;
+  top: calc(50% - 12rpx);
+  left: 25rpx;
   height: 24rpx;
   width: 24rpx;
 }

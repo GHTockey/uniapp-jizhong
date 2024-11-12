@@ -12,7 +12,7 @@
 					<view class="label">头像</view>
 					<view class="input">
 						<image class="user_avatar"
-							:src="wx_image || 'https://saas.jizhongkeji.com/static/jzkj/images/default_avatar.png'"
+							:src="user.wx_image || 'https://saas.jizhongkeji.com/static/jzkj/images/default_avatar.png'"
 							mode="aspectFill" />
 					</view>
 					<image class="right" src="https://saas.jizhongkeji.com/static/jzkj/images/right.png"
@@ -24,7 +24,7 @@
 					<!-- <input class="input" :disabled="!is_use_new_Profile" @change="nickname_change"
 						@input="nickname_input" name="nickname" :value="nickname || ''" type="nickname"
 						placeholder="请输入昵称" /> -->
-					<input class="input" name="nickname" v-model="nickname" type="nickname" placeholder="请输入昵称" />
+					<input class="input" name="nickname" v-model="user.nickname" type="nickname" placeholder="请输入昵称" />
 					<!-- <button v-if="!is_use_new_Profile" class="nickname_button" open-type="chooseAvatar"
 						@click="chooseavatar">
 					</button> -->
@@ -33,7 +33,8 @@
 				</view>
 
 				<view class="input_item input_item_btn">
-					<button class="btn" :class="{ 'disabled': !wx_image || !nickname }" form-type="submit">保存</button>
+					<button class="btn" :class="{ 'disabled': !user.wx_image || !user.nickname }"
+						form-type="submit">保存</button>
 				</view>
 			</form>
 		</view>
@@ -46,10 +47,11 @@ import { request } from '@/utils/request';
 import { useTempStore } from '@/stores/temp';
 import { storeToRefs } from 'pinia';
 
-const { user: userInfo } = storeToRefs(useTempStore());
+const { user } = storeToRefs(useTempStore());
 
-const wx_image = ref('');
-const nickname = ref('');
+
+// const wx_image = ref('');
+// const nickname = ref('');
 
 const tijiaozhong = ref(false); // 提交中
 const is_use_new_Profile = ref();
@@ -68,8 +70,8 @@ onMounted(() => {
 	// wx_image.value = tempStore.user ? (tempStore.user.wx_image || '') : ''
 	// nickname.value = tempStore.user ? (tempStore.user.nickname || '') : ''
 
-	wx_image.value = userInfo.value.wx_image || ''
-	nickname.value = userInfo.value.nickname || ''
+	// wx_image.value = userInfo.value.wx_image || ''
+	// nickname.value = userInfo.value.nickname || ''
 })
 
 function close(e) {
@@ -85,15 +87,15 @@ async function submit(e) {
 
 	try {
 		let res = await request('/WxAppCustomer/edit_wx_image_nickname', 'post', {
-			wx_image: wx_image.value,
-			nickname: nickname.value,
+			wx_image: user.value.wx_image,
+			nickname: user.value.nickname,
 		})
 		console.log('提交结果[后端返回]', res);
 		tijiaozhong.value = false;
 
 		if (res.code == 0) {
 			// getApp().globalData.user = res.data.user;
-			userInfo.value = res.data.user
+			user.value = res.data.user
 			uni.showToast({
 				title: '成功',
 				icon: 'none'
@@ -173,9 +175,34 @@ function onChooseAvatar(e) {
 // })
 
 // 新版获取头像
-function onChooseAvatarHandler(e) {
+async function onChooseAvatarHandler(e) {
 	// console.log('onChooseAvatarTest', e);
-	wx_image.value = e.detail.avatarUrl
+	user.value.wx_image = e.detail.avatarUrl
+
+
+	uni.uploadFile({
+		url: 'https://saas.jizhongkeji.com/jzkj/WxAppCustomer/upload',
+		filePath: e.detail.avatarUrl,
+		name: 'file',
+		// formData: {
+		// 	'user': 'test'
+		// },
+		success: (uploadFileRes) => {
+			// console.log('uploadFileRes', uploadFileRes.data);
+			let res = typeof uploadFileRes.data == 'string' ? JSON.parse(uploadFileRes.data) : uploadFileRes.data;
+			let { code, msg, data } = res;
+			if (code == 0) {
+				// console.log('上传头像成功', data.file_url);
+				user.value.wx_image = data.file_url; // 上传后的头像链接
+			} else {
+				uni.showToast({
+					title: msg,
+					icon: 'none'
+				})
+			}
+		}
+	});
+
 }
 function onChooseNicknameHandler(e) {
 	console.log('onChooseNicknameHandler', e);

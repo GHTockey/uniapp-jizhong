@@ -51,7 +51,6 @@ function scanCode() {
 					url: '/pages/index/auding_order?order_id=' + apply_id,
 				})
 			}
-
 		},
 		fail: function (error) {
 			console.log('fail', error);
@@ -61,7 +60,6 @@ function scanCode() {
 			})
 		}
 	})
-
 }
 
 async function form_submit(e) {

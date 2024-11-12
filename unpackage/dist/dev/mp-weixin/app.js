@@ -67,6 +67,12 @@ if (!Math) {
   "./pages/index/order_detail.js";
   "./pages/activity/application_record.js";
   "./pages/mine/refund_result.js";
+  "./pages/agrent/agrent.js";
+  "./pages/agrent/rule.js";
+  "./pages/agrent/recommend.js";
+  "./pages/mine/appointent.js";
+  "./pages/mine/apply_search.js";
+  "./pages/product/category.js";
 }
 const __default__ = {
   onLaunch: function() {

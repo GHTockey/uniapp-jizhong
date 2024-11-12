@@ -466,6 +466,13 @@
 			{
 				"navigationBarTitleText" : "预约搜索"
 			}
+		},
+		{
+			"path" : "pages/product/category",
+			"style" : 
+			{
+				"navigationBarTitleText" : "商品分类"
+			}
 		}
 	],
 	"globalStyle": {

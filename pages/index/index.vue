@@ -160,12 +160,11 @@ function to_detail(detail) {
   // console.log('轮播详情', e);
   // var detail = e.currentTarget.dataset.item;
 
-
   // 判断是否有分类id
   if (detail.category_id > 0) {
-    console.log('跳转至分类页面');
+    // console.log('跳转至分类页面', detail);
     uni.navigateTo({
-      url: '/pages/goods/category?id=' + detail.category_id
+      url: '/pages/product/category?id=' + detail.category_id
     })
     return;
   }

@@ -62,7 +62,13 @@
     "pages/product/search",
     "pages/index/order_detail",
     "pages/activity/application_record",
-    "pages/mine/refund_result"
+    "pages/mine/refund_result",
+    "pages/agrent/agrent",
+    "pages/agrent/rule",
+    "pages/agrent/recommend",
+    "pages/mine/appointent",
+    "pages/mine/apply_search",
+    "pages/product/category"
   ],
   "window": {
     "navigationBarTextStyle": "black",

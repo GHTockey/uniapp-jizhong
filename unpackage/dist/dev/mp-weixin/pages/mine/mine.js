@@ -80,6 +80,30 @@ const _sfc_main = {
     function on_pop_avatar_submit() {
       show_pop_avatar.value = false;
     }
+    function to_application_record() {
+      const pages = getCurrentPages();
+      let index = pages.findIndex((item) => item.route == "pages/activity/application_record");
+      if (index == -1) {
+        if (business.value.id == 4) {
+          common_vendor.index.navigateTo({
+            // url: `/pages/activity/application_record?activity_id=54&type=2`,
+            url: `/pages/activity/application_record?type=2`
+          });
+          return;
+        }
+        if (business.value.id == 12) {
+          common_vendor.index.navigateTo({
+            // url: `/pages/activity/application_record?activity_id=55&type=2`,
+            url: `/pages/activity/application_record?type=2`
+          });
+          return;
+        }
+      } else {
+        common_vendor.index.navigateBack({
+          delta: pages.length - index - 1
+        });
+      }
+    }
     function show_pop_avatar_handler() {
       show_pop_avatar.value = true;
     }
@@ -163,6 +187,17 @@ const _sfc_main = {
       id.value = idParam;
       recommend_product();
     }
+    function to_appoint(type) {
+      common_vendor.index.navigateTo({
+        url: "/pages/mine/appointent?type=" + type
+      });
+    }
+    function to_scan_appoint() {
+      common_vendor.index.navigateTo({
+        // url: '/pages/mine/scan',
+        url: "/pages/mine/scan_order"
+      });
+    }
     function to_scan_order() {
       common_vendor.index.navigateTo({
         url: "/pages/mine/scan_order"
@@ -201,13 +236,21 @@ const _sfc_main = {
         r: common_vendor.o(($event) => tool_nav("/pages/mine/shopInfoList")),
         s: common_vendor.o(($event) => tool_nav("/pages/mine/distribution_center")),
         t: common_vendor.o(to_scan_order),
-        v: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/notify/notify")),
-        w: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/present")),
-        x: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/product/seckill")),
-        y: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/test/test")),
-        z: nav_list.value.length > 0
+        v: common_vendor.o(to_application_record),
+        w: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/notify/notify")),
+        x: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/present")),
+        y: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/product/seckill")),
+        z: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/test/test")),
+        A: common_vendor.o(($event) => tool_nav(null)),
+        B: common_vendor.o(($event) => tool_nav("/pages/agrent/rule")),
+        C: common_vendor.o(($event) => tool_nav(null)),
+        D: common_vendor.o(($event) => tool_nav("/pages/agrent/recommend")),
+        E: common_vendor.o(($event) => to_appoint(1)),
+        F: common_vendor.o(($event) => to_appoint(2)),
+        G: common_vendor.o(to_scan_appoint),
+        H: nav_list.value.length > 0
       }, nav_list.value.length > 0 ? {
-        A: common_vendor.f(nav_list.value, (item, k0, i0) => {
+        I: common_vendor.f(nav_list.value, (item, k0, i0) => {
           return {
             a: common_vendor.t(item.name),
             b: common_vendor.n(`${id.value == item.id ? "active" : ""}`),
@@ -216,9 +259,9 @@ const _sfc_main = {
           };
         })
       } : {}, {
-        B: ((_a = productList.value) == null ? void 0 : _a.length) > 0
+        J: ((_a = productList.value) == null ? void 0 : _a.length) > 0
       }, ((_b = productList.value) == null ? void 0 : _b.length) > 0 ? {
-        C: common_vendor.f(productList.value, (item, index, i0) => {
+        K: common_vendor.f(productList.value, (item, index, i0) => {
           return common_vendor.e({
             a: item.image_uri,
             b: common_vendor.t(item.name),
@@ -231,22 +274,22 @@ const _sfc_main = {
           });
         })
       } : {}, {
-        D: common_vendor.p({
+        L: common_vendor.p({
           isAppMode: true
         }),
-        E: show_pop_avatar.value
+        M: show_pop_avatar.value
       }, show_pop_avatar.value ? {
-        F: common_vendor.o(on_pop_avatar_submit),
-        G: common_vendor.o(on_pop_avatar_close),
-        H: common_vendor.o(($event) => show_pop_avatar.value = $event),
-        I: common_vendor.p({
+        N: common_vendor.o(on_pop_avatar_submit),
+        O: common_vendor.o(on_pop_avatar_close),
+        P: common_vendor.o(($event) => show_pop_avatar.value = $event),
+        Q: common_vendor.p({
           modelValue: show_pop_avatar.value
         })
       } : {}, {
-        J: is_image.value
+        R: is_image.value
       }, is_image.value ? {
-        K: common_vendor.o(close_is_image),
-        L: common_vendor.unref(business).erweima_serve
+        S: common_vendor.o(close_is_image),
+        T: common_vendor.unref(business).erweima_serve
       } : {});
     };
   }

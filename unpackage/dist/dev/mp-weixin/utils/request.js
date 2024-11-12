@@ -1,15 +1,28 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
+const stores_temp = require("../stores/temp.js");
+const uniSystemInfo = common_vendor.index.getSystemInfoSync();
 const baseURL = "https://saas.jizhongkeji.com/jzkj";
 const requestInterceptors = [];
 const responseInterceptors = [];
 const request = (url, method = "GET", data = {}, headers = {}) => {
-  data = {
-    ...data,
-    wx_open_id: "oPyg85Y9gzaTO9wgTmeApQMqmhRY",
-    wx_appid: "wx184d389f8e1603d4",
-    user_id: 10662
-  };
+  const tempStore = stores_temp.useTempStore();
+  console.log("tempStore user", tempStore.user);
+  if (uniSystemInfo.uniPlatform == "web") {
+    console.log("h5 环境 请求操作");
+    data = {
+      ...data,
+      wx_open_id: tempStore.user.wx_open_id || "oPyg85Y9gzaTO9wgTmeApQMqmhRY",
+      wx_appid: tempStore.user.authorizer_appid || "wx184d389f8e1603d4",
+      user_id: tempStore.user.id || 10662
+    };
+  } else if (uniSystemInfo.uniPlatform == "mp-weixin") {
+    console.log("小程序环境 请求操作");
+    data = {
+      ...data,
+      wx_open_id: tempStore.user.wx_open_id || "oPyg85Y9gzaTO9wgTmeApQMqmhRY"
+    };
+  }
   return new Promise((resolve, reject) => {
     let modifiedHeaders = {
       ...headers,

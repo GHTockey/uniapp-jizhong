@@ -24,6 +24,10 @@ const _sfc_main = {
       type: String,
       default: ""
     },
+    searchPlaceholder: {
+      type: String,
+      default: "搜索商品"
+    },
     bgc: {
       type: String
     }
@@ -47,15 +51,21 @@ const _sfc_main = {
       } : {}, {
         f: __props.showSearch
       }, __props.showSearch ? common_vendor.e({
-        g: !search_str.value || search_str.value.length == 0
+        g: common_vendor.t(__props.title),
+        h: !search_str.value || search_str.value.length == 0
       }, !search_str.value || search_str.value.length == 0 ? {} : {}, {
-        h: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)(__props.searchPath)),
-        i: search_str.value,
-        j: common_vendor.o(($event) => search_str.value = $event.detail.value),
-        k: common_vendor.unref(boundingWidth) + "px"
+        i: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)(__props.searchPath)),
+        j: __props.searchPlaceholder,
+        k: search_str.value,
+        l: common_vendor.o(($event) => search_str.value = $event.detail.value),
+        m: common_vendor.unref(boundingWidth) + "px",
+        n: common_vendor.s(__props.showBack && __props.title ? {
+          width: `calc(100% - 60rpx)`,
+          marginLeft: "60rpx"
+        } : "")
       }) : {}, {
-        l: common_vendor.unref(utils_index.getStatusBarHeight)() + "px",
-        m: __props.bgc || "#FFFFFF"
+        o: common_vendor.unref(utils_index.getStatusBarHeight)() + "px",
+        p: __props.bgc || "#FFFFFF"
       });
     };
   }

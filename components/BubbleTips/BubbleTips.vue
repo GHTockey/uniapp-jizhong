@@ -1,15 +1,14 @@
 <!-- 气泡提示 BubbleTips -->
 <template>
   <view class="bubble-tips-container">
-    <TransitionGroup name="fade">
-      <view class="bubble-tips-item" v-for="(item, index) in showItemList" :key="item.id">
-        <!-- 头像 -->
-        <image :src="item.img" />
-        <!-- 文字 -->
-        <text>{{ item.text }}</text>
-      </view>
-    </TransitionGroup>
+    <view ref="bubbleTipsItem" class="bubble-tips-item" :style="bubbleTipsItemStyle" :class="{ 'is-show': !itemDataShow }">
+      <!-- 头像 -->
+      <image :src="itemDataShow?.img" />
+      <!-- 文字 -->
+      <text>{{ itemDataShow?.text }}</text>
+    </view>
   </view>
+  <!-- <button @click="nextItem">nextItem{{ isAnimating }}</button> -->
 </template>
 
 <script setup>
@@ -18,46 +17,86 @@ import { ref, watch, onMounted } from 'vue';
 const props = defineProps({
   // 传进来的数据
   itemData: {
-    type: Object,
-    default: () => {
-      // return {
-      //   id: 0,
-      //   img: '',
-      //   text: '3333333333333333'
-      // }
-    }
+    type: Object
+  },
+  // 动画时间
+  duration: {
+    type: Number,
+    default: 300
+  },
+  // 停留时间
+  stayTime: {
+    type: Number,
+    default: 1000
   }
 });
 
-const showItemList = ref([]);
+const bubbleTipsItem = ref(null); // 此方法在小程序中不可用
+const isAnimating = ref(false);
+const bubbleTipsItemStyle = ref({
+  transition: `all ${props.duration}ms`,
+});
+const itemDataShow = ref();
 
 
-let timer = null;
+watch(() => props.itemData, () => {
+  nextItem(props.itemData);
+}, { deep: true });
 
-watch(() => props.itemData, (newData) => {
-  // console.log('newData :>> ', newData);
-  // 清除定时器
-  if (timer) {
-    clearTimeout(timer);
-    showItemList.value = [];
-  }
-  // 将传进来的数据添加到 showItemList 中
+function nextItem(itemData) {
+  // console.log('ref el', bubbleTipsItem.value.$el);
+  // console.log('itemDataTemp', itemDataTemp.value);
+
+  // uni.createSelectorQuery().in(instance).select('.bubble-tips-item').boundingClientRect(res => {
+  //   console.log(res);
+  // }).exec();
+
+  // bubbleTipsItemStyle.value.transform = `translateY(-${100}%)`;
+  // return;
+
+
+  if (isAnimating.value) return;
+  isAnimating.value = true;
+  // console.log('isAnimating', isAnimating.value);
+
+  // 让当前项执行离场动画
+  // bubbleTipsItem.value.$el.style.transform = `translateY(-${100}%)`;
+  // bubbleTipsItem.value.$el.style.opacity = 0;
+  bubbleTipsItemStyle.value.transform = `translateY(-${100}%)`;
+  bubbleTipsItemStyle.value.opacity = 0;
+
+
+  // 离场动画结束后
   setTimeout(() => {
-    showItemList.value = [newData];
-  }, 500);
-  // 设置定时器，三秒后自动移出
-  timer = setTimeout(() => {
-    showItemList.value = [];
-  }, 3000);
-});
+    // bubbleTipsItem.value.$el.style.transition = 'none'; // 不显示动画
+    // bubbleTipsItem.value.$el.style.transform = `translateY(100%)`; // 移动到底部等待进场
+    bubbleTipsItemStyle.value.transition = 'none';
+    bubbleTipsItemStyle.value.transform = `translateY(100%)`;
+    // 在这里更新数据
+    itemDataShow.value = itemData;
+  }, props.duration);
 
-// onMounted(() => {
-//   console.log('bubbleTipsItemEl :>> ', bubbleTipsItemEl.value);
-// });
+
+  // 进场动画
+  setTimeout(() => {
+    // bubbleTipsItem.value.$el.style.transition = `all ${props.duration}ms`; // 重新显示动画
+    // bubbleTipsItem.value.$el.style.transform = `translateY(0)`; // 往上移动
+    // bubbleTipsItem.value.$el.style.opacity = 1;
+    bubbleTipsItemStyle.value.transition = `all ${props.duration}ms`;
+    bubbleTipsItemStyle.value.transform = `translateY(0)`;
+    bubbleTipsItemStyle.value.opacity = 1;
+    isAnimating.value = false;
+  }, props.duration * 2);
+}
+
 
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+.is-show {
+  opacity: 0;
+}
+
 .bubble-tips-container {
   position: fixed;
   top: 170rpx;
@@ -97,22 +136,5 @@ watch(() => props.itemData, (newData) => {
       text-overflow: ellipsis;
     }
   }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: all .3s;
-}
-
-// 离开动画
-.fade-leave-to {
-  transform: translateY(-100%);
-  opacity: 0;
-}
-
-// 进入动画
-.fade-enter-from {
-  transform: translateY(100%);
-  opacity: 0;
 }
 </style>
