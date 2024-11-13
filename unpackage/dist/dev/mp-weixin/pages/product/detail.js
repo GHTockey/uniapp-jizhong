@@ -102,9 +102,9 @@ const _sfc_main = {
     });
     function taggleWindow(type) {
       if (type == "video") {
-        swiperIndex.value = 0;
+        swiperCurrentIndex.value = 0;
       } else {
-        swiperIndex.value = 1;
+        swiperCurrentIndex.value = 1;
       }
     }
     async function goods_detail_v2() {
@@ -359,9 +359,7 @@ const _sfc_main = {
       });
     }
     function change_layout(e) {
-      let is_big_layout2 = !is_big_layout2.value;
-      is_big_layout2.value = is_big_layout2;
-      console.log("sssssssssssssss", is_big_layout2);
+      is_big_layout.value = !is_big_layout.value;
     }
     function return_close(e) {
       return;
@@ -555,71 +553,76 @@ const _sfc_main = {
         h: common_vendor.t(((_b = (_a = swiper.value) == null ? void 0 : _a.swiperImgUrls) == null ? void 0 : _b.length) + video_list.value.length),
         i: video_list.value.length > 0
       }, video_list.value.length > 0 ? {
-        j: common_vendor.o(($event) => taggleWindow("video")),
-        k: common_vendor.o(($event) => taggleWindow("image"))
+        j: common_vendor.s(`color: ${swiperIndex.value > 0 ? "#fff" : "#a7a7a7"} ;`),
+        k: common_vendor.o(($event) => taggleWindow("video")),
+        l: common_vendor.s(`color: ${swiperIndex.value == 0 ? "#fff" : "#a7a7a7"} ;`),
+        m: common_vendor.o(($event) => taggleWindow("image"))
       } : {}, {
-        l: common_vendor.t(product.value.price || 0),
-        m: common_vendor.t(price_show.value || "???"),
-        n: common_assets._imports_0,
-        o: common_vendor.o(($event) => show_buy_pop_handler("buy")),
-        p: common_vendor.t(product.value.name),
-        q: common_vendor.o(($event) => showActionSheet.value = true),
-        r: common_vendor.o(($event) => showActionSheet.value = true),
+        n: common_vendor.t(product.value.price || 0),
+        o: common_vendor.t(price_show.value || "???"),
+        p: common_assets._imports_0,
+        q: common_vendor.o(($event) => show_buy_pop_handler("buy")),
+        r: common_vendor.t(product.value.name),
         s: common_vendor.o(($event) => showActionSheet.value = true),
-        t: common_assets._imports_0,
-        v: common_assets._imports_0,
-        w: product.value.detail,
-        x: common_vendor.f(detail_image_uri.value, (item, index, i0) => {
+        t: common_vendor.o(($event) => showActionSheet.value = true),
+        v: common_vendor.o(($event) => showActionSheet.value = true),
+        w: common_assets._imports_0,
+        x: common_assets._imports_0,
+        y: product.value.detail,
+        z: common_vendor.f(detail_image_uri.value, (item, index, i0) => {
           return {
             a: item,
             b: common_vendor.o(($event) => previewImg(index), index),
             c: index
           };
         }),
-        y: common_vendor.o(go_home),
-        z: product.value.is_shoucang == 0
+        A: common_vendor.o(go_home),
+        B: product.value.is_shoucang == 0
       }, product.value.is_shoucang == 0 ? {
-        A: common_vendor.o(($event) => good_colect(1))
+        C: common_vendor.o(($event) => good_colect(1))
       } : product.value.is_shoucang == 1 ? {
-        C: common_vendor.o(($event) => good_colect(0))
+        E: common_vendor.o(($event) => good_colect(0))
       } : {}, {
-        B: product.value.is_shoucang == 1,
-        D: common_vendor.unref(business).is_open_shopping == 1
+        D: product.value.is_shoucang == 1,
+        F: common_vendor.unref(business).is_open_shopping == 1
       }, common_vendor.unref(business).is_open_shopping == 1 ? {
-        E: common_vendor.o(($event) => show_buy_pop_handler("add")),
-        F: common_vendor.o(($event) => show_buy_pop_handler("buy"))
+        G: common_vendor.o(($event) => show_buy_pop_handler("add")),
+        H: common_vendor.o(($event) => show_buy_pop_handler("buy"))
       } : {}, {
-        G: common_vendor.o(($event) => showActionSheet.value = $event),
-        H: common_vendor.p({
+        I: common_vendor.o(($event) => showActionSheet.value = $event),
+        J: common_vendor.p({
           title: actionSheetData.value.title,
           items: actionSheetData.value.items,
           show: showActionSheet.value
         }),
-        I: common_vendor.o(to_buy),
-        J: common_vendor.o(($event) => showActionSheetSlot.value = $event),
-        K: common_vendor.p({
+        K: common_vendor.o(to_buy),
+        L: common_vendor.o(($event) => showActionSheetSlot.value = $event),
+        M: common_vendor.p({
           footerBtnText: "立即购买",
           show: showActionSheetSlot.value
         }),
-        L: show_pop.value == "add" || show_pop.value == "buy"
+        N: show_pop.value == "add" || show_pop.value == "buy"
       }, show_pop.value == "add" || show_pop.value == "buy" ? common_vendor.e({
-        M: common_vendor.o(close_pop),
-        N: act_img.value ? act_img.value : "https://saas.jizhongkeji.com/static/jzkj/images/tool_1.png",
         O: common_vendor.o(close_pop),
-        P: common_vendor.t(price_show.value),
-        Q: !have_chosed.value
+        P: act_img.value ? act_img.value : "https://saas.jizhongkeji.com/static/jzkj/images/tool_1.png",
+        Q: common_vendor.o(close_pop),
+        R: common_vendor.t(price_show.value),
+        S: !have_chosed.value
       }, !have_chosed.value ? {} : {}, {
-        R: common_vendor.t(price_inter.value[0]),
-        S: common_vendor.t(price_inter.value[1]),
-        T: ((_c = product.value.spec_list1) == null ? void 0 : _c.option) && product.value.spec_list1.option.length > 0
+        T: common_vendor.t(price_inter.value[0]),
+        U: common_vendor.t(price_inter.value[1]),
+        V: ((_c = product.value.spec_list1) == null ? void 0 : _c.option) && product.value.spec_list1.option.length > 0
       }, ((_d = product.value.spec_list1) == null ? void 0 : _d.option) && product.value.spec_list1.option.length > 0 ? common_vendor.e({
-        U: common_vendor.t(product.value.spec_list1.name),
-        V: show_select_change.value
-      }, show_select_change.value ? {
-        W: common_vendor.t(is_big_layout.value ? "大图" : "列表"),
-        X: common_vendor.o(change_layout)
-      } : {}, {
-        Y: common_vendor.f(product.value.spec_list1.option, (item, index, i0) => {
+        W: common_vendor.t(product.value.spec_list1.name),
+        X: show_select_change.value
+      }, show_select_change.value ? common_vendor.e({
+        Y: is_big_layout.value
+      }, is_big_layout.value ? {} : {
+        Z: common_assets._imports_1
+      }, {
+        aa: common_vendor.o(change_layout)
+      }) : {}, {
+        ab: common_vendor.f(product.value.spec_list1.option, (item, index, i0) => {
           return common_vendor.e({
             a: item.img_uri && show_select_change.value
           }, item.img_uri && show_select_change.value ? {
@@ -635,12 +638,12 @@ const _sfc_main = {
             h: index
           });
         }),
-        Z: common_vendor.n(`spec_list flex_row_str_str flex_wrap have_image ${is_big_layout.value ? "big_type" : ""}`)
+        ac: common_vendor.n(`spec_list flex_row_str_str flex_wrap have_image ${is_big_layout.value ? "big_type" : ""}`)
       }) : {}, {
-        aa: ((_e = product.value.spec_list2) == null ? void 0 : _e.option) && product.value.spec_list2.option.length > 0
+        ad: ((_e = product.value.spec_list2) == null ? void 0 : _e.option) && product.value.spec_list2.option.length > 0
       }, ((_f = product.value.spec_list2) == null ? void 0 : _f.option) && product.value.spec_list2.option.length > 0 ? {
-        ab: common_vendor.t(product.value.spec_list2.name),
-        ac: common_vendor.f(product.value.spec_list2.option, (item, k0, i0) => {
+        ae: common_vendor.t(product.value.spec_list2.name),
+        af: common_vendor.f(product.value.spec_list2.option, (item, k0, i0) => {
           return common_vendor.e({
             a: common_vendor.t(item.name),
             b: item.store == 0
@@ -651,21 +654,21 @@ const _sfc_main = {
           });
         })
       } : {}, {
-        ad: common_vendor.n(`de_btn count_btn flex_col_cen_cen ${add_count.value == 1 ? "no_active" : ""}`),
-        ae: common_vendor.o(reduce_count),
-        af: common_vendor.t(add_count.value || 1),
-        ag: common_vendor.n(`add_btn count_btn flex_col_cen_cen ${add_count.value == max_count.value ? "no_active" : ""}`),
-        ah: common_vendor.o(add_count_handler),
-        ai: show_pop.value == "add"
+        ag: common_vendor.n(`de_btn count_btn flex_col_cen_cen ${add_count.value == 1 ? "no_active" : ""}`),
+        ah: common_vendor.o(reduce_count),
+        ai: common_vendor.t(add_count.value || 1),
+        aj: common_vendor.n(`add_btn count_btn flex_col_cen_cen ${add_count.value == max_count.value ? "no_active" : ""}`),
+        ak: common_vendor.o(add_count_handler),
+        al: show_pop.value == "add"
       }, show_pop.value == "add" ? {
-        aj: common_vendor.o(add_shopcar)
+        am: common_vendor.o(add_shopcar)
       } : {}, {
-        ak: show_pop.value == "buy"
+        an: show_pop.value == "buy"
       }, show_pop.value == "buy" ? {
-        al: common_vendor.o(to_buy)
+        ao: common_vendor.o(to_buy)
       } : {}, {
-        am: common_vendor.o(return_close),
-        an: common_vendor.o(close_pop)
+        ap: common_vendor.o(return_close),
+        aq: common_vendor.o(close_pop)
       }) : {});
     };
   }

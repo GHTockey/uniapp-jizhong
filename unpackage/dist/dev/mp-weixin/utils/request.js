@@ -9,7 +9,6 @@ const request = (url, method = "GET", data = {}, headers = {}) => {
   const tempStore = stores_temp.useTempStore();
   console.log("tempStore user", tempStore.user);
   if (uniSystemInfo.uniPlatform == "web") {
-    console.log("h5 环境 请求操作");
     data = {
       ...data,
       wx_open_id: tempStore.user.wx_open_id || "oPyg85Y9gzaTO9wgTmeApQMqmhRY",
@@ -17,7 +16,6 @@ const request = (url, method = "GET", data = {}, headers = {}) => {
       user_id: tempStore.user.id || 10662
     };
   } else if (uniSystemInfo.uniPlatform == "mp-weixin") {
-    console.log("小程序环境 请求操作");
     data = {
       ...data,
       wx_open_id: tempStore.user.wx_open_id || "oPyg85Y9gzaTO9wgTmeApQMqmhRY"

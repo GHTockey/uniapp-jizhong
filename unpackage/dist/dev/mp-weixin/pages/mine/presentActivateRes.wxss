@@ -26,7 +26,6 @@
 .present_activate_res_container.data-v-d6e5ca00 {
   height: 100vh;
   background-color: #f6f8fe;
-  background-image: url(https://saas.jizhongkeji.com/static/jzkj/present-activate-bg.svg);
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 0 30rpx;

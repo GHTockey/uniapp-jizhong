@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const utils_index = require("../../utils/index.js");
+const stores_temp = require("../../stores/temp.js");
 if (!Array) {
   const _easycom_HeightBar2 = common_vendor.resolveComponent("HeightBar");
   const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
@@ -16,6 +17,8 @@ if (!Math) {
 const _sfc_main = {
   __name: "presentMine",
   setup(__props) {
+    const tempStore = stores_temp.useTempStore();
+    const { user } = common_vendor.storeToRefs(tempStore);
     const selectedIndex = common_vendor.ref(2);
     return (_ctx, _cache) => {
       return {
@@ -26,10 +29,13 @@ const _sfc_main = {
           showBack: true,
           bgc: "transparent"
         }),
-        c: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentRecords")),
-        d: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentActivate")),
-        e: common_vendor.o(($event) => selectedIndex.value = $event),
-        f: common_vendor.p({
+        c: common_vendor.unref(user).wx_image,
+        d: common_vendor.t(common_vendor.unref(user).nickname),
+        e: common_vendor.t(common_vendor.unref(user).id),
+        f: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentRecords")),
+        g: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/presentActivate")),
+        h: common_vendor.o(($event) => selectedIndex.value = $event),
+        i: common_vendor.p({
           selectedIndex: selectedIndex.value
         })
       };

@@ -1,12 +1,14 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 if (!Array) {
+  const _easycom_HeightBar2 = common_vendor.resolveComponent("HeightBar");
   const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
-  _easycom_NavBar2();
+  (_easycom_HeightBar2 + _easycom_NavBar2)();
 }
+const _easycom_HeightBar = () => "../../components/HeightBar/HeightBar.js";
 const _easycom_NavBar = () => "../../components/NavBar/NavBar.js";
 if (!Math) {
-  _easycom_NavBar();
+  (_easycom_HeightBar + _easycom_NavBar)();
 }
 const _sfc_main = {
   __name: "presentActivateRes",
@@ -40,7 +42,8 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
-          showBack: true
+          showBack: true,
+          bgc: "transparent"
         }),
         b: common_vendor.t(currentItem.value.title),
         c: common_vendor.t(currentItem.value.time),

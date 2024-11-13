@@ -106,18 +106,27 @@ function tap_package_downloadToPhotosAlbum(e) {
 	// console.log('img that.downloadToPhotosAlbum', img)
 	// return;
 
-
-	// 下载到相册
-	// that.downloadToPhotosAlbum({
-	uni.saveImageToPhotosAlbum({
-		urls: img.split(','),
-		success: () => {
-			uni.showToast({
-				duration: 3000,
-				icon: 'none',
-				title: '图片已下载至相册，快去分享吧'
+	// 不支持网络图片，需要先下载到本地
+	let tempFilePath;
+	uni.downloadFile({
+		url: img,
+		success: (res) => {
+			// console.log('downloadFile res', res);
+			tempFilePath = res.tempFilePath
+			// console.log('tempFilePath', tempFilePath)
+			uni.saveImageToPhotosAlbum({
+				filePath: tempFilePath,
+				success: () => {
+					uni.showToast({
+						duration: 3000,
+						icon: 'none',
+						title: '图片已下载至相册，快去分享吧'
+					})
+				},
+				fail: (err) => {
+					console.log(err);
+				}
 			})
-			is_image.value = false;
 		}
 	})
 }
@@ -144,6 +153,7 @@ function close_is_image() {
 	is_image.value = false
 }
 
+// 分享海报
 async function share_good(goodid) {
 	console.log('share.value', share.value)
 	if (share.value) {

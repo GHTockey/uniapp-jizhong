@@ -1,7 +1,9 @@
 <template>
-	<view class="present_activate_res_container">
+	<view class="present_activate_res_container" style="background-image: url(https://saas.jizhongkeji.com/static/jzkj/static/images/present-activate-bg.svg);">
+		<HeightBar />
+
 		<!-- 标题栏 -->
-		<NavBar showBack>
+		<NavBar showBack bgc="transparent">
 			<template #title>卡片激活</template>
 		</NavBar>
 
@@ -75,7 +77,7 @@ const handleUse = () => {
 .present_activate_res_container {
 	height: 100vh;
 	background-color: #f6f8fe;
-	background-image: url(https://saas.jizhongkeji.com/static/jzkj/present-activate-bg.svg);
+	// background-image: url(https://saas.jizhongkeji.com/static/jzkj/static/images/present-activate-bg.svg);
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding: 0 30rpx;

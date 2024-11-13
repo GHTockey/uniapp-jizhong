@@ -2,12 +2,14 @@
 const common_vendor = require("../../common/vendor.js");
 const utils_index = require("../../utils/index.js");
 if (!Array) {
+  const _easycom_HeightBar2 = common_vendor.resolveComponent("HeightBar");
   const _easycom_NavBar2 = common_vendor.resolveComponent("NavBar");
-  _easycom_NavBar2();
+  (_easycom_HeightBar2 + _easycom_NavBar2)();
 }
+const _easycom_HeightBar = () => "../../components/HeightBar/HeightBar.js";
 const _easycom_NavBar = () => "../../components/NavBar/NavBar.js";
 if (!Math) {
-  _easycom_NavBar();
+  (_easycom_HeightBar + _easycom_NavBar)();
 }
 const _sfc_main = {
   __name: "presentActivate",
@@ -16,6 +18,11 @@ const _sfc_main = {
       cardNum: "",
       cardPwd: ""
     });
+    function makePhoneCall(phone) {
+      common_vendor.index.makePhoneCall({
+        phoneNumber: phone
+      });
+    }
     const handleActivate = () => {
       if (!formData.value.cardNum || !formData.value.cardPwd) {
         common_vendor.index.showToast({
@@ -43,7 +50,8 @@ const _sfc_main = {
         c: common_vendor.o(($event) => formData.value.cardNum = $event.detail.value),
         d: formData.value.cardPwd,
         e: common_vendor.o(($event) => formData.value.cardPwd = $event.detail.value),
-        f: common_vendor.o(handleActivate)
+        f: common_vendor.o(handleActivate),
+        g: common_vendor.o(($event) => makePhoneCall("18888888888"))
       };
     };
   }

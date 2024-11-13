@@ -36,7 +36,7 @@ const number = ref('');
 function scanCode() {
 	uni.scanCode({
 		success: function (res) {
-			console.log('111111111', res);
+			console.log('scanCode res', res);
 
 			// return;
 			var active_str = decodeURIComponent(res.path)
@@ -53,11 +53,11 @@ function scanCode() {
 			}
 		},
 		fail: function (error) {
-			console.log('fail', error);
-			uni.showToast({
-				title: '当前环境不支持扫码',
-				icon: 'none'
-			})
+			console.log('scanCode fail', error);
+			// uni.showToast({
+			// 	title: '当前环境不支持扫码',
+			// 	icon: 'none'
+			// })
 		}
 	})
 }

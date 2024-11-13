@@ -1,7 +1,7 @@
 <template>
 	<view class="goods-detail-container">
 		<!-- 商品图片和视频区域 -->
-		<swiper class="goods-detail-swiper" @change="swiperChange" v-model:current="swiperCurrentIndex">
+		<swiper class="goods-detail-swiper" @change="swiperChange" :current="swiperCurrentIndex">
 			<swiper-item class="goods-detail-swiper-item" v-if="video_list.length > 0"
 				v-for="(item, index) in video_list" :key="index">
 				<video id="video" :src="item.url" :controls="false" object-fit="cover"></video>
@@ -32,10 +32,9 @@
 			<!-- 右下角视频/图集按钮 -->
 			<view class="goods-detail-swiper-button" v-if="video_list.length > 0">
 				<text class="goods-detail-swiper-button-text"
-					:style="`color: ${swiperCurrentIndex > 0 ? '#fff' : '#a7a7a7'} ;`"
-					@click="taggleWindow('video')">视频</text>
+					:style="`color: ${swiperIndex > 0 ? '#fff' : '#a7a7a7'} ;`" @click="taggleWindow('video')">视频</text>
 				<text class="goods-detail-swiper-button-text"
-					:style="`color: ${swiperCurrentIndex == 0 ? '#fff' : '#a7a7a7'} ;`"
+					:style="`color: ${swiperIndex == 0 ? '#fff' : '#a7a7a7'} ;`"
 					@click="taggleWindow('image')">图集</text>
 			</view>
 		</view>
@@ -201,12 +200,12 @@
 						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/home-icon.svg" mode="widthFix" />
 					<text class="goods-detail-info-bottom-left-item-text">首页</text>
 				</view>
-				<view open-type="contact"
-					class="goods-detail-info-bottom-left-item bg-transparent m-0 h-auto border-none rounded-none shadow-none p-0">
+				<button open-type="contact" style="border: none; outline: none;line-height: 1.5;"
+					class="goods-detail-info-bottom-left-item bg-transparent m-0 h-auto rounded-none shadow-none p-0">
 					<image class="goods-detail-info-bottom-left-item-icon"
 						src="https://saas.jizhongkeji.com/static/jzkj/static/icon/kefu.svg" mode="widthFix" />
 					<text class="goods-detail-info-bottom-left-item-text">客服</text>
-				</view>
+				</button>
 				<view class="goods-detail-info-bottom-left-item" v-if="product.is_shoucang == 0"
 					@click="good_colect(1)">
 					<image class="goods-detail-info-bottom-left-item-icon"
