@@ -315,17 +315,9 @@
 						<view class="pop_group_title flex_row_space_bt">
 							<view>{{ product.spec_list1.name }}</view>
 							<view v-if="show_select_change" class="layout_btn flex_row_cen_cen" @click="change_layout">
-								<template v-if="is_big_layout">
-									<image lazy-load class="layout_btn_icon" mode="widthFix"
-										src="https://saas.jizhongkeji.com/static/jzkj/images/layout_btn_icon.png">
-									</image>
-									<view class="layout_btn_text">列表</view>
-								</template>
-								<template v-else>
-									<image lazy-load class="layout_btn_icon" mode="widthFix"
-										src="../../static/big-img.svg"></image>
-									<view class="layout_btn_text">大图</view>
-								</template>
+								<image lazy-load class="layout_btn_icon" mode="widthFix"
+									src="https://saas.jizhongkeji.com/static/jzkj/images/layout_btn_icon.png"></image>
+								<view class="layout_btn_text">{{ is_big_layout ? '大图' : '列表' }}</view>
 							</view>
 						</view>
 						<view
@@ -899,7 +891,9 @@ function go_home(e) {
 	})
 }
 function change_layout(e) {
-	is_big_layout.value = !is_big_layout.value
+	let is_big_layout = !is_big_layout.value
+	is_big_layout.value = is_big_layout
+	console.log('sssssssssssssss', is_big_layout);
 }
 function return_close(e) {
 	return
