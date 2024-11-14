@@ -15,29 +15,33 @@
 				<view class="w-[150rpx]">
 					<text class="text-[29.17rpx]">姓名</text>
 				</view>
-				<input class="text-right flex-1" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
-					type="text" placeholder="请输入本人的真实姓名" v-model="formData.name" />
+				<input class="text-right flex-1"
+					placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;" type="text"
+					placeholder="请输入本人的真实姓名" v-model="formData.name" />
 			</view>
 			<view class="flex justify-between items-center px-[30rpx] mt-[1px] bg-white h-[80rpx]">
 				<view class="w-[150rpx]">
 					<text class="text-[29.17rpx]">手机号码</text>
 				</view>
-				<input class="text-right flex-1" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
-					type="number" placeholder="请输入本人的手机号码" v-model="formData.phone" />
+				<input class="text-right flex-1"
+					placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;" type="number"
+					placeholder="请输入本人的手机号码" v-model="formData.phone" />
 			</view>
 			<view class="flex justify-between items-center px-[30rpx] mt-[1px] bg-white h-[80rpx]">
 				<view class="w-[150rpx]">
 					<text class="text-[29.17rpx]">开户银行</text>
 				</view>
-				<input class="text-right flex-1" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
-					type="text" placeholder="请输入开户银行" v-model="formData.bank" />
+				<input class="text-right flex-1"
+					placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;" type="text"
+					placeholder="请输入开户银行" v-model="formData.bank" />
 			</view>
 			<view class="flex justify-between items-center px-[30rpx] mt-[1px] bg-white h-[80rpx]">
 				<view class="w-[150rpx]">
 					<text class="text-[29.17rpx]">银行卡号</text>
 				</view>
-				<input class="text-right flex-1" placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;"
-					type="number" placeholder="请输入本人的银行卡号" v-model="formData.bankCard" />
+				<input class="text-right flex-1"
+					placeholder-style="color: #C7C7C7; font-size: 29.17rpx; text-align: right;" type="number"
+					placeholder="请输入本人的银行卡号" v-model="formData.bankCard" />
 			</view>
 		</view>
 
@@ -324,7 +328,8 @@ function to_withdraw_list() {
 
 <style scoped lang="scss">
 .withdraw_container {
-	height: calc(100vh - $nav-height);
+	// height: calc(100vh - $nav-height);
+	min-height: 100vh;
 	background-color: #f1f4f6;
 	padding: 30rpx;
 

@@ -10,8 +10,7 @@
 			<!-- left -->
 			<view class="flex">
 				<image @click="show_pop_avatar_handler" class="w-[120rpx] h-[120rpx] rounded-[50%] mr-[20rpx]"
-					:src="user.wx_image || 'https://saas.jizhongkeji.com/static/jzkj/images/default_tou.png'"
-					mode="aspectFill">
+					:src="user.wx_image" mode="aspectFill">
 				</image>
 				<view class="flex flex-col justify-center">
 					<template v-if="!user.user_name">
@@ -112,7 +111,7 @@
 				</view>
 
 				<view class="common_tool_item" @click="open_is_image">
-					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center overflow-hidden">
+					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<!-- <image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/static/images/wx.svg"></image> -->
 						<image lazy-load style="width: 71.5rpx;"
 							src="https://saas.jizhongkeji.com/static/jzkj/images/kefu_wei.png" mode="aspectFit" />
@@ -330,6 +329,7 @@ import { useTabBarStore } from '@/stores/tabBar.js';
 
 // 响应式解构 business user
 const { business, user } = storeToRefs(useTempStore());
+
 
 const tool_list = ref([
 	{ id: 1, name: "收货地址", path: "/pages/mine/address?type=edit" },

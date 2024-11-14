@@ -16,7 +16,7 @@ const responseInterceptors = [];
 
 const request = (url, method = 'GET', data = {}, headers = {}) => {
 	const tempStore = useTempStore();
-	// console.log('tempStore user', tempStore);
+	console.log('tempStore user', tempStore.user);
 
 	// data = {
 	// 	...data,

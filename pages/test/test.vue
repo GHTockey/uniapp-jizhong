@@ -16,6 +16,8 @@
 			<button @click="testApi" size="mini">test api</button>
 			<!-- <button @click="goToPage('/pages/shopcar/shopcar')" size="mini">跳转至购物车页</button> -->
 			<button @click="goToPage('/pages/onlineSearch/onlineSearch')" size="mini">跳转至在线搜索页</button>
+			<button @click="goToPage('/pages/test/test2')" size="mini">跳转至test2[选项式语法]</button>
+			<button @click="startAddBubbleTipsData" size="mini">start 气泡提示</button>
 			<!-- <button @click="goToPage('/pages/goodsDetail/goodsDetail')" size="mini">跳转商品详情页</button>
 			<button @click="showActionSheet = true" size="mini">使用ActionSheet组件</button>
 			<button @click="showActionSheetSlot = true" size="mini">选择商品弹窗 ActionSheetSlot组件</button> -->
@@ -142,9 +144,11 @@ function addBubbleTipsData() {
 		text: `张${Math.floor(Math.random() * 10)}一分钟前购买了商品`
 	}
 };
-setInterval(() => {
-	addBubbleTipsData()
-}, 1000);
+function startAddBubbleTipsData() {
+	setInterval(() => {
+		addBubbleTipsData()
+	}, 1000);
+}
 
 
 
@@ -177,6 +181,8 @@ async function testApi() {
 	console.log(res);
 }
 </script>
+
+
 
 <style lang="scss" scoped>
 .test-container {

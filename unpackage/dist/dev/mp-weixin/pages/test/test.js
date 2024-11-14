@@ -63,9 +63,11 @@ const _sfc_main = {
         text: `张${Math.floor(Math.random() * 10)}一分钟前购买了商品`
       };
     }
-    setInterval(() => {
-      addBubbleTipsData();
-    }, 1e3);
+    function startAddBubbleTipsData() {
+      setInterval(() => {
+        addBubbleTipsData();
+      }, 1e3);
+    }
     const handleCloseCoupon = () => {
       console.log("优惠券弹窗关闭");
     };
@@ -104,14 +106,16 @@ const _sfc_main = {
         f: common_vendor.o(($event) => showPopup.value = true),
         g: common_vendor.o(testApi),
         h: common_vendor.o(($event) => goToPage("/pages/onlineSearch/onlineSearch")),
-        i: common_vendor.o(handleConfirmActionSheet),
-        j: common_vendor.o(($event) => showActionSheet.value = $event),
-        k: common_vendor.p({
+        i: common_vendor.o(($event) => goToPage("/pages/test/test2")),
+        j: common_vendor.o(startAddBubbleTipsData),
+        k: common_vendor.o(handleConfirmActionSheet),
+        l: common_vendor.o(($event) => showActionSheet.value = $event),
+        m: common_vendor.p({
           items: actionSheetData.value.items,
           title: actionSheetData.value.title,
           show: showActionSheet.value
         }),
-        l: common_vendor.f(goodsParamsData.value, (item, k0, i0) => {
+        n: common_vendor.f(goodsParamsData.value, (item, k0, i0) => {
           return {
             a: common_vendor.t(item.value),
             b: item.id,
@@ -120,12 +124,12 @@ const _sfc_main = {
             e: item.id == 3 ? 1 : ""
           };
         }),
-        m: common_vendor.o(($event) => showActionSheetSlot.value = $event),
-        n: common_vendor.p({
+        o: common_vendor.o(($event) => showActionSheetSlot.value = $event),
+        p: common_vendor.p({
           footerBtnText: "立即购买",
           show: showActionSheetSlot.value
         }),
-        o: common_vendor.p({
+        q: common_vendor.p({
           title: "标题",
           showBack: true
         })

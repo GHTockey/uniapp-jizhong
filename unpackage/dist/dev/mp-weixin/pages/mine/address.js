@@ -76,7 +76,6 @@ const _sfc_main = {
         e: common_vendor.o(toAddressForm),
         f: common_vendor.p({
           text: "暂无地址",
-          btnText: "立即添加",
           image: "address-em.svg"
         })
       }, {

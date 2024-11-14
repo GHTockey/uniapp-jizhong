@@ -149,14 +149,20 @@ const _sfc_main = {
             l: common_vendor.o(change_texare, item.id),
             m: item.my_column_name,
             n: form_info.value[item.my_column_name]
+          } : item.my_column_name == "mobile" ? {
+            p: common_vendor.t(item.vi_name),
+            q: item.my_column_name,
+            r: item.noneed_input ? "自动识别" : "请输入" + item.vi_name,
+            s: form_info.value[item.my_column_name]
           } : {
-            o: common_vendor.t(item.vi_name),
-            p: item.my_column_name,
-            q: item.noneed_input ? "自动识别" : "请输入" + item.vi_name,
-            r: form_info.value[item.my_column_name]
+            t: common_vendor.t(item.vi_name),
+            v: item.my_column_name,
+            w: item.noneed_input ? "自动识别" : "请输入" + item.vi_name,
+            x: form_info.value[item.my_column_name]
           }, {
             j: item.my_column_name == "address_detail",
-            s: item.id
+            o: item.my_column_name == "mobile",
+            y: item.id
           });
         }),
         b: switch1Checked.value,

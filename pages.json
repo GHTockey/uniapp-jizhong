@@ -473,6 +473,13 @@
 			{
 				"navigationBarTitleText" : "商品分类"
 			}
+		},
+		{
+			"path" : "pages/test/test2",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"globalStyle": {

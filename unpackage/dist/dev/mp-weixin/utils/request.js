@@ -7,7 +7,6 @@ const requestInterceptors = [];
 const responseInterceptors = [];
 const request = (url, method = "GET", data = {}, headers = {}) => {
   const tempStore = stores_temp.useTempStore();
-  console.log("tempStore user", tempStore.user);
   if (uniSystemInfo.uniPlatform == "web") {
     data = {
       ...data,

@@ -21,7 +21,7 @@ const _sfc_main = {
     const emit = __emit;
     return (_ctx, _cache) => {
       return {
-        a: `/static/images/${props.image}`,
+        a: `https://saas.jizhongkeji.com/static/jzkj/static/images/${props.image}`,
         b: common_vendor.t(props.text),
         c: common_vendor.t(props.btnText),
         d: common_vendor.o(($event) => emit("btnClick")),

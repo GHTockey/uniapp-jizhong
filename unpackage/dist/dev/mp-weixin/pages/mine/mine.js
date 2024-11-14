@@ -210,13 +210,14 @@ const _sfc_main = {
           appendTitleBar: true
         }),
         b: common_vendor.o(show_pop_avatar_handler),
-        c: common_vendor.unref(user).wx_image,
-        d: common_vendor.t(common_vendor.unref(user).user_name),
-        e: common_vendor.t(common_vendor.unref(user).id),
-        f: !common_vendor.unref(user).user_name
+        c: common_vendor.unref(user).wx_image || "https://saas.jizhongkeji.com/static/jzkj/images/default_tou.png",
+        d: !common_vendor.unref(user).user_name
       }, !common_vendor.unref(user).user_name ? {
-        g: common_vendor.o(edit_user_info)
-      } : {}, {
+        e: common_vendor.o(edit_user_info)
+      } : {
+        f: common_vendor.t(common_vendor.unref(user).user_name),
+        g: common_vendor.t(common_vendor.unref(user).id)
+      }, {
         h: common_vendor.o(edit_user_info),
         i: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/integral")),
         j: common_vendor.o(($event) => common_vendor.unref(utils_index.toPage)("/pages/mine/money")),

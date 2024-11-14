@@ -68,7 +68,8 @@
     "pages/agrent/recommend",
     "pages/mine/appointent",
     "pages/mine/apply_search",
-    "pages/product/category"
+    "pages/product/category",
+    "pages/test/test2"
   ],
   "window": {
     "navigationBarTextStyle": "black",

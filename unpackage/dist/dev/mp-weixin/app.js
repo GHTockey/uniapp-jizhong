@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
+const stores_system = require("./stores/system.js");
 const stores_tabbar = require("./stores/tabbar2.js");
 const stores_temp = require("./stores/temp.js");
 if (!Math) {
@@ -73,6 +74,7 @@ if (!Math) {
   "./pages/mine/appointent.js";
   "./pages/mine/apply_search.js";
   "./pages/product/category.js";
+  "./pages/test/test2.js";
 }
 const __default__ = {
   onLaunch: function() {
@@ -88,13 +90,11 @@ const __default__ = {
 const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
   __name: "App",
   setup(__props) {
+    stores_system.useSystemStore();
     const tempStore = stores_temp.useTempStore();
     tempStore.getUserInfoApi();
     const tabBarStore = stores_tabbar.useTabBarStore();
     tabBarStore.getTabBarListApi();
-    common_vendor.onMounted(() => {
-      console.log("App Mounted");
-    });
     return () => {
     };
   }

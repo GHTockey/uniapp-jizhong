@@ -499,6 +499,6 @@ async function click_page(type) {
 	height: 100rpx;
 	// padding-bottom: constant(safe-area-inset-bottom);
 	// padding-bottom: env(safe-area-inset-bottom);
-	padding-bottom: calc($tabbar-height + env(safe-area-inset-bottom));
+	padding-bottom: $tabbar-height;
 }
 </style>

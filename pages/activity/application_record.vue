@@ -1,6 +1,6 @@
 <template>
 	<view class="application_record_container" v-if="is_loading">
-		<HeightBar />
+		<HeightBar  />
 
 		<view class="application_box" v-if="type != 2 && my_record_list.length > 0">
 			<image src="https://saas.jizhongkeji.com/static/jzkj/images/application_suc.png" mode="" />
@@ -41,6 +41,10 @@
 					class="application_message_item_right">{{ item[field.my_column_name] || '' }}</text>
 			</view>
 		</view>
+
+		<template v-if="my_record_list.length < 1">
+			<DefaultTip />
+		</template>
 
 		<view style="height: 100rpx;"></view>
 	</view>

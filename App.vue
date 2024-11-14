@@ -13,21 +13,23 @@ export default {
 </script>
 
 <script setup>
-import { onMounted } from 'vue';
-// import { useTarbarStore } from "@/stores/tarbar";
+import { onMounted, getCurrentInstance } from 'vue';
+import { useSystemStore } from '@/stores/system';
 import { useTabBarStore } from '@/stores/tabbar';
 import { useTempStore } from "@/stores/temp";
 
-const tempStore = useTempStore();
+const systemStore = useSystemStore();
 
+const tempStore = useTempStore();
 tempStore.getUserInfoApi();
 
 const tabBarStore = useTabBarStore();
 tabBarStore.getTabBarListApi();
 
-onMounted(() => {
-	console.log('App Mounted')
-})
+// mounted 比 Launch 先执行
+// onMounted(() => {
+// 	console.log('App Mounted')
+// })
 </script>
 
 <style>
@@ -187,6 +189,7 @@ p {
 .flex_none {
 	flex: none;
 }
+
 /* 弹性布局结束 */
 
 
@@ -244,8 +247,8 @@ p {
 
 .product_item_navigator {
 	// a {
-		width: 100%;
-		display: flex;
+	width: 100%;
+	display: flex;
 	// }
 }
 
@@ -274,138 +277,145 @@ p {
 // pitem
 /* 列表标题，带前置的颜色块 */
 .section_title {
-    display: flex;
-    padding: 17rpx 25rpx;
-    /* border-bottom: 1px solid #eeeeee; */
-    height: 1.6em;
-    background-color: #ffffff;
-    /* margin-top: 8rpx; */
+	display: flex;
+	padding: 17rpx 25rpx;
+	/* border-bottom: 1px solid #eeeeee; */
+	height: 1.6em;
+	background-color: #ffffff;
+	/* margin-top: 8rpx; */
 }
 
 .section_title .block_section_title_prev {
-    background-color: #09bb07;
-    height: 100%;
-    width: 10rpx;
+	background-color: #09bb07;
+	height: 100%;
+	width: 10rpx;
 }
 
 .section_title .block_section_title {
-    text-indent: 0.5em;
-    font-size: 1.2em;
+	text-indent: 0.5em;
+	font-size: 1.2em;
 }
 
 
 /* 产品列表 */
 .product_list .product_item {
-    width: 340rpx;
-    display: inline-block;
-    margin: 16rpx 0;
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.05);
-    border-radius: 12rpx;
-    background-color: #ffffff;
+	width: 340rpx;
+	display: inline-block;
+	margin: 16rpx 0;
+	box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.05);
+	border-radius: 12rpx;
+	background-color: #ffffff;
 }
 
 .product_list .product_item:nth-child(even) {
-    margin-left: 20rpx;
+	margin-left: 20rpx;
 }
 
 .product_list .product_item .image {
-    width: 340rpx;
-    height: 340rpx;
-    border-top-left-radius: 14rpx;
-    border-top-right-radius: 14rpx;
+	width: 340rpx;
+	height: 340rpx;
+	border-top-left-radius: 14rpx;
+	border-top-right-radius: 14rpx;
 }
 
 .product_list .product_item .name {
-    /* font-size: 1em; */
-    /* height: 3em; */
-    line-height: 1.5em;
-    overflow: hidden;
-    color: #595959;
-    font-size: 26rpx;
-    padding-left: 15rpx;
-    font-size: 28rpx;
-    color: #242424;
+	/* font-size: 1em; */
+	/* height: 3em; */
+	line-height: 1.5em;
+	overflow: hidden;
+	color: #595959;
+	font-size: 26rpx;
+	padding-left: 15rpx;
+	font-size: 28rpx;
+	color: #242424;
 }
 
 .product_list .product_item .price {
-    font-size: 1.2em;
-    color: #303030;
+	font-size: 1.2em;
+	color: #303030;
 }
 
 .product_list .product_item .name,
 .product_list .product_item .price {
-    display: block;
+	display: block;
 }
 
 
 /* 文字处理 */
-.word_break{
-    word-break: break-all;
+.word_break {
+	word-break: break-all;
 }
-.text_center{
-    text-align: center;
+
+.text_center {
+	text-align: center;
 }
-.color333{
-    color: #333333;
+
+.color333 {
+	color: #333333;
 }
-.font_bold{
-    font-weight: bold;
+
+.font_bold {
+	font-weight: bold;
 }
 
 /* 常用间距 */
-.margin_top28{
-    margin-top: 28rpx;
+.margin_top28 {
+	margin-top: 28rpx;
 }
-.margin_top20{
-    margin-top: 20rpx;
+
+.margin_top20 {
+	margin-top: 20rpx;
 }
 
 
 /* 横向展示的产品列表 */
-.product_list_row{
-    box-sizing: border-box;
-    width: 100%;
+.product_list_row {
+	box-sizing: border-box;
+	width: 100%;
 }
 
-.product_list_row .product_item{
-    border-bottom: 1rpx solid #ededed;
-    color: #333333;
-    padding: 26rpx 0rpx;
-    width: 100%;
+.product_list_row .product_item {
+	border-bottom: 1rpx solid #ededed;
+	color: #333333;
+	padding: 26rpx 0rpx;
+	width: 100%;
 }
 
-.product_list_row navigator{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+.product_list_row navigator {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
 }
 
-.product_list_row .product_info{
-    flex: 1;
-    align-items: flex-start;
-    width: calc(100% - 196rpx);
-}
-.product_list_row .image{
-    flex: none;
-    border-radius: 12rpx;
-    height: 168rpx;
-    margin-right: 18rpx;
-    width: 168rpx;
-}
-.product_list_row .name{
-    font-size: 28rpx;
+.product_list_row .product_info {
+	flex: 1;
+	align-items: flex-start;
+	width: calc(100% - 196rpx);
 }
 
-.product_list_row .price{
-    color: #FE3E3D;
-    font-size: 34rpx;
+.product_list_row .image {
+	flex: none;
+	border-radius: 12rpx;
+	height: 168rpx;
+	margin-right: 18rpx;
+	width: 168rpx;
 }
-.product_list_row .product_list_row_btn{
-    padding: 10rpx 12rpx;
-    background-color: #ff4f26;
-    border-radius: 34rpx;
-    color: #ffffff;
-    font-size: 22rpx;
+
+.product_list_row .name {
+	font-size: 28rpx;
+}
+
+.product_list_row .price {
+	color: #FE3E3D;
+	font-size: 34rpx;
+}
+
+.product_list_row .product_list_row_btn {
+	padding: 10rpx 12rpx;
+	background-color: #ff4f26;
+	border-radius: 34rpx;
+	color: #ffffff;
+	font-size: 22rpx;
 }
 
 

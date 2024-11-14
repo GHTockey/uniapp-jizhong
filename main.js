@@ -11,6 +11,9 @@ App.mpType = 'app'
 const app = new Vue({
   ...App
 })
+
+app.config.globalProperties.tce = 123
+
 // app.use(Vant)
 app.$mount()
 // #endif
@@ -22,7 +25,7 @@ export function createApp() {
   app.use(Pinia.createPinia())
   return {
     app,
-	Pinia
+    Pinia
   }
 }
 // #endif
