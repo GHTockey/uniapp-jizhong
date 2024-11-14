@@ -79,15 +79,19 @@ const _sfc_main = {
       if (options && options.scene) {
         var sceneStr = decodeURIComponent(options.scene);
         var params = sceneStr.split("&");
+        console.log("sceneStr", sceneStr);
+        console.log("params", params);
         params.forEach((param) => {
           const [key, value] = param.split("=");
           if (key === "fuid") {
-            getApp().globalData.fuid = value;
+            console.log("fuid", value);
+            stores_temp.useTempStore().setFuid(value);
           } else if (key === "productid") {
             product_id.value = value;
           }
         });
         console.log("product_id", product_id.value);
+        console.log("getApp().globalData", getApp().globalData);
       }
       if (options && options.id) {
         console.log("options.idoptions.id");

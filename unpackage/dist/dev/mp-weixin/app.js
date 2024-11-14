@@ -78,13 +78,10 @@ if (!Math) {
 }
 const __default__ = {
   onLaunch: function() {
-    console.log("App Launch");
   },
   onShow: function() {
-    console.log("App Show");
   },
   onHide: function() {
-    console.log("App Hide");
   }
 };
 const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {

@@ -63,6 +63,12 @@ export const useTabBarStore = defineStore('tabBar', {
             let res = await request('/WxAppConfig/app_tabbar_list', 'post')
             if (res.code == 0) {
                 this.list = res.data.tabbar_list
+            } else {
+                console.log('获取tabbar列表失败', res);
+                // uni.showToast({
+                //     title: res.msg,
+                //     icon: 'error'
+                // });
             }
         }
     }

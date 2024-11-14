@@ -10,7 +10,7 @@
 			</template>
 		</NavBar>
 
-
+		<!-- 用户信息 -->
 		<view class="user_info">
 			<view class="user_info_deng">
 				<image lazy-load
@@ -29,7 +29,7 @@
 			</view>
 		</view>
 
-
+		<!-- 分销订单/总佣金/团队人数 -->
 		<view class="box_list">
 			<view class="item1 item_one">
 				<view class="title_text" @click="to_distribution_order_list">
@@ -47,6 +47,7 @@
 			</view>
 		</view>
 
+		<!-- 可提现/待结算/已提现 -->
 		<view class="box_list">
 			<view class="box_list_two">
 				<view class="item1_three">
@@ -84,6 +85,7 @@
 
 		</view>
 
+		<!-- 常用工具 -->
 		<view class="box_list">
 			<view class="box_list_two">
 				<view class="tool">常用工具</view>

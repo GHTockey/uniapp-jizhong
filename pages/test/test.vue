@@ -18,6 +18,7 @@
 			<button @click="goToPage('/pages/onlineSearch/onlineSearch')" size="mini">跳转至在线搜索页</button>
 			<button @click="goToPage('/pages/test/test2')" size="mini">跳转至test2[选项式语法]</button>
 			<button @click="startAddBubbleTipsData" size="mini">start 气泡提示</button>
+			<button @click="scanCode" size="mini">扫码</button>
 			<!-- <button @click="goToPage('/pages/goodsDetail/goodsDetail')" size="mini">跳转商品详情页</button>
 			<button @click="showActionSheet = true" size="mini">使用ActionSheet组件</button>
 			<button @click="showActionSheetSlot = true" size="mini">选择商品弹窗 ActionSheetSlot组件</button> -->
@@ -134,8 +135,6 @@ const actionSheetData = ref({
 // 气泡提示数据
 const bubbleTipsData = ref();
 
-
-
 // test 添加气泡提示数据
 function addBubbleTipsData() {
 	bubbleTipsData.value = {
@@ -151,6 +150,24 @@ function startAddBubbleTipsData() {
 }
 
 
+
+// 扫码
+function scanCode() {
+	uni.scanCode({
+		success: (res) => {
+			console.log('扫码成功', res);
+			let { path } = res;
+			// path = decodeURIComponent(path);
+			console.log('path', path);
+			uni.navigateTo({
+				url: '/' + path
+			})
+		},
+		fail: (error) => {
+			console.log('扫码失败', error);
+		}
+	})
+}
 
 const handleCloseCoupon = () => {
 	console.log('优惠券弹窗关闭');

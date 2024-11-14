@@ -5,7 +5,8 @@
 			<view class="online-search-bar-input">
 				<image class="online-search-bar-input-icon"
 					src="https://saas.jizhongkeji.com/static/jzkj/static/icon/search-icon-g.svg" mode="widthFix" />
-				<input type="text" @input="handleSearch" v-model="searchKeyword" placeholder="输入关键词进行搜索" />
+				<input id="searchInput" type="text" @input="handleSearch" v-model="searchKeyword"
+					placeholder="输入关键词进行搜索" @change="handleChange" :focus="focusState" />
 			</view>
 			<view class="online-search-bar-button">
 				<text>搜索</text>
@@ -47,9 +48,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, getCurrentInstance } from "vue";
+import { onLoad } from "@dcloudio/uni-app";
 
+// const instance = getCurrentInstance();
+// const query = uni.createSelectorQuery().in(instance.proxy);
 
+// 搜索框聚焦状态
+const focusState = ref(false);
 // 搜索关键词
 const searchKeyword = ref('');
 // 搜索历史
@@ -111,6 +117,46 @@ function handleSearch(event) {
 		// console.log(searchKeyword.value);
 	}, 500); // 防抖时间
 }
+
+
+function handleChange() {
+	console.log('handleChange');
+	// focusState.value = false;
+	// setTimeout(() => {
+	// 	focusState.value = true;
+	// }, 100);
+}
+
+
+onMounted(() => {
+	// console.log(
+	// 	query.select('#searchInput')
+	// );
+	// query.select('#searchInput').boundingClientRect(res => {
+	// 	console.log('res', res);
+	// })
+
+
+	// setTimeout(() => {
+	// 	focusState.value = true;
+	// 	console.log('focusState', focusState.value);
+	// }, 1000);
+})
+
+onLoad(() => {
+	focusState.value = false;
+	setTimeout(() => {
+		// console.log(111);
+		focusState.value = true;
+	}, 0);
+})
+
+
+
+
+
+
+
 
 // 搜索历史清除按钮点击事件
 function handleClearSearchHistory() {

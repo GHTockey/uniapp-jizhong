@@ -3,6 +3,7 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   __name: "onlineSearch",
   setup(__props) {
+    const focusState = common_vendor.ref(false);
     const searchKeyword = common_vendor.ref("");
     const searchHistory = common_vendor.ref([
       {
@@ -55,6 +56,17 @@ const _sfc_main = {
         }, 300);
       }, 500);
     }
+    function handleChange() {
+      console.log("handleChange");
+    }
+    common_vendor.onMounted(() => {
+    });
+    common_vendor.onLoad(() => {
+      focusState.value = false;
+      setTimeout(() => {
+        focusState.value = true;
+      }, 0);
+    });
     function handleClearSearchHistory() {
       common_vendor.index.showModal({
         content: "是否确定删除所有搜索历史?",
@@ -68,27 +80,29 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: common_vendor.o([($event) => searchKeyword.value = $event.detail.value, handleSearch]),
-        b: searchKeyword.value,
-        c: !searchKeyword.value
+        b: common_vendor.o(handleChange),
+        c: focusState.value,
+        d: searchKeyword.value,
+        e: !searchKeyword.value
       }, !searchKeyword.value ? {
-        d: common_vendor.o(handleClearSearchHistory),
-        e: common_vendor.f(searchHistory.value, (item, k0, i0) => {
+        f: common_vendor.o(handleClearSearchHistory),
+        g: common_vendor.f(searchHistory.value, (item, k0, i0) => {
           return {
             a: common_vendor.t(item.keyword),
             b: item.id
           };
         })
       } : {}, {
-        f: !searchKeyword.value
+        h: !searchKeyword.value
       }, !searchKeyword.value ? {
-        g: common_vendor.f(hotSearch.value, (item, k0, i0) => {
+        i: common_vendor.f(hotSearch.value, (item, k0, i0) => {
           return {
             a: common_vendor.t(item.keyword),
             b: item.id
           };
         })
       } : {}, {
-        h: searchKeyword.value
+        j: searchKeyword.value
       }, searchKeyword.value ? {} : {});
     };
   }

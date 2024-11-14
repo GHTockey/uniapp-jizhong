@@ -526,26 +526,27 @@ const _sfc_main = {
         ad: common_vendor.t(price_all.value),
         ae: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 1 ? "a" : "n"}.svg`,
         af: common_vendor.o(($event) => change_pay_type(1)),
-        ag: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
-        ah: common_vendor.o(($event) => change_pay_type(2)),
-        ai: common_vendor.t(save_money.value),
-        aj: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 3 ? "a" : "n"}.svg`,
-        ak: common_vendor.o(($event) => change_pay_type(3)),
-        al: common_vendor.o(payPopupConfirmHandler),
-        am: common_vendor.o(($event) => payPopup.value.close()),
-        an: common_vendor.sr(payPopup, "87306594-4", {
+        ag: common_vendor.t(common_vendor.unref(user).distribution_money_all),
+        ah: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
+        ai: common_vendor.o(($event) => change_pay_type(2)),
+        aj: common_vendor.t(save_money.value),
+        ak: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 3 ? "a" : "n"}.svg`,
+        al: common_vendor.o(($event) => change_pay_type(3)),
+        am: common_vendor.o(payPopupConfirmHandler),
+        an: common_vendor.o(($event) => payPopup.value.close()),
+        ao: common_vendor.sr(payPopup, "87306594-4", {
           "k": "payPopup"
         }),
-        ao: common_vendor.o(() => {
+        ap: common_vendor.o(() => {
         }),
-        ap: common_vendor.p({
+        aq: common_vendor.p({
           ["background-color"]: "#fff",
           ["border-radius"]: "27.78rpx",
           ["mask-click"]: false
         }),
-        aq: (_c = address_list.value) == null ? void 0 : _c.length
+        ar: (_c = address_list.value) == null ? void 0 : _c.length
       }, ((_d = address_list.value) == null ? void 0 : _d.length) ? {
-        ar: common_vendor.f(address_list.value, (item, index, i0) => {
+        as: common_vendor.f(address_list.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.user_name),
             b: common_vendor.t(item.mobile),
@@ -557,9 +558,9 @@ const _sfc_main = {
           };
         })
       } : {}, {
-        as: common_vendor.o(addressSheetBtnHandler),
-        at: common_vendor.o(($event) => showAddressSheet.value = $event),
-        av: common_vendor.p({
+        at: common_vendor.o(addressSheetBtnHandler),
+        av: common_vendor.o(($event) => showAddressSheet.value = $event),
+        aw: common_vendor.p({
           title: "选择地址",
           footerBtnText: ((_e = address_list.value) == null ? void 0 : _e.length) ? "立即购买" : "添加收货地址",
           show: showAddressSheet.value

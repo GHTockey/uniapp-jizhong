@@ -4,7 +4,8 @@ const utils_request = require("../utils/request.js");
 const useTempStore = common_vendor.defineStore("temp", {
   state: () => ({
     business: {},
-    user: {}
+    user: {},
+    fuid: ""
   }),
   actions: {
     setBusiness(business) {
@@ -12,6 +13,9 @@ const useTempStore = common_vendor.defineStore("temp", {
     },
     setUser(user) {
       this.user = user;
+    },
+    setFuid(fuid) {
+      this.fuid = fuid;
     },
     // api
     async getUserInfoApi() {

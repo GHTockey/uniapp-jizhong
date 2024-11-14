@@ -64,6 +64,8 @@ const useTabBarStore = common_vendor.defineStore("tabBar", {
       let res = await utils_request.request("/WxAppConfig/app_tabbar_list", "post");
       if (res.code == 0) {
         this.list = res.data.tabbar_list;
+      } else {
+        console.log("获取tabbar列表失败", res);
       }
     }
   }

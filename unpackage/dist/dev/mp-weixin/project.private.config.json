@@ -4,9 +4,9 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/mine/order_success",
-          "pathName": "pages/mine/order_success",
-          "query": "buy_type=1",
+          "name": "pages/mine/mine",
+          "pathName": "pages/mine/mine",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },

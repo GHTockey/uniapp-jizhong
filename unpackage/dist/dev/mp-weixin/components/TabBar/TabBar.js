@@ -51,6 +51,17 @@ const _sfc_main = {
     const { list: tabbarList, selectedIndex: tabbarSelectedIndex } = common_vendor.storeToRefs(tabBarStore);
     const emit = __emit;
     const props = __props;
+    common_vendor.onMounted(() => {
+      let currentPath = getCurrentPages()[getCurrentPages().length - 1].route;
+      if (props.isAppMode) {
+        tabbarList.value.forEach((item, index) => {
+          if (item.path == currentPath) {
+            tabBarStore.selectedIndex = index;
+            emit("update:selectedIndex", index);
+          }
+        });
+      }
+    });
     const updateSelectedIndex = (index) => {
       emit("update:selectedIndex", index);
     };

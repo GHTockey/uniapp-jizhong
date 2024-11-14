@@ -66,7 +66,13 @@ const props = defineProps({
 })
 
 // 获取当前path
-// console.log(getCurrentPages()[getCurrentPages().length - 1].route);
+// console.log('tabbar current path', getCurrentPages()[getCurrentPages().length - 1].route);
+// let currentPath = getCurrentPages()[getCurrentPages().length - 1].route;
+// if (props.isAppMode) {
+// 	console.log('tabbarList', tabbarList.value);
+// }
+
+// 此方法局限性：数据没发生变化，不会触发
 // watch(() => tabbarList.value, (newVal) => {
 // 	// console.log('=======================================newVal', newVal);
 // 	newVal.forEach((item, index) => {
@@ -76,6 +82,19 @@ const props = defineProps({
 // 		}
 // 	})
 // })
+
+// 初始化选中状态
+onMounted(() => {
+	let currentPath = getCurrentPages()[getCurrentPages().length - 1].route;
+	if (props.isAppMode) {
+		tabbarList.value.forEach((item, index) => {
+			if (item.path == currentPath) {
+				tabBarStore.selectedIndex = index
+				emit('update:selectedIndex', index)
+			}
+		})
+	}
+})
 
 const updateSelectedIndex = (index) => {
 	emit('update:selectedIndex', index)

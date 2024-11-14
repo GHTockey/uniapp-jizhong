@@ -24,7 +24,7 @@
 					<template v-else-if="item.my_column_name == 'address_detail'">
 						<view class="form_item flex_row_space_bt align_start">
 							<view class="form_lable">{{ item.vi_name }}</view>
-							<textarea maxlength="200" @input="change_texare" class="input_textarea"
+							<textarea maxlength="200" @input="change_texare" class="input_textarea text-[28rpx]"
 								:name="item.my_column_name" placeholder-class="placeholder_text" placeholder="请输入您的详细地址"
 								:value="form_info[item.my_column_name]" />
 						</view>
@@ -53,18 +53,38 @@
 				</view>
 
 				<template v-if="type == 'edit'">
-					<view class="flex_row_space_bt edit_btns">
+					<!-- <view class="flex_row_space_bt edit_btns">
 						<view class="btn_item delete flex_col_cen_cen" @click="delete_tap">
 							删除地址
 						</view>
 						<button class="btn_item flex_col_cen_cen" form-type="submit">
 							保存
 						</button>
+					</view> -->
+
+					<!-- 新版样式 -->
+					<view class="flex flex-col gap-4 mt-10">
+						<button
+							class="tce_theme_btn w-full text-[30rpx] flex justify-center items-center h-[87rpx] !rounded-lg"
+							form-type="submit">
+							保存
+						</button>
+						<view
+							class="tce_theme_empty_btn w-full text-[30rpx] flex justify-center items-center h-[87rpx] !rounded-lg"
+							@click="delete_tap">
+							删除地址
+						</view>
 					</view>
+
 				</template>
 				<template v-if="type == 'add'">
 					<view class="flex_row_space_bt">
-						<button class="btn_item save" form-type="submit">
+						<!-- <button class="btn_item save" form-type="submit">
+							保存
+						</button> -->
+						<button
+							class="tce_theme_btn w-full text-[30rpx] flex justify-center items-center h-[87rpx] !rounded-lg mt-10"
+							form-type="submit">
 							保存
 						</button>
 					</view>

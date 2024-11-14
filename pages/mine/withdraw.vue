@@ -90,13 +90,13 @@ const withdrawType = ref(2) // 提现方式 [1微信  2银行卡]
 const bankCardInfo = ref(null) // 银行卡信息
 
 
-const total_amount = ref() // 可提现佣金
+const total_amount = ref() // 要提现的佣金
 // user_name
-// phone: '',
+// phone: '',	
 // bank: '',
 // card: '',
-const can_cash_money = ref()
-const target_bank = ref()
+const can_cash_money = ref() // 可提现佣金
+const target_bank = ref() // 目标银行卡
 
 
 // 表单数据

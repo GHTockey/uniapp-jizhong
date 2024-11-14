@@ -5,6 +5,7 @@ export const useTempStore = defineStore('temp', {
     state: () => ({
         business: {},
         user: {},
+        fuid: '',
     }),
 
     actions: {
@@ -14,6 +15,9 @@ export const useTempStore = defineStore('temp', {
         setUser(user) {
             this.user = user;
         },
+        setFuid(fuid) {
+            this.fuid = fuid;
+        },
 
 
 
@@ -21,6 +25,7 @@ export const useTempStore = defineStore('temp', {
         async getUserInfoApi() {
             const systemRes = uni.getSystemInfoSync();
             if (systemRes.uniPlatform == 'web') {
+                // 临时测试
                 console.log('h5 环境');
                 let res = await request('/WxAppCustomer/on_login', 'post', {
                     code: '0f3rdall2IQwqe4dxjnl2cdmwu2rdalv',

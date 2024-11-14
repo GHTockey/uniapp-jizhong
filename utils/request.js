@@ -18,12 +18,8 @@ const request = (url, method = 'GET', data = {}, headers = {}) => {
 	const tempStore = useTempStore();
 	// console.log('tempStore user', tempStore);
 
-	// data = {
-	// 	...data,
-	// 	wx_open_id: tempStore.user.wx_open_id || 'oPyg85Y9gzaTO9wgTmeApQMqmhRY',
-	// 	wx_appid: tempStore.user.authorizer_appid || 'wx184d389f8e1603d4',
-	// 	user_id: tempStore.user.id || 10662,
-	// }
+	// 绑定 fuid
+	data.fuid = tempStore.fuid;
 
 	if (uniSystemInfo.uniPlatform == 'web') {
 		// console.log('h5 环境 请求操作');

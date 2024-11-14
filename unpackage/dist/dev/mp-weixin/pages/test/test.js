@@ -68,6 +68,21 @@ const _sfc_main = {
         addBubbleTipsData();
       }, 1e3);
     }
+    function scanCode() {
+      common_vendor.index.scanCode({
+        success: (res) => {
+          console.log("扫码成功", res);
+          let { path } = res;
+          console.log("path", path);
+          common_vendor.index.navigateTo({
+            url: "/" + path
+          });
+        },
+        fail: (error) => {
+          console.log("扫码失败", error);
+        }
+      });
+    }
     const handleCloseCoupon = () => {
       console.log("优惠券弹窗关闭");
     };
@@ -108,14 +123,15 @@ const _sfc_main = {
         h: common_vendor.o(($event) => goToPage("/pages/onlineSearch/onlineSearch")),
         i: common_vendor.o(($event) => goToPage("/pages/test/test2")),
         j: common_vendor.o(startAddBubbleTipsData),
-        k: common_vendor.o(handleConfirmActionSheet),
-        l: common_vendor.o(($event) => showActionSheet.value = $event),
-        m: common_vendor.p({
+        k: common_vendor.o(scanCode),
+        l: common_vendor.o(handleConfirmActionSheet),
+        m: common_vendor.o(($event) => showActionSheet.value = $event),
+        n: common_vendor.p({
           items: actionSheetData.value.items,
           title: actionSheetData.value.title,
           show: showActionSheet.value
         }),
-        n: common_vendor.f(goodsParamsData.value, (item, k0, i0) => {
+        o: common_vendor.f(goodsParamsData.value, (item, k0, i0) => {
           return {
             a: common_vendor.t(item.value),
             b: item.id,
@@ -124,12 +140,12 @@ const _sfc_main = {
             e: item.id == 3 ? 1 : ""
           };
         }),
-        o: common_vendor.o(($event) => showActionSheetSlot.value = $event),
-        p: common_vendor.p({
+        p: common_vendor.o(($event) => showActionSheetSlot.value = $event),
+        q: common_vendor.p({
           footerBtnText: "立即购买",
           show: showActionSheetSlot.value
         }),
-        q: common_vendor.p({
+        r: common_vendor.p({
           title: "标题",
           showBack: true
         })

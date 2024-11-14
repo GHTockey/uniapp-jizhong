@@ -8,6 +8,7 @@
     <!-- 手机状态栏高度 -->
     <view v-if="!isFixedHeadeContent" :style="`height: ${getStatusBarHeight()}px;`"></view>
 
+    <!-- 搜索栏 -->
     <view class="header-content" :class="{ 'header-content-fixed': isFixedHeadeContent }"
       :style="isFixedHeadeContent ? `top: ${getStatusBarHeight()}px` : ''">
       <!-- logo 标题: 高度为小程序胶囊按钮栏高度 -->
@@ -20,7 +21,10 @@
       <view class="searchBar">
         <image @click="toPage('/pages/notify/notify')"
           src="https://saas.jizhongkeji.com/static/jzkj/static/icon/组 9954@2x.png" />
-        <input @click="toPage('/pages/onlineSearch/onlineSearch')" type="text" placeholder="请输入关键词进行搜索"
+        <!-- <view @click="toPage('/pages/onlineSearch/onlineSearch')" class="w-full">
+          <input type="button" placeholder="请输入关键词进行搜索" placeholder-class="searchPlace" disabled />
+        </view> -->
+        <input @click.stop.prevent="toPage('/pages/onlineSearch/onlineSearch')" type="button" placeholder="请输入关键词进行搜索"
           placeholder-class="searchPlace" />
       </view>
 

@@ -52,8 +52,9 @@
 						<view class="address_text" style="width: unset;">
 							提货人员
 						</view>
-						<input style="font-size: 28rpx; text-align: right;" class="input_address" v-model="user.user_name"
-							placeholder-class="placeholder-style" type="text" name="user_name" placeholder="输入提货人员姓名" />
+						<input style="font-size: 28rpx; text-align: right;" class="input_address"
+							v-model="user.user_name" placeholder-class="placeholder-style" type="text" name="user_name"
+							placeholder="输入提货人员姓名" />
 					</view>
 
 					<view class="address_item flex_row_space_bt buy_address_top"
@@ -340,7 +341,8 @@
 						</image>
 						<view>
 							<view style="font-size: 30.56rpx;font-weight: bold;color: #000000;">佣金支付</view>
-							<text style="font-size: 29.17rpx; color: #a1a1a1;">可用余额￥555.50</text>
+							<text style="font-size: 29.17rpx; color: #a1a1a1;">可用余额￥{{ user.distribution_money_all
+								}}</text>
 						</view>
 					</view>
 					<image mode="widthFix" style="width: 41.67rpx;"
