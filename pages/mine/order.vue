@@ -31,7 +31,7 @@
 			</view>
 		</view>
 
-		<view class="order_list">
+		<view class="order_list !px-[20rpx]">
 			<template v-for="item, index in order_list" :key="index" v-if="order_list.length > 0">
 				<navigator hover-class="none" :url="`/pages/index/order_detail?order_id=${item.id}`" :key="index"
 					v-if="item?.status != 9">
@@ -176,7 +176,7 @@
 							</view>
 
 
-							<view class="order_info_v">
+							<view class="order_info_v !py-[10rpx]">
 								<view v-if="drawback.userback?.reason"
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{

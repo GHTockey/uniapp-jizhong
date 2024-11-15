@@ -21,6 +21,7 @@ const _sfc_main = {
   __name: "pay",
   setup(__props) {
     const { user, business } = common_vendor.storeToRefs(stores_temp.useTempStore());
+    const has_bar_title_color = common_vendor.ref(false);
     const good_list = common_vendor.ref([]);
     const is_checking = common_vendor.ref(0);
     const inter = common_vendor.ref(null);
@@ -99,6 +100,13 @@ const _sfc_main = {
     common_vendor.onUnload(() => {
       console.log("页面卸载：pay");
       clear_select_address();
+    });
+    common_vendor.onPageScroll((e) => {
+      if (e.scrollTop > 50) {
+        has_bar_title_color.value = true;
+      } else {
+        has_bar_title_color.value = false;
+      }
     });
     async function to_sub(e) {
       console.log("提交订单提交订单", buy_type.value);
@@ -425,15 +433,16 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       var _a, _b, _c, _d, _e;
       return common_vendor.e({
-        a: common_vendor.p({
+        a: has_bar_title_color.value ? "#333" : "#fff",
+        b: common_vendor.p({
           title: "待付款订单",
           showBack: true,
-          isWhite: true,
-          bgc: "transparent"
+          isWhite: !has_bar_title_color.value,
+          bgc: has_bar_title_color.value ? "#fff" : "transparent"
         }),
-        b: is_loading.value
+        c: is_loading.value
       }, is_loading.value ? common_vendor.e({
-        c: common_vendor.f(buy_type_list.value, (item, index, i0) => {
+        d: common_vendor.f(buy_type_list.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.name),
             b: common_vendor.n(item.id == buy_type.value ? "buy_type_active" : "buy_type_normol"),
@@ -442,36 +451,36 @@ const _sfc_main = {
             e: item.id
           };
         }),
-        d: buy_type.value == 1
+        e: buy_type.value == 1
       }, buy_type.value == 1 ? common_vendor.e({
-        e: targte_shop.value && targte_shop.value.shop_name
+        f: targte_shop.value && targte_shop.value.shop_name
       }, targte_shop.value && targte_shop.value.shop_name ? {
-        f: common_vendor.t(targte_shop.value.shop_name),
-        g: common_vendor.t(targte_shop.value.address_detail)
+        g: common_vendor.t(targte_shop.value.shop_name),
+        h: common_vendor.t(targte_shop.value.address_detail)
       } : {}, {
-        h: common_vendor.o(to_get_shop_list),
-        i: common_vendor.unref(user).user_name,
-        j: common_vendor.o(($event) => common_vendor.unref(user).user_name = $event.detail.value),
-        k: common_vendor.unref(user).phone,
-        l: common_vendor.o(($event) => common_vendor.unref(user).phone = $event.detail.value)
+        i: common_vendor.o(to_get_shop_list),
+        j: common_vendor.unref(user).user_name,
+        k: common_vendor.o(($event) => common_vendor.unref(user).user_name = $event.detail.value),
+        l: common_vendor.unref(user).phone,
+        m: common_vendor.o(($event) => common_vendor.unref(user).phone = $event.detail.value)
       }) : {}, {
-        m: buy_type.value == 0
+        n: buy_type.value == 0
       }, buy_type.value == 0 ? common_vendor.e({
-        n: address.value && address.value.mobile
+        o: address.value && address.value.mobile
       }, address.value && address.value.mobile ? common_vendor.e({
-        o: common_vendor.t(address.value.user_name),
-        p: common_vendor.t(address.value.mobile),
-        q: common_vendor.t(address.value.address),
-        r: common_vendor.t(address.value.address_detail),
-        s: address.value.is_default
+        p: common_vendor.t(address.value.user_name),
+        q: common_vendor.t(address.value.mobile),
+        r: common_vendor.t(address.value.address),
+        s: common_vendor.t(address.value.address_detail),
+        t: address.value.is_default
       }, address.value.is_default ? {} : {}) : {}, {
-        t: common_vendor.o(addressSheetBtnHandler)
+        v: common_vendor.o(addressSheetBtnHandler)
       }) : {}, {}, {
-        A: type.value != "buy_now"
+        B: type.value != "buy_now"
       }, type.value != "buy_now" ? common_vendor.e({
-        B: good_list.value && good_list.value.length > 0
+        C: good_list.value && good_list.value.length > 0
       }, good_list.value && good_list.value.length > 0 ? common_vendor.e({
-        C: common_vendor.f(good_list.value, (item, k0, i0) => {
+        D: common_vendor.f(good_list.value, (item, k0, i0) => {
           return common_vendor.e({
             a: item.good_imgs || "https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png",
             b: common_vendor.t(item.name),
@@ -490,63 +499,63 @@ const _sfc_main = {
           });
         })
       }, {}, {
-        F: common_vendor.t(price_all.value)
+        G: common_vendor.t(price_all.value)
       }) : {}) : {}, {
-        G: type.value == "buy_now"
+        H: type.value == "buy_now"
       }, type.value == "buy_now" ? common_vendor.e({
-        H: goods_info.value
+        I: goods_info.value
       }, goods_info.value ? common_vendor.e({
-        I: goods_info.value.good_imgs || "https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png",
-        J: common_vendor.t(goods_info.value.name),
-        K: goods_info.value.spec_totall && goods_info.value.spec_totall.length > 0
+        J: goods_info.value.good_imgs || "https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png",
+        K: common_vendor.t(goods_info.value.name),
+        L: goods_info.value.spec_totall && goods_info.value.spec_totall.length > 0
       }, goods_info.value.spec_totall && goods_info.value.spec_totall.length > 0 ? {
-        L: common_vendor.t(goods_info.value.spec_totall)
+        M: common_vendor.t(goods_info.value.spec_totall)
       } : {}, {
-        M: common_vendor.t(goods_info.value.unit_price),
-        N: common_vendor.n(`de_btn count_btn flex_col_cen_cen ${goods_info.value.count == ((_a = goods_info.value.limit) == null ? void 0 : _a[0]) ? "no_active" : ""}`),
-        O: common_vendor.o(($event) => info_reduce_count(goods_info.value)),
-        P: common_vendor.t(goods_info.value.count || 1),
-        Q: common_vendor.n(`reduce count_btn flex_col_cen_cen ${goods_info.value.count == ((_b = goods_info.value.limit) == null ? void 0 : _b[1]) ? "no_active" : ""}`),
-        R: common_vendor.o(($event) => info_add_count(goods_info.value))
+        N: common_vendor.t(goods_info.value.unit_price),
+        O: common_vendor.n(`de_btn count_btn flex_col_cen_cen ${goods_info.value.count == ((_a = goods_info.value.limit) == null ? void 0 : _a[0]) ? "no_active" : ""}`),
+        P: common_vendor.o(($event) => info_reduce_count(goods_info.value)),
+        Q: common_vendor.t(goods_info.value.count || 1),
+        R: common_vendor.n(`reduce count_btn flex_col_cen_cen ${goods_info.value.count == ((_b = goods_info.value.limit) == null ? void 0 : _b[1]) ? "no_active" : ""}`),
+        S: common_vendor.o(($event) => info_add_count(goods_info.value))
       }, {}, {
-        U: common_vendor.t(price_all.value)
+        V: common_vendor.t(price_all.value)
       }) : {}) : {}, {
-        V: common_vendor.t(buyerMsg.value || "无留言"),
-        W: common_vendor.o(($event) => showActionSheet.value = true)
+        W: common_vendor.t(buyerMsg.value || "无留言"),
+        X: common_vendor.o(($event) => showActionSheet.value = true)
       }, {}, {}, {
-        Y: common_vendor.o(to_sub)
+        Z: common_vendor.o(to_sub)
       }) : {}, {
-        Z: buyerMsg.value,
-        aa: common_vendor.o(($event) => buyerMsg.value = $event.detail.value),
-        ab: common_vendor.o(($event) => showActionSheet.value = $event),
-        ac: common_vendor.p({
+        aa: buyerMsg.value,
+        ab: common_vendor.o(($event) => buyerMsg.value = $event.detail.value),
+        ac: common_vendor.o(($event) => showActionSheet.value = $event),
+        ad: common_vendor.p({
           title: "买家留言",
           show: showActionSheet.value
         }),
-        ad: common_vendor.t(price_all.value),
-        ae: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 1 ? "a" : "n"}.svg`,
-        af: common_vendor.o(($event) => change_pay_type(1)),
-        ag: common_vendor.t(common_vendor.unref(user).distribution_money_all),
-        ah: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
-        ai: common_vendor.o(($event) => change_pay_type(2)),
-        aj: common_vendor.t(save_money.value),
-        ak: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 3 ? "a" : "n"}.svg`,
-        al: common_vendor.o(($event) => change_pay_type(3)),
-        am: common_vendor.o(payPopupConfirmHandler),
-        an: common_vendor.o(($event) => payPopup.value.close()),
-        ao: common_vendor.sr(payPopup, "87306594-4", {
+        ae: common_vendor.t(price_all.value),
+        af: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 1 ? "a" : "n"}.svg`,
+        ag: common_vendor.o(($event) => change_pay_type(1)),
+        ah: common_vendor.t(common_vendor.unref(user).distribution_money_all),
+        ai: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 2 ? "a" : "n"}.svg`,
+        aj: common_vendor.o(($event) => change_pay_type(2)),
+        ak: common_vendor.t(save_money.value),
+        al: `https://saas.jizhongkeji.com/static/jzkj/static/icon/select_fill-${selectPayType.value == 3 ? "a" : "n"}.svg`,
+        am: common_vendor.o(($event) => change_pay_type(3)),
+        an: common_vendor.o(payPopupConfirmHandler),
+        ao: common_vendor.o(($event) => payPopup.value.close()),
+        ap: common_vendor.sr(payPopup, "87306594-4", {
           "k": "payPopup"
         }),
-        ap: common_vendor.o(() => {
+        aq: common_vendor.o(() => {
         }),
-        aq: common_vendor.p({
+        ar: common_vendor.p({
           ["background-color"]: "#fff",
           ["border-radius"]: "27.78rpx",
           ["mask-click"]: false
         }),
-        ar: (_c = address_list.value) == null ? void 0 : _c.length
+        as: (_c = address_list.value) == null ? void 0 : _c.length
       }, ((_d = address_list.value) == null ? void 0 : _d.length) ? {
-        as: common_vendor.f(address_list.value, (item, index, i0) => {
+        at: common_vendor.f(address_list.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.user_name),
             b: common_vendor.t(item.mobile),
@@ -558,9 +567,9 @@ const _sfc_main = {
           };
         })
       } : {}, {
-        at: common_vendor.o(addressSheetBtnHandler),
-        av: common_vendor.o(($event) => showAddressSheet.value = $event),
-        aw: common_vendor.p({
+        av: common_vendor.o(addressSheetBtnHandler),
+        aw: common_vendor.o(($event) => showAddressSheet.value = $event),
+        ax: common_vendor.p({
           title: "选择地址",
           footerBtnText: ((_e = address_list.value) == null ? void 0 : _e.length) ? "立即购买" : "添加收货地址",
           show: showAddressSheet.value
@@ -570,4 +579,5 @@ const _sfc_main = {
   }
 };
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-87306594"]]);
+_sfc_main.__runtimeHooks = 1;
 wx.createPage(MiniProgramPage);

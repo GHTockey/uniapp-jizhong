@@ -4,9 +4,10 @@
 		<HeightBar />
 
 		<!-- 标题栏 -->
-		<NavBar title="待付款订单" showBack isWhite bgc="transparent">
+		<NavBar title="待付款订单" showBack :isWhite="!has_bar_title_color"
+			:bgc="has_bar_title_color ? '#fff' : 'transparent'">
 			<template #title>
-				<view style="color: #fff;">待付款订单</view>
+				<view :style="{ color: has_bar_title_color ? '#333' : '#fff' }">待付款订单</view>
 			</template>
 		</NavBar>
 
@@ -126,11 +127,11 @@
 			<!-- 购物车 -->
 			<template v-if="type != 'buy_now'">
 				<view class="new_layout" v-if="good_list && good_list.length > 0">
-					<view class="new_layout_cotent">
+					<view class="new_layout_cotent !pb-0">
 
 						<tempalte v-for="item in good_list" :key="item.id">
 							<view class="good_item flex_row_space_bt">
-								<image lazy-load="true" class="good_img" mode="widthFix"
+								<image lazy-load="true" class="good_img !w-[160rpx] !h-[160rpx]" mode="aspectFill"
 									:src="item.good_imgs || 'https://saas.jizhongkeji.com/static/jzkj/images/empty_img.png'">
 								</image>
 								<view class="good_detail">
@@ -403,12 +404,12 @@ import { ref, unref, watch } from "vue";
 import { useTempStore } from "@/stores/temp";
 import { storeToRefs } from "pinia";
 import { request } from "@/utils/request";
-import { onUnload, onLoad, onShow } from "@dcloudio/uni-app";
+import { onUnload, onLoad, onShow, onPageScroll } from "@dcloudio/uni-app";
 import { toPage } from "../../utils";
 
 const { user, business } = storeToRefs(useTempStore());
 
-const has_bar_title_color = 'unset';
+const has_bar_title_color = ref(false);
 const is_show_locate = false;
 const good_list = ref([]);
 const is_checking = ref(0);
@@ -528,6 +529,19 @@ onUnload(() => {
 	console.log('页面卸载：pay');
 	clear_select_address(); // 清除选择地址
 })
+
+onPageScroll((e) => {
+	// console.log('页面滚动', e.scrollTop);
+	// 页面像下滚动了
+	if (e.scrollTop > 50) {
+		// 让页面标题有白色背景
+		has_bar_title_color.value = true
+	} else {
+		// 让页面标题去掉白色背景
+		has_bar_title_color.value = false
+	}
+})
+
 
 
 // 去付款 [弃用]
