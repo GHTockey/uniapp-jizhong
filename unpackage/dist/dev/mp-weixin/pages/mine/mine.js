@@ -162,7 +162,11 @@ const _sfc_main = {
         } else {
           goods_list = res.data.goods_list;
         }
-        common_vendor.index.hideLoading();
+        try {
+          common_vendor.index.hideLoading();
+        } catch (error) {
+          console.log(error);
+        }
         if (res.data.goods_group_list.length > 0) {
           nav_list.value = [{
             id: 0,

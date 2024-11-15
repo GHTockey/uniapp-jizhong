@@ -20,8 +20,6 @@ export const useTempStore = defineStore('temp', {
         },
 
 
-
-        // api
         async getUserInfoApi() {
             const systemRes = uni.getSystemInfoSync();
             if (systemRes.uniPlatform == 'web') {
@@ -46,9 +44,9 @@ export const useTempStore = defineStore('temp', {
             console.log('小程序环境');
             wx.login({
                 success: async (res) => {
-                    // console.log('res', res)
+                    // console.log('wx.login res', res)
                     if (res.code) {
-                        console.log(this);
+                        // console.log(this);
                         let reqRes = await request('/WxAppCustomer/on_login', 'post', {
                             code: res.code
                         })

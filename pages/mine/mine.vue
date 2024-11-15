@@ -505,7 +505,11 @@ async function recommend_product(length) {
 			goods_list = res.data.goods_list
 		}
 
-		uni.hideLoading();
+		try {
+			uni.hideLoading();
+		} catch (error) {
+			console.log(error);
+		}
 		if (res.data.goods_group_list.length > 0) {
 			nav_list.value = [{
 				id: 0,

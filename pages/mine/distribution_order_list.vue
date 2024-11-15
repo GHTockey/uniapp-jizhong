@@ -1,6 +1,6 @@
 <template>
 	<view v-if="is_loading" class="distribution_order_list_container">
-		<view class="nav_area">
+		<view class="nav_area z-10">
 			<view :data-type="item.type" :data-nav_index="index" @click="change_nav"
 				:class="{ 'active': nav_index == index }" v-for="(item, index) in nav_list" :key="index">
 				<text>{{ item.name }}</text>

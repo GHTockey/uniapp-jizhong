@@ -13,7 +13,7 @@ export default {
 </script>
 
 <script setup>
-import { onMounted, getCurrentInstance } from 'vue';
+// import { onMounted, getCurrentInstance } from 'vue';
 import { useSystemStore } from '@/stores/system';
 import { useTabBarStore } from '@/stores/tabbar';
 import { useTempStore } from "@/stores/temp";
@@ -21,7 +21,7 @@ import { useTempStore } from "@/stores/temp";
 const systemStore = useSystemStore();
 
 const tempStore = useTempStore();
-tempStore.getUserInfoApi();
+tempStore.getUserInfoApi(); // on_login
 
 const tabBarStore = useTabBarStore();
 tabBarStore.getTabBarListApi();

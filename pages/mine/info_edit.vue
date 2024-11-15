@@ -11,12 +11,17 @@
 					<view class="input">{{ user.nickname || '' }}</view>
 				</view>
 				<view class="input_item">
+
+					<!-- <button open-type="chooseAvatar" class="chooseAvatarBtn w-full flex " -->
+					<!-- @chooseavatar="onChooseAvatarHandler"> -->
 					<view class="label">微信头像</view>
 					<view class="input">
 						<image class="user_avatar"
 							:src="user.wx_image || 'https://saas.jizhongkeji.com/static/jzkj/images/default_avatar.png'"
 							mode="aspectFill" />
 					</view>
+					<!-- </button> -->
+
 				</view>
 				<view class="input_item">
 					<view class="label">手机号码<text class="is_required">*</text></view>
@@ -115,7 +120,10 @@
 
 			<view class="btn_box_height"></view>
 			<view class="btn_box">
-				<button class="btn" form-type="submit">提交</button>
+				<button
+					class="tce_theme_btn w-full !rounded-lg mx-[30rpx] text-[30rpx] h-[70rpx] flex justify-center items-center"
+					form-type="submit">提交</button>
+				<!-- <button class="btn" form-type="submit">提交</button> -->
 			</view>
 		</form>
 	</view>
@@ -185,7 +193,36 @@ onLoad(async () => {
 })
 
 
+// 新版获取头像
+async function onChooseAvatarHandler(e) {
+	// console.log('onChooseAvatarTest', e);
+	user.value.wx_image = e.detail.avatarUrl
 
+
+	uni.uploadFile({
+		url: 'https://saas.jizhongkeji.com/jzkj/WxAppCustomer/upload',
+		filePath: e.detail.avatarUrl,
+		name: 'file',
+		// formData: {
+		// 	'user': 'test'
+		// },
+		success: (uploadFileRes) => {
+			// console.log('uploadFileRes', uploadFileRes.data);
+			let res = typeof uploadFileRes.data == 'string' ? JSON.parse(uploadFileRes.data) : uploadFileRes.data;
+			let { code, msg, data } = res;
+			if (code == 0) {
+				// console.log('上传头像成功', data.file_url);
+				user.value.wx_image = data.file_url; // 上传后的头像链接
+			} else {
+				uni.showToast({
+					title: msg,
+					icon: 'none'
+				})
+			}
+		}
+	});
+
+}
 
 function confirm(valObj, item) {
 	// console.log(valObj, item)
@@ -202,8 +239,9 @@ function confirm(valObj, item) {
 
 async function bindsubmit(e) {
 
-	let formData = { ...e.detail.value, ...picker_select_data.value };
+	let formData = { ...e.detail.value, ...picker_select_data.value, wx_image: user.value.wx_image, nickname: user.value.nickname };
 	// console.log(formData);
+	// 接口 info_edit 需要的参数：'phone', 'user_name', 'birthday', 'city', 'address', 'sex'
 	// return
 
 	let res = await request('/WxAppCustomer/info_edit', 'post', formData);
@@ -240,9 +278,23 @@ function uniDataPickerChange(e, colName) {
 }
 </script>
 
-<style>
+<style lang="scss">
 page {
 	background-color: #f0f0f0;
+}
+
+.chooseAvatarBtn {
+	background-color: transparent;
+	border: unset;
+	padding: 0;
+	box-shadow: none;
+	margin: unset;
+	padding: unset;
+	font-size: unset;
+
+	&:after {
+		border: unset;
+	}
 }
 
 

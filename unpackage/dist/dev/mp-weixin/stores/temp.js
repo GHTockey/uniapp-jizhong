@@ -17,7 +17,6 @@ const useTempStore = common_vendor.defineStore("temp", {
     setFuid(fuid) {
       this.fuid = fuid;
     },
-    // api
     async getUserInfoApi() {
       const systemRes = common_vendor.index.getSystemInfoSync();
       if (systemRes.uniPlatform == "web") {
@@ -40,7 +39,6 @@ const useTempStore = common_vendor.defineStore("temp", {
       common_vendor.wx$1.login({
         success: async (res) => {
           if (res.code) {
-            console.log(this);
             let reqRes = await utils_request.request("/WxAppCustomer/on_login", "post", {
               code: res.code
             });

@@ -166,7 +166,7 @@
 		<view class="goods-detail-info-detail">
 			<!-- 商品详情标题 -->
 			<view class="goods-detail-info-detail-title">商品详情</view>
-			<view>
+			<view class="px-[30rpx]">
 				<!-- <template is="wxParse" data="{{wxParseData:detail_content.nodes}}" /> -->
 				<view v-html="product.detail"></view>
 			</view>
@@ -383,12 +383,18 @@
 							<!-- <view class="reduce count_btn flex_col_cen_cen {{add_count == max_count ? 'no_active' : ''}}" bindtap="add_count">+</view> -->
 						</view>
 					</view>
-					<view v-if="show_pop == 'add'" class="pop_btn add flex_col_cen_cen" @click="add_shopcar">
+					<view v-if="show_pop == 'add'" class="tce_theme_btn !py-[18rpx]" @click="add_shopcar">
 						我选好了，加入购物车
 					</view>
-					<view v-if="show_pop == 'buy'" class="pop_btn flex_col_cen_cen" @click="to_buy">
+					<!-- <view v-if="show_pop == 'add'" class="pop_btn add flex_col_cen_cen" @click="add_shopcar">
+						我选好了，加入购物车
+					</view> -->
+					<view v-if="show_pop == 'buy'" class="tce_theme_btn !py-[18rpx]" @click="to_buy">
 						立即购买
 					</view>
+					<!-- <view v-if="show_pop == 'buy'" class="pop_btn flex_col_cen_cen" @click="to_buy">
+						立即购买
+					</view> -->
 				</view>
 			</view>
 		</template>

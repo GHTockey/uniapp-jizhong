@@ -226,6 +226,10 @@ view,text,::before,::after {
     margin-top: 25rpx;
     margin-bottom: 25rpx
 }
+.mx-_30rpx_ {
+    margin-left: 30rpx;
+    margin-right: 30rpx
+}
 .mb-2 {
     margin-bottom: 0.5rem
 }
@@ -433,6 +437,12 @@ view,text,::before,::after {
 .h-full {
     height: 100%
 }
+.h-_90rpx_ {
+    height: 90rpx
+}
+.h-_70rpx_ {
+    height: 70rpx
+}
 .iw-_160rpx_ {
     width: 160rpx !important
 }
@@ -561,9 +571,6 @@ view,text,::before,::after {
 }
 .w-full {
     width: 100%
-}
-.w-__ {
-    width:
 }
 .imax-w-max {
     max-width: -webkit-max-content !important;
@@ -741,6 +748,14 @@ view,text,::before,::after {
 .p-_35rpx_ {
     padding: 35rpx
 }
+.ipx-_20rpx_ {
+    padding-left: 20rpx !important;
+    padding-right: 20rpx !important
+}
+.ipy-_10rpx_ {
+    padding-top: 10rpx !important;
+    padding-bottom: 10rpx !important
+}
 .ipy-_18rpx_ {
     padding-top: 18rpx !important;
     padding-bottom: 18rpx !important
@@ -789,29 +804,20 @@ view,text,::before,::after {
     padding-top: 5rpx;
     padding-bottom: 5rpx
 }
-.ipx-2 {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important
-}
-.ipy-2 {
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important
-}
-.py-2 {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem
+.ipy-20 {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important
 }
 .ipy-__ {
     padding-top:  !important;
     padding-bottom:  !important
 }
-.ipy-_10rpx_ {
-    padding-top: 10rpx !important;
-    padding-bottom: 10rpx !important
+.ipy-_15rpx_ {
+    padding-top: 15rpx !important;
+    padding-bottom: 15rpx !important
 }
-.ipx-_20rpx_ {
-    padding-left: 20rpx !important;
-    padding-right: 20rpx !important
+.ipb-0 {
+    padding-bottom: 0px !important
 }
 .pl-_80rpx_ {
     padding-left: 80rpx
@@ -824,12 +830,6 @@ view,text,::before,::after {
 }
 .pt-_50rpx_ {
     padding-top: 50rpx
-}
-.pb-0 {
-    padding-bottom: 0px
-}
-.ipb-0 {
-    padding-bottom: 0px !important
 }
 .text-left {
     text-align: left
