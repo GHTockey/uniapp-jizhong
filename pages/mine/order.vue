@@ -101,7 +101,7 @@
 								<text @click.stop.prevent="delte_business(item.id)"
 									v-if="item.status == 1 && item.countdown <= 0">删除订单</text>
 								<text v-if="item.status == 1 && item.countdown > 0" class="active topayorder"
-									@click.stop.prevent="re_pay(item.id)">立即付款{{ item.countdown_time2 }}</text>
+									@click.stop.prevent="re_pay(item.id)">立即付款&nbsp;{{ item.countdown_time2 }}</text>
 								<text v-if="item.status == 1 && item.countdown <= 0 && is_show_btn"
 									class="active">再买一单</text>
 							</view>
@@ -181,7 +181,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-									}}</text>申请退款，原因：{{ drawback.userback.reason }}
+											}}</text>申请退款，原因：{{ drawback.userback.reason }}
 									</view>
 								</view>
 
@@ -189,7 +189,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-									}}</text>商家主动退款，原因：{{ drawback.shopback.reason }}
+											}}</text>商家主动退款，原因：{{ drawback.shopback.reason }}
 									</view>
 								</view>
 
@@ -197,7 +197,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-									}}</text>
+											}}</text>
 										商家同意退款</view>
 								</view>
 
@@ -205,7 +205,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-									}}</text>
+											}}</text>
 										商家拒绝退款</view>
 								</view>
 							</view>

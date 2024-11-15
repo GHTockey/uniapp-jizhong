@@ -144,7 +144,7 @@
 					</view>
 					<text class="text-[24rpx] mt-[13rpx]">分销中心</text>
 				</view>
-				<view class="common_tool_item" @click="to_scan_order">
+				<view v-if="user.shoper_id > 0" class="common_tool_item" @click="to_scan_order">
 					<view class="w-[71.5rpx] h-[71.5rpx] flex items-center justify-center">
 						<image class=" h-full w-full" src="https://saas.jizhongkeji.com/static/jzkj/images/tool22.png">
 						</image>

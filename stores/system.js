@@ -18,6 +18,10 @@ export const useSystemStore = defineStore('system', {
 		isIos: () => {
 			return /(iPhone|iPad|iPod|iOS)/i.test(uni.getSystemInfoSync().model)
 		},
+		// 当前宿主环境  [mp-weixin, web]
+		getPlatform: () => {
+			return uni.getSystemInfoSync().uniPlatform;
+		}
 	},
 
 	// 方法

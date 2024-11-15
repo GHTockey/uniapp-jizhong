@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const utils_index = require("../../utils/index.js");
+const stores_system = require("../../stores/system.js");
 if (!Math) {
   CouponList();
 }
@@ -8,6 +9,7 @@ const CouponList = () => "../../components/CouponsList.js";
 const _sfc_main = {
   __name: "myCoupon",
   setup(__props) {
+    const systemStore = stores_system.useSystemStore();
     const activeTab = common_vendor.ref(0);
     const coupons = common_vendor.ref([
       {
@@ -27,23 +29,24 @@ const _sfc_main = {
     };
     return (_ctx, _cache) => {
       return common_vendor.e({
-        a: common_vendor.n(activeTab.value === 0 ? "active" : ""),
+        a: common_vendor.n(activeTab.value == 0 ? "active" : ""),
         b: common_vendor.o(($event) => changeTab(0)),
-        c: common_vendor.n(activeTab.value === 1 ? "active" : ""),
+        c: common_vendor.n(activeTab.value == 1 ? "active" : ""),
         d: common_vendor.o(($event) => changeTab(1)),
-        e: common_vendor.n(activeTab.value === 2 ? "active" : ""),
+        e: common_vendor.n(activeTab.value == 2 ? "active" : ""),
         f: common_vendor.o(($event) => changeTab(2)),
-        g: activeTab.value == 0
+        g: common_vendor.unref(systemStore).getPlatform == "mp-weixin" ? "0" : "44px",
+        h: activeTab.value == 0
       }, activeTab.value == 0 ? {
-        h: common_vendor.p({
-          coupons: coupons.value
+        i: common_vendor.p({
+          coupons: coupons.value.concat(coupons.value, coupons.value, coupons.value, coupons.value, coupons.value, coupons.value, coupons.value, coupons.value, coupons.value)
         })
       } : {}, {
-        i: activeTab.value == 1
+        j: activeTab.value == 1
       }, activeTab.value == 1 ? {} : {}, {
-        j: activeTab.value == 2
+        k: activeTab.value == 2
       }, activeTab.value == 2 ? {} : {}, {
-        k: common_vendor.o(getMoreCoupons)
+        l: common_vendor.o(getMoreCoupons)
       });
     };
   }

@@ -16,6 +16,10 @@ const useSystemStore = common_vendor.defineStore("system", {
     // 是否是苹果移动端
     isIos: () => {
       return /(iPhone|iPad|iPod|iOS)/i.test(common_vendor.index.getSystemInfoSync().model);
+    },
+    // 当前宿主环境  [mp-weixin, web]
+    getPlatform: () => {
+      return common_vendor.index.getSystemInfoSync().uniPlatform;
     }
   },
   // 方法
