@@ -251,7 +251,7 @@ const _sfc_main = {
       let res = await utils_request.request("/WxAppCustomer/clear_select_address", "post", {});
       console.log("clear_select_address res", res);
       if (res.code != 0)
-        return common_vendor.index.showToast({ title: res.msg, icon: "error", duration: 2e3 });
+        return common_vendor.index.showToast({ title: res.msg, icon: "none", duration: 2e3 });
     }
     function addressSheetBtnHandler() {
       var _a;
@@ -270,7 +270,7 @@ const _sfc_main = {
     function change_pay_type(pay_type) {
       if (pay_type == 3 && save_money.value < 500) {
         common_vendor.index.showToast({
-          title: "储值余额不足，请更换其他支付方式",
+          title: "储值余额不足，\n请更换其它支付方式",
           icon: "error"
         });
         return;

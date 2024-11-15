@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "test",
-  "usingComponents": {
-    "coupon-popup": "../../components/CouponPopup"
-  }
-}

@@ -77,21 +77,21 @@ const _sfc_main = {
     }
     common_vendor.onLoad((options) => {
       if (options && options.scene) {
-        var sceneStr = decodeURIComponent(options.scene);
-        var params = sceneStr.split("&");
+        console.log("options", options);
+        let sceneStr = decodeURIComponent(options.scene);
         console.log("sceneStr", sceneStr);
+        let params = sceneStr.split("&");
         console.log("params", params);
         params.forEach((param) => {
           const [key, value] = param.split("=");
           if (key === "fuid") {
             console.log("fuid", value);
             stores_temp.useTempStore().setFuid(value);
-          } else if (key === "productid") {
+          } else if (key == "productid") {
             product_id.value = value;
           }
         });
         console.log("product_id", product_id.value);
-        console.log("getApp().globalData", getApp().globalData);
       }
       if (options && options.id) {
         console.log("options.idoptions.id");

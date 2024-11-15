@@ -1,5 +1,6 @@
 <template>
 	<view v-if="is_loading">
+		<!-- 退款商品列表 -->
 		<view style="height:auto;" class="new_layout">
 			<view style="height: auto;"
 				:class="`new_layout_cotent ${draw_good_info && draw_good_info.length > 0 ? 'bottom_juli' : ''}`">
@@ -9,7 +10,9 @@
 							:key="json_index">
 							<view class="good_item flex_row_space_bt">
 								<checkbox :value="'' + json_item.id" class="good_check" :checked="json_item.checked" />
+								<!-- 商品图片 -->
 								<image class="good_img" :src="json_item.img_uri" mode="aspectFill" />
+								<!-- 商品详情 -->
 								<view class="detail_info" style="max-width: 72%;overflow: hidden;">
 									<view class="name_price" style="width: 92%;">
 										<text class="name">{{ json_item.goods_name }}</text>
@@ -27,13 +30,13 @@
 											</view>
 										</view>
 										<view style="display: flex;align-items: center;">
-
+											<!-- 减少退款数量 -->
 											<image @click="reduce_drawback(json_item)" style="width: 38rpx;height:38rpx"
 												:src="json_item.draw_diff_show > 0 ? 'https://saas.jizhongkeji.com/static/jzkj/images/draw_jian.png' : 'https://saas.jizhongkeji.com/static/jzkj/images/draw_jian.png'">
 											</image>
-
+											<!-- 退款数量 -->
 											<view style="margin:0 15rpx">{{ json_item.draw_diff_show }}</view>
-
+											<!-- 增加退款数量 -->
 											<image @click="add_drawback(json_item)" style="width: 38rpx;height:38rpx"
 												:src="json_item.draw_diff_show >= json_item.count - json_item.drawback_count - json_item.drawback_count_ing ? 'https://saas.jizhongkeji.com/static/jzkj/images/draw_jia_bu.png' : 'https://saas.jizhongkeji.com/static/jzkj/images/draw_jia.png'">
 											</image>
@@ -49,6 +52,7 @@
 
 		</view>
 
+		<!-- 退款原因 -->
 		<view class="picker_w">
 			<view style="display: flex;width: 100%;align-items: center;justify-content: space-between;">
 				<view style="font-size: 28rpx;font-weight: bold;color: #1D1D1D;">退款原因</view>
@@ -72,6 +76,7 @@
 
 		</view>
 
+		<!-- 全选和退款按钮 -->
 		<view style="position: fixed;bottom: 0;justify-content: space-between;border-radius: 0;"
 			class="tool_box flex_row_space_bt">
 			<view class="choose_all width_max_content" style="display: flex;align-items: center;">

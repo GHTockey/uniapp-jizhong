@@ -166,12 +166,11 @@
 										</view>
 										<text class="number" v-if="json_item.drawback_count > 0">x{{
 											json_item.drawback_count }}</text>
-										<text class="number" v-if="json_item.drawback_count_ing > 0">退款中x{{
+										<text class="number" v-if="json_item.drawback_count_ing > 0">退款x{{
 											json_item.drawback_count_ing }}</text>
 									</view>
 									<view class="detail_desc"><text>{{ json_item.count }}</text>件
-										实收:￥<text>{{ json_item.price_all }}(已退款{{ json_item.unit_price *
-											json_item.drawback_count }})</text>
+										实收:￥<text>{{ json_item.price_all }}(退款 {{ drawback.drawback_money }})</text>
 									</view>
 								</view>
 							</view>
@@ -182,7 +181,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-											}}</text>申请退款，原因：{{ drawback.userback.reason }}
+									}}</text>申请退款，原因：{{ drawback.userback.reason }}
 									</view>
 								</view>
 
@@ -190,7 +189,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-											}}</text>商家主动退款，原因：{{ drawback.shopback.reason }}
+									}}</text>商家主动退款，原因：{{ drawback.shopback.reason }}
 									</view>
 								</view>
 
@@ -198,7 +197,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-											}}</text>
+									}}</text>
 										商家同意退款</view>
 								</view>
 
@@ -206,7 +205,7 @@
 									style="display: flex;align-items: center;font-size: 26rpx;color: #7F7F7F;">
 									<view><text style="margin-right: 10rpx;flex: none;">·{{
 										drawback.drawback_time_detail
-											}}</text>
+									}}</text>
 										商家拒绝退款</view>
 								</view>
 							</view>

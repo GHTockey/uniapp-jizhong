@@ -473,10 +473,42 @@ onLoad((options) => {
 	// getData();
 
 	if (options && options.scene) {
-		var sceneStr = decodeURIComponent(options.scene);
-		var params = sceneStr.split('&');
+		console.log('options', options);
+
+		/**
+		 * TODO: [1115 问题记录] 在小程序内扫码
+		 * 在小程序模拟器中扫码是需要解码的(参数带有%)，但在真机得出来的扫码结果却是解码之后的
+		 * 此时：模拟器options参数：scene=fuid%3D10662%26productid%3D1480    真机options参数：scene=fuid=10662&productid=1480
+		 * 在获取 options.scene 时，模拟器得到的是 'fuid%3D10662%26productid%3D1480'	而真机得到的仅是 'fuid'
+		 * 
+		 * [解决方案]
+		 * 1.在路由跳转源头进行统一编码
+		 * 2.手动获取当前页面完整url取出scene参数，并进行解码
+		 */
+		// [记录：url参数是编码后的数据，此时得到的参数会是二次编码的数据，需要解码两次???]
+
+
+		let sceneStr = decodeURIComponent(options.scene);
 		console.log('sceneStr', sceneStr);
+		let params = sceneStr.split('&');
 		console.log('params', params);
+
+		// 2.
+		// let fullPath = getCurrentPages()[getCurrentPages().length - 1].$page.fullPath;
+		// console.log('fullPath', fullPath);
+		// // 从scene=开始取到末尾
+		// let scene = fullPath.substring(fullPath.indexOf('scene=') + 6);
+		// // console.log('scene 解码前', scene);
+		// // scene = decodeURIComponent(scene);
+		// // console.log('scene 解码后', scene);
+		// // 递归解码，直到没有%
+		// while (scene.includes('%')) {
+		// 	scene = decodeURIComponent(scene);
+		// }
+		// console.log('scene 递归解码后', scene);
+		// let params = scene.split('&');
+		// console.log('params', params);
+		// return
 
 		params.forEach(param => {
 			const [key, value] = param.split('=');
@@ -484,12 +516,12 @@ onLoad((options) => {
 				console.log('fuid', value);
 				// getApp().globalData.fuid = value;
 				useTempStore().setFuid(value);
-			} else if (key === 'productid') {
+			} else if (key == 'productid') {
 				product_id.value = value;
 			}
 		});
 		console.log('product_id', product_id.value);
-		console.log('getApp().globalData',getApp().globalData)
+		// console.log('getApp().globalData',getApp().globalData)
 	}
 
 	if (options && options.id) {

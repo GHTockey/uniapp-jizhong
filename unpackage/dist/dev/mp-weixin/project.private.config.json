@@ -4,6 +4,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/product/detail",
+          "pathName": "pages/product/detail",
+          "query": "scene=fuid%3D10662%26productid%3D1480",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/mine/mine",
           "pathName": "pages/mine/mine",
           "query": "",

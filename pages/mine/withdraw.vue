@@ -260,8 +260,8 @@ function create_batches(e) {
 
 					can_cash_money.value = reqRes.data.can_cash_money
 					user.value = reqRes.data.user
-
 					// getApp().globalData.user = res.data.data.user;
+					
 					uni.redirectTo({
 						url: '/pages/mine/withdraw_apply_ing',
 					})

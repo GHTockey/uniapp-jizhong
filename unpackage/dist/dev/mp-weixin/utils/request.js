@@ -8,12 +8,14 @@ const responseInterceptors = [];
 const request = (url, method = "GET", data = {}, headers = {}) => {
   const tempStore = stores_temp.useTempStore();
   data.fuid = tempStore.fuid;
+  data.unionid = tempStore.user.unionid;
+  data.user_id = tempStore.user.id;
   if (uniSystemInfo.uniPlatform == "web") {
     data = {
       ...data,
       wx_open_id: tempStore.user.wx_open_id || "oPyg85Y9gzaTO9wgTmeApQMqmhRY",
-      wx_appid: tempStore.user.authorizer_appid || "wx184d389f8e1603d4",
-      user_id: tempStore.user.id || 10662
+      wx_appid: tempStore.user.authorizer_appid || "wx184d389f8e1603d4"
+      // user_id: tempStore.user.id || 10662,
     };
   } else if (uniSystemInfo.uniPlatform == "mp-weixin") {
     data = {
