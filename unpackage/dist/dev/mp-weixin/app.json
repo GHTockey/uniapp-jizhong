@@ -71,7 +71,8 @@
     "pages/product/category",
     "pages/test/test2",
     "pages/index/expires",
-    "pages/index/user"
+    "pages/index/user",
+    "pages/mine/cancel_order"
   ],
   "window": {
     "navigationBarTextStyle": "black",

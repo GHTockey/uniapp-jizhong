@@ -77,6 +77,7 @@ if (!Math) {
   "./pages/test/test2.js";
   "./pages/index/expires.js";
   "./pages/index/user.js";
+  "./pages/mine/cancel_order.js";
 }
 const __default__ = {
   onLaunch: function() {

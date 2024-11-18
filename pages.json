@@ -495,6 +495,13 @@
 			{
 				"navigationBarTitleText" : "注册信息"
 			}
+		},
+		{
+			"path" : "pages/mine/cancel_order",
+			"style" : 
+			{
+				"navigationBarTitleText" : "取消订单"
+			}
 		}
 	],
 	"globalStyle": {

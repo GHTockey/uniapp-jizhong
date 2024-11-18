@@ -9,9 +9,9 @@
 			<view>请联系技术人员及时续费</view>
 		</view>
 		<view class="bottom_btn">
-			<view bind:tap="freeTell" class="btn">拨打技术支持电话</view>
+			<view @click="freeTell" class="btn">拨打技术支持电话</view>
 
-			<view bind:tap="tohome" class="btn btn2">我知道了,关闭提醒</view>
+			<view @click="tohome" class="btn btn2">我知道了,关闭提醒</view>
 		</view>
 	</view>
 </template>
@@ -38,7 +38,7 @@ export default {
 		},
 		tohome() {
 			console.log('indexindexindex');
-			uni.switchTab({
+			uni.redirectTo({
 				url: '/pages/index/index',
 			})
 		},
