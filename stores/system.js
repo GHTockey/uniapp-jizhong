@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 
 export const useSystemStore = defineStore('system', {
-	// 状态
+	// 状态变量
 	state: () => {
 		return {
 			var1: '123123321'

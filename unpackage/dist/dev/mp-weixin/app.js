@@ -75,6 +75,7 @@ if (!Math) {
   "./pages/mine/apply_search.js";
   "./pages/product/category.js";
   "./pages/test/test2.js";
+  "./pages/index/expires.js";
 }
 const __default__ = {
   onLaunch: function() {

@@ -1,7 +1,7 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
 const useSystemStore = common_vendor.defineStore("system", {
-  // 状态
+  // 状态变量
   state: () => {
     return {
       var1: "123123321"

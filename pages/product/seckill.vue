@@ -1,6 +1,7 @@
 <template>
 	<!-- 背景图片设在此处 -->
-	<view class="seckill_container" style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/money-bg.svg');">
+	<view class="seckill_container"
+		style="background-image: url('https://saas.jizhongkeji.com/static/jzkj/static/images/money-bg.svg');">
 
 		<HeightBar />
 		<NavBar showBack isWhite bgc="transparent" title="" />
@@ -45,7 +46,7 @@
 
 
 				<!-- item -->
-				<view class="seckill_goods_list_item" v-for="item in 3" v-else>
+				<view class="seckill_goods_list_item" v-for="(item, index) in 3" v-else>
 					<image mode="aspectFill" class="w-[222rpx] h-[222rpx] rounded-[14rpx]"
 						src="https://saas.jizhongkeji.com/static/jzkj/static/images/emp.png"></image>
 					<view class="relative flex-1 flex flex-col justify-between">
@@ -56,11 +57,15 @@
 						<!-- 秒杀进度条 -->
 						<view class="seckill_goods_list_item_progress">
 							<!-- 进度条 -->
-							<view class="seckill_goods_list_item_progress_bar w-[50%]"></view>
+							<view class="seckill_goods_list_item_progress_bar"
+								:style="{ width: `${progressPercent[index]}%` }"></view>
+							<!-- <view class="seckill_goods_list_item_progress_bar w-[50%]"></view> -->
 							<!-- 剩余数量 -->
-							<text class="text-[17rpx] text-[#FFFFFF] z-10">剩余100件</text>
+							<text class="text-[17rpx] text-[#FFFFFF] z-10">剩余{{ progressPercent[index] }}件</text>
 							<!-- 相对定位指示器 -->
-							<view class="seckill_goods_list_item_progress_indicator z-10 absolute left-[50%]">
+							<view class="seckill_goods_list_item_progress_indicator z-10 absolute"
+								:style="{ left: `${progressPercent[index]}%` }">
+								<!-- <view class="seckill_goods_list_item_progress_indicator z-10 absolute left-[50%]"> -->
 								<image mode="aspectFill" class="w-[25rpx] h-[25rpx]" src="../../static/ms_sd.svg">
 								</image>
 							</view>
@@ -75,16 +80,26 @@
 						</view>
 
 						<!-- 相对定位按钮 -->
-						<view class="seckill_goods_list_item_btn" :class="{ disabled: item == 2 }">
+						<view class="seckill_goods_list_item_btn text-[30rpx]" :class="{ disabled: item == 2 }">
 							<text>抢购</text>
 						</view>
 					</view>
 				</view>
 			</view>
+
+
+
+
+			<view class="flex justify-between flex-wrap bg-white p-[10rpx] box-border absolute bottom-0 left-0 right-0">
+				<uni-number-box v-model="progressPercent[0]" />
+				<uni-number-box v-model="progressPercent[1]" />
+				<uni-number-box v-model="progressPercent[2]" />
+				<view class="w-full mt-[10rpx]">
+					<button @click="isEmpty = !isEmpty">[temp]切换状态</button>
+				</view>
+			</view>
 		</view>
 
-		<!-- temp 切换状态 -->
-		<button @click="isEmpty = !isEmpty">[temp]切换状态</button>
 	</view>
 </template>
 
@@ -111,6 +126,10 @@ onUnmounted(() => {
 });
 // 是否空状态
 const isEmpty = ref(false);
+
+// 临时模拟百分比数据
+const progressPercent = ref([40, 50, 60]);
+
 
 
 // 计算结束时间
@@ -139,6 +158,7 @@ const randomNum = () => {
 
 <style scoped lang="scss">
 .seckill_container {
+	// min-height: calc(100vh - $nav-height);
 	min-height: 100vh;
 	background-color: #f4f6fa;
 	background-size: 100%;
@@ -146,7 +166,9 @@ const randomNum = () => {
 
 
 	.seckill_header {
-		min-height: 508rpx;
+		gap: 10rpx;
+		min-height: 420rpx;
+		// min-height: 508rpx;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -233,7 +255,7 @@ const randomNum = () => {
 					width: 37.5rpx;
 					height: 37.5rpx;
 					background: linear-gradient(135deg, #fff129, #fca000);
-					border: 0.69rpx solid rgba(0, 0, 0, 0.00);
+					// border: 0.69rpx solid rgba(0, 0, 0, 0.00);
 					border-radius: 50%;
 					transform: translateX(-50%);
 					display: flex;

@@ -480,6 +480,14 @@
 			{
 				"navigationBarTitleText" : ""
 			}
+		},
+		{
+			"path" : "pages/index/expires",
+			"style" : 
+			{
+				"navigationBarTitleText" : "过期续费页",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

@@ -127,3 +127,15 @@ export function throttle(func, delay) {
     }
   };
 }
+
+
+
+export function isWxFile(uri) {
+  if (!uri) {
+    return false;
+  }
+  if (typeof uri != 'string') {
+    return false;
+  }
+  return uri.indexOf('http://tmp/') === 0 || uri.indexOf('wxfile://tmp_') === 0;
+}

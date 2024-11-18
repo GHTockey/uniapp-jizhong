@@ -218,6 +218,10 @@ view,text,::before,::after {
     margin-left: 0.5rem;
     margin-right: 0.5rem
 }
+.mx-_30rpx_ {
+    margin-left: 30rpx;
+    margin-right: 30rpx
+}
 .my-3 {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem
@@ -225,10 +229,6 @@ view,text,::before,::after {
 .my-_25rpx_ {
     margin-top: 25rpx;
     margin-bottom: 25rpx
-}
-.mx-_30rpx_ {
-    margin-left: 30rpx;
-    margin-right: 30rpx
 }
 .mb-2 {
     margin-bottom: 0.5rem
@@ -292,6 +292,9 @@ view,text,::before,::after {
 }
 .mt-_70rpx_ {
     margin-top: 70rpx
+}
+.box-border {
+    box-sizing: border-box
 }
 .line-clamp-1 {
     overflow: hidden;
@@ -416,6 +419,9 @@ view,text,::before,::after {
 .h-_550rpx_ {
     height: 550rpx
 }
+.h-_70rpx_ {
+    height: 70rpx
+}
 .h-_71d5rpx_ {
     height: 71.5rpx
 }
@@ -436,12 +442,6 @@ view,text,::before,::after {
 }
 .h-full {
     height: 100%
-}
-.h-_90rpx_ {
-    height: 90rpx
-}
-.h-_70rpx_ {
-    height: 70rpx
 }
 .iw-_160rpx_ {
     width: 160rpx !important
@@ -739,6 +739,9 @@ view,text,::before,::after {
 .p-0 {
     padding: 0px
 }
+.p-_10rpx_ {
+    padding: 10rpx
+}
 .p-_20rpx_ {
     padding: 20rpx
 }
@@ -803,18 +806,6 @@ view,text,::before,::after {
 .py-_5rpx_ {
     padding-top: 5rpx;
     padding-bottom: 5rpx
-}
-.ipy-20 {
-    padding-top: 5rem !important;
-    padding-bottom: 5rem !important
-}
-.ipy-__ {
-    padding-top:  !important;
-    padding-bottom:  !important
-}
-.ipy-_15rpx_ {
-    padding-top: 15rpx !important;
-    padding-bottom: 15rpx !important
 }
 .ipb-0 {
     padding-bottom: 0px !important

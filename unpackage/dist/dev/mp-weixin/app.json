@@ -69,7 +69,8 @@
     "pages/mine/appointent",
     "pages/mine/apply_search",
     "pages/product/category",
-    "pages/test/test2"
+    "pages/test/test2",
+    "pages/index/expires"
   ],
   "window": {
     "navigationBarTextStyle": "black",

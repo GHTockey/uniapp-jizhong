@@ -1,7 +1,7 @@
 <script>
 export default {
 	onLaunch: function () {
-		// console.log('App Launch')
+		// console.log('App Launch', getApp().globalData)
 	},
 	onShow: function () {
 		// console.log('App Show')
@@ -13,7 +13,7 @@ export default {
 </script>
 
 <script setup>
-// import { onMounted, getCurrentInstance } from 'vue';
+import { onMounted, getCurrentInstance } from 'vue';
 import { useSystemStore } from '@/stores/system';
 import { useTabBarStore } from '@/stores/tabbar';
 import { useTempStore } from "@/stores/temp";
@@ -28,7 +28,7 @@ tabBarStore.getTabBarListApi();
 
 // mounted 比 Launch 先执行
 // onMounted(() => {
-// 	console.log('App Mounted')
+// 	console.log('vue Mounted', getApp().globalData)
 // })
 </script>
 
