@@ -488,6 +488,13 @@
 				"navigationBarTitleText" : "过期续费页",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/index/user",
+			"style" : 
+			{
+				"navigationBarTitleText" : "注册信息"
+			}
 		}
 	],
 	"globalStyle": {

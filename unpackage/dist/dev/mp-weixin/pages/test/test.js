@@ -125,14 +125,15 @@ const _sfc_main = {
         j: common_vendor.o(startAddBubbleTipsData),
         k: common_vendor.o(scanCode),
         l: common_vendor.o(($event) => goToPage("/pages/index/expires")),
-        m: common_vendor.o(handleConfirmActionSheet),
-        n: common_vendor.o(($event) => showActionSheet.value = $event),
-        o: common_vendor.p({
+        m: common_vendor.o(($event) => goToPage("/pages/index/user")),
+        n: common_vendor.o(handleConfirmActionSheet),
+        o: common_vendor.o(($event) => showActionSheet.value = $event),
+        p: common_vendor.p({
           items: actionSheetData.value.items,
           title: actionSheetData.value.title,
           show: showActionSheet.value
         }),
-        p: common_vendor.f(goodsParamsData.value, (item, k0, i0) => {
+        q: common_vendor.f(goodsParamsData.value, (item, k0, i0) => {
           return {
             a: common_vendor.t(item.value),
             b: item.id,
@@ -141,12 +142,12 @@ const _sfc_main = {
             e: item.id == 3 ? 1 : ""
           };
         }),
-        q: common_vendor.o(($event) => showActionSheetSlot.value = $event),
-        r: common_vendor.p({
+        r: common_vendor.o(($event) => showActionSheetSlot.value = $event),
+        s: common_vendor.p({
           footerBtnText: "立即购买",
           show: showActionSheetSlot.value
         }),
-        s: common_vendor.p({
+        t: common_vendor.p({
           title: "标题",
           showBack: true
         })

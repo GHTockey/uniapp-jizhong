@@ -70,7 +70,8 @@
     "pages/mine/apply_search",
     "pages/product/category",
     "pages/test/test2",
-    "pages/index/expires"
+    "pages/index/expires",
+    "pages/index/user"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -688,6 +688,9 @@ view,text,::before,::after {
 .rounded-none {
     border-radius: 0px
 }
+.rounded-_30rpx_ {
+    border-radius: 30rpx
+}
 .rounded-t-lg {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem

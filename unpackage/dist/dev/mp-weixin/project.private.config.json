@@ -4,9 +4,9 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/product/detail",
-          "pathName": "pages/product/detail",
-          "query": "scene=fuid%3D10662%26productid%3D1480",
+          "name": "pages/index/expires",
+          "pathName": "pages/index/expires",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },

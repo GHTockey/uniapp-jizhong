@@ -76,6 +76,7 @@ if (!Math) {
   "./pages/product/category.js";
   "./pages/test/test2.js";
   "./pages/index/expires.js";
+  "./pages/index/user.js";
 }
 const __default__ = {
   onLaunch: function() {

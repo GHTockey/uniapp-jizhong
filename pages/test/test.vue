@@ -20,6 +20,7 @@
 			<button @click="startAddBubbleTipsData" size="mini">start 气泡提示</button>
 			<button @click="scanCode" size="mini">扫码</button>
 			<button @click="goToPage('/pages/index/expires')" size="mini">过期续费页</button>
+			<button @click="goToPage('/pages/index/user')" size="mini">注册信息页</button>
 			<!-- <button @click="goToPage('/pages/goodsDetail/goodsDetail')" size="mini">跳转商品详情页</button>
 			<button @click="showActionSheet = true" size="mini">使用ActionSheet组件</button>
 			<button @click="showActionSheetSlot = true" size="mini">选择商品弹窗 ActionSheetSlot组件</button> -->
